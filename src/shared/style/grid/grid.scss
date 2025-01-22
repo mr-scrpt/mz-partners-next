@@ -1,3 +1,5 @@
+@use "sass:map";
+
 // Переменные для брейкпоинтов
 $breakpoints: (
   "sm": 576px,
@@ -13,18 +15,91 @@ $grid-columns: 12;
 // Базовый отступ между колонками
 $grid-gap: 20px;
 
-// Миксин для медиа-запросов (mobile first)
+// Миксины для медиа-запросов
+// Mobile first (min-width)
 @mixin breakpoint($point) {
-  @if map-has-key($breakpoints, $point) {
-    @media (min-width: map-get($breakpoints, $point)) {
+  @if map.has-key($breakpoints, $point) {
+    @media (min-width: map.get($breakpoints, $point)) {
       @content;
     }
   }
 }
 
+// Desktop first (max-width)
+@mixin breakpoint-down($point) {
+  @if map.has-key($breakpoints, $point) {
+    @media (max-width: map.get($breakpoints, $point)) {
+      @content;
+    }
+  }
+}
+
+// Миксины для удобного применения стилей на брейкпоинтах
+@mixin block-bp-sm() {
+  @include breakpoint("sm") {
+    @content;
+  }
+}
+
+@mixin block-bp-md() {
+  @include breakpoint("md") {
+    @content;
+  }
+}
+
+@mixin block-bp-lg() {
+  @include breakpoint("lg") {
+    @content;
+  }
+}
+
+@mixin block-bp-xl() {
+  @include breakpoint("xl") {
+    @content;
+  }
+}
+
+@mixin block-bp-xxl() {
+  @include breakpoint("xxl") {
+    @content;
+  }
+}
+
+// Desktop first variants
+@mixin block-bp-sm-down() {
+  @include breakpoint-down("sm") {
+    @content;
+  }
+}
+
+@mixin block-bp-md-down() {
+  @include breakpoint-down("md") {
+    @content;
+  }
+}
+
+@mixin block-bp-lg-down() {
+  @include breakpoint-down("lg") {
+    @content;
+  }
+}
+
+@mixin block-bp-xl-down() {
+  @include breakpoint-down("xl") {
+    @content;
+  }
+}
+
+@mixin block-bp-xxl-down() {
+  @include breakpoint-down("xxl") {
+    @content;
+  }
+}
+
+// Контейнер с отступами и центровкой
 @mixin container($center: true) {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: $grid-gap;
+  padding-left: $grid-gap;
 
   @if $center {
     margin-right: auto;
@@ -34,11 +109,13 @@ $grid-gap: 20px;
 
 // Миксин для создания grid-контейнера
 @mixin grid($gap: $grid-gap) {
-  display: grid;
-  grid-template-columns: repeat($grid-columns, 1fr);
-  gap: $gap;
+  & {
+    display: grid;
+    grid-template-columns: repeat($grid-columns, 1fr);
+    gap: $gap;
 
-  width: 100%;
+    width: 100%;
+  }
 }
 
 // Миксин для колонок (базовый)
@@ -77,6 +154,7 @@ $grid-gap: 20px;
   }
 }
 
+// Миксин для автоматического размещения элементов в строку
 @mixin grid-auto-fit($min-size: 250px, $gap: $grid-gap) {
   display: grid;
   gap: $gap;
@@ -90,7 +168,9 @@ $grid-gap: 20px;
 
 // Миксин для создания именованной сетки
 @mixin grid-template($areas...) {
-  grid-template-areas: $areas;
+  & {
+    grid-template-areas: $areas;
+  }
 }
 
 // Миксин для выравнивания элементов внутри грида

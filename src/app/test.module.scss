@@ -15,3 +15,7 @@
     @include col-xl(9);
   }
 }
+
+.page {
+  @include container;
+}
