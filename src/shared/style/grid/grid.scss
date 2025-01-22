@@ -1,0 +1,99 @@
+// Переменные для брейкпоинтов
+$breakpoints: (
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px,
+  "xxl": 1400px,
+);
+
+// Количество колонок в сетке
+$grid-columns: 12;
+
+// Базовый отступ между колонками
+$grid-gap: 20px;
+
+// Миксин для медиа-запросов (mobile first)
+@mixin breakpoint($point) {
+  @if map-has-key($breakpoints, $point) {
+    @media (min-width: map-get($breakpoints, $point)) {
+      @content;
+    }
+  }
+}
+
+@mixin container($center: true) {
+  padding-right: 15px;
+  padding-left: 15px;
+
+  @if $center {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+// Миксин для создания grid-контейнера
+@mixin grid($gap: $grid-gap) {
+  display: grid;
+  grid-template-columns: repeat($grid-columns, 1fr);
+  gap: $gap;
+
+  width: 100%;
+}
+
+// Миксин для колонок (базовый)
+@mixin col($span: $grid-columns) {
+  grid-column: span min($span, $grid-columns);
+}
+
+// Миксины для разных брейкпоинтов
+@mixin col-sm($span) {
+  @include breakpoint("sm") {
+    @include col($span);
+  }
+}
+
+@mixin col-md($span) {
+  @include breakpoint("md") {
+    @include col($span);
+  }
+}
+
+@mixin col-lg($span) {
+  @include breakpoint("lg") {
+    @include col($span);
+  }
+}
+
+@mixin col-xl($span) {
+  @include breakpoint("xl") {
+    @include col($span);
+  }
+}
+
+@mixin col-xxl($span) {
+  @include breakpoint("xxl") {
+    @include col($span);
+  }
+}
+
+@mixin grid-auto-fit($min-size: 250px, $gap: $grid-gap) {
+  display: grid;
+  gap: $gap;
+  grid-template-columns: repeat(auto-fit, minmax(min($min-size, 100%), 1fr));
+}
+
+// Миксин для создания grid-area
+@mixin grid-area($name) {
+  grid-area: $name;
+}
+
+// Миксин для создания именованной сетки
+@mixin grid-template($areas...) {
+  grid-template-areas: $areas;
+}
+
+// Миксин для выравнивания элементов внутри грида
+@mixin grid-align($justify: start, $align: start) {
+  place-items: $align $justify;
+}
