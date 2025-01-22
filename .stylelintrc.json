@@ -4,7 +4,6 @@
     "stylelint-order-config-standard",
     "stylelint-config-prettier-scss",
     "stylelint-config-html"
-
   ],
   "plugins": [
     "stylelint-scss",
@@ -12,6 +11,7 @@
     "stylelint-declaration-block-no-ignored-properties"
   ],
   "rules": {
-    "selector-class-pattern": null
+    "selector-class-pattern": null,
+    "comment-empty-line-before": null
   }
 }
