@@ -5,9 +5,10 @@ $breakpoints: (
   "sm": 576px,
   "md": 768px,
   "lg": 992px,
-  "xl": 1200px,
-  "xxl": 1400px,
+  "xl": 1280px,
+  "xxl": 1440px,
 );
+$max-width-site: 1440px;
 
 // Количество колонок в сетке
 $grid-columns: 12;
@@ -97,7 +98,8 @@ $grid-gap: 20px;
 }
 
 // Контейнер с отступами и центровкой
-@mixin container($center: true) {
+@mixin container($center: true, $max-width: $max-width-site) {
+  max-width: $max-width;
   padding-right: $grid-gap;
   padding-left: $grid-gap;
 
@@ -106,6 +108,21 @@ $grid-gap: 20px;
     margin-left: auto;
   }
 }
+
+@mixin container-flat($center: true, $max-width: $max-width-site) {
+  max-width: $max-width;
+
+  @if $center {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+/* // Wrapper для гридов */
+/* @mixin wrapper($max-width: $max-width-site) { */
+/*   max-width: $max-width; */
+/*   margin: 0 auto; */
+/* } */
 
 // Миксин для создания grid-контейнера
 @mixin grid($gap: $grid-gap) {
