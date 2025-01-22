@@ -4,6 +4,7 @@
   }
 
   &__sidebar {
+    background-color: var(--color-neutral-500);
     @include col(12);
     @include col-md(5);
     @include col-xl(3);

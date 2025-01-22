@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import sGlobal from "@/shared/style/global.module.scss";
+import clsx from "clsx";
 
 const MontserratSans = Montserrat({
   variable: "--font-montserrat-sans",
@@ -18,7 +19,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={sGlobal.html}>
+    <html
+      lang="ua"
+      className={clsx(sGlobal.html, sGlobal.reset, sGlobal.color)}
+    >
       <body className={`${MontserratSans.variable}`}>{children}</body>
     </html>
   );
