@@ -100,13 +100,13 @@ $grid-gap: 20px;
 // Контейнер с отступами и центровкой
 @mixin container($center: true, $max-width: $max-width-site) {
   max-width: $max-width;
-  padding-right: $grid-gap;
-  padding-left: $grid-gap;
 
   @if $center {
     margin-right: auto;
     margin-left: auto;
   }
+
+  @include box;
 }
 
 @mixin container-flat($center: true, $max-width: $max-width-site) {
@@ -118,11 +118,10 @@ $grid-gap: 20px;
   }
 }
 
-/* // Wrapper для гридов */
-/* @mixin wrapper($max-width: $max-width-site) { */
-/*   max-width: $max-width; */
-/*   margin: 0 auto; */
-/* } */
+@mixin box() {
+  padding-right: $grid-gap;
+  padding-left: $grid-gap;
+}
 
 // Миксин для создания grid-контейнера
 @mixin grid($gap: $grid-gap) {

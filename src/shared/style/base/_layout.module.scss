@@ -1,0 +1,16 @@
+.section {
+  width: 100%;
+  max-width: 100%;
+}
+
+.container {
+  @include container;
+}
+
+.container-flat {
+  @include container-flat;
+}
+
+.box {
+  @include box;
+}

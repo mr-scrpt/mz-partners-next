@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes } from "react";
+import { FC } from "react";
 import { PhoneItemProps } from "../domain/type";
 
 // interface PhoneItemProps extends HTMLAttributes<HTMLDivElement> {

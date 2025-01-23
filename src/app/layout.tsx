@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import sGlobal from "@/shared/style/global.module.scss";
 import clsx from "clsx";
+import { ProvidersRoot } from "./_provider/providerRoot";
+import { HeaderModule } from "@/widget/header";
+import { sGlobal } from "@/shared/style";
 
 const MontserratSans = Montserrat({
   variable: "--font-montserrat-sans",
@@ -23,7 +25,10 @@ export default function RootLayout({
       lang="ua"
       className={clsx(sGlobal.html, sGlobal.reset, sGlobal.color)}
     >
-      <body className={`${MontserratSans.variable}`}>{children}</body>
+      <body className={`${MontserratSans.variable}`}>
+        <HeaderModule />
+        <ProvidersRoot>{children}</ProvidersRoot>
+      </body>
     </html>
   );
 }

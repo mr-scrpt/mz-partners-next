@@ -1,23 +1,23 @@
-import { FC, HTMLAttributes, ReactNode } from "react";
-import sHeaderLayout from "./headerLayout.module.scss";
-import { sDeco, sLayout } from "@/shared/style";
 import clsx from "clsx";
+import { FC, HTMLAttributes, ReactNode } from "react";
+import sHeaderLayout from "./header.layout.module.scss";
+import { sLayout } from "@/shared/style";
 
 interface HeaderLayoutProps extends HTMLAttributes<HTMLDivElement> {
-  LogoSlot: ReactNode;
-  MenuSlot: ReactNode;
+  VisualSlot: ReactNode;
+  InfoSlot: ReactNode;
+  ActionSlot: ReactNode;
 }
 
 export const HeaderLayout: FC<HeaderLayoutProps> = (props) => {
-  const { LogoSlot, MenuSlot } = props;
+  const { VisualSlot, InfoSlot, ActionSlot } = props;
 
   return (
-    <header className={sLayout.wrapper}>
-      <div
-        className={clsx(sHeaderLayout.inner, sDeco.sectionGradientLineGhosty)}
-      >
-        <div className={sHeaderLayout.logo}>{LogoSlot}</div>
-        <div className={sHeaderLayout.menu}>{MenuSlot}</div>
+    <header className={sLayout.section}>
+      <div className={clsx(sLayout.container, sHeaderLayout.inner)}>
+        <div className={sHeaderLayout.visual}>{VisualSlot}</div>
+        <div className={sHeaderLayout.info}>{InfoSlot}</div>
+        <div className={sHeaderLayout.action}>{ActionSlot}</div>
       </div>
     </header>
   );

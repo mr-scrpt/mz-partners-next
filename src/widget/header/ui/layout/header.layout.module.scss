@@ -1,0 +1,27 @@
+.inner {
+  @include grid;
+}
+
+.info {
+  @include col(6);
+  @include col-md(4);
+  @include block-bp-md {
+    order: 0;
+  }
+}
+
+.visual {
+  @include col(12);
+  @include col-md(4);
+  @include block-bp-md {
+    order: 1;
+  }
+}
+
+.action {
+  @include col(6);
+  @include col-md(4);
+  @include block-bp-md {
+    order: 2;
+  }
+}
