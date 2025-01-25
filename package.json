@@ -9,7 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@formatjs/intl-localematcher": "^0.5.10",
+    "@types/negotiator": "^0.6.3",
     "clsx": "^2.1.1",
+    "formatjs": "^0.1.1",
+    "negotiator": "^1.0.0",
     "next": "15.1.5",
     "next-client-cookies": "^2.0.1",
     "next-intl": "^3.26.3",
