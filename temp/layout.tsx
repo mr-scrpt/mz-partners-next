@@ -1,9 +1,8 @@
-import { LocaleParam } from "@/i18n/domain/type";
 import { sGlobal } from "@/shared/style";
 import { HeaderModule } from "@/widget/header";
 import clsx from "clsx";
 import type { Metadata } from "next";
-import { getLocale } from "next-intl/server";
+// import { getLocale } from "next-intl/server";
 import { Montserrat } from "next/font/google";
 import { ProvidersRoot } from "./_provider/root.provider";
 
@@ -25,12 +24,16 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
+// export async function generateStaticParams() {
+//   return [{ locale: "ua" }, { locale: "en" }];
+// }
+
 const LocalLayout = async ({ children }: RootLayoutProps) => {
-  const locale = await getLocale();
+  // const locale = await getLocale();
 
   return (
     <html
-      lang={locale}
+      lang="en"
       className={clsx(sGlobal.html, sGlobal.reset, sGlobal.color)}
     >
       <body className={`${MontserratSans.variable}`}>
