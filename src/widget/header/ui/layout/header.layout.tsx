@@ -3,6 +3,7 @@ import { FC, HTMLAttributes, ReactNode } from "react";
 import sHeaderLayout from "./header.layout.module.scss";
 import { sLayout } from "@/shared/style";
 import { useTranslations } from "next-intl";
+import { LangSwitcherServer } from "@/shared/ui/langSwitcher/ui/langSwitcher.server";
 interface HeaderLayoutProps extends HTMLAttributes<HTMLDivElement> {
   VisualSlot: ReactNode;
   InfoSlot: ReactNode;
@@ -15,7 +16,7 @@ export const HeaderLayout: FC<HeaderLayoutProps> = (props) => {
 
   return (
     <header className={sLayout.section}>
-      {/* <LocalSwitcher /> */}
+      <LangSwitcherServer />
       {t("title")}
       <div className={clsx(sLayout.container, sHeaderLayout.inner)}>
         <div className={sHeaderLayout.visual}>{VisualSlot}</div>

@@ -1,7 +1,6 @@
+import { withNextIntl } from "@/shared/lib/i18n/hoc";
+// import { withNextIntl } from "@/shared/lib/i18n/request";
 import type { NextConfig } from "next";
-import createNextIntlPlugin from "next-intl/plugin";
-
-const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
   // output: "export",

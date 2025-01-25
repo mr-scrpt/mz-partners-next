@@ -3,7 +3,7 @@ import { HeaderModule } from "@/widget/header";
 import clsx from "clsx";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import { routing } from "@/i18n/routing";
+import { routing } from "@/shared/lib/i18n/routing";
 import { setRequestLocale } from "next-intl/server";
 import { ProvidersRoot } from "../_provider/root.provider";
 
