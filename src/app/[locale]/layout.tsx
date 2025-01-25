@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import { setRequestLocale } from "next-intl/server";
+import { ProvidersRoot } from "../_provider/root.provider";
 
 const MontserratSans = Montserrat({
   variable: "--font-montserrat-sans",
@@ -34,8 +35,10 @@ const LocalLayout = async ({ children, params }: RootLayoutProps) => {
       className={clsx(sGlobal.html, sGlobal.reset, sGlobal.color)}
     >
       <body className={`${MontserratSans.variable}`}>
-        <HeaderModule />
-        {children}
+        <ProvidersRoot>
+          <HeaderModule />
+          {children}
+        </ProvidersRoot>
       </body>
     </html>
   );
