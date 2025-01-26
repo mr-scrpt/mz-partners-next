@@ -1,5 +1,5 @@
 import { getRequestConfig } from "next-intl/server";
-import { Locale, LOCALE_FOLDER } from "./domain/type";
+import { Locale } from "./domain/type";
 import { routing } from "./routing";
 
 export default getRequestConfig(async ({ requestLocale }) => {
@@ -11,6 +11,6 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   return {
     locale,
-    messages: (await import(`#/${LOCALE_FOLDER}/${locale}.json`)).default,
+    messages: (await import(`#/localization/${locale}.json`)).default,
   };
 });
