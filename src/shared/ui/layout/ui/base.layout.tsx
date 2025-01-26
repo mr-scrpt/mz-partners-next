@@ -1,11 +1,10 @@
+import { Locale, i18n } from "@/shared/lib/i18n";
+import { ProvidersRoot } from "@/shared/provider/root.provider";
 import { sGlobal } from "@/shared/style";
 import { HeaderModule } from "@/widget/header";
 import clsx from "clsx";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import { routing } from "@/shared/lib/i18n/routing";
-import { setRequestLocale } from "next-intl/server";
-import { ProvidersRoot } from "../_provider/root.provider";
 
 const MontserratSans = Montserrat({
   variable: "--font-montserrat-sans",
@@ -19,19 +18,17 @@ export const metadata: Metadata = {
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  lang: Locale;
 }
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
+  return i18n.locales.map((locale) => ({ lang: locale }));
 }
 
-const LocalLayout = async ({ children, params }: RootLayoutProps) => {
-  const locale = (await params).locale;
-  setRequestLocale(locale);
+const RootLayout = async ({ children, lang }: RootLayoutProps) => {
   return (
     <html
-      lang={locale}
+      lang={lang}
       className={clsx(sGlobal.html, sGlobal.reset, sGlobal.color)}
     >
       <body className={`${MontserratSans.variable}`}>
@@ -43,4 +40,5 @@ const LocalLayout = async ({ children, params }: RootLayoutProps) => {
     </html>
   );
 };
-export default LocalLayout;
+
+export default RootLayout;

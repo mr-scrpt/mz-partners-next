@@ -1,34 +1,30 @@
-import { match } from "@formatjs/intl-localematcher";
-import Negotiator from "negotiator";
-import createMiddleware from "next-intl/middleware";
-import { routing } from "./shared/lib/i18n/routing";
-
-//
-//
-// let headers = { "accept-language": "en-US,en;q=0.5" };
-// let languages = new Negotiator({ headers }).languages();
-// let locales = ["en-US", "nl-NL", "nl"];
-// let defaultLocale = "en-US";
-//
-// match(languages, locales, defaultLocale); // -> 'en-US'
 import { NextRequest, NextResponse } from "next/server";
+import { i18n } from "@/shared/lib/i18n";
 
-let locales = ["en", "ua"];
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
 
-function getLocale(request: NextRequest) {
-  const acceptLanguage = request.headers.get("accept-language") ?? "en";
-  let languages = new Negotiator({
-    headers: {
-      "accept-language": acceptLanguage,
-    },
-  }).languages();
+  // Пропускаем статические файлы и API routes
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api") ||
+    pathname.includes(".")
+  ) {
+    return NextResponse.next();
+  }
 
-  return match(languages, locales, "en");
+  // Получаем локаль из пути
+  const pathnameLocale = pathname.split("/")[1];
+
+  // Проверяем валидность локали
+  const isValidLocale = i18n.locales.includes(pathnameLocale);
+
+  // Если локаль невалидная, редиректим на дефолтную
+  if (!isValidLocale) {
+    const newUrl = new URL(request.url);
+    newUrl.pathname = `/${i18n.defaultLocale}${pathname === "/" ? "" : pathname}`;
+    return NextResponse.redirect(newUrl);
+  }
+
+  return NextResponse.next();
 }
-
-export default createMiddleware(routing);
-
-export const config = {
-  // Match only internationalized pathnames
-  matcher: ["/", "/(ua|en)/:path*"],
-};
