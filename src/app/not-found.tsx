@@ -1,15 +1,19 @@
-// This page renders when a route like `/unknown.txt` is requested.
-// In this case, the layout at `app/[locale]/layout.tsx` receives
-// an invalid value as the `[locale]` param and calls `notFound()`.
-
-import { i18n } from "@/shared/lib/i18n";
+import { i18n, Locale } from "@/shared/lib/i18n";
 import LayoutBase from "@/shared/ui/layout/ui/base.layout";
-import NotFoundPage from "@/shared/ui/notFound/ui/notFound";
+import LayoutPage from "@/shared/ui/layout/ui/page.layout";
+import { NotFound } from "@/shared/ui/notFound";
 
-export default function GlobalNotFound() {
+interface RootLayoutProps {
+  params: Promise<{ lang: Locale }>;
+}
+export default async function GlobalNotFound({ params }: RootLayoutProps) {
+  const lang = (await params).lang;
   return (
-    <LayoutBase lang={i18n.defaultLocale}>
-      <NotFoundPage />
+    <LayoutBase lang={lang || i18n.defaultLocale}>
+      <LayoutPage>
+        <div>NOT FOUND GLOBAL</div>
+        <NotFound />
+      </LayoutPage>
     </LayoutBase>
   );
 }

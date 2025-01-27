@@ -6,8 +6,6 @@ type Props = {
 };
 
 export default function LayoutPage({ children }: Props) {
-  // const t = useTranslations("PageLayout");
-
   return (
     <>
       <HeaderModule />

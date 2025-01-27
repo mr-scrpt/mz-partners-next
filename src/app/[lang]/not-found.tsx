@@ -1,19 +1,11 @@
-// import Link from "next/link";
-// import { headers } from "next/headers";
-//
-// export default async function NotFound() {
-//   const headersList = await headers();
-//   const domain = headersList.get("host");
-//   // const data = await getSiteData(domain);
-//   return (
-//     <div>
-//       <h2>Not Found: </h2>
-//       <p>Could not find requested resource</p>
-//       <p>
-//         View <Link href="/blog">all posts</Link>
-//       </p>
-//     </div>
-//   );
-// }
+import LayoutPage from "@/shared/ui/layout/ui/page.layout";
+import { NotFound } from "@/shared/ui/notFound";
 
-export { default } from "@/shared/notFoundPage";
+export default function LangNotFound() {
+  return (
+    <LayoutPage>
+      <div>"LOCAL =::: NOT FOUND LANG"</div>
+      <NotFound />
+    </LayoutPage>
+  );
+}
