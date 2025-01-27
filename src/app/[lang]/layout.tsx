@@ -1,18 +1,8 @@
 import { Locale, i18n } from "@/shared/lib/i18n";
-import { sGlobal } from "@/shared/style";
-import { HeaderModule } from "@/widget/header";
-import clsx from "clsx";
+import LayoutBase from "@/shared/ui/layout/ui/base.layout";
+import LayoutPage from "@/shared/ui/layout/ui/page.layout";
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
-import { ProvidersRoot } from "../../shared/provider/root.provider";
-import { notFound, redirect } from "next/navigation";
-import { setRequestLocale } from "next-intl/server";
-import BaseLayout from "@/shared/ui/layout/ui/base.layout";
-
-const MontserratSans = Montserrat({
-  variable: "--font-montserrat-sans",
-  subsets: ["latin"],
-});
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -28,13 +18,13 @@ export function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
 
-const RootLayout = async ({ children, params }: RootLayoutProps) => {
+const LayoutLang = async ({ children, params }: RootLayoutProps) => {
   const lang = (await params).lang;
 
   if (!i18n.locales.includes(lang as any)) {
     notFound();
   }
-  return <BaseLayout lang={lang}>{children}</BaseLayout>;
+  return <LayoutBase lang={lang}>{children}</LayoutBase>;
 };
 
-export default RootLayout;
+export default LayoutLang;

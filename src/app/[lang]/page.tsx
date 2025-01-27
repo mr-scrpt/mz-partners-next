@@ -1,7 +1,5 @@
-import { Locale } from "@/shared/lib/i18n";
-import { getDictionary } from "@/shared/lib/i18n";
-import { LangSwitcher } from "@/shared/ui/langSwitcher";
-import PageLayout from "@/shared/ui/layout/ui/page.layout";
+import { getDictionary, Locale } from "@/shared/lib/i18n";
+import LayoutPage from "@/shared/ui/layout/ui/page.layout";
 
 export default async function IndexPage(props: {
   params: Promise<{ lang: Locale }>;
@@ -11,8 +9,7 @@ export default async function IndexPage(props: {
   const dictionary = await getDictionary(lang);
 
   return (
-    <PageLayout>
-      <LangSwitcher />
+    <LayoutPage>
       <div>
         <p>Current locale: {lang}</p>
         <p>
@@ -20,6 +17,6 @@ export default async function IndexPage(props: {
           {dictionary["server-component"].welcome}
         </p>
       </div>
-    </PageLayout>
+    </LayoutPage>
   );
 }

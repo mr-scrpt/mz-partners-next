@@ -1,7 +1,6 @@
-import { Locale, i18n } from "@/shared/lib/i18n";
+import { Locale } from "@/shared/lib/i18n";
 import { ProvidersRoot } from "@/shared/provider/root.provider";
 import { sGlobal } from "@/shared/style";
-import { HeaderModule } from "@/widget/header";
 import clsx from "clsx";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
@@ -21,24 +20,21 @@ interface RootLayoutProps {
   lang: Locale;
 }
 
-export function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ lang: locale }));
-}
+// export function generateStaticParams() {
+//   return i18n.locales.map((locale) => ({ lang: locale }));
+// }
 
-const RootLayout = async ({ children, lang }: RootLayoutProps) => {
+const LayoutBase = async ({ children, lang }: RootLayoutProps) => {
   return (
     <html
       lang={lang}
       className={clsx(sGlobal.html, sGlobal.reset, sGlobal.color)}
     >
       <body className={`${MontserratSans.variable}`}>
-        <ProvidersRoot>
-          <HeaderModule />
-          {children}
-        </ProvidersRoot>
+        <ProvidersRoot>{children}</ProvidersRoot>
       </body>
     </html>
   );
 };
 
-export default RootLayout;
+export default LayoutBase;

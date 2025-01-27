@@ -3,13 +3,13 @@
 // an invalid value as the `[locale]` param and calls `notFound()`.
 
 import { i18n } from "@/shared/lib/i18n";
-import BaseLayout from "@/shared/ui/layout/ui/base.layout";
+import LayoutBase from "@/shared/ui/layout/ui/base.layout";
 import NotFoundPage from "@/shared/ui/notFound/ui/notFound";
 
 export default function GlobalNotFound() {
   return (
-    <BaseLayout lang={i18n.defaultLocale}>
+    <LayoutBase lang={i18n.defaultLocale}>
       <NotFoundPage />
-    </BaseLayout>
+    </LayoutBase>
   );
 }
