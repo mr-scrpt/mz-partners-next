@@ -1,16 +1,23 @@
+.header {
+  width: 100%;
+}
+
 .inner {
   @include grid;
 }
 
 .info {
+  place-self: center center;
   @include col(6);
   @include col-md(4);
   @include block-bp-md {
     order: 0;
+    place-self: center start;
   }
 }
 
 .visual {
+  place-self: center center;
   @include col(12);
   @include col-md(4);
   @include block-bp-md {
@@ -19,9 +26,11 @@
 }
 
 .action {
+  place-self: center center;
   @include col(6);
   @include col-md(4);
   @include block-bp-md {
     order: 2;
+    place-self: center end;
   }
 }

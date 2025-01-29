@@ -1,3 +1,4 @@
+import { RowSection } from "@/shared/ui/section/ui/row.section";
 import { setRequestLocale } from "next-intl/server";
 
 const HomePage = async ({
@@ -5,12 +6,12 @@ const HomePage = async ({
 }: {
   params: Promise<{ locale: string }>;
 }) => {
-  const locale = (await params).locale;
-  setRequestLocale(locale);
+  // const locale = (await params).locale;
+  // setRequestLocale(locale);
   return (
-    <div>
-      <h1>!!{locale}!!</h1>
-    </div>
+    <RowSection topology="ROW_FULL">
+      <div>Home</div>
+    </RowSection>
   );
 };
 

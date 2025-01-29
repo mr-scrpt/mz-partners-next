@@ -1,7 +1,7 @@
 import { Locale } from "@/shared/lib/i18n/domain/type";
 import { routing } from "@/shared/lib/i18n/routing";
 import LayoutHTML from "@/shared/ui/layout/ui/html.layout";
-import { HeaderSection } from "@/widget/header";
+import { HeaderModule } from "@/widget/header";
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -30,7 +30,7 @@ const LocalLayout = async ({ children, params }: RootLayoutProps) => {
   setRequestLocale(locale);
   return (
     <LayoutHTML locale={locale}>
-      <HeaderSection />
+      <HeaderModule />
       {children}
     </LayoutHTML>
   );

@@ -1,1 +1,1 @@
-export { HeaderSection } from "./ui/header.section";
+export { HeaderModule } from "./ui/header.section";

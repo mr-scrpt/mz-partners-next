@@ -118,6 +118,10 @@ $grid-gap: 20px;
   }
 }
 
+@mixin container-full($center: true) {
+  @include box;
+}
+
 @mixin box() {
   padding-right: $grid-gap;
   padding-left: $grid-gap;
