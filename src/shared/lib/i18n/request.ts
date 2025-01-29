@@ -1,16 +1,25 @@
 import { getRequestConfig } from "next-intl/server";
-import { Locale } from "./domain/type";
+import { i18n, isValidLocale, Locale } from "./domain/type";
 import { routing } from "./routing";
 
 export default getRequestConfig(async ({ requestLocale }) => {
   let locale = await requestLocale;
 
-  if (!locale || !routing.locales.includes(locale as Locale)) {
+  if (!locale || !isValidLocale(locale)) {
     locale = routing.defaultLocale;
   }
+  console.log("output_log:::: Locale in config =>>>", locale);
 
   return {
     locale,
-    messages: (await import(`#/localization/${locale}.json`)).default,
+    messages: (
+      await (locale === "en"
+        ? // When using Turbopack, this will enable HMR for `en`
+          import("../../../../dictionary/en.json")
+        : import(`../../../../dictionary/${locale}.json`))
+    ).default,
+    // messages: (
+    //   await import(`../../../../${i18n.dictionaryPath}/${locale}.json`)
+    // ).default,
   };
 });

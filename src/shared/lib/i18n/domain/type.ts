@@ -1,6 +1,13 @@
-export const LOCALES = ["en", "ua"] as const;
-export const LOCALE_DEAFAULT: Locale = "en";
-export const LOCALE_FOLDER = "localization";
+export const i18n = {
+  defaultLocale: "ua",
+  locales: ["en", "ua"],
+  dictionaryPath: "dictionary",
+} as const;
 
-export type Locale = (typeof LOCALES)[number];
-export type LocaleParam = { locale: Locale };
+export type Locale = (typeof i18n)["locales"][number];
+
+export const validLocales = Array.from(i18n.locales) as string[];
+
+//Guard
+export const isValidLocale = (value: string): value is Locale =>
+  i18n.locales.includes(value as Locale);

@@ -6,5 +6,9 @@
   "LocaleSwitcher": {
     "label": "Change language",
     "locale": "{locale, select, ua {🇺🇦 Українська} en {🇺🇸 English} other {Unknown}}"
+  },
+  "NotFoundPage": {
+    "title": "Page not found",
+    "text": "Go to the main page"
   }
 }

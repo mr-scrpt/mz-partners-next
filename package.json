@@ -5,6 +5,7 @@
   "scripts": {
     "start:dev": "next dev --turbopack",
     "start:build": "next build",
+    "start:serv": "next start",
     "prettier": "prettier -w .",
     "lint": "next lint"
   },

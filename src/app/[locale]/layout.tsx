@@ -1,16 +1,10 @@
-import { sGlobal } from "@/shared/style";
-import { HeaderModule } from "@/widget/header";
-import clsx from "clsx";
-import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Locale } from "@/shared/lib/i18n/domain/type";
 import { routing } from "@/shared/lib/i18n/routing";
+import LayoutHTML from "@/shared/ui/layout/ui/html.layout";
+import { HeaderSection } from "@/widget/header";
+import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
-import { ProvidersRoot } from "../_provider/root.provider";
-
-const MontserratSans = Montserrat({
-  variable: "--font-montserrat-sans",
-  subsets: ["latin"],
-});
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,7 +13,7 @@ export const metadata: Metadata = {
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: Locale }>;
 }
 
 export function generateStaticParams() {
@@ -28,19 +22,17 @@ export function generateStaticParams() {
 
 const LocalLayout = async ({ children, params }: RootLayoutProps) => {
   const locale = (await params).locale;
+
+  if (!routing.locales.includes(locale as Locale)) {
+    notFound();
+  }
+
   setRequestLocale(locale);
   return (
-    <html
-      lang={locale}
-      className={clsx(sGlobal.html, sGlobal.reset, sGlobal.color)}
-    >
-      <body className={`${MontserratSans.variable}`}>
-        <ProvidersRoot>
-          <HeaderModule />
-          {children}
-        </ProvidersRoot>
-      </body>
-    </html>
+    <LayoutHTML locale={locale}>
+      <HeaderSection />
+      {children}
+    </LayoutHTML>
   );
 };
 export default LocalLayout;
