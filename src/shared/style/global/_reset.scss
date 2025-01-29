@@ -5,7 +5,11 @@
     margin: 0;
     padding: 0;
 
+    color: inherit;
+
     border: 0;
+
+    font: inherit;
   }
 
   /* Body настройки */
@@ -47,69 +51,64 @@
     touch-action: manipulation;
   }
 
-  /* Формы */
-  & input,
-  & button,
-  & textarea,
-  & select {
+  /* Кнопки */
+  & button {
+    cursor: pointer;
+
     color: inherit;
+    background: none;
 
     font: inherit;
+    touch-action: manipulation;
 
-    /* Кнопки */
-    & button {
-      cursor: pointer;
+    &:disabled {
+      cursor: not-allowed;
 
-      background: none;
-      touch-action: manipulation;
-    }
-
-    /* Таблицы */
-    & table {
-      width: 100%;
-
-      border-spacing: 0;
-
-      border-collapse: collapse;
-    }
-
-    /* Мобильные оптимизации */
-    & select,
-    & textarea,
-    & input[type="text"],
-    & input[type="tel"],
-    & input[type="url"],
-    & input[type="email"],
-    & input[type="search"],
-    & input[type="number"],
-    & input[type="password"] {
-      font-size: 16px;
-
-      &::-webkit-search-decoration,
-      &::-webkit-search-cancel-button,
-      &::-webkit-search-results-button,
-      &::-webkit-search-results-decoration {
-        appearance: none;
-      }
-    }
-
-    &:focus-visible {
-      outline: 2px solid currentcolor;
-      outline-offset: 2px;
-    }
-
-    & textarea:not([rows]) {
-      min-height: 10em;
-    }
-
-    &:focus:not(:focus-visible) {
-      outline: none;
+      color: inherit;
+      background-color: none;
     }
   }
 
-  /* Textarea */
+  & table {
+    width: 100%;
 
-  /* Предпочтения движения */
+    border-spacing: 0;
+
+    border-collapse: collapse;
+  }
+
+  & select,
+  & textarea,
+  & input[type="text"],
+  & input[type="tel"],
+  & input[type="url"],
+  & input[type="email"],
+  & input[type="search"],
+  & input[type="number"],
+  & input[type="password"] {
+    font-size: 16px;
+
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      appearance: none;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentcolor;
+    outline-offset: 2px;
+  }
+
+  & textarea:not([rows]) {
+    min-height: 10em;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     & *,
     & *::before,
