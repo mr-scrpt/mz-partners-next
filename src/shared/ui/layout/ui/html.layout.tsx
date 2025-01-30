@@ -12,7 +12,8 @@ import { HTMLAttributes } from "react";
 // });
 const MontserratSans = Montserrat({
   variable: "--font-montserrat-sans",
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
