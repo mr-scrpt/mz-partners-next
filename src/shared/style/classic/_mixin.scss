@@ -1,4 +1,4 @@
-@forward "@/shared/style/grid/grid.mixin";
+@forward "./grid/grid.mixin";
 
 @mixin ts($obj, $obj2: "empty", $obj3: "empty") {
   @if $obj2 == "empty" {

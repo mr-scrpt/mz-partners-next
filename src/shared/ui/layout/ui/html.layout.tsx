@@ -1,5 +1,5 @@
 import { ProvidersRoot } from "@/shared/provider";
-import { sGlobal, sTheme } from "@/shared/style";
+import { sGlobal, sTheme } from "@/shared/style/module";
 import clsx from "clsx";
 import type { Metadata } from "next";
 import { getMessages } from "next-intl/server";
