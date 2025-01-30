@@ -1,11 +1,15 @@
 import { ProvidersRoot } from "@/shared/provider";
-import { sGlobal, sTheme } from "@/shared/style/module";
+import { sGlobal, sPage, sTheme } from "@/shared/style/module";
 import clsx from "clsx";
 import type { Metadata } from "next";
 import { getMessages } from "next-intl/server";
 import { Montserrat } from "next/font/google";
 import { HTMLAttributes } from "react";
 
+// const MontserratSans = Montserrat({
+//   variable: "--font-montserrat-sans",
+//   subsets: ["latin"],
+// });
 const MontserratSans = Montserrat({
   variable: "--font-montserrat-sans",
   subsets: ["latin"],
@@ -27,7 +31,7 @@ const LayoutHTML = async ({ children, locale }: LayoutHTMLProps) => {
       lang={locale}
       className={clsx(sGlobal.html, sGlobal.reset, sTheme.theme)}
     >
-      <body className={`${MontserratSans.variable}`}>
+      <body className={clsx(sPage.page, MontserratSans.variable)}>
         <ProvidersRoot>{children}</ProvidersRoot>
       </body>
     </html>

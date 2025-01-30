@@ -12,10 +12,18 @@
 .button {
   padding: 2px 8px;
 
-  color: var(--color-primary);
+  color: hsl(var(--color-primary));
+
+  &:hover {
+    cursor: pointer;
+
+    color: hsl(var(--color-light));
+    background-color: hsl(var(--color-primary));
+  }
+  @include ts(background-color, color);
 }
 
 .button_active {
-  color: var(--color-light);
-  background-color: var(--color-primary);
+  color: hsl(var(--color-light));
+  background-color: hsl(var(--color-primary));
 }
