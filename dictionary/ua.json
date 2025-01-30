@@ -3,9 +3,9 @@
     "title": "Привіт",
     "about": "Про нас"
   },
-  "LocaleSwitcher": {
+  "LangSwitcher": {
     "label": "Змінити мову",
-    "locale": "{locale, select, ua {🇺🇦 Українська} en {🇺🇸 English} other {Unknown}}"
+    "locale": "{locale, select, ua {ua} en {en} other {Unknown}}"
   },
   "NotFoundPage": {
     "title": "Сторінку не знайдено",

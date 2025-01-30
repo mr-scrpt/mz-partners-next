@@ -1,5 +1,4 @@
 .reset {
-  /* Box sizing и базовые настройки */
   & * {
     box-sizing: border-box;
     margin: 0;
@@ -8,115 +7,8 @@
     color: inherit;
 
     border: 0;
+    background: transparent;
 
     font: inherit;
-  }
-
-  /* Body настройки */
-  & body {
-    min-height: 100vh;
-    text-rendering: optimizespeed;
-
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-size-adjust: 100%;
-  }
-
-  /* Изображения и медиа */
-  & img,
-  & picture,
-  & video,
-  & canvas,
-  & svg {
-    display: block;
-
-    max-width: 100%;
-    height: auto;
-
-    /* vertical-align: middle; */
-  }
-
-  /* Списки */
-  & ul,
-  & ol {
-    list-style: none;
-  }
-
-  /* Ссылки */
-  & a {
-    text-decoration: none;
-
-    color: inherit;
-    touch-action: manipulation;
-  }
-
-  /* Кнопки */
-  & button {
-    cursor: pointer;
-
-    color: inherit;
-    background: none;
-
-    font: inherit;
-    touch-action: manipulation;
-
-    &:disabled {
-      cursor: not-allowed;
-
-      color: inherit;
-      background-color: none;
-    }
-  }
-
-  & table {
-    width: 100%;
-
-    border-spacing: 0;
-
-    border-collapse: collapse;
-  }
-
-  & select,
-  & textarea,
-  & input[type="text"],
-  & input[type="tel"],
-  & input[type="url"],
-  & input[type="email"],
-  & input[type="search"],
-  & input[type="number"],
-  & input[type="password"] {
-    font-size: 16px;
-
-    &::-webkit-search-decoration,
-    &::-webkit-search-cancel-button,
-    &::-webkit-search-results-button,
-    &::-webkit-search-results-decoration {
-      appearance: none;
-    }
-  }
-
-  &:focus-visible {
-    outline: 2px solid currentcolor;
-    outline-offset: 2px;
-  }
-
-  & textarea:not([rows]) {
-    min-height: 10em;
-  }
-
-  &:focus:not(:focus-visible) {
-    outline: none;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    & *,
-    & *::before,
-    & *::after {
-      transition-duration: 0.01ms !important;
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      scroll-behavior: auto !important;
-    }
   }
 }

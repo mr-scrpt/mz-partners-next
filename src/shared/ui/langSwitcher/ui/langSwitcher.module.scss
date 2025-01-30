@@ -1,0 +1,21 @@
+.langSwitcher {
+  width: 100%;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.button {
+  padding: 2px 8px;
+
+  color: var(--color-primary);
+}
+
+.button_active {
+  color: var(--color-light);
+  background-color: var(--color-primary);
+}

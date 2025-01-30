@@ -1,1 +1,16 @@
 @forward "@/shared/style/grid/grid.mixin";
+
+@mixin ts($obj, $obj2: "empty", $obj3: "empty") {
+  @if $obj2 == "empty" {
+    transition: $obj var(--th);
+  } @else if $obj3 == "empty" {
+    transition:
+      $obj var(--th),
+      $obj2 var(--th);
+  } @else {
+    transition:
+      $obj var(--th),
+      $obj2 var(--th),
+      $obj3 var(--th);
+  }
+}

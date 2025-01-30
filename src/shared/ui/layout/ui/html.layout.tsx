@@ -1,5 +1,5 @@
 import { ProvidersRoot } from "@/shared/provider";
-import { sGlobal } from "@/shared/style";
+import { sGlobal, sTheme } from "@/shared/style";
 import clsx from "clsx";
 import type { Metadata } from "next";
 import { getMessages } from "next-intl/server";
@@ -25,7 +25,7 @@ const LayoutHTML = async ({ children, locale }: LayoutHTMLProps) => {
   return (
     <html
       lang={locale}
-      className={clsx(sGlobal.html, sGlobal.reset, sGlobal.color)}
+      className={clsx(sGlobal.html, sGlobal.reset, sTheme.theme)}
     >
       <body className={`${MontserratSans.variable}`}>
         <ProvidersRoot>{children}</ProvidersRoot>

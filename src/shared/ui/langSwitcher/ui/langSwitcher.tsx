@@ -1,10 +1,12 @@
 "use client";
 import { Locale, i18n } from "@/shared/lib/i18n/domain/type";
 import { usePathname, useRouter } from "@/shared/lib/i18n/routing";
-import clsx from "clsx";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { FC, HTMLAttributes, useTransition } from "react";
+
+import sLangSwitcher from "./langSwitcher.module.scss";
+import clsx from "clsx";
 
 interface LangSwitcherProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -15,6 +17,7 @@ export const LangSwitcher: FC<LangSwitcherProps> = (props) => {
   const [isPending, startTransition] = useTransition();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const t = useTranslations("LangSwitcher");
 
   const handleLocaleChange = (nextLocale: string) => {
     startTransition(() => {
@@ -31,25 +34,18 @@ export const LangSwitcher: FC<LangSwitcherProps> = (props) => {
   };
 
   return (
-    <div
-      className={clsx("flex items-center gap-2", isPending && "opacity-30")}
-      {...rest}
-    >
-      <div className="flex items-center gap-1">
+    <div className={sLangSwitcher.langSwitcher} {...rest}>
+      <div className={sLangSwitcher.inner}>
         {i18n.locales.map((locale) => (
           <button
             key={locale}
             onClick={() => handleLocaleChange(locale)}
             disabled={isPending || localeActive === locale}
-            className={clsx(
-              "px-2 py-1 text-sm transition-colors",
-              locale === locale
-                ? "text-gray-900 font-medium"
-                : "text-gray-400 hover:text-gray-600",
-              "disabled:cursor-not-allowed",
-            )}
+            className={clsx(sLangSwitcher.button, {
+              [sLangSwitcher.button_active]: localeActive === locale,
+            })}
           >
-            {locale.toUpperCase()}
+            {t("locale", { locale })}
           </button>
         ))}
       </div>

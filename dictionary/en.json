@@ -3,9 +3,9 @@
     "title": "Hello world!",
     "about": "Go to the about page"
   },
-  "LocaleSwitcher": {
+  "LangSwitcher": {
     "label": "Change language",
-    "locale": "{locale, select, ua {🇺🇦 Українська} en {🇺🇸 English} other {Unknown}}"
+    "locale": "{locale, select, ua {yкр} en {en} other {Unknown}}"
   },
   "NotFoundPage": {
     "title": "Page not found",
