@@ -1,8 +1,9 @@
-@use "./color.var" as *;
-@use "./time.var" as *;
+@use "./duration.var" as *;
+@use "./typography" as *;
+@use "./theme.var" as *;
 
 .theme {
-  --color-primary: #{$color-primary-500};
-  --color-light: #{$color-light-0};
-  --th: #{$th};
+  @include apply-vars($theme);
+  @include apply-vars($typography);
+  @include apply-vars($duration);
 }

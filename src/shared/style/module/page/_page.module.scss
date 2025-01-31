@@ -1,8 +1,10 @@
 .page {
+  min-height: 100vh;
+
   color: var(--color-primary);
-  background: #fff;
+  background: var(--background-light);
 
   font:
-    14px / 1.8 var(--font-montserrat-sans),
+    var(--font-base-size) / 1.8 var(--font-primary),
     sans-serif;
 }

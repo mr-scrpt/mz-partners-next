@@ -2,7 +2,6 @@ import { ProvidersRoot } from "@/shared/provider";
 import { sGlobal, sPage, sTheme } from "@/shared/style/module";
 import clsx from "clsx";
 import type { Metadata } from "next";
-import { getMessages } from "next-intl/server";
 import { Montserrat } from "next/font/google";
 import { HTMLAttributes } from "react";
 
@@ -22,13 +21,12 @@ interface LayoutHTMLProps extends HTMLAttributes<HTMLHtmlElement> {
 }
 
 const LayoutHTML = async ({ children, locale }: LayoutHTMLProps) => {
-  const messages = await getMessages();
   return (
     <html
       lang={locale}
-      className={clsx(sGlobal.html, sGlobal.reset, sTheme.theme)}
+      className={clsx(sGlobal.layer, sGlobal.html, sGlobal.reset)}
     >
-      <body className={clsx(sPage.page, MontserratSans.variable)}>
+      <body className={clsx(sPage.page, MontserratSans.variable, sTheme.theme)}>
         <ProvidersRoot>{children}</ProvidersRoot>
       </body>
     </html>

@@ -2,15 +2,21 @@
 
 @mixin ts($obj, $obj2: "empty", $obj3: "empty") {
   @if $obj2 == "empty" {
-    transition: $obj var(--th);
+    transition: $obj var(--duration-middle);
   } @else if $obj3 == "empty" {
     transition:
-      $obj var(--th),
-      $obj2 var(--th);
+      $obj var(--duration-middle),
+      $obj2 var(--duration-middle);
   } @else {
     transition:
-      $obj var(--th),
-      $obj2 var(--th),
-      $obj3 var(--th);
+      $obj var(--duration-middle),
+      $obj2 var(--duration-middle),
+      $obj3 var(--duration-middle);
+  }
+}
+
+@mixin apply-vars($vars) {
+  @each $name, $value in $vars {
+    #{$name}: $value;
   }
 }

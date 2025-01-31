@@ -30,6 +30,6 @@
     ".next/types/**/*.ts",
     "next-env.d.ts",
     "build/types/**/*.ts"
-  ],
+, "src/shared/style/module/preset/_typography.scss"  ],
   "exclude": ["node_modules"]
 }
