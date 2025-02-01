@@ -26,8 +26,7 @@ export const modalContext = createStrictContext<ModalContextType>();
 export const ModalProviderClient = modalContext.Provider;
 
 export const useModalControl = () => {
-  const { destroyModal: closeModal, createModal } =
-    useStrictContext(modalContext);
+  const { destroyModal, createModal } = useStrictContext(modalContext);
 
-  return { closeModal, createModal };
+  return { destroyModal, createModal };
 };

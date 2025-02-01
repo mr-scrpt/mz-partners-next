@@ -3,7 +3,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   sassOptions: {
-    prependData: `@use "./src/shared/style/classic/_mixin.scss" as *;`,
+    prependData: `
+        @use "./src/shared/style/classic/_mixin.scss" as *;
+        @use "./src/shared/style/classic/_keyframe.scss" as *;
+    `,
   },
 };
 

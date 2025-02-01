@@ -25,6 +25,7 @@ export const Modal: FC<ModalProps> = ({ params, isOpen }) => {
     closeText,
     confirmText,
   } = params;
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>

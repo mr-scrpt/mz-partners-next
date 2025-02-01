@@ -1,0 +1,201 @@
+// Mixins
+// _animation.system.scss
+
+// Base keyframes
+@keyframes enter {
+  from {
+    transform: translate(
+        var(--enter-translate-x, 0),
+        var(--enter-translate-y, 0)
+      )
+      scale(var(--enter-scale, 1)) rotate(var(--enter-rotate, 0));
+
+    opacity: var(--enter-opacity, 1);
+  }
+}
+
+@keyframes exit {
+  to {
+    transform: translate(var(--exit-translate-x, 0), var(--exit-translate-y, 0))
+      scale(var(--exit-scale, 1)) rotate(var(--exit-rotate, 0));
+
+    opacity: var(--exit-opacity, 1);
+  }
+}
+
+// Base animation mixins
+@mixin animate-base {
+  --enter-opacity: initial;
+  --enter-scale: initial;
+  --enter-rotate: initial;
+  --enter-translate-x: initial;
+  --enter-translate-y: initial;
+  --exit-opacity: initial;
+  --exit-scale: initial;
+  --exit-rotate: initial;
+  --exit-translate-x: initial;
+  --exit-translate-y: initial;
+}
+
+@mixin animate-in($duration: 150ms, $timing: ease-out) {
+  animation: enter $duration $timing forwards;
+  @include animate-base;
+}
+
+@mixin animate-out($duration: 150ms, $timing: ease-in) {
+  animation: exit $duration $timing forwards;
+  @include animate-base;
+}
+
+// Fade mixins
+@mixin fade-in($opacity: 0) {
+  --enter-opacity: #{$opacity};
+}
+
+@mixin fade-out($opacity: 0) {
+  --exit-opacity: #{$opacity};
+}
+
+// Scale mixins
+@mixin zoom-in($scale: 0.95) {
+  --enter-scale: #{$scale};
+}
+
+@mixin zoom-out($scale: 0.95) {
+  --exit-scale: #{$scale};
+}
+
+// Slide mixins
+@mixin slide-in($x: 0, $y: 0) {
+  --enter-translate-x: #{$x};
+  --enter-translate-y: #{$y};
+}
+
+@mixin slide-out($x: 0, $y: 0) {
+  --exit-translate-x: #{$x};
+  --exit-translate-y: #{$y};
+}
+
+// Rotate mixins
+@mixin rotate-in($degrees: 0) {
+  --enter-rotate: #{$degrees}deg;
+}
+
+@mixin rotate-out($degrees: 0) {
+  --exit-rotate: #{$degrees}deg;
+}
+
+// Комбинированные миксины для типовых анимаций
+@mixin modal-in {
+  &[data-state="open"] {
+    @include animate-in;
+    @include fade-in(0);
+    @include zoom-in(0.95);
+    @include slide-in(-50%, -50%);
+  }
+}
+
+@mixin modal-out {
+  &[data-state="closed"] {
+    @include animate-out;
+    @include fade-out(0);
+    @include zoom-out(0.95);
+    @include slide-out(-50%, -50%);
+  }
+}
+
+// Пример использования для модального окна:
+// .modal {
+//   @include modal-in;
+//   @include modal-out;
+// }
+
+// Пример кастомной анимации:
+// .custom-element {
+//   &[data-state="open"] {
+//     @include animate-in(300ms, ease-in-out);
+//     @include fade-in(0.2);
+//     @include zoom-in(0.8);
+//     @include slide-in(-100px, 0);
+//     @include rotate-in(45);
+//   }
+// }
+/* @mixin animate-in( */
+/*   $duration: 0.2s, */
+/*   $timing: ease-out, */
+/*   $fill-mode: forwards, */
+/*   $delay: 0s */
+/* ) { */
+/*   animation: animate-in $duration $timing $delay $fill-mode; */
+/* } */
+/*  */
+/* @mixin animate-out( */
+/*   $duration: 0.2s, */
+/*   $timing: ease-out, */
+/*   $fill-mode: forwards, */
+/*   $delay: 0s */
+/* ) { */
+/*   animation: animate-out $duration $timing $delay $fill-mode; */
+/* } */
+/*  */
+/* @keyframes animate-in { */
+/*   from { */
+/*     transform: scale(0.95); */
+/*  */
+/*     opacity: 0; */
+/*   } */
+/*  */
+/*   to { */
+/*     transform: scale(1); */
+/*  */
+/*     opacity: 1; */
+/*   } */
+/* } */
+/*  */
+/* @keyframes animate-out { */
+/*   from { */
+/*     transform: scale(1); */
+/*  */
+/*     opacity: 1; */
+/*   } */
+/*  */
+/*   to { */
+/*     transform: scale(0.95); */
+/*  */
+/*     opacity: 0; */
+/*   } */
+/* } */
+/*  */
+/* @keyframes spin { */
+/*   to { */
+/*     transform: rotate(360deg); */
+/*   } */
+/* } */
+/*  */
+/* @keyframes ping { */
+/*   75%, */
+/*   100% { */
+/*     transform: scale(2); */
+/*  */
+/*     opacity: 0; */
+/*   } */
+/* } */
+/*  */
+/* @keyframes pulse { */
+/*   50% { */
+/*     opacity: 0.5; */
+/*   } */
+/* } */
+/*  */
+/* @keyframes bounce { */
+/*   0%, */
+/*   100% { */
+/*     transform: translateY(-25%); */
+/*     animation-timing-function: cubic-bezier(0.8, 0, 1, 1); */
+/*   } */
+/*  */
+/*   50% { */
+/*     transform: none; */
+/*     animation-timing-function: cubic-bezier(0, 0, 0.2, 1); */
+/*   } */
+/* } */

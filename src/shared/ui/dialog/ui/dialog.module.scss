@@ -1,29 +1,17 @@
-@keyframes enter {
-  0% {
-    opacity: var(--tw-enter-opacity, 1);
-  }
-}
-
-@keyframes exit {
-  to {
-    opacity: var(--tw-exit-opacity, 0);
-  }
-}
-
 .DialogOverlay {
   position: fixed;
   z-index: 50;
-  inset: 0;
 
   background-color: blue;
+  inset: 0;
 }
 
 .DialogOverlay[data-state="open"] {
-  animation: enter 1s forwards;
+  @include fade-in(0.5);
 }
 
 .DialogOverlay[data-state="closed"] {
-  animation: exit 1s forwards;
+  @include fade-out(0.5);
 }
 
 .DialogContent {
@@ -47,11 +35,11 @@
 }
 
 .DialogContent[data-state="open"] {
-  animation: enter 1s forwards;
+  @include modal-in;
 }
 
 .DialogContent[data-state="closed"] {
-  animation: exit 1s forwards;
+  @include modal-out;
 }
 
 .DialogContentClose {
