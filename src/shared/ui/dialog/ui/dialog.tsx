@@ -38,15 +38,15 @@ const DialogContent = React.forwardRef<
       {...props}
     >
       {children}
-      <DialogPrimitive.Close className={styles.DialogContentClose}>
-        <X
-          style={{
-            height: "1rem",
-            width: "1rem",
-          }}
-        />
-        <span className="sr-only">Close</span>
-      </DialogPrimitive.Close>
+      {/* <DialogPrimitive.Close className={styles.DialogContentClose}> */}
+      {/* <X */}
+      {/*   style={{ */}
+      {/*     height: "1rem", */}
+      {/*     width: "1rem", */}
+      {/*   }} */}
+      {/* /> */}
+      {/* <span className="sr-only">Close</span> */}
+      {/* </DialogPrimitive.Close> */}
     </DialogPrimitive.Content>
   </DialogPortal>
 ));

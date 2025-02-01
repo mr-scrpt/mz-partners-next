@@ -8,10 +8,12 @@ interface HeaderModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const HeaderModule: FC<HeaderModuleProps> = (props) => {
   return (
-    <HeaderLayout
-      VisualSlot={<Logo view="PRIMARY" />}
-      InfoSlot={<PhoneListModule />}
-      ActionSlot={<Action />}
-    />
+    <>
+      <HeaderLayout
+        VisualSlot={<Logo view="PRIMARY" />}
+        InfoSlot={<PhoneListModule />}
+        ActionSlot={<Action />}
+      />
+    </>
   );
 };

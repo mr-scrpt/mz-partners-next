@@ -1,9 +1,13 @@
 @use "./duration.var" as *;
 @use "./typography" as *;
 @use "./theme.var" as *;
+@use "./color.var" as *;
+@use "./animation.var" as *;
 
 .theme {
   @include apply-vars($theme);
   @include apply-vars($typography);
   @include apply-vars($duration);
+  @include apply-vars($color);
+  @include apply-vars($animation);
 }

@@ -1,7 +1,4 @@
-"use client";
-import clsx from "clsx";
-import { FC, HTMLAttributes, ReactNode, memo } from "react";
-import sModal from "./modal.module.scss";
+import { ModalParamsUnionType } from "@/shared/lib/modal/modalClient.provider";
 import {
   Dialog,
   DialogContent,
@@ -9,41 +6,34 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "../../dialog";
+} from "@/shared/ui/dialog/ui/dialog";
+import { FC, HTMLAttributes, ReactNode } from "react";
 import { Button } from "../../button";
 
 interface ModalProps extends HTMLAttributes<HTMLDivElement> {
-  params: {
-    title?: string;
-    description?: string;
-    element: ReactNode;
-    closeText?: string;
-    confirmText?: string;
-    onClose: () => void;
-    onConfirm: () => void;
-  };
+  params: ModalParamsUnionType;
+  isOpen: boolean;
 }
 
-export const Modal: FC<ModalProps> = memo((props) => {
-  const { params } = props;
+export const Modal: FC<ModalProps> = ({ params, isOpen }) => {
   const {
-    title,
+    onClose,
+    element,
+    onConfirm,
     description,
+    title,
     closeText,
     confirmText,
-    onClose,
-    onConfirm,
-    element,
   } = params;
-
   return (
-    <Dialog open={!!params} onOpenChange={onClose}>
-      <DialogContent className={clsx(sModal.modal)}>
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           {description && <DialogDescription>{description}</DialogDescription>}
         </DialogHeader>
-        <DialogContent>{element}</DialogContent>
+        <div>{element}</div>
+
         <DialogFooter>
           {closeText && <Button onClick={onClose}>{closeText}</Button>}
           {confirmText && <Button onClick={onConfirm}>{confirmText}</Button>}
@@ -51,6 +41,4 @@ export const Modal: FC<ModalProps> = memo((props) => {
       </DialogContent>
     </Dialog>
   );
-});
-
-Modal.displayName = "Modal";
+};
