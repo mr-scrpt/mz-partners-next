@@ -1,4 +1,4 @@
-import { withNextIntl } from "@/shared/lib/i18n/hoc";
+import { withNextIntl } from "@/app/(plugin)/i18n/hoc";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {

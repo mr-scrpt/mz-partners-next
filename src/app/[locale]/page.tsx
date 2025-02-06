@@ -1,4 +1,5 @@
 import { RowSection } from "@/shared/ui/section/ui/row.section";
+import { NavigationMain } from "@/widget/navigation/ui/navigationMain";
 import { setRequestLocale } from "next-intl/server";
 
 const HomePage = async ({
@@ -11,6 +12,7 @@ const HomePage = async ({
   return (
     <RowSection topology="ROW_FULL">
       <div>Home</div>
+      <NavigationMain />
     </RowSection>
   );
 };

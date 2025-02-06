@@ -2,6 +2,7 @@ import { FC, HTMLAttributes } from "react";
 
 import { CallbackButton } from "@/feature/callback";
 import { LangSwitcher } from "@/shared/ui/langSwitcher";
+
 import sAction from "./action.module.scss";
 interface ActionProps extends HTMLAttributes<HTMLDivElement> {}
 

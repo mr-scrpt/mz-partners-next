@@ -17,7 +17,7 @@ export const LangSwitcher: FC<LangSwitcherProps> = (props) => {
   const [isPending, startTransition] = useTransition();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const t = useTranslations("LangSwitcher");
+  // const t = useTranslations("LangSwitcher");
 
   const handleLocaleChange = (nextLocale: string) => {
     startTransition(() => {
@@ -45,7 +45,8 @@ export const LangSwitcher: FC<LangSwitcherProps> = (props) => {
               [sLangSwitcher.button_active]: localeActive === locale,
             })}
           >
-            {t("locale", { locale })}
+            {/* {t("locale", { locale })} */}
+            Test
           </button>
         ))}
       </div>

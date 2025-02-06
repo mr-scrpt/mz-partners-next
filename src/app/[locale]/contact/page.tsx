@@ -1,9 +1,9 @@
-import { FC, HTMLAttributes } from "react";
+import { FC } from "react";
 
-interface PageProps extends HTMLAttributes<HTMLDivElement> {}
+interface PageContactProps {}
 
-const Page: FC<PageProps> = (props) => {
+const PageContact: FC<PageContactProps> = async (props) => {
   return <div>Page CONTACT</div>;
 };
 
-export default Page;
+export default PageContact;

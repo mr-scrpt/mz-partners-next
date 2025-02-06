@@ -7,7 +7,7 @@ import { FC, HTMLAttributes, useCallback } from "react";
 interface CallbackProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const CallbackButton: FC<CallbackProps> = (props) => {
-  const t = useTranslations("CallBack");
+  // const t = useTranslations("CallBack");
   const { createModal, destroyModal } = useModalControl();
 
   const openContactSendModal = useCallback(async () => {
@@ -17,7 +17,8 @@ export const CallbackButton: FC<CallbackProps> = (props) => {
   }, [createModal, destroyModal]);
   return (
     <Button size="l" onClick={openContactSendModal}>
-      {t("button_text")}
+      {/* {t("button_text")} */}
+      TEST
     </Button>
   );
 };

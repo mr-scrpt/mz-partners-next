@@ -13,5 +13,13 @@
   },
   "CallBack": {
     "button_text": "Call back"
+  },
+  "Menu": {
+    "menu-item-about": "About",
+    "menu-item-conception": "Conception",
+    "menu-item-command": "Command",
+    "menu-item-projects": "Projects",
+    "menu-item-career": "Career",
+    "menu-item-news": "News"
   }
 }

@@ -37,12 +37,12 @@
   --exit-translate-y: initial;
 }
 
-@mixin animate-in($duration: 150ms, $timing: ease-out) {
+@mixin animate-in($duration: 250ms, $timing: ease-out) {
   animation: enter $duration $timing forwards;
   @include animate-base;
 }
 
-@mixin animate-out($duration: 150ms, $timing: ease-in) {
+@mixin animate-out($duration: 250ms, $timing: ease-in) {
   animation: exit $duration $timing forwards;
   @include animate-base;
 }
@@ -87,23 +87,28 @@
 
 // Комбинированные миксины для типовых анимаций
 @mixin modal-in {
-  &[data-state="open"] {
-    @include animate-in;
-    @include fade-in(0);
-    @include zoom-in(0.95);
-    @include slide-in(-50%, -50%);
-  }
+  @include animate-in;
+  @include fade-in(0);
+  @include zoom-in(0.95);
+  @include slide-in(-50%, -50%);
 }
 
 @mixin modal-out {
-  &[data-state="closed"] {
-    @include animate-out;
-    @include fade-out(0);
-    @include zoom-out(0.95);
-    @include slide-out(-50%, -50%);
-  }
+  @include animate-out;
+  @include fade-out(0);
+  @include zoom-out(0.95);
+  @include slide-out(-50%, -50%);
 }
 
+@mixin overlay-in {
+  @include animate-in;
+  @include fade-in(0.4);
+}
+
+@mixin overlay-out {
+  @include animate-out;
+  @include fade-out;
+}
 // Пример использования для модального окна:
 // .modal {
 //   @include modal-in;
