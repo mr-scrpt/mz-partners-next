@@ -7,6 +7,7 @@ import { FC, HTMLAttributes, useTransition } from "react";
 
 import sLangSwitcher from "./langSwitcher.module.scss";
 import clsx from "clsx";
+import { LANG_SWITCHER_NAMESPACE } from "../domain/dict/langSwitcher.dict";
 
 interface LangSwitcherProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -17,7 +18,7 @@ export const LangSwitcher: FC<LangSwitcherProps> = (props) => {
   const [isPending, startTransition] = useTransition();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  // const t = useTranslations("LangSwitcher");
+  const t = useTranslations(LANG_SWITCHER_NAMESPACE);
 
   const handleLocaleChange = (nextLocale: string) => {
     startTransition(() => {
@@ -45,8 +46,7 @@ export const LangSwitcher: FC<LangSwitcherProps> = (props) => {
               [sLangSwitcher.button_active]: localeActive === locale,
             })}
           >
-            {/* {t("locale", { locale })} */}
-            Test
+            {t("locale", { locale })}
           </button>
         ))}
       </div>

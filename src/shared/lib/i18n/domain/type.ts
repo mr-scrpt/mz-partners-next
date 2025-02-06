@@ -1,3 +1,5 @@
+import { Namespace } from "@/app/(plugin)/i18n/domain/namespace.type";
+
 export const i18n = {
   defaultLocale: "ua",
   locales: ["en", "ua"],
