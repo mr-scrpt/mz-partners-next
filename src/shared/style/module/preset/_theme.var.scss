@@ -1,8 +1,9 @@
 @use "./color.var" as *;
 
 $theme: (
-  --color-primary: var(--color-primary-500),
-  --color-light: var(--color-light-0),
+  --color-primary: hsl(var(--color-primary-500)),
+  --color-light: hsl(var(--color-light-0)),
+  --color-dark: hsl(var(--color-dark-900)),
   --background-light: var(--color-light-0),
   --background-primary: var(--color-primary-500),
   // --background-overlay: var(--color-dark-0),

@@ -1,0 +1,14 @@
+.root {
+  width: 100%;
+  background-color: var(--color-dark);
+  color: var(--color-light);
+}
+
+.inner {
+  width: 100%;
+  display: flex;
+}
+
+.menu {
+  flex-grow: 1;
+}

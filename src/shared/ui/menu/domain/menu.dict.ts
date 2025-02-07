@@ -3,7 +3,7 @@ export const MENU_NAMESPACE = "Menu" as const;
 export const MenuDict = {
   ua: {
     [MENU_NAMESPACE]: {
-      "menu-item-about": "Про нас 1",
+      "menu-item-about": "Про нас",
       "menu-item-conception": "Концепція",
       "menu-item-command": "Команда",
       "menu-item-projects": "Проєкти",

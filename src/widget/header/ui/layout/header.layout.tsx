@@ -1,6 +1,7 @@
 import { HeaderSection } from "@/shared/ui/section";
 import { FC, HTMLAttributes, ReactNode } from "react";
 import sHeaderLayout from "./header.layout.module.scss";
+
 interface HeaderLayoutProps extends HTMLAttributes<HTMLDivElement> {
   VisualSlot: ReactNode;
   InfoSlot: ReactNode;
@@ -11,7 +12,7 @@ export const HeaderLayout: FC<HeaderLayoutProps> = (props) => {
   const { VisualSlot, InfoSlot, ActionSlot } = props;
 
   return (
-    <HeaderSection topology="ROW_CONTAINER" className={sHeaderLayout.header}>
+    <HeaderSection topology="ROW_CONTAINER" className={sHeaderLayout.root}>
       <div className={sHeaderLayout.inner}>
         <div className={sHeaderLayout.visual}>{VisualSlot}</div>
         <div className={sHeaderLayout.info}>{InfoSlot}</div>
@@ -20,12 +21,3 @@ export const HeaderLayout: FC<HeaderLayoutProps> = (props) => {
     </HeaderSection>
   );
 };
-// return (
-//   <header className={sLayout.section}>
-//     <div className={clsx(sLayout.container, sHeaderLayout.inner)}>
-//       <div className={sHeaderLayout.visual}>{VisualSlot}</div>
-//       <div className={sHeaderLayout.info}>{InfoSlot}</div>
-//       <div className={sHeaderLayout.action}>{ActionSlot}</div>
-//     </div>
-//   </header>
-// );
