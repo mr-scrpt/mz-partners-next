@@ -1,0 +1,32 @@
+/* Module: sHeroLayout */
+.inner {
+
+
+
+  @include container-flat;
+
+  @include grid-flat;
+
+}
+
+.info {
+}
+
+.action {
+}
+
+
+.infoBox {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  @include col-flat(6);
+  @include block-bp-md {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  @include block-bp-lg {
+    padding-top: 150px;
+    padding-bottom: 150px;
+  }
+}
+

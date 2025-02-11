@@ -7,5 +7,5 @@ $theme: (
   --background-light: var(--color-light-0),
   --background-primary: var(--color-primary-500),
   // --background-overlay: var(--color-dark-0),
-  --background-overlay: hsl(var(--color-dark-0) / 0.8),
+  --background-overlay: hsl(var(--color-primary-500 ) / 0.8)
 );

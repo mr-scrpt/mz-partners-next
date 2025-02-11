@@ -138,9 +138,24 @@ $grid-gap: 20px;
   }
 }
 
+@mixin grid-flat($gap: $grid-gap) {
+  & {
+    display: grid;
+    grid-template-columns: repeat($grid-columns, 1fr);
+
+    width: 100%;
+  }
+}
+
 // Миксин для колонок (базовый)
 @mixin col($span: $grid-columns) {
   grid-column: span min($span, $grid-columns);
+}
+
+@mixin col-flat($span: $grid-columns) {
+  grid-column: span min($span, $grid-columns);
+  padding-right: $grid-gap;
+  padding-left: $grid-gap;
 }
 
 // Миксины для разных брейкпоинтов

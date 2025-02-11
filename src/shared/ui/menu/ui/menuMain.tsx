@@ -6,6 +6,7 @@ import sAnimation from "./menuMainAnimation.module.scss";
 
 import { useMenuItemList } from "../vm/getMenuItemList.model";
 import { MenuMainItem } from "./menuMainItem";
+import { Icon } from "@/shared/ui/icon";
 interface MenuMainProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const MenuMain: FC<MenuMainProps> = (props) => {
@@ -18,7 +19,7 @@ export const MenuMain: FC<MenuMainProps> = (props) => {
     <nav className={clsx(sMenu.root, className)} {...props}>
       <div className={clsx(sMenu.inner)}>
         <div className={clsx(sMenu.controller)}>
-          <div className={clsx(sMenu.icon)}></div>
+          <Icon icon="dd" />
           <div className={clsx(sMenu.text)} onClick={() => setIsOpen(!isOpen)}>
             Menu
           </div>

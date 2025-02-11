@@ -9,6 +9,7 @@ interface NavigationMainLayoutProps extends HTMLAttributes<HTMLDivElement> {
 
 export const NavigationMainLayout: FC<NavigationMainLayoutProps> = (props) => {
   const { className, MenuSlost } = props;
+
   return (
     <RowSection
       topology="ROW_CONTAINER"
