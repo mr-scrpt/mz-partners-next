@@ -7,4 +7,8 @@ export const TITLE_TO_CLASS = {
     L: cls.size_l,
     XL: cls.size_xl,
   },
+  view: {
+    PRIMARY: cls.view_primary,
+    SECONDARY: cls.view_secondary,
+  },
 };

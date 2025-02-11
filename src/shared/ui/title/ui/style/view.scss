@@ -1,0 +1,9 @@
+.view{
+  &_primary{
+    text-transform: uppercase;
+  }
+
+  &_secondary{
+    text-transform: none;
+  }
+}

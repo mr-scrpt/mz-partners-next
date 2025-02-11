@@ -1,32 +1,32 @@
 export const MENU_DATA = {
   about: {
     id: 1,
-    tag: "menu-item-about",
+    tag: "about",
     href: "/about",
   },
   conception: {
     id: 2,
-    tag: "menu-item-conception",
+    tag: "conception",
     href: "/conception",
   },
   command: {
     id: 3,
-    tag: "menu-item-command",
+    tag: "command",
     href: "/command",
   },
   projects: {
     id: 4,
-    tag: "menu-item-projects",
+    tag: "projects",
     href: "/projects",
   },
   career: {
     id: 5,
-    tag: "menu-item-career",
+    tag: "career",
     href: "/career",
   },
   news: {
     id: 6,
-    tag: "menu-item-news",
+    tag: "news",
     href: "/news",
   },
 };

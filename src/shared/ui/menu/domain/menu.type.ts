@@ -1,5 +1,7 @@
+import { MenuDictField } from "./menu.dict";
+
 export interface MenuItem {
   id: number;
-  tag: string;
+  tag: MenuDictField;
   href: string;
 }
