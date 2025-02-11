@@ -1,0 +1,34 @@
+.size{
+  --font-size-s: 18px;
+  --font-size-m: 24px;
+  --font-size-l: 38px;
+  --font-size-xl: 44px;
+  --font-line-s: 24px;
+  --font-line-m: 32px;
+  --font-line-l: 44px;
+  --font-line-xl: 52px;
+}
+
+.size_s{
+  & .text{
+    font-size: var(--font-size-s);
+  }
+}
+
+.size_m{
+  & .text{
+    font-size: var(--font-size-m);
+  }
+}
+
+.size_l{
+  & .text{
+    font-size: var(--font-size-l);
+  }
+}
+
+.size_xl{
+  & .text{
+    font-size: var(--font-size-xl);
+  }
+}

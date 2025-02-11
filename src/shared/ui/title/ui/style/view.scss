@@ -1,6 +1,11 @@
+
 .view{
+  width: 100%;
+
   &_primary{
     text-transform: uppercase;
+
+    font-weight: 600;
   }
 
   &_secondary{

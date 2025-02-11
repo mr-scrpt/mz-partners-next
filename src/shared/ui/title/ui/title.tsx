@@ -22,7 +22,7 @@ export const Title: FC<TitleProps> = (props) => {
     ...restProps
   } = props;
 
-  const clsTitle = clsx(sTitle.button, [className], {
+  const clsTitle = clsx(sTitle.root, [className, TITLE_TO_CLASS.base], {
     [TITLE_TO_CLASS.size[size]]: true,
     [TITLE_TO_CLASS.view[view]]: true,
   });

@@ -1,20 +1,16 @@
 /* Module: sHeroLayout */
 .inner {
-
-
-
   @include container-flat;
 
   @include grid-flat;
-
 }
 
 .info {
+  width: 100%;
 }
 
 .action {
 }
-
 
 .infoBox {
   padding-top: 50px;
@@ -29,4 +25,3 @@
     padding-bottom: 150px;
   }
 }
-

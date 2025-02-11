@@ -1,6 +1,7 @@
 import cls from "./title.module.scss";
 
 export const TITLE_TO_CLASS = {
+  base: [cls.size, cls.view],
   size: {
     S: cls.size_s,
     M: cls.size_m,

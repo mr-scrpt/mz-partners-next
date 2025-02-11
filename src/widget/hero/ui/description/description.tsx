@@ -12,15 +12,16 @@ export const Description: FC<DescriptionProps> = (props) => {
   return (
     <div className={sDescription.root}>
       <div className={sDescription.inner}>
-        <div className={sDescription.title}>{t("title")}</div>
         <Title
-          text="Title"
-          size="S"
-          className={t(HERO_DICT_FIELD.title)}
+          text={t(HERO_DICT_FIELD.title)}
+          size="L"
           as="div"
+          className={sDescription.title}
         />
 
-        <div className={sDescription.description}>{t("description")}</div>
+        <div className={sDescription.description}>
+          {t(HERO_DICT_FIELD.description)}
+        </div>
       </div>
     </div>
   );

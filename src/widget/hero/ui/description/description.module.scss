@@ -1,3 +1,7 @@
+.root {
+  width: 100%;
+}
+
 .inner {
   display: flex;
   flex-direction: column;
@@ -8,8 +12,13 @@
 }
 
 .description {
-}
+  color: var(--color-light);
 
-.root {
-}
+  font-size: 16px;
+  line-height: 20;
 
+  @include block-bp-md {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
