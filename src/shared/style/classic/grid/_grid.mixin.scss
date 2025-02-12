@@ -154,6 +154,7 @@ $grid-gap: 20px;
 
 @mixin col-flat($span: $grid-columns) {
   grid-column: span min($span, $grid-columns);
+
   padding-right: $grid-gap;
   padding-left: $grid-gap;
 }
@@ -186,6 +187,37 @@ $grid-gap: 20px;
 @mixin col-xxl($span) {
   @include breakpoint("xxl") {
     @include col($span);
+  }
+}
+
+// Миксины для col-flat с брейкпоинтами
+@mixin col-sm-flat($span) {
+  @include breakpoint("sm") {
+    @include col-flat($span);
+  }
+}
+
+@mixin col-md-flat($span) {
+  @include breakpoint("md") {
+    @include col-flat($span);
+  }
+}
+
+@mixin col-lg-flat($span) {
+  @include breakpoint("lg") {
+    @include col-flat($span);
+  }
+}
+
+@mixin col-xl-flat($span) {
+  @include breakpoint("xl") {
+    @include col-flat($span);
+  }
+}
+
+@mixin col-xxl-flat($span) {
+  @include breakpoint("xxl") {
+    @include col-flat($span);
   }
 }
 

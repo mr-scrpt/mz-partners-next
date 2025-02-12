@@ -15,7 +15,8 @@
 .infoBox {
   padding-top: 50px;
   padding-bottom: 50px;
-  @include col-flat(6);
+  @include col-flat(10);
+  @include col-md-flat(8);
   @include block-bp-md {
     padding-top: 100px;
     padding-bottom: 100px;
