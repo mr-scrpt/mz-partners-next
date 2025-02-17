@@ -1,7 +1,8 @@
 .Button {
-  display: inline-flex;
   align-items: center;
   justify-content: center;
+
+  text-align: center;
 
   white-space: nowrap;
 
@@ -25,32 +26,36 @@
   }
 }
 
+.Button > * {
+  text-decoration: none;
+}
+
 .Button[data-variant="primary"] {
   text-transform: uppercase;
 
-  color: hsl(var(--color-primary));
+  color: var(--color-primary);
   border-style: solid;
-  border-color: hsl(var(--color-primary));
+  border-color: var(--color-primary);
   background-color: transparent;
   @include ts(background-color, color);
 }
 
 .Button[data-variant="primary"]:hover {
-  color: hsl(var(--color-light));
-  background-color: hsl(var(--color-primary));
+  color: var(--color-light);
+  background-color: var(--color-primary);
 }
 
 .Button[data-variant="primary-inverted"] {
-  color: hsl(var(--color-light));
+  color: var(--color-light);
   border-style: solid;
-  border-color: hsl(var(--color-light));
+  border-color: var(--color-light);
   background-color: transparent;
   @include ts(background-color, color);
 }
 
 .Button[data-variant="primary-inverted"]:hover {
-  color: hsl(var(--color-primary));
-  background-color: hsl(var(--color-light));
+  color: var(--color-primary);
+  background-color: var(--color-light);
 }
 
 /* sizing */

@@ -1,69 +1,97 @@
 .root {
-  width: 100%;
   position: relative;
+
+  width: 100%;
 }
 
 .controller {
   display: flex;
+  align-items: center;
+  gap: 10px;
+
   padding: 10px 0;
+
   text-transform: uppercase;
+
   font-weight: 600;
   @include block-bp-lg {
     display: none;
   }
 }
 
+.icon {
+  width: 30px;
+  height: 30px;
+
+  background: var(--color-light);
+}
+
+.text {
+  font-size: 18px;
+  font-weight: 600;
+}
+
 .inner {
-  display: flex;
   position: relative;
+
+  display: flex;
 }
 
 .list {
+  position: absolute;
   bottom: 0;
-  transform: translateY(100%);
+
   display: flex;
-  flex-direction: column;
-  background: var(--color-dark);
+  flex-flow: column wrap;
+
   width: calc(100% + 40px);
-  flex-wrap: wrap;
 
   margin: 0 -20px;
+
+  transform: translateY(100%);
+
+  background: var(--color-dark);
   gap: 5px;
 
-  position: absolute;
-
-  @include block-bp-lg() {
-    transform: translateY(0);
+  @include block-bp-lg {
     bottom: auto;
-    margin: auto;
-    padding: 0;
-    gap: 15px;
+
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
+
+    margin: auto;
+    padding: 0;
+
+    transform: translateY(0);
+    gap: 15px;
   }
 }
 
 .item {
   display: flex;
-  justify-content: space-between;
+  flex-flow: row wrap;
   flex-grow: 1;
-  flex-direction: row;
-  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 0.5rem;
 }
+
 .link {
-  padding: 5px 5px 5px 20px;
   flex-grow: 1;
+
+  padding: 5px 5px 5px 60px;
+
   text-transform: uppercase;
+
   font-weight: 600;
-  @include ts(background);
-  @include block-bp-md() {
-    padding: 15px 0;
-    text-align: center;
-  }
 
   &:hover {
     background: var(--color-primary);
+  }
+  @include ts(background);
+  @include block-bp-md {
+    padding: 15px 0;
+
+    text-align: center;
   }
 }

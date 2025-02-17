@@ -1,4 +1,6 @@
-export const MENU_DATA = {
+import { MenuItem } from "../domain/menu.type";
+
+export const MENU_DATA: Record<string, MenuItem> = {
   about: {
     id: 1,
     tag: "about",

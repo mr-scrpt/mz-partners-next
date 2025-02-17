@@ -1,12 +1,12 @@
 import { BoxSection } from "@/shared/ui/section";
-import { FC, HTMLAttributes } from "react";
+import { FC, HTMLAttributes, ReactNode } from "react";
 import sDeco from "./deco.module.scss";
 import sHeroLayout from "./hero.layout.module.scss";
 import clsx from "clsx";
 
 interface HeroLayoutProps extends HTMLAttributes<HTMLDivElement> {
-  InfoSlot: React.ReactNode;
-  ActionSlot: React.ReactNode;
+  InfoSlot: ReactNode;
+  ActionSlot: ReactNode;
 }
 
 export const HeroLayout: FC<HeroLayoutProps> = (props) => {
@@ -17,9 +17,9 @@ export const HeroLayout: FC<HeroLayoutProps> = (props) => {
       topology="ROW_CONTAINER"
       {...props}
       withRowContainer={false}
-      className={sDeco.mainBG}
+      // className={sDeco.mainBG}
     >
-      <div className={sHeroLayout.inner}>
+      <div className={clsx(sHeroLayout.inner, sDeco.mainBG)}>
         <div className={clsx(sHeroLayout.infoBox, sDeco.infoBG)}>
           <div className={sHeroLayout.info}>{InfoSlot}</div>
           <div className={sHeroLayout.action}>{ActionSlot}</div>

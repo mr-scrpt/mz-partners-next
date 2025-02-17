@@ -3,6 +3,9 @@ const config = {
   columns: 12,
   unit: "rem",
   mobileFirst: true,
+  path: "./src/shared/wondergrid/",
+  fileName: "wg",
+
   container: {
     width: "1200",
     gap: "30",

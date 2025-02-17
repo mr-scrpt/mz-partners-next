@@ -4,25 +4,24 @@ import { FC, HTMLAttributes, useState } from "react";
 import sMenu from "./menuMain.module.scss";
 import sAnimation from "./menuMainAnimation.module.scss";
 
-import { useMenuItemList } from "../vm/getMenuItemList.model";
+import { useMenuItemList } from "../vm/useMenuItemList.model";
 import { MenuMainItem } from "./menuMainItem";
 import { Icon } from "@/shared/ui/icon";
+import { useMenu } from "@/shared/lib/menu";
 interface MenuMainProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const MenuMain: FC<MenuMainProps> = (props) => {
   const { className } = props;
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, toggleMenu, menuRef } = useMenu();
 
   const { menuItemList } = useMenuItemList();
 
   return (
-    <nav className={clsx(sMenu.root, className)} {...props}>
+    <nav className={clsx(sMenu.root, className)} {...props} ref={menuRef}>
       <div className={clsx(sMenu.inner)}>
-        <div className={clsx(sMenu.controller)}>
-          <Icon icon="dd" />
-          <div className={clsx(sMenu.text)} onClick={() => setIsOpen(!isOpen)}>
-            Menu
-          </div>
+        <div className={clsx(sMenu.controller)} onClick={() => toggleMenu()}>
+          <Icon icon="HAMBURGER" className={sMenu.icon} />
+          <div className={clsx(sMenu.text)}>Menu</div>
         </div>
         <ul
           className={clsx(sMenu.list, sAnimation.box, {

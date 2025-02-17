@@ -1,9 +1,12 @@
 .icon {
   display: inline-block;
+
   min-width: 0.5em;
   margin: 0;
   padding: 0;
+
   text-align: center;
+
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: contain;
@@ -23,5 +26,6 @@
 .icon > img,
 .icon > svg {
   margin: -5.15em 0 -5em;
+
   vertical-align: middle;
 }
