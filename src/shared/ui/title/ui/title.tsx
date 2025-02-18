@@ -1,16 +1,8 @@
-import { FC, HTMLAttributes, ElementType } from "react";
-import { TITLE_TO_CLASS } from "./style/title.map";
 import clsx from "clsx";
+import { FC } from "react";
+import { TitleProps } from "../domain/title.type";
+import { TITLE_TO_CLASS } from "./style/title.map";
 import sTitle from "./style/title.module.scss";
-import { TitleSizeType } from "../domain/size.type";
-import { TitleViewType } from "../domain/view.type";
-
-interface TitleProps extends HTMLAttributes<HTMLElement> {
-  text: string;
-  size?: TitleSizeType;
-  view?: TitleViewType;
-  as?: ElementType;
-}
 
 export const Title: FC<TitleProps> = (props) => {
   const {

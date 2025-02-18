@@ -1,0 +1,55 @@
+@mixin line-decoration($color: var(--color-primary), $height: 2px) {
+  height: $height;
+
+  content: "";
+
+  background-color: $color;
+}
+
+.deco {
+  width: inherit;
+
+  &_line {
+    position: relative;
+  }
+}
+
+.view.view_primary.deco {
+  width: inherit;
+
+  &_line {
+    position: relative;
+
+    &::before {
+      @include line-decoration;
+    }
+
+    &::after {
+      @include line-decoration;
+    }
+  }
+}
+
+.position.position_left.deco.deco_line::before {
+  flex-grow: 0;
+}
+
+.position.position_left.deco.deco_line::after {
+  flex-grow: 1;
+}
+
+.position.position_center.deco.deco_line::before {
+  flex-grow: 1;
+}
+
+.position.position_center.deco.deco_line::after {
+  flex-grow: 1;
+}
+
+.position.position_right.deco.deco_line::before {
+  flex-grow: 1;
+}
+
+.position.position_right.deco.deco_line::after {
+  flex-grow: 0;
+}

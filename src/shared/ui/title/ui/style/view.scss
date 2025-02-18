@@ -1,14 +1,13 @@
+.view {
+  margin: 0;
 
-.view{
-  width: 100%;
-
-  &_primary{
+  &_primary {
     text-transform: uppercase;
 
     font-weight: 600;
   }
 
-  &_secondary{
+  &_secondary {
     text-transform: none;
   }
 }

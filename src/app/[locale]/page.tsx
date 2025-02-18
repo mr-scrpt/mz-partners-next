@@ -1,6 +1,7 @@
 import { RowSection } from "@/shared/ui/section/ui/row.section";
+import { ConceptModule } from "@/widget/concept";
 import { HeroModule } from "@/widget/hero";
-import { SocialLineModule } from "@/widget/socialLine/ui/socialLine.module";
+import { SocialLineModule } from "@/widget/socialLine";
 
 const HomePage = async ({
   params,
@@ -11,6 +12,7 @@ const HomePage = async ({
     <>
       <HeroModule />
       <SocialLineModule />
+      <ConceptModule />
     </>
   );
 };

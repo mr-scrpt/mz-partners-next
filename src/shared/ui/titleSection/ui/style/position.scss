@@ -1,0 +1,16 @@
+.position {
+  display: flex;
+  align-items: center;
+
+  &_left {
+    justify-content: flex-start;
+  }
+
+  &_center {
+    justify-content: center;
+  }
+
+  &_right {
+    justify-content: flex-end;
+  }
+}
