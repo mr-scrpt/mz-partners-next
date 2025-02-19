@@ -1,7 +1,7 @@
+import { TitleSection } from "@/shared/ui/titleSection";
 import clsx from "clsx";
 import { FC, HTMLAttributes } from "react";
 import sConceptHeader from "./concept.header.module.scss";
-import { TitleSection } from "@/shared/ui/titleSection";
 interface ConceptHeaderProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const ConceptHeader: FC<ConceptHeaderProps> = (props) => {

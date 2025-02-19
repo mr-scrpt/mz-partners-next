@@ -2,9 +2,9 @@ import clsx from "clsx";
 import { FC } from "react";
 
 import { Title, TitleProps } from "../../title";
-import sTitleSection from "./style/titleSection.module.scss";
 import { TitleSectionPositionType } from "../domain/position.type";
-import { TITLE_SECTION_TO_CLASS } from "./style/titleSection.map";
+import sTitleSection from "./style/titleSection.module.scss";
+import { useTitleSectionStyle } from "./style/useStyleTitleSection";
 interface TitleSectionProps extends TitleProps {
   position: TitleSectionPositionType;
 }
@@ -12,22 +12,13 @@ interface TitleSectionProps extends TitleProps {
 export const TitleSection: FC<TitleSectionProps> = (props) => {
   const { className, text, size = "L", view = "PRIMARY", position } = props;
 
-  const clsTitleInner = clsx(
-    sTitleSection.inner,
-    [
-      sTitleSection.position,
-      sTitleSection.view,
-      sTitleSection.deco,
-      sTitleSection.deco_line,
-      sTitleSection.size,
-    ],
-    {
-      [TITLE_SECTION_TO_CLASS.position[position]]: true,
-      [TITLE_SECTION_TO_CLASS.deco_line[position]]: true,
-      [TITLE_SECTION_TO_CLASS.view[view]]: true,
-      [TITLE_SECTION_TO_CLASS.size[size]]: true,
-    },
-  );
+  const { cPosition, cView, cSize, cBase, cDeco_line } = useTitleSectionStyle();
+  const clsTitleInner = clsx(sTitleSection.inner, [cBase], {
+    [cPosition.options[position]]: true,
+    [cDeco_line.options[position]]: true,
+    [cView.options[view]]: true,
+    [cSize.options[size]]: true,
+  });
 
   const clsTitle = clsx(sTitleSection.title);
   return (

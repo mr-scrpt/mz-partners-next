@@ -1,24 +1,28 @@
 import cls from "./titleSection.module.scss";
 export const TITLE_SECTION_TO_CLASS = {
   position: {
-    LEFT: cls.position_left,
-    CENTER: cls.position_center,
-    RIGHT: cls.position_right,
+    base: cls.position,
+    options: {
+      LEFT: cls.position_left,
+      CENTER: cls.position_center,
+      RIGHT: cls.position_right,
+    },
   },
   deco_line: {
-    LEFT: cls.deco_line_left,
-    CENTER: cls.deco_line_center,
-    RIGHT: cls.deco_line_right,
+    base: [cls.deco, cls.deco_line],
+    options: {
+      LEFT: cls.deco_line_left,
+      CENTER: cls.deco_line_center,
+      RIGHT: cls.deco_line_right,
+    },
   },
   view: {
-    PRIMARY: cls.view_primary,
-    SECONDARY: cls.view_secondary,
+    base: cls.view,
+    options: { PRIMARY: cls.view_primary, SECONDARY: cls.view_secondary },
   },
 
   size: {
-    S: cls.size_s,
-    M: cls.size_m,
-    L: cls.size_l,
-    XL: cls.size_xl,
+    base: cls.size,
+    options: { S: cls.size_s, M: cls.size_m, L: cls.size_l, XL: cls.size_xl },
   },
 };
