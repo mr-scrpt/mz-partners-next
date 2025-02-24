@@ -1,47 +1,48 @@
 import { useMemo } from "react";
 
 // Базовые типы для структуры классов
-interface ClassOptions {
-  [key: string]: string;
+type BaseType = string | string[];
+
+// Базовый интерфейс для секции стилей
+interface StyleSection {
+  base: BaseType;
+  options: Record<string, string>;
 }
 
-interface SectionData {
-  base: string | string[];
-  options: ClassOptions;
+// Извлекаем типы из конфигурации
+type InferClassesConfig<T> = T extends {
+  [K in keyof T]: {
+    base: BaseType;
+    options: Record<string, string>;
+  };
 }
+  ? T
+  : never;
 
-// Обобщённый тип для конфигурации любого компонента
-type ComponentClassesConfig<T extends string> = {
-  [K in T]: SectionData;
+type ProcessedSectionData<T extends StyleSection> = {
+  base: string[];
+  options: T["options"];
 };
 
-interface ProcessedSectionData {
-  base: string[];
-  options: ClassOptions;
-}
-
 // Создаем тип для обработанных классов с добавлением префикса 'c'
-type ProcessedClasses<T extends string> = {
-  [K in T as `c${Capitalize<K>}`]: ProcessedSectionData;
+type ProcessedClasses<T extends Record<string, StyleSection>> = {
+  [K in keyof T as `c${Capitalize<string & K>}`]: ProcessedSectionData<T[K]>;
 } & {
   cBase: string[];
 };
 
-export const useStyleProcessor = <T extends string>(
-  classesConfig: ComponentClassesConfig<T>,
+export const useStyleProcessor = <T extends Record<string, StyleSection>>(
+  classesConfig: T,
 ): ProcessedClasses<T> => {
   return useMemo(() => {
     // Создаём промежуточный объект для хранения данных
-    const intermediate: Record<string, ProcessedSectionData | string[]> = {};
+    const intermediate: Record<string, any> = {};
 
     // Массив для сбора всех базовых классов
     const baseClasses: string[] = [];
 
     // Обрабатываем каждую секцию конфига
-    for (const [sectionName, sectionData] of Object.entries(classesConfig) as [
-      T,
-      SectionData,
-    ][]) {
+    Object.entries(classesConfig).forEach(([sectionName, sectionData]) => {
       // Добавляем базовые классы в общий массив
       if (Array.isArray(sectionData.base)) {
         baseClasses.push(...sectionData.base);
@@ -59,7 +60,7 @@ export const useStyleProcessor = <T extends string>(
           ? [...sectionData.base]
           : [sectionData.base],
       };
-    }
+    });
 
     // Добавляем объединённые базовые классы
     intermediate.cBase = baseClasses;
@@ -67,41 +68,3 @@ export const useStyleProcessor = <T extends string>(
     return intermediate as ProcessedClasses<T>;
   }, [classesConfig]);
 };
-
-// Пример использования для титульной секции:
-/*
-type TitleSectionKeys = 'position' | 'deco_line' | 'view' | 'size';
-
-const TITLE_SECTION_TO_CLASS: ComponentClassesConfig<TitleSectionKeys> = {
-  position: {
-    base: cls.position,
-    options: {
-      LEFT: cls.position_left,
-      CENTER: cls.position_center,
-      RIGHT: cls.position_right,
-    },
-  },
-  // ... остальные секции
-};
-
-const classes = useComponentClasses(TITLE_SECTION_TO_CLASS);
-*/
-
-// Пример использования для другого компонента:
-/*
-type ButtonKeys = 'size' | 'variant' | 'state';
-
-const BUTTON_TO_CLASS: ComponentClassesConfig<ButtonKeys> = {
-  size: {
-    base: cls.size,
-    options: {
-      S: cls.size_s,
-      M: cls.size_m,
-      L: cls.size_l,
-    },
-  },
-  // ... остальные секции
-};
-
-const classes = useComponentClasses(BUTTON_TO_CLASS);
-*/

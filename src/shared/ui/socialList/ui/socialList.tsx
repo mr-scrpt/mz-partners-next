@@ -4,10 +4,14 @@ import clsx from "clsx";
 import sSocialList from "./socialList.module.scss";
 import { Icon } from "../../icon";
 import Link from "next/dist/client/link";
+
 interface SocialListProps extends HTMLAttributes<HTMLDivElement> {}
+
 export const SocialList: FC<SocialListProps> = (props) => {
   const { className } = props;
   const { menuItemList } = useSocialItemList();
+
+  const clsRoot = clsx(sSocialList.root, className);
   return (
     <div className={clsx(sSocialList.root, className)} {...props}>
       <div className={sSocialList.inner}>

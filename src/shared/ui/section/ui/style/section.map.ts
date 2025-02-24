@@ -1,9 +1,19 @@
-import { SectionTopology } from "../../domain/topology.type";
 import cls from "./section.module.scss";
-export const section_class = {
+export const SECTION_TO_CLASS = {
+  section: {
+    base: cls.section,
+    options: {
+      HEADER: cls.section_header,
+      ROW: cls.section_row,
+      FOOTER: cls.section_footer,
+    },
+  },
   topology: {
-    ROW_CONTAINER: cls.rowContainer,
-    ROW_FLAT: cls.rowFlat,
-    ROW_FULL: cls.rowFull,
-  } satisfies Record<SectionTopology, string>,
+    base: cls.topology,
+    options: {
+      ROW_CONTAINER: cls.topology_rowContainer,
+      ROW_FLAT: cls.topology_rowFlat,
+      ROW_FULL: cls.topology_rowFull,
+    },
+  },
 };

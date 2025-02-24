@@ -1,8 +1,29 @@
-// Mixins
-// _animation.system.scss
+// Base animation mixins
+@mixin animate-state-action {
+  // enter
+  --enter-opacity: initial;
+  --enter-scale: initial;
+  --enter-rotate: initial;
+  --enter-translate-x: initial;
+  --enter-translate-y: initial;
 
-// Base keyframes
-@keyframes enter {
+  // exit
+  --exit-opacity: initial;
+  --exit-scale: initial;
+  --exit-rotate: initial;
+  --exit-translate-x: initial;
+  --exit-translate-y: initial;
+}
+
+@mixin animation-state-static {
+  --init-translate-x: initial;
+  --init-translate-y: initial;
+  --init-scale: initial;
+  --init-rotate: initial;
+  --init-opacity: initial;
+}
+
+@keyframes state-enter {
   from {
     transform: translate(
         var(--enter-translate-x, 0),
@@ -14,7 +35,7 @@
   }
 }
 
-@keyframes exit {
+@keyframes state-exit {
   to {
     transform: translate(var(--exit-translate-x, 0), var(--exit-translate-y, 0))
       scale(var(--exit-scale, 1)) rotate(var(--exit-rotate, 0));
@@ -23,28 +44,19 @@
   }
 }
 
-// Base animation mixins
-@mixin animate-base {
-  --enter-opacity: initial;
-  --enter-scale: initial;
-  --enter-rotate: initial;
-  --enter-translate-x: initial;
-  --enter-translate-y: initial;
-  --exit-opacity: initial;
-  --exit-scale: initial;
-  --exit-rotate: initial;
-  --exit-translate-x: initial;
-  --exit-translate-y: initial;
-}
-
 @mixin animate-in($duration: 250ms, $timing: ease-out) {
-  animation: enter $duration $timing forwards;
-  @include animate-base;
+  animation: state-enter $duration $timing forwards;
+  @include animate-state-action;
 }
 
 @mixin animate-out($duration: 250ms, $timing: ease-in) {
-  animation: exit $duration $timing forwards;
-  @include animate-base;
+  animation: state-exit $duration $timing forwards;
+  @include animate-state-action;
+}
+
+@mixin animation-reset() {
+  animation: none;
+  @include animation-state-static;
 }
 
 // Fade mixins
@@ -114,16 +126,60 @@
   @include animate-in;
   @include fade-in(0);
 
-  // @include zoom-in(0.95);
   @include slide-in(-100%, 100%);
 }
 
 @mixin menu-out {
-  // pointer-events: none;
-
   @include animate-out;
   @include fade-out(0);
 
   // @include zoom-out(0.95);
   @include slide-out(-100%, 100%);
 }
+
+// Миксины для анимации стрелки аккордеона
+// @mixin accordion-arrow-init {
+//   @include state-init;
+//   @include translate-init(0, -25%);
+//   @include rotate-init(45);
+// }
+
+@mixin accordion-arrow-rotate-in($active: true) {
+  @if $active {
+    @include animate-in;
+    @include slide-in(0, -75%);
+    @include rotate-in(225);
+  } @else {
+    @include animation-reset;
+  }
+}
+
+@mixin accordion-arrow-rotate-out($active: true) {
+  @if $active {
+    @include animate-out;
+    @include slide-out(0, -75%);
+    @include rotate-out(225);
+  } @else {
+    @include animation-reset;
+  }
+}
+
+@mixin accordion-arrow-state-init {
+  @include animation-state-static;
+}
+
+// @mixin translate-init($x: 0, $y: 0) {
+//   --init-translate-x: #{$x};
+//   --init-translate-y: #{$y};
+// }
+//
+// @mixin rotate-init($degrees: 0) {
+//   --init-rotate: #{$degrees}deg;
+// }
+
+// @mixin state-init {
+//   transform: translate(var(--init-translate-x, 0), var(--init-translate-y, 0))
+//     scale(var(--init-scale, 1)) rotate(var(--init-rotate, 0));
+//
+//   opacity: var(--init-opacity, 1);
+// }

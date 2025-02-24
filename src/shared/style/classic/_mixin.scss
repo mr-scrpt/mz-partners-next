@@ -1,17 +1,19 @@
 @forward "./grid/grid.mixin";
 
 @mixin ts($obj, $obj2: "empty", $obj3: "empty") {
-  @if $obj2 == "empty" {
-    transition: $obj var(--duration-middle);
-  } @else if $obj3 == "empty" {
-    transition:
-      $obj var(--duration-middle),
-      $obj2 var(--duration-middle);
-  } @else {
-    transition:
-      $obj var(--duration-middle),
-      $obj2 var(--duration-middle),
-      $obj3 var(--duration-middle);
+  & {
+    @if $obj2 == "empty" {
+      transition: $obj var(--duration-middle);
+    } @else if $obj3 == "empty" {
+      transition:
+        $obj var(--duration-middle),
+        $obj2 var(--duration-middle);
+    } @else {
+      transition:
+        $obj var(--duration-middle),
+        $obj2 var(--duration-middle),
+        $obj3 var(--duration-middle);
+    }
   }
 }
 

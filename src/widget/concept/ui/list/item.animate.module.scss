@@ -1,0 +1,45 @@
+.collapsing {
+  &#{&}_open {
+    grid-template-rows: 1fr 1fr;
+
+    opacity: 1;
+  }
+
+  &#{&}_close {
+    grid-template-rows: 0fr 0fr;
+
+    opacity: 0;
+    @include block-bp-md {
+      grid-template-rows: 1fr 1fr;
+
+      opacity: 1;
+    }
+  }
+  @include ts(grid-template-rows, opacity);
+}
+
+.rotating {
+  position: relative;
+
+  &::before {
+    @include accordion-arrow-state-init;
+  }
+
+  &#{&}_open::before {
+    @include accordion-arrow-rotate-in;
+  }
+
+  &#{&}_close::before {
+    @include accordion-arrow-rotate-out;
+  }
+
+  @include block-bp-md {
+    &#{&}_open::before {
+      @include accordion-arrow-rotate-in(false);
+    }
+
+    &#{&}_close::before {
+      @include accordion-arrow-rotate-out(false);
+    }
+  }
+}

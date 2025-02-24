@@ -2,8 +2,9 @@ import clsx from "clsx";
 import { FC, HTMLAttributes, ReactNode } from "react";
 
 import { SectionTopology } from "../domain/topology.type";
-import { section_class } from "./style/section.map";
+import { SECTION_TO_CLASS } from "./style/section.map";
 import sSection from "./style/section.module.scss";
+import { useSectionStyle } from "./style/useSectionStyle";
 
 interface BoxSectionProps extends HTMLAttributes<HTMLDivElement> {
   topology: SectionTopology;
@@ -23,15 +24,22 @@ export const BoxSection: FC<BoxSectionProps> = (props) => {
     footerSlot,
     withRowContainer = true,
   } = props;
-  const clsSection = clsx(sSection.section, className);
-  const clsRow = clsx(sSection.row, [section_class.topology[topology]]);
-  const clsBox = clsx(sSection.rowFlat, boxClassName);
+
+  const { cTopology, cSection } = useSectionStyle();
+  const clsSection = clsx(cSection.base, className);
+
+  const clsRow = clsx(cTopology.base, [cTopology.options[topology]]);
+  const clsBox = clsx(cTopology.options.ROW_FLAT, boxClassName);
 
   const content = (
     <>
-      {headerSlot && <div className={sSection.header}>{headerSlot}</div>}
+      {headerSlot && (
+        <div className={cSection.options.HEADER}>{headerSlot}</div>
+      )}
       {children}
-      {footerSlot && <div className={sSection.footer}>{footerSlot}</div>}
+      {footerSlot && (
+        <div className={cSection.options.FOOTER}>{footerSlot}</div>
+      )}
     </>
   );
 

@@ -1,0 +1,17 @@
+@use "../../../../style/classic/mixin.scss" as *;
+
+.topology {
+  width: 100%;
+
+  &_rowContainer {
+    @include container;
+  }
+
+  &_rowFlat {
+    @include container-flat;
+  }
+
+  &_rowFull {
+    @include container-full;
+  }
+}

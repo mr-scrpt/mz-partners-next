@@ -7,13 +7,12 @@
     @include menu-out;
     @include block-bp-lg {
       position: relative;
-      // transform: translateX(0);
+
       animation: none;
     }
   }
 
   @include block-bp-lg {
-    // transform: translateX(0);
     position: relative;
   }
 }

@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import { FC } from "react";
 import { TitleProps } from "../domain/title.type";
-import { TITLE_TO_CLASS } from "./style/title.map";
 import sTitle from "./style/title.module.scss";
+import { useTitleStyle } from "./style/useTitleStyle";
 
 export const Title: FC<TitleProps> = (props) => {
   const {
@@ -14,9 +14,11 @@ export const Title: FC<TitleProps> = (props) => {
     ...restProps
   } = props;
 
-  const clsTitle = clsx(sTitle.root, [className, TITLE_TO_CLASS.base], {
-    [TITLE_TO_CLASS.size[size]]: true,
-    [TITLE_TO_CLASS.view[view]]: true,
+  const { cBase, cSize, cView } = useTitleStyle();
+  const clsTitle = clsx(sTitle.root, [className, cBase], {
+    [cSize.options[size]]: true,
+
+    [cView.options[view]]: true,
   });
 
   return (

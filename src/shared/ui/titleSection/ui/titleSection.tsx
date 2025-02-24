@@ -4,7 +4,7 @@ import { FC } from "react";
 import { Title, TitleProps } from "../../title";
 import { TitleSectionPositionType } from "../domain/position.type";
 import sTitleSection from "./style/titleSection.module.scss";
-import { useTitleSectionStyle } from "./style/useStyleTitleSection";
+import { useTitleSectionStyle } from "./style/useTitleSectionStyle";
 interface TitleSectionProps extends TitleProps {
   position: TitleSectionPositionType;
 }

@@ -1,10 +1,9 @@
-import { memo } from "react";
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, memo } from "react";
 
-import cls from "./style/icon.module.scss";
 import clsx from "clsx";
-import { ICON_TO_CLASS } from "./style/icon.map";
 import { IconListType } from "../domain/icon.type";
+import cls from "./style/icon.module.scss";
+import { useIconStyle } from "./style/useIconStyle";
 
 export interface IconProps extends HTMLAttributes<HTMLSpanElement> {
   icon: IconListType;
@@ -14,8 +13,9 @@ export interface IconProps extends HTMLAttributes<HTMLSpanElement> {
 export const Icon = memo((props: IconProps) => {
   const { className, icon, ...etc } = props;
 
-  const clsIcon = clsx(cls.icon, [className], {
-    [ICON_TO_CLASS[icon]]: true,
+  const { cIcon_list, cBase } = useIconStyle();
+  const clsIcon = clsx(cls.icon, [className, cBase], {
+    [cIcon_list.options[icon]]: true,
   });
 
   return <span className={clsIcon} {...etc} />;
