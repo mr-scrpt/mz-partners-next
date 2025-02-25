@@ -22,24 +22,36 @@
   position: relative;
 
   &::before {
-    @include accordion-arrow-state-init;
+    // transform: translateY(-25%) rotate(45deg);
   }
 
   &#{&}_open::before {
-    @include accordion-arrow-rotate-in;
+    transform-origin: center center;
+    animation: open 0.5s ease-in-out forwards;
   }
 
   &#{&}_close::before {
-    @include accordion-arrow-rotate-out;
+    transform-origin: center center;
+    animation: close 0.5s ease-in-out forwards;
+  }
+}
+
+@keyframes open {
+  from {
+    transform: translateY(-25%) rotate(45deg);
   }
 
-  @include block-bp-md {
-    &#{&}_open::before {
-      @include accordion-arrow-rotate-in(false);
-    }
+  to {
+    transform: translateY(-75%) rotate(225deg);
+  }
+}
 
-    &#{&}_close::before {
-      @include accordion-arrow-rotate-out(false);
-    }
+@keyframes close {
+  from {
+    transform: translateY(-75%) rotate(225deg);
+  }
+
+  to {
+    transform: translateY(-25%) rotate(45deg);
   }
 }
