@@ -21,9 +21,9 @@
 .rotating {
   position: relative;
 
-  &::before {
-    // transform: translateY(-25%) rotate(45deg);
-  }
+  // &::before {
+  //   transform: translateY(-25%) rotate(45deg);
+  // }
 
   &#{&}_open::before {
     transform-origin: center center;
@@ -33,6 +33,19 @@
   &#{&}_close::before {
     transform-origin: center center;
     animation: close 0.5s ease-in-out forwards;
+  }
+
+  @include block-bp-md {
+    &::before {
+      transform: translateY(-25%) rotate(225deg);
+    }
+    &#{&}::before {
+      animation: none;
+    }
+
+    &#{&}_open::before {
+      animation: none;
+    }
   }
 }
 
