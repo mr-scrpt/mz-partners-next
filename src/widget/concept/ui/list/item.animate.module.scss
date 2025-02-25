@@ -1,3 +1,14 @@
+@mixin animate-rotate-in {
+  @include animate-in;
+  @include slide-in(0, -25%);
+  @include rotate-in(45);
+}
+@mixin animate-rotate-out {
+  @include animate-out;
+  @include slide-out(0, -25%);
+  @include rotate-out(45);
+}
+
 .collapsing {
   &#{&}_open {
     grid-template-rows: 1fr 1fr;
@@ -21,50 +32,26 @@
 .rotating {
   position: relative;
 
-  // &::before {
-  //   transform: translateY(-25%) rotate(45deg);
-  // }
+  &::before {
+    transform-origin: center center;
+  }
 
   &#{&}_open::before {
-    transform-origin: center center;
-    animation: open 0.5s ease-in-out forwards;
+    @include animate-rotate-in;
   }
 
   &#{&}_close::before {
-    transform-origin: center center;
-    animation: close 0.5s ease-in-out forwards;
+    @include animate-rotate-out;
   }
 
   @include block-bp-md {
     &::before {
       transform: translateY(-25%) rotate(225deg);
     }
-    &#{&}::before {
+
+    &.rotating_open::before,
+    &.rotating_close::before {
       animation: none;
     }
-
-    &#{&}_open::before {
-      animation: none;
-    }
-  }
-}
-
-@keyframes open {
-  from {
-    transform: translateY(-25%) rotate(45deg);
-  }
-
-  to {
-    transform: translateY(-75%) rotate(225deg);
-  }
-}
-
-@keyframes close {
-  from {
-    transform: translateY(-75%) rotate(225deg);
-  }
-
-  to {
-    transform: translateY(-25%) rotate(45deg);
   }
 }
