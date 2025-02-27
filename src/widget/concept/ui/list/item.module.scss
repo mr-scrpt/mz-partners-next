@@ -47,29 +47,40 @@
   }
 }
 
-.content {
+.box {
   display: grid;
+  overflow: hidden;
 
-  grid-template-rows: 1fr 1fr;
-
-  padding: 5px 15px;
+  min-height: 0;
 
   background: var(--color-gray);
+
+  grid-template-rows: 0fr;
   grid-column: 1 / -1;
 
   @include block-bp-md {
-    order: -1;
-
     padding: 40px;
     grid-row: 1;
     grid-column: auto;
   }
 }
 
-.title {
-  min-height: 0;
+.content {
+  display: grid;
+  overflow: hidden;
+
+  padding: 5px 15px;
+
+  background: var(--color-gray);
+
+  grid-template-rows: 1fr 1fr;
+  grid-column: 1 / -1;
 }
 
-.description {
-  min-height: 0;
-}
+// .title {
+//   min-height: 0;
+// }
+//
+// .description {
+//   min-height: 0;
+// }

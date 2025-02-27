@@ -1,3 +1,27 @@
+@mixin modal-in {
+  @include animate-in;
+  @include fade-in(0);
+  @include zoom-in(0.95);
+  @include slide-in(-50%, -50%);
+}
+
+@mixin modal-out {
+  @include animate-out;
+  @include fade-out(0);
+  @include zoom-out(0.95);
+  @include slide-out(-50%, -50%);
+}
+
+@mixin overlay-in {
+  @include animate-in;
+  @include fade-in(0.4);
+}
+
+@mixin overlay-out {
+  @include animate-out;
+  @include fade-out;
+}
+
 .DialogOverlay {
   position: fixed;
   z-index: 50;

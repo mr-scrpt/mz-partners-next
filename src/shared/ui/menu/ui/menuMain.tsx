@@ -1,13 +1,13 @@
 "use client";
 import clsx from "clsx";
-import { FC, HTMLAttributes, useState } from "react";
+import { FC, HTMLAttributes } from "react";
 import sMenu from "./menuMain.module.scss";
-import sAnimation from "./menuMainAnimation.module.scss";
+import sAnimation from "./menuMain.animation.module.scss";
 
+import { useMenu } from "@/shared/lib/menu";
+import { Icon } from "@/shared/ui/icon";
 import { useMenuItemList } from "../vm/useMenuItemList.model";
 import { MenuMainItem } from "./menuMainItem";
-import { Icon } from "@/shared/ui/icon";
-import { useMenu } from "@/shared/lib/menu";
 interface MenuMainProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const MenuMain: FC<MenuMainProps> = (props) => {
@@ -24,9 +24,9 @@ export const MenuMain: FC<MenuMainProps> = (props) => {
           <div className={clsx(sMenu.text)}>Menu</div>
         </div>
         <ul
-          className={clsx(sMenu.list, sAnimation.box, {
-            [sAnimation.box_open]: isOpen,
-            [sAnimation.box_close]: !isOpen,
+          className={clsx(sMenu.list, sAnimation.showing, {
+            [sAnimation.showing_open]: isOpen,
+            [sAnimation.showing_close]: !isOpen,
           })}
         >
           {menuItemList.map((item) => (

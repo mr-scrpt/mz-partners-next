@@ -9,24 +9,33 @@
   @include rotate-out(45);
 }
 
+@mixin animate-collapsing-in {
+  @include animate-grid-row;
+  @include state-grid-row-enter;
+  @include grid-rows-in(1fr);
+}
+
+@mixin animate-collapsing-out {
+  @include animate-grid-row;
+  @include state-grid-row-exit;
+  @include grid-rows-out(0fr);
+}
+
 .collapsing {
   &#{&}_open {
-    grid-template-rows: 1fr 1fr;
-
-    opacity: 1;
+    @include animate-collapsing-in;
   }
 
   &#{&}_close {
-    grid-template-rows: 0fr 0fr;
+    @include animate-collapsing-out;
+  }
 
-    opacity: 0;
-    @include block-bp-md {
-      grid-template-rows: 1fr 1fr;
-
-      opacity: 1;
+  @include block-bp-md {
+    &#{&}_open,
+    &#{&}_close {
+      grid-template-rows: 1fr;
     }
   }
-  @include ts(grid-template-rows, opacity);
 }
 
 .rotating {
@@ -49,8 +58,8 @@
       transform: translateY(-25%) rotate(225deg);
     }
 
-    &.rotating_open::before,
-    &.rotating_close::before {
+    &#{&}_open::before,
+    &#{&}_close::before {
       animation: none;
     }
   }

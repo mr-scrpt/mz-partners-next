@@ -27,9 +27,11 @@ export const Item: FC<ItemProps> = (props) => {
         >
           {`${idx + 1}`.padStart(2, "0")}
         </div>
-        <div className={clsx(sItem.content, [contentAnimationClassName])}>
-          <div className={sItem.title}>{title}</div>
-          <div className={sItem.description}>{description}</div>
+        <div className={clsx(sItem.box, [contentAnimationClassName])}>
+          <div className={clsx(sItem.content)}>
+            <div className={sItem.title}>{title}</div>
+            <div className={sItem.description}>{description}</div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,58 +1,21 @@
-/* Native CSS */
-.list {
-  &_top {
-  }
+/* Module: sConceptList */
 
-  &__inner {
-  }
-
-  &__item {
-  }
-}
-
-.title {
-}
-
-.list {
-  &_s {
-  }
-
-  &_big {
-  }
-
-  &_little {
-  }
-
-  &_medium {
-  }
-
-  &_m {
-  }
-
-  &_l {
-  }
+.root {
+  margin: 0;
 }
 
 .inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
 }
 
 .item {
-}
-
-.content {
-}
-
-/* Module: sNavigationMainLayout */
-.root {
-}
-
-.inner {
-}
-
-.menu {
-  &_top {
-  }
-
-  &__item {
-  }
+  overflow: hidden;
 }

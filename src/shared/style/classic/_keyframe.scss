@@ -6,6 +6,7 @@
   --enter-rotate: initial;
   --enter-translate-x: initial;
   --enter-translate-y: initial;
+  --enter-grid-rows: initial; // Новая переменная
 
   // exit
   --exit-opacity: initial;
@@ -13,14 +14,7 @@
   --exit-rotate: initial;
   --exit-translate-x: initial;
   --exit-translate-y: initial;
-}
-
-@mixin animation-state-static {
-  --init-translate-x: initial;
-  --init-translate-y: initial;
-  --init-scale: initial;
-  --init-rotate: initial;
-  --init-opacity: initial;
+  --exit-grid-rows: initial;
 }
 
 @keyframes state-enter {
@@ -44,6 +38,14 @@
   }
 }
 
+@mixin state-grid-row-enter {
+  grid-template-rows: var(--enter-grid-rows, 1fr);
+}
+
+@mixin state-grid-row-exit {
+  grid-template-rows: var(--exit-grid-rows, 1fr);
+}
+
 @mixin animate-in($duration: 250ms, $timing: ease-out) {
   animation: state-enter $duration $timing forwards;
   @include animate-state-action;
@@ -54,9 +56,20 @@
   @include animate-state-action;
 }
 
+@mixin animate-grid-row($duration: 250ms, $timing: ease-out) {
+  transition: grid-template-rows $duration $timing;
+
+  @include animate-state-action;
+}
+
+@mixin animate-grid-out($duration: 250ms, $timing: ease-in) {
+  animation: grid-exit $duration $timing forwards;
+  @include animate-state-action;
+}
+
 @mixin animation-reset() {
   animation: none;
-  @include animation-state-static;
+  @include animate-state-action;
 }
 
 // Fade mixins
@@ -97,89 +110,10 @@
   --exit-rotate: #{$degrees}deg;
 }
 
-// Комбинированные миксины для типовых анимаций
-@mixin modal-in {
-  @include animate-in;
-  @include fade-in(0);
-  @include zoom-in(0.95);
-  @include slide-in(-50%, -50%);
+@mixin grid-rows-in($rows) {
+  --enter-grid-rows: #{$rows};
 }
 
-@mixin modal-out {
-  @include animate-out;
-  @include fade-out(0);
-  @include zoom-out(0.95);
-  @include slide-out(-50%, -50%);
+@mixin grid-rows-out($rows) {
+  --exit-grid-rows: #{$rows};
 }
-
-@mixin overlay-in {
-  @include animate-in;
-  @include fade-in(0.4);
-}
-
-@mixin overlay-out {
-  @include animate-out;
-  @include fade-out;
-}
-
-@mixin menu-in {
-  @include animate-in;
-  @include fade-in(0);
-
-  @include slide-in(-100%, 100%);
-}
-
-@mixin menu-out {
-  @include animate-out;
-  @include fade-out(0);
-
-  // @include zoom-out(0.95);
-  @include slide-out(-100%, 100%);
-}
-
-// Миксины для анимации стрелки аккордеона
-// @mixin accordion-arrow-init {
-//   @include state-init;
-//   @include translate-init(0, -25%);
-//   @include rotate-init(45);
-// }
-
-@mixin accordion-arrow-rotate-in($active: true) {
-  @if $active {
-    @include animate-in;
-    @include slide-in(0, -75%);
-    @include rotate-in(225);
-  } @else {
-    @include animation-reset;
-  }
-}
-
-@mixin accordion-arrow-rotate-out($active: true) {
-  @if $active {
-    @include animate-out;
-    @include slide-out(0, -75%);
-    @include rotate-out(225);
-  } @else {
-    @include animation-reset;
-  }
-}
-
-@mixin accordion-arrow-state-init {
-  @include animation-state-static;
-}
-
-// @mixin translate-init($x: 0, $y: 0) {
-//   --init-translate-x: #{$x};
-//   --init-translate-y: #{$y};
-// }
-//
-// @mixin rotate-init($degrees: 0) {
-//   --init-rotate: #{$degrees}deg;
-// }
-
-// @mixin state-init {
-//   transform: translate(var(--init-translate-x, 0), var(--init-translate-y, 0))
-//     scale(var(--init-scale, 1)) rotate(var(--init-rotate, 0));
-//
-//   opacity: var(--init-opacity, 1);
-// }

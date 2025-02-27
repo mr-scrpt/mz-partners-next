@@ -1,0 +1,26 @@
+@mixin menu-in {
+  @include animate-in;
+  @include fade-in(0);
+  @include slide-in(-100%, 100%);
+}
+
+@mixin menu-out {
+  @include animate-out;
+  @include fade-out(0);
+  @include slide-out(-100%, 100%);
+}
+
+.showing {
+  &#{&}_open {
+    @include menu-in;
+  }
+
+  &#{&}_close {
+    pointer-events: none;
+    @include menu-out;
+    @include block-bp-lg {
+      animation: none;
+      pointer-events: auto;
+    }
+  }
+}
