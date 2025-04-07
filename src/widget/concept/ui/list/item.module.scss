@@ -93,15 +93,18 @@
 
   padding: 5px 15px;
 
+  color: var(--color-dark);
+
   background: var(--color-gray);
 
-  grid-template-rows: 1fr 1fr;
+  // grid-template-rows: 1fr 1fr;
   grid-column: 1 / -1;
 }
 
-// .title {
-//   min-height: 0;
-// }
+.title {
+  margin-bottom: 15px;
+}
+
 //
 // .description {
 //   min-height: 0;
