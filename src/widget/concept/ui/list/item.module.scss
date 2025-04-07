@@ -45,6 +45,28 @@
 
     // @include accordion-arrow-init;
   }
+  @include block-bp-md {
+    display: flex;
+
+    justify-content: center;
+
+    padding: 40px;
+
+    font-size: 72px;
+    line-height: 86px;
+
+    &::before {
+      top: auto;
+      right: 50%;
+      bottom: 0;
+
+      width: 24px;
+      height: 24px;
+
+      transform: translate(50%, -75%) rotate(225deg);
+      clip-path: polygon(0 0, 100% 0, 100% 3px, 3px 3px, 3px 100%, 0 100%);
+    }
+  }
 }
 
 .box {
