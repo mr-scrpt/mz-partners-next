@@ -9,14 +9,24 @@ interface RowSectionProps extends HTMLAttributes<HTMLDivElement> {
   topology: SectionTopology;
   headerSlot?: ReactNode;
   footerSlot?: ReactNode;
+  classNameRow?: string;
 }
 
 export const RowSection: FC<RowSectionProps> = (props) => {
-  const { children, className, topology, headerSlot, footerSlot } = props;
+  const {
+    children,
+    className,
+    topology,
+    headerSlot,
+    footerSlot,
+    classNameRow,
+  } = props;
   const { cTopology, cSection } = useSectionStyle();
 
   const clsSection = clsx(cSection.base, className);
-  const clsRow = clsx(cTopology.base, [cTopology.options[topology]]);
+  const clsRow = clsx(cTopology.base, classNameRow, [
+    cTopology.options[topology],
+  ]);
 
   return (
     <section className={clsSection}>

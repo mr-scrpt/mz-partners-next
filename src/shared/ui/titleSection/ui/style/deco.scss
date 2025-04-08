@@ -30,6 +30,22 @@
   }
 }
 
+.view.view_primary.view_primary_invert.deco {
+  width: inherit;
+
+  &_line {
+    position: relative;
+
+    &::before {
+      @include line-decoration(var(--color-light));
+    }
+
+    &::after {
+      @include line-decoration(var(--color-light));
+    }
+  }
+}
+
 .position.position_left.deco.deco_line::before {
   flex-grow: 0;
 }

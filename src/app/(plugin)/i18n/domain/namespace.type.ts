@@ -3,6 +3,7 @@ import { LANG_SWITCHER_NAMESPACE } from "@/shared/ui/langSwitcher";
 import { MENU_NAMESPACE } from "@/shared/ui/menu";
 import { CONCEPT_NAMESPACE } from "@/widget/concept/domain/concept.dict";
 import { HERO_NAMESPACE } from "@/widget/hero";
+import { PRINCIPLE_NAMESPACE } from "@/widget/principle";
 
 export const NAMESPACE_LIST = [
   CALLBACK_NAMESPACE,
@@ -10,6 +11,7 @@ export const NAMESPACE_LIST = [
   LANG_SWITCHER_NAMESPACE,
   HERO_NAMESPACE,
   CONCEPT_NAMESPACE,
+  PRINCIPLE_NAMESPACE,
 ] as const;
 
 export type Namespace = (typeof NAMESPACE_LIST)[number];

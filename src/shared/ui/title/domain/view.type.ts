@@ -1,5 +1,6 @@
 export const TITLE_VIEW = {
   PRIMARY: "primary",
+  PRIMARY_INVERTED: "primary_invert",
   SECONDARY: "secondary",
 } as const;
 

@@ -15,11 +15,17 @@ export const Title: FC<TitleProps> = (props) => {
   } = props;
 
   const { cBase, cSize, cView } = useTitleStyle();
-  const clsTitle = clsx(sTitle.root, [className, cBase], {
-    [cSize.options[size]]: true,
-
-    [cView.options[view]]: true,
-  });
+  const clsTitle = clsx(
+    sTitle.root,
+    [className, cBase],
+    //   {
+    //   [cSize.options[size]]: true,
+    //
+    //   [cView.options[view]]: true,
+    // }
+    cSize.options[size],
+    cView.options[view],
+  );
 
   return (
     <Component className={clsTitle} {...restProps}>

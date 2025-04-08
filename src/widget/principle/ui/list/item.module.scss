@@ -1,0 +1,35 @@
+.inner {
+  display: flex;
+  flex-direction: column;
+  @include block-bp-md {
+    flex-direction: row;
+  }
+}
+
+.titleBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  text-align: center;
+  @include block-bp-md {
+    min-width: 300px;
+  }
+  @include block-bp-lg {
+    padding: 30px;
+  }
+}
+
+.description {
+  padding: 20px;
+
+  background: var(--color-light);
+  @include block-bp-md {
+    flex-grow: 1;
+  }
+  @include block-bp-lg {
+    padding: 30px;
+  }
+}

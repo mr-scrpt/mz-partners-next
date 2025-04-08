@@ -13,12 +13,14 @@ export const TitleSection: FC<TitleSectionProps> = (props) => {
   const { className, text, size = "L", view = "PRIMARY", position } = props;
 
   const { cPosition, cView, cSize, cBase, cDeco_line } = useTitleSectionStyle();
-  const clsTitleInner = clsx(sTitleSection.inner, [cBase], {
-    [cPosition.options[position]]: true,
-    [cDeco_line.options[position]]: true,
-    [cView.options[view]]: true,
-    [cSize.options[size]]: true,
-  });
+  const clsTitleInner = clsx(
+    sTitleSection.inner,
+    [cBase],
+    cPosition.options[position],
+    cDeco_line.options[position],
+    cView.options[view],
+    cSize.options[size],
+  );
 
   const clsTitle = clsx(sTitleSection.title);
   return (

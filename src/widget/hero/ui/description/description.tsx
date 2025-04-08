@@ -16,6 +16,7 @@ export const Description: FC<DescriptionProps> = (props) => {
           text={t(HERO_DICT_FIELD.title)}
           size="L"
           as="div"
+          view="PRIMARY_INVERTED"
           className={sDescription.title}
         />
 

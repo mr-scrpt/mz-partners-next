@@ -7,6 +7,10 @@ export const TITLE_TO_CLASS = {
   },
   view: {
     base: cls.view,
-    options: { PRIMARY: cls.view_primary, SECONDARY: cls.view_secondary },
+    options: {
+      PRIMARY: cls.view_primary,
+      PRIMARY_INVERTED: [cls.view_primary, cls.view_primary_invert],
+      SECONDARY: cls.view_secondary,
+    },
   },
 };

@@ -4,7 +4,13 @@
   &_primary {
     text-transform: uppercase;
 
+    color: var(--color-primary);
+
     font-weight: 600;
+
+    &_invert {
+      color: var(--color-light);
+    }
   }
 
   &_secondary {
