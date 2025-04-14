@@ -1,3 +1,5 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+
 .Button {
   align-items: center;
   justify-content: center;

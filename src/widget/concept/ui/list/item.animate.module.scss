@@ -1,3 +1,6 @@
+@use "./src/shared/style/classic/keyframe.scss" as *;
+@use "./src/shared/style/classic/mixin.scss" as *;
+
 @mixin animate-rotate-in {
   @include animate-in;
   @include slide-in(0, -25%);

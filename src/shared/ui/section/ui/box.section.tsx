@@ -1,13 +1,13 @@
 import clsx from "clsx";
 import { FC, HTMLAttributes, ReactNode } from "react";
 
+import { SectionSpace } from "../domain/space.type";
 import { SectionTopology } from "../domain/topology.type";
-import { SECTION_TO_CLASS } from "./style/section.map";
-import sSection from "./style/section.module.scss";
 import { useSectionStyle } from "./style/useSectionStyle";
 
 interface BoxSectionProps extends HTMLAttributes<HTMLDivElement> {
   topology: SectionTopology;
+  space: SectionSpace;
   headerSlot?: ReactNode;
   footerSlot?: ReactNode;
   boxClassName?: string;
@@ -20,15 +20,20 @@ export const BoxSection: FC<BoxSectionProps> = (props) => {
     className,
     boxClassName,
     topology,
+    space,
     headerSlot,
     footerSlot,
     withRowContainer = true,
   } = props;
 
-  const { cTopology, cSection } = useSectionStyle();
+  const { cTopology, cSection, cSpace } = useSectionStyle();
   const clsSection = clsx(cSection.base, className);
 
-  const clsRow = clsx(cTopology.base, [cTopology.options[topology]]);
+  const clsInner = clsx(cTopology.base, cSpace.base, [
+    cTopology.options[topology],
+    cSpace.options[space],
+  ]);
+
   const clsBox = clsx(cTopology.options.ROW_FLAT, boxClassName);
 
   const content = (
@@ -44,7 +49,7 @@ export const BoxSection: FC<BoxSectionProps> = (props) => {
   );
 
   const row = withRowContainer ? (
-    <div className={clsRow}>{content}</div>
+    <div className={clsInner}>{content}</div>
   ) : (
     content
   );

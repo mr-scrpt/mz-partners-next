@@ -13,11 +13,11 @@ export const HeaderSection: FC<HeaderSectionProps> = (props) => {
   const { cTopology, cSection } = useSectionStyle();
 
   const clsHeader = clsx(cSection.base, className);
-  const clsRow = clsx(cTopology.base, [cTopology.options[topology]]);
+  const clsInner = clsx(cTopology.base, [cTopology.options[topology]]);
 
   return (
     <header className={clsHeader}>
-      <div className={clsRow}>{children}</div>
+      <div className={clsInner}>{children}</div>
     </header>
   );
 };

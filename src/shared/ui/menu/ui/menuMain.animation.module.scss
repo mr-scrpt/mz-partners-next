@@ -1,3 +1,6 @@
+@use "./src/shared/style/classic/keyframe.scss" as *;
+@use "./src/shared/style/classic/mixin.scss" as *;
+
 @mixin menu-in {
   @include animate-in;
   @include fade-in(0);

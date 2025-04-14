@@ -1,4 +1,8 @@
-import { RowSection } from "@/shared/ui/section";
+import {
+  RowSection,
+  SECTION_SPACE,
+  SECTION_TOPOLOGY,
+} from "@/shared/ui/section";
 import { FC, HTMLAttributes, ReactNode } from "react";
 import sConceptLayout from "./concept.layout.module.scss";
 import clsx from "clsx";
@@ -13,7 +17,8 @@ export const ConceptLayout: FC<ConceptLayoutProps> = (props) => {
 
   return (
     <RowSection
-      topology="ROW_CONTAINER"
+      topology={SECTION_TOPOLOGY.ROW_CONTAINER}
+      space={SECTION_SPACE.PRIMARY}
       className={clsx(sConceptLayout.root, className)}
       headerSlot={HeaderSlot}
     >

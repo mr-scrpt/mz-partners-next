@@ -1,30 +1,15 @@
 import { useMemo } from "react";
+type BaseType = string | string[];
 
-// Базовые типы для структуры классов
-type ClassValue = string | string[];
-
-// Базовый интерфейс для секции стилей с обновленными опциями
+// Базовый интерфейс для секции стилей
 interface StyleSection {
-  base: ClassValue;
-  options: Record<string, ClassValue>;
+  base: BaseType;
+  options: Record<string, string>;
 }
 
-// Извлекаем типы из конфигурации
-type InferClassesConfig<T> = T extends {
-  [K in keyof T]: {
-    base: ClassValue;
-    options: Record<string, ClassValue>;
-  };
-}
-  ? T
-  : never;
-
-// Обновленный тип для обработанных данных секции
 type ProcessedSectionData<T extends StyleSection> = {
   base: string[];
-  options: {
-    [K in keyof T["options"]]: string[];
-  };
+  options: T["options"];
 };
 
 // Создаем тип для обработанных классов с добавлением префикса 'c'
@@ -34,49 +19,49 @@ type ProcessedClasses<T extends Record<string, StyleSection>> = {
   cBase: string[];
 };
 
-// Функция для преобразования ClassValue в массив строк
-const normalizeClassValue = (value: ClassValue): string[] => {
-  if (Array.isArray(value)) {
-    return value;
-  }
-  return [value];
-};
-
 export const useStyleProcessor = <T extends Record<string, StyleSection>>(
   classesConfig: T,
 ): ProcessedClasses<T> => {
   return useMemo(() => {
     // Создаём промежуточный объект для хранения данных
     const intermediate: Record<string, any> = {};
+
     // Массив для сбора всех базовых классов
     const baseClasses: string[] = [];
 
     // Обрабатываем каждую секцию конфига
     Object.entries(classesConfig).forEach(([sectionName, sectionData]) => {
-      // Нормализуем и добавляем базовые классы в общий массив
-      const normalizedBase = normalizeClassValue(sectionData.base);
-      baseClasses.push(...normalizedBase);
+      // Добавляем базовые классы в общий массив
+      if (Array.isArray(sectionData.base)) {
+        baseClasses.push(...sectionData.base);
+      } else {
+        baseClasses.push(sectionData.base);
+      }
 
       // Создаём ключ для переименованной секции (добавляем префикс 'c')
       const processedKey = `c${sectionName.charAt(0).toUpperCase()}${sectionName.slice(1)}`;
 
-      // Обрабатываем опции - теперь каждая опция может быть строкой или массивом
-      const processedOptions: Record<string, string[]> = {};
-      Object.entries(sectionData.options).forEach(
-        ([optionKey, optionValue]) => {
-          processedOptions[optionKey] = normalizeClassValue(optionValue);
-        },
-      );
-
-      // Копируем данные секции с обработанными опциями
+      // Копируем данные секции
       intermediate[processedKey] = {
-        base: normalizedBase,
-        options: processedOptions,
+        options: { ...sectionData.options },
+        base: Array.isArray(sectionData.base)
+          ? [...sectionData.base]
+          : [sectionData.base],
       };
     });
 
     // Добавляем объединённые базовые классы
     intermediate.cBase = baseClasses;
+
     return intermediate as ProcessedClasses<T>;
   }, [classesConfig]);
 };
+
+export function createNamespace<T extends readonly string[]>(variants: T) {
+  type ValueType = T[number];
+
+  return variants.reduce(
+    (acc, key) => ({ ...acc, [key]: key }),
+    {} as Record<ValueType, ValueType>,
+  );
+}

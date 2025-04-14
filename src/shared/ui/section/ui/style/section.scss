@@ -1,12 +1,19 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+
 .section {
   width: 100%;
   margin: 0;
 
-  &_header {
+  &__header {
     width: 100%;
+    margin-bottom: 20px;
+
+    @include block-bp-lg {
+      margin-bottom: 40px;
+    }
   }
 
-  &_footer {
+  &__footer {
     width: 100%;
   }
 }

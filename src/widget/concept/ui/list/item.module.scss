@@ -1,3 +1,5 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+
 .inner {
   display: grid;
   grid-template-columns: 1fr auto;

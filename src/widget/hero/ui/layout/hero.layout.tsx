@@ -1,4 +1,8 @@
-import { BoxSection } from "@/shared/ui/section";
+import {
+  BoxSection,
+  SECTION_SPACE,
+  SECTION_TOPOLOGY,
+} from "@/shared/ui/section";
 import { FC, HTMLAttributes, ReactNode } from "react";
 import sDeco from "./deco.module.scss";
 import sHeroLayout from "./hero.layout.module.scss";
@@ -14,10 +18,9 @@ export const HeroLayout: FC<HeroLayoutProps> = (props) => {
 
   return (
     <BoxSection
-      topology="ROW_CONTAINER"
-      {...props}
+      topology={SECTION_TOPOLOGY.ROW_FULL}
+      space={SECTION_SPACE.FLAT}
       withRowContainer={false}
-      // className={sDeco.mainBG}
     >
       <div className={clsx(sHeroLayout.inner, sDeco.mainBG)}>
         <div className={clsx(sHeroLayout.infoBox, sDeco.infoBG)}>

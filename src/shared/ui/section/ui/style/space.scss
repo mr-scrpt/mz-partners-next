@@ -1,0 +1,16 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+
+.space {
+  &_primary {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    @include block-bp-lg {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+  }
+
+  &_flat {
+    padding: 0;
+  }
+}

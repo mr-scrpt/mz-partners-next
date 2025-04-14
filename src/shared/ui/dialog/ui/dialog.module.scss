@@ -1,3 +1,5 @@
+@use "./src/shared/style/classic/keyframe.scss" as *;
+
 @mixin modal-in {
   @include animate-in;
   @include fade-in(0);

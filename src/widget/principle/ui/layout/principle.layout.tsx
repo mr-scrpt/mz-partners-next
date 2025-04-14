@@ -1,4 +1,8 @@
-import { RowSection } from "@/shared/ui/section";
+import {
+  RowSection,
+  SECTION_SPACE,
+  SECTION_TOPOLOGY,
+} from "@/shared/ui/section";
 import { FC, HTMLAttributes, ReactNode } from "react";
 import sPrincipleLayout from "./principle.layout.module.scss";
 import clsx from "clsx";
@@ -14,10 +18,11 @@ export const PrincipleLayout: FC<PrincipleLayoutProps> = (props) => {
 
   return (
     <RowSection
-      topology="ROW_CONTAINER"
       className={clsx(sPrincipleLayout.root, className)}
       classNameRow={sDeco.mainBG}
       headerSlot={HeaderSlot}
+      topology={SECTION_TOPOLOGY.ROW_CONTAINER}
+      space={SECTION_SPACE.PRIMARY}
     >
       <div className={clsx(sPrincipleLayout.inner)}>
         <div className={sPrincipleLayout.content}>{ContentSlot}</div>
