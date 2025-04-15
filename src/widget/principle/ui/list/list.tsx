@@ -2,7 +2,7 @@ import { FC, HTMLAttributes } from "react";
 import clsx from "clsx";
 import sPrincipleList from "./list.module.scss";
 import { Item } from "./item";
-import { usePrincipleItemList } from "../../vm/usePrincipleList.model";
+import { usePrincipleItemList } from "@/entity/principle";
 
 interface PrincipleListProps extends HTMLAttributes<HTMLDivElement> {}
 
