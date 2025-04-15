@@ -1,8 +1,8 @@
 import { FC, HTMLAttributes } from "react";
-import { useConceptItemList } from "../vm/useConceptList.model";
 import clsx from "clsx";
 import sConceptList from "./list.module.scss";
 import { Item } from "./item";
+import { useConceptItemList } from "@/entity/concept";
 
 interface ConceptListProps extends HTMLAttributes<HTMLDivElement> {}
 

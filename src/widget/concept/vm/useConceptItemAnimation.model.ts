@@ -1,6 +1,6 @@
 import { useState } from "react";
 import clsx from "clsx";
-import aItem from "../list/item.animate.module.scss";
+import aItem from "../ui/list/item.animate.module.scss";
 
 interface AnimationClassResult {
   orderAnimationClassName: string;
