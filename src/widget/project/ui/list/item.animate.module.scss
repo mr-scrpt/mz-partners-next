@@ -1,0 +1,33 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+
+.animation {
+  pointer-events: auto;
+
+  .inner {
+    @include ts(background-color);
+  }
+
+  .text {
+    @include ts(color);
+  }
+
+  .img {
+    @include ts(transform);
+  }
+
+  &.hovered_true {
+    pointer-events: auto;
+
+    .inner {
+      background-color: var(--color-primary);
+    }
+
+    .text {
+      color: var(--color-light);
+    }
+
+    .img {
+      transform: scale(1.1);
+    }
+  }
+}

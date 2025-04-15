@@ -5,6 +5,7 @@ import { validateMessages } from "../domain/namespace.type";
 import { HeroDict } from "@/widget/hero/";
 import { ConceptDict } from "@/widget/concept/";
 import { PrincipleDict } from "@/widget/principle";
+import { ProjectDict } from "@/widget/project";
 
 export const messages = validateMessages({
   ...MenuDict.en,
@@ -13,4 +14,5 @@ export const messages = validateMessages({
   ...CallBackDict.en,
   ...ConceptDict.en,
   ...PrincipleDict.en,
+  ...ProjectDict.en,
 } as const);

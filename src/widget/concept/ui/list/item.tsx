@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { FC, HTMLAttributes } from "react";
 import { ConceptItem } from "../../domain/concept.type";
 
-import { useConceptItemAnimationClass } from "../vm/useConceptItemAnimationClass.model";
+import { useConceptItemAnimation } from "../vm/useConceptItemAnimation.model";
 import sItem from "./item.module.scss";
 import { useTranslations } from "next-intl";
 import { CONCEPT_NAMESPACE } from "../../domain/concept.dict";
@@ -20,7 +20,7 @@ export const Item: FC<ItemProps> = (props) => {
   const t = useTranslations(CONCEPT_NAMESPACE);
 
   const { orderAnimationClassName, contentAnimationClassName, toggleOpen } =
-    useConceptItemAnimationClass();
+    useConceptItemAnimation();
 
   return (
     <div className={clsx(sItem.root, className)}>

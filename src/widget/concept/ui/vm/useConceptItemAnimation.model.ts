@@ -2,14 +2,14 @@ import { useState } from "react";
 import clsx from "clsx";
 import aItem from "../list/item.animate.module.scss";
 
-interface AnimationClassesResult {
+interface AnimationClassResult {
   orderAnimationClassName: string;
   contentAnimationClassName: string;
   isOpen: boolean;
   toggleOpen: () => void;
 }
 
-export const useConceptItemAnimationClass = (): AnimationClassesResult => {
+export const useConceptItemAnimation = (): AnimationClassResult => {
   const [isOpen, setIsOpen] = useState(false);
 
   const orderAnimationClassName = clsx(aItem.rotating, {

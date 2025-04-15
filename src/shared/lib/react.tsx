@@ -12,6 +12,7 @@ import {
   createElement,
   useMemo,
   useRef,
+  useCallback,
 } from "react";
 
 export function useStrictContext<T>(context: Context<T | null>) {
@@ -73,3 +74,18 @@ export function useEventCallback<A extends any[], R>(fn: Fn<A, R>): Fn<A, R> {
     [],
   );
 }
+
+export const useHover = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = useCallback(() => setIsHovered(true), []);
+  const handleMouseLeave = useCallback(() => setIsHovered(false), []);
+
+  return {
+    isHovered,
+    hoverProps: {
+      onMouseEnter: handleMouseEnter,
+      onMouseLeave: handleMouseLeave,
+    },
+  };
+};
