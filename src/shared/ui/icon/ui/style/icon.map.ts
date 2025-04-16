@@ -8,6 +8,7 @@ export const ICON_TO_CLASS = {
       INSTA: cls.insta,
       FB: cls.fb,
       EMAIL: cls.email,
+      BENEFIT: cls.benefit,
       // TG: cls.tg,
       // ARROW_TILE: cls.arrow_tile,
       // CALENDAR: cls.calendar,

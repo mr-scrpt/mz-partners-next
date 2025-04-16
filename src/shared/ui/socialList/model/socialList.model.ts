@@ -3,7 +3,7 @@ import { SocialListItem } from "../domain/socialList.type";
 export const SOCIAL_LIST: Record<string, SocialListItem> = {
   inta: {
     id: 1,
-    name: "inta",
+    name: "insta",
     link: "https://t.me/inta",
     icon: "INSTA",
   },

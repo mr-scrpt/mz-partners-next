@@ -1,3 +1,4 @@
+import { BenefitModule } from "@/widget/benefit";
 import { ConceptModule } from "@/widget/concept";
 import { HeroModule } from "@/widget/hero";
 import { PrincipleModule } from "@/widget/principle";
@@ -16,6 +17,7 @@ const HomePage = async ({
       <ConceptModule />
       <PrincipleModule />
       <ProjectModule />
+      <BenefitModule />
     </>
   );
 };

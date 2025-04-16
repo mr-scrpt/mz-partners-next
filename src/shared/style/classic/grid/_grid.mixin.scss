@@ -128,11 +128,11 @@ $grid-gap: 20px;
 }
 
 // Миксин для создания grid-контейнера
-@mixin grid($gap: $grid-gap) {
+@mixin grid($gap-top: $grid-gap, $gap-side: $grid-gap) {
   & {
     display: grid;
     grid-template-columns: repeat($grid-columns, 1fr);
-    gap: $gap;
+    gap: $gap-top $gap-side;
 
     width: 100%;
   }

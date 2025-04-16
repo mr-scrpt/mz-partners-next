@@ -3,6 +3,7 @@ export const ICON_LIST = {
   INSTA: "insta",
   FB: "fb",
   EMAIL: "email",
+  BENEFIT: "benefit",
   // TG: "tg",
   // ARROW_TILE: "arrow_tile",
   // CALENDAR: "calendar",

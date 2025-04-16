@@ -14,9 +14,12 @@ export const Icon = memo((props: IconProps) => {
   const { className, icon, ...etc } = props;
 
   const { cIcon_list, cBase } = useIconStyle();
+
   const clsIcon = clsx(cls.icon, [className, cBase], {
     [cIcon_list.options[icon]]: true,
   });
+
+  console.log(clsIcon);
 
   return <span className={clsIcon} {...etc} />;
 });

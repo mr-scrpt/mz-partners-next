@@ -5,6 +5,7 @@ import { HeroDict } from "@/widget/hero/domain/hero.dict";
 import { ConceptDict } from "@/widget/concept";
 import { PrincipleDict } from "@/widget/principle";
 import { ProjectDict } from "@/widget/project";
+import { BenefitDict } from "@/widget/benefit";
 
 export const messages = validateMessages({
   ...LangSwitcherDict.ua,
@@ -13,4 +14,5 @@ export const messages = validateMessages({
   ...ConceptDict.ua,
   ...PrincipleDict.ua,
   ...ProjectDict.ua,
+  ...BenefitDict.ua,
 } as const);

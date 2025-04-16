@@ -1,4 +1,4 @@
 export type BenefitItem = {
-  title: string;
+  indicator: string;
   description: string;
 };
