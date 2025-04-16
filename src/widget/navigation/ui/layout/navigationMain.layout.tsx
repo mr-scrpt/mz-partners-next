@@ -13,6 +13,7 @@ export const NavigationMainLayout: FC<NavigationMainLayoutProps> = (props) => {
   return (
     <RowSection
       topology="ROW_CONTAINER"
+      space="FLAT"
       className={clsx(sNavigationMainLayout.root, className)}
     >
       <div className={sNavigationMainLayout.inner}>

@@ -1,6 +1,5 @@
 import { CALLBACK_NAMESPACE } from "@/feature/callback";
 import { LANG_SWITCHER_NAMESPACE } from "@/shared/ui/langSwitcher";
-import { MENU_NAMESPACE } from "@/shared/ui/menu";
 import { CONCEPT_NAMESPACE } from "@/widget/concept";
 import { HERO_NAMESPACE } from "@/widget/hero";
 import { PRINCIPLE_NAMESPACE } from "@/widget/principle";
@@ -8,7 +7,6 @@ import { PROJECT_NAMESPACE } from "@/widget/project";
 
 export const NAMESPACE_LIST = [
   CALLBACK_NAMESPACE,
-  MENU_NAMESPACE,
   LANG_SWITCHER_NAMESPACE,
   HERO_NAMESPACE,
   CONCEPT_NAMESPACE,
