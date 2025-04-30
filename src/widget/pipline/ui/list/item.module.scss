@@ -1,0 +1,71 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+
+:root {
+  --icon-height: 72px; /* Высота иконки */
+  --icon-padding: 20px; /* Отступы в .iconWrap */
+  --margin-compensation: calc(var(--icon-height) / 2 + var(--icon-padding));
+  --margin-offset: calc(-1 * var(--icon-height) / 2 - var(--icon-padding));
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+
+  margin-top: var(--margin-compensation);
+
+  background: var(--color-primary);
+}
+
+.iconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: var(--margin-offset);
+
+  text-align: center;
+}
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: var(--color-light);
+}
+
+.icon {
+  width: 62px;
+  height: 72px;
+
+  background-color: var(--color-primary);
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  flex-flow: column wrap;
+  justify-content: center;
+
+  color: var(--color-light);
+
+  @include block-bp-md {
+    flex-grow: 1;
+
+    padding: 40px 20px;
+  }
+}
+
+.indicator {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.description {
+  text-align: center;
+  text-transform: uppercase;
+}

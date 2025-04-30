@@ -1,0 +1,22 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+/* Module: sConceptList */
+
+.root {
+  margin: 0;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  display: flex;
+
+  @include grid(40px, 20px); // flex-direction: column;
+}
+
+.item {
+  @include col(6);
+  @include col-md(3);
+}
