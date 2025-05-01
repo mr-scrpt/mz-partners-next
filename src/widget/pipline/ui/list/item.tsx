@@ -4,7 +4,6 @@ import { FC, HTMLAttributes } from "react";
 
 import { PiplineItem } from "@/entity/pipline";
 import sItem from "./item.module.scss";
-import { Icon } from "@/shared/ui/icon";
 
 interface ItemProps extends HTMLAttributes<HTMLDivElement> {
   idx: number;
@@ -13,20 +12,13 @@ interface ItemProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Item: FC<ItemProps> = (props) => {
   const { className, item, idx } = props;
-  const { indicator, description } = item;
+  const { title, description } = item;
 
   return (
     <div className={clsx(sItem.root, className)}>
       <div className={clsx(sItem.inner)}>
-        <div className={clsx(sItem.iconBox)}>
-          <div className={sItem.iconWrap}>
-            <Icon icon="PIPLINE" className={sItem.icon} />
-          </div>
-        </div>
-        <div className={sItem.content}>
-          <div className={sItem.indicator}>{indicator}</div>
-          <div className={sItem.description}>{description}</div>
-        </div>
+        <div className={sItem.title}>{title}</div>
+        <div className={sItem.description}>{description}</div>
       </div>
     </div>
   );

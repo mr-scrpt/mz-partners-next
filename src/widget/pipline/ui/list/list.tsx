@@ -3,7 +3,7 @@ import clsx from "clsx";
 import sPiplineList from "./list.module.scss";
 import { Item } from "./item";
 import { usePiplineItemList } from "@/entity/pipline";
-
+import sDeco from "./deco.module.scss";
 interface PiplineListProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const List: FC<PiplineListProps> = (props) => {
@@ -12,7 +12,12 @@ export const List: FC<PiplineListProps> = (props) => {
   return (
     <div className={clsx(sPiplineList.root, className)}>
       <div className={sPiplineList.inner}>
-        <div className={clsx(sPiplineList.list)}>
+        <div
+          className={clsx(sPiplineList.list, [
+            sDeco.deco,
+            sDeco.deco_separator,
+          ])}
+        >
           {piplineItemList.map((item, idx) => (
             <Item
               key={idx}

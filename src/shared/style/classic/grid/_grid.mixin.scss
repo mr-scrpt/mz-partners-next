@@ -1,4 +1,6 @@
 @use "sass:map";
+@use "sass:math";
+@use "sass:list";
 
 // Переменные для брейкпоинтов
 $breakpoints: (
@@ -243,4 +245,41 @@ $grid-gap: 20px;
 // Миксин для выравнивания элементов внутри грида
 @mixin grid-align($justify: start, $align: start) {
   place-items: $align $justify;
+}
+
+@mixin _apply-shifted-grid($rows-config) {
+  $current-item: 1;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: $grid-gap;
+
+  @each $row in $rows-config {
+    $columns: map.get($row, "columns");
+    $left-shift: map.get($row, "left-shift");
+    $right-shift: map.get($row, "right-shift");
+    $available-width: 12 - $left-shift - $right-shift;
+    $column-width: math.floor($available-width / list.length($columns));
+
+    @for $i from 1 through list.length($columns) {
+      $column: list.nth($columns, $i);
+      $start-column: $left-shift + 1 + ($i - 1) * $column-width;
+      $span: $column-width;
+
+      & > *:nth-child(#{$current-item}) {
+        grid-column: #{$start-column} / span #{$span};
+      }
+
+      $current-item: $current-item + 1;
+    }
+  }
+}
+
+@mixin shifted-grid($breakpoint: null, $rows-config) {
+  @if $breakpoint {
+    @include breakpoint($breakpoint) {
+      @include _apply-shifted-grid($rows-config);
+    }
+  } @else {
+    @include _apply-shifted-grid($rows-config);
+  }
 }

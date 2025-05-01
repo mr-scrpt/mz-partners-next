@@ -19,7 +19,5 @@ export const Icon = memo((props: IconProps) => {
     [cIcon_list.options[icon]]: true,
   });
 
-  console.log(clsIcon);
-
   return <span className={clsIcon} {...etc} />;
 });

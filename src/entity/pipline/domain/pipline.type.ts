@@ -1,4 +1,4 @@
 export type PiplineItem = {
-  indicator: string;
+  title: string;
   description: string;
 };

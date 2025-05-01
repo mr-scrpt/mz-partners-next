@@ -1,5 +1,4 @@
 @use "./src/shared/style/classic/mixin.scss" as *;
-/* Module: sConceptList */
 
 .root {
   margin: 0;
@@ -7,16 +6,89 @@
 
 .inner {
   display: flex;
-  flex-direction: column;
 }
 
 .list {
-  display: flex;
+  @include grid;
+  @include shifted-grid(
+    "sm",
+    (
+      (
+        "columns": (
+          1,
+          1,
+        ),
+        "left-shift": 0,
+        "right-shift": 0
+      ),
+      (
+        "columns": (
+          1,
+          1,
+        ),
+        "left-shift": 0,
+        "right-shift": 0
+      ),
+      (
+        "columns": (
+          1,
+        ),
+        "left-shift": 4,
+        "right-shift": 4
+      )
+    )
+  );
 
-  @include grid(40px, 20px); // flex-direction: column;
+  @include shifted-grid(
+    "lg",
+    (
+      (
+        "columns": (
+          1,
+          1,
+          1,
+        ),
+        "left-shift": 0,
+        "right-shift": 0
+      ),
+      (
+        "columns": (
+          1,
+          1,
+        ),
+        "left-shift": 1,
+        "right-shift": 1
+      )
+    )
+  );
+  @include shifted-grid(
+    "xl",
+    (
+      (
+        "columns": (
+          1,
+          1,
+          1,
+        ),
+        "left-shift": 0,
+        "right-shift": 0
+      ),
+      (
+        "columns": (
+          1,
+          1,
+        ),
+        "left-shift": 2,
+        "right-shift": 2
+      )
+    )
+  );
 }
 
 .item {
-  @include col(6);
-  @include col-md(3);
+  position: relative;
+
+  @include col(12);
+  @include col-sm(6);
+  @include col-md(4);
 }

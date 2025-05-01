@@ -16,7 +16,7 @@ export const PiplineHeader: FC<PiplineHeaderProps> = (props) => {
           position="LEFT"
           text={t("title")}
           size="L"
-          view="PRIMARY"
+          view="PRIMARY_INVERTED"
           className={sPiplineHeader.title}
         />
       </div>

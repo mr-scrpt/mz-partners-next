@@ -9,12 +9,12 @@ export type PiplineDictField = keyof typeof PIPLINE_DICT_FIELD;
 export const PiplineDict = {
   ua: {
     [PIPLINE_NAMESPACE]: {
-      [PIPLINE_DICT_FIELD.title]: "Наші принципи",
+      [PIPLINE_DICT_FIELD.title]: "Як ми працюємо",
     },
   },
   en: {
     [PIPLINE_NAMESPACE]: {
-      [PIPLINE_DICT_FIELD.title]: "Our Piplines",
+      [PIPLINE_DICT_FIELD.title]: "How we work",
     },
   },
 } as const;
