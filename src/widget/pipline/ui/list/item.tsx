@@ -6,12 +6,11 @@ import { PiplineItem } from "@/entity/pipline";
 import sItem from "./item.module.scss";
 
 interface ItemProps extends HTMLAttributes<HTMLDivElement> {
-  idx: number;
   item: PiplineItem;
 }
 
 export const Item: FC<ItemProps> = (props) => {
-  const { className, item, idx } = props;
+  const { className, item } = props;
   const { title, description } = item;
 
   return (

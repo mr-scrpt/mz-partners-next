@@ -19,12 +19,7 @@ export const List: FC<PiplineListProps> = (props) => {
           ])}
         >
           {piplineItemList.map((item, idx) => (
-            <Item
-              key={idx}
-              idx={idx}
-              className={sPiplineList.item}
-              item={item}
-            />
+            <Item key={idx} className={sPiplineList.item} item={item} />
           ))}
         </div>
       </div>
