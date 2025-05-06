@@ -141,7 +141,6 @@ export const fileSchema = z
 
 export type ButtonFromSubmitType = {
   isPending: boolean;
-  submitText: string;
   className?: string;
 };
 

@@ -1,4 +1,5 @@
 "use client";
+import { ButtonFormSubmitComponentType } from "@/shared/lib/form";
 import {
   FormField,
   FormItem,
@@ -21,15 +22,10 @@ import {
   callbackFormDefaultSchema,
   CallbackFormDefaultValues,
 } from "../../domain/form.schema";
-import sCallbackFormElement from "./style/contactFormElement.module.scss";
-import {
-  ButtonFormSubmitComponentType,
-  ButtonFromSubmitType,
-} from "@/shared/lib/form";
-import { FirstNameField } from "./elements/firstNameField";
-import { PhoneField } from "./elements/phoneField";
-import { Button } from "@/shared/ui/button";
-import { SubmitButtonForm } from "./elements/submitFormButton";
+import sCallbackFormElement from "./callbackFromElements.module.scss";
+import { FirstNameField } from "./field/firstName.field";
+import { PhoneField } from "./field/phone.field";
+import { SubmitButtonForm } from "./field/submitForm.field";
 
 interface CallbackFormElementsProps<T extends CallbackFormDefaultValues>
   extends HTMLAttributes<HTMLFormElement> {
@@ -133,6 +129,21 @@ CallbackFormElements.SubmitButton = function SubmitButton({
   isPending,
   className,
 }) {
+  return (
+    <SubmitButtonForm
+      isPending={isPending}
+      className={clsx(sCallbackFormElement.submitButton, className)}
+    />
+  );
+};
+
+export const SubmitButtonTest = ({
+  isPending,
+  className,
+}: {
+  isPending: boolean;
+  className?: string;
+}) => {
   return (
     <SubmitButtonForm
       isPending={isPending}

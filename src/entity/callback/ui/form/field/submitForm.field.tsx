@@ -1,3 +1,4 @@
+"use client";
 import {
   CALLBACK_ENTITY_DICT_FIELD,
   CALLBACK_ENTITY_NAMESPACE,
