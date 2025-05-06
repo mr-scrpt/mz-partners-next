@@ -1,6 +1,8 @@
+import { CALLBACK_ENTITY_NAMESPACE } from "@/entity/callback";
 import { CALLBACK_FEATURE_NAMESPACE } from "@/feature/callback";
 import { LANG_SWITCHER_NAMESPACE } from "@/shared/ui/langSwitcher";
 import { BENEFIT_NAMESPACE } from "@/widget/benefit";
+import { CALLBACK_WIDGET_NAMESPACE } from "@/widget/callback";
 import { CONCEPT_NAMESPACE } from "@/widget/concept";
 import { HERO_NAMESPACE } from "@/widget/hero";
 import { PIPLINE_NAMESPACE } from "@/widget/pipline";
@@ -8,7 +10,9 @@ import { PRINCIPLE_NAMESPACE } from "@/widget/principle";
 import { PROJECT_NAMESPACE } from "@/widget/project";
 
 export const NAMESPACE_LIST = [
+  CALLBACK_ENTITY_NAMESPACE,
   CALLBACK_FEATURE_NAMESPACE,
+  CALLBACK_WIDGET_NAMESPACE,
   LANG_SWITCHER_NAMESPACE,
   HERO_NAMESPACE,
   CONCEPT_NAMESPACE,

@@ -8,7 +8,7 @@ export const [CALLBACK_ENTITY_NAMESPACE, CALLBACK_ENTITY_DICT_FIELD] =
     "field_phone_placeholder",
   ]);
 
-export const CallBackDict = {
+export const CallBackEntityDict = {
   ua: {
     [CALLBACK_ENTITY_NAMESPACE]: {
       [CALLBACK_ENTITY_DICT_FIELD.button_submit_text]: "Надіслати",

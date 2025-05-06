@@ -1,4 +1,4 @@
-import { NotFoundModule } from "@/widget/notFound/ui/notFound.module";
+import { NotFoundModule } from "@/widget/notFound";
 import { FC, HTMLAttributes } from "react";
 
 interface NotFoundProps extends HTMLAttributes<HTMLDivElement> {}

@@ -1,6 +1,6 @@
 export {
-  CallbackDict,
-  CALLBACK_WIDGET_NAMESPACE as CALLBACK_NAMESPACE,
+  CallBackWidgetDict,
+  CALLBACK_WIDGET_NAMESPACE,
 } from "./domain/callback.dict";
 
 export { CallbackModule } from "./ui/callback.module";

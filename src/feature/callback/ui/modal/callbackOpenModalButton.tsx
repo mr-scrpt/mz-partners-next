@@ -4,9 +4,9 @@ import { Button } from "@/shared/ui/button";
 import { useTranslations } from "next-intl";
 import { FC, HTMLAttributes, useCallback } from "react";
 import {
-  CALLBACK_FEATURE_DICT_FIELD,
   CALLBACK_FEATURE_NAMESPACE,
-} from "../domain/callback.dict";
+  CALLBACK_FEATURE_DICT_FIELD,
+} from "../../domain/callback.dict";
 
 interface CallbackProps extends HTMLAttributes<HTMLDivElement> {}
 

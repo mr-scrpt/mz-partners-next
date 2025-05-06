@@ -2,7 +2,7 @@ import { Locale } from "@/shared/lib/i18n/domain/type";
 import { routing } from "@/shared/lib/i18n/routing";
 import LayoutHTML from "@/shared/ui/layout/ui/html.layout";
 import { HeaderModule } from "@/widget/header";
-import { NavigationMainModule } from "@/widget/navigation/ui/navigationMain.module";
+import { NavigationMainModule } from "@/widget/navigation/";
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";

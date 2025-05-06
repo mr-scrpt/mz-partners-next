@@ -2,15 +2,15 @@ import { createTranslationObject } from "@/shared/lib/i18n/createTranslationObje
 
 export const [CALLBACK_WIDGET_NAMESPACE, CALLBACK_WIDGET_DICT_FIELD] =
   createTranslationObject("CallBackWidget", ["title"]);
-export const CallbackDict = {
+export const CallBackWidgetDict = {
   ua: {
     [CALLBACK_WIDGET_NAMESPACE]: {
-      [CALLBACK_WIDGET_DICT_FIELD.title]: "Як ми працюємо",
+      [CALLBACK_WIDGET_DICT_FIELD.title]: "Надіслати заявку",
     },
   },
   en: {
     [CALLBACK_WIDGET_NAMESPACE]: {
-      [CALLBACK_WIDGET_DICT_FIELD.title]: "How we work",
+      [CALLBACK_WIDGET_DICT_FIELD.title]: "Send a request",
     },
   },
 } as const;
