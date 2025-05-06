@@ -1,19 +1,17 @@
-export const CALLBACK_NAMESPACE = "CallBack" as const;
+import { createTranslationObject } from "@/shared/lib/i18n/createTranslationObject";
 
-export const CALLBACK_DICT_FIELD = {
-  button_text: "button_text" as const,
-};
-export type CallBackDictField = keyof typeof CALLBACK_DICT_FIELD;
+export const [CALLBACK_FEATURE_NAMESPACE, CALLBACK_FEATURE_DICT_FIELD] =
+  createTranslationObject("CallBackFeature", ["button_modal_open_text"]);
 
-export const CallBackDict = {
+export const CallBackFeatureDict = {
   ua: {
-    [CALLBACK_NAMESPACE]: {
-      [CALLBACK_DICT_FIELD.button_text]: "Зворотній зв'язок",
+    [CALLBACK_FEATURE_NAMESPACE]: {
+      [CALLBACK_FEATURE_DICT_FIELD.button_modal_open_text]: "Зворотній зв'язок",
     },
   },
   en: {
-    [CALLBACK_NAMESPACE]: {
-      [CALLBACK_DICT_FIELD.button_text]: "Call back",
+    [CALLBACK_FEATURE_NAMESPACE]: {
+      [CALLBACK_FEATURE_DICT_FIELD.button_modal_open_text]: "Call back",
     },
   },
 } as const;

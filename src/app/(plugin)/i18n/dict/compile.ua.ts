@@ -1,4 +1,4 @@
-import { CallBackDict } from "@/feature/callback";
+import { CallBackFeatureDict } from "@/feature/callback";
 import { LangSwitcherDict } from "@/shared/ui/langSwitcher";
 import { validateMessages } from "../domain/namespace.type";
 import { HeroDict } from "@/widget/hero/domain/hero.dict";
@@ -11,7 +11,7 @@ import { PiplineDict } from "@/widget/pipline";
 export const messages = validateMessages({
   ...LangSwitcherDict.ua,
   ...HeroDict.ua,
-  ...CallBackDict.ua,
+  ...CallBackFeatureDict.ua,
   ...ConceptDict.ua,
   ...PrincipleDict.ua,
   ...ProjectDict.ua,

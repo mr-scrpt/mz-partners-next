@@ -60,6 +60,95 @@
   background-color: var(--color-light);
 }
 
+.Button[data-variant="destructive"] {
+  color: var(--color-light);
+  border-style: solid;
+  border-color: transparent;
+  background-color: var(--color-destructive, hsl(var(--destructive)));
+  @include ts(background-color);
+}
+
+.Button[data-variant="destructive"]:hover {
+  background-color: var(
+    --color-destructive-hover,
+    hsl(var(--destructive) / 90%)
+  );
+}
+
+.Button[data-variant="outline"] {
+  color: var(--color-foreground, hsl(var(--foreground)));
+  border-style: solid;
+  border-color: var(--color-border, hsl(var(--border)));
+  background-color: var(--color-background, hsl(var(--background)));
+  @include ts(background-color, color);
+}
+
+.Button[data-variant="outline"]:hover {
+  color: var(--color-accent-foreground, hsl(var(--accent-foreground)));
+  background-color: var(--color-foreground-hover, hsl(var(--foreground) / 5%));
+}
+
+.Button[data-variant="secondary"] {
+  color: var(--color-secondary-foreground, hsl(var(--secondary-foreground)));
+  border-style: solid;
+  border-color: transparent;
+  background-color: var(--color-secondary, hsl(var(--secondary)));
+  @include ts(background-color);
+}
+
+.Button[data-variant="secondary"]:hover {
+  background-color: var(--color-secondary-hover, hsl(var(--secondary) / 90%));
+}
+
+.Button[data-variant="ghost"] {
+  color: var(--color-foreground, hsl(var(--foreground)));
+  border: 1px solid transparent;
+  background-color: transparent;
+  @include ts(background-color);
+}
+
+.Button[data-variant="ghost"]:hover {
+  background-color: var(--color-foreground-hover, hsl(var(--foreground) / 10%));
+}
+
+.Button[data-variant="link"] {
+  width: max-content;
+  height: max-content;
+  padding: 0;
+
+  text-decoration: none;
+
+  color: var(--color-foreground, hsl(var(--foreground)));
+  border: none;
+  background-color: transparent;
+  @include ts(color);
+}
+
+.Button[data-variant="link"]:hover {
+  color: var(--color-primary, hsl(var(--primary)));
+  text-decoration-color: var(--color-foreground, hsl(var(--foreground)));
+}
+
+.Button[data-variant="icon"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+
+  color: var(--color-background, hsl(var(--background)));
+  border: none;
+  border-radius: 9999px;
+  background-color: var(--color-foreground, hsl(var(--foreground)));
+  @include ts(background-color);
+}
+
+.Button[data-variant="icon"]:hover {
+  background-color: var(--color-accent-hover, hsl(var(--accent) / 80%));
+}
+
 /* sizing */
 .Button[data-size="s"] {
   padding-right: 12px;
@@ -105,4 +194,12 @@
 
   font-size: 20px;
   font-weight: 600;
+}
+
+.Button[data-size="icon"] {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+
+  border-radius: 9999px;
 }

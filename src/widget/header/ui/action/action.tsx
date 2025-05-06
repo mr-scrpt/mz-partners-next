@@ -1,9 +1,9 @@
 import { FC, HTMLAttributes } from "react";
 
-import { CallbackButton } from "@/feature/callback";
 import { LangSwitcher } from "@/shared/ui/langSwitcher";
 
 import sAction from "./action.module.scss";
+import { CallbackOpenModalButton } from "@/feature/callback";
 interface ActionProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const Action: FC<ActionProps> = (props) => {
@@ -11,7 +11,7 @@ export const Action: FC<ActionProps> = (props) => {
     <div className={sAction.action}>
       <div className={sAction.inner}>
         <LangSwitcher />
-        <CallbackButton />
+        <CallbackOpenModalButton />
       </div>
     </div>
   );

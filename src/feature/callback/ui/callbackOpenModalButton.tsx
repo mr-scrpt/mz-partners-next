@@ -4,14 +4,14 @@ import { Button } from "@/shared/ui/button";
 import { useTranslations } from "next-intl";
 import { FC, HTMLAttributes, useCallback } from "react";
 import {
-  CALLBACK_DICT_FIELD,
-  CALLBACK_NAMESPACE,
+  CALLBACK_FEATURE_DICT_FIELD,
+  CALLBACK_FEATURE_NAMESPACE,
 } from "../domain/callback.dict";
 
 interface CallbackProps extends HTMLAttributes<HTMLDivElement> {}
 
-export const CallbackButton: FC<CallbackProps> = (props) => {
-  const t = useTranslations(CALLBACK_NAMESPACE);
+export const CallbackOpenModalButton: FC<CallbackProps> = (props) => {
+  const t = useTranslations(CALLBACK_FEATURE_NAMESPACE);
   const { createModal, destroyModal } = useModalControl();
 
   const openContactSendModal = useCallback(async () => {
@@ -21,7 +21,7 @@ export const CallbackButton: FC<CallbackProps> = (props) => {
   }, [createModal, destroyModal]);
   return (
     <Button size="l" onClick={openContactSendModal}>
-      {t(CALLBACK_DICT_FIELD.button_text)}
+      {t(CALLBACK_FEATURE_DICT_FIELD.button_modal_open_text)}
     </Button>
   );
 };
