@@ -1,6 +1,7 @@
 // shared/lib/form/fields.ts
 import { FC } from "react";
 import { z } from "zod";
+import { ButtonVariant } from "../ui/button";
 export type FormSchemaFields<T extends z.ZodTypeAny> = keyof z.infer<T>;
 
 export const createFormFields = <T extends z.ZodObject<any>>(schema: T) => {
@@ -142,6 +143,7 @@ export const fileSchema = z
 export type ButtonFromSubmitType = {
   isPending: boolean;
   className?: string;
+  variant?: ButtonVariant;
 };
 
 export type ButtonFormSubmitComponentType = FC<ButtonFromSubmitType>;

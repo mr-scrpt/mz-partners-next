@@ -1,7 +1,8 @@
 import { FC, HTMLAttributes } from "react";
 import { CallbackLayout } from "./layout/callback.layout";
 import { CallbackHeader } from "./header/callback.header";
-import { CallbackFormModule } from "@/feature/callback";
+import { Attention } from "./attention/attention";
+import { CallbackForm } from "./callbackForm/callbackForm";
 
 interface CallbackModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -9,7 +10,8 @@ export const CallbackModule: FC<CallbackModuleProps> = (props) => {
   return (
     <CallbackLayout
       HeaderSlot={<CallbackHeader />}
-      ContentSlot={<CallbackFormModule />}
+      ContentSlot={<CallbackForm />}
+      AttentionSlot={<Attention />}
     />
   );
 };

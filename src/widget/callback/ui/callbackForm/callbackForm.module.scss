@@ -1,0 +1,14 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  @include block-bp-lg {
+    flex-direction: row;
+
+    // max-width: 820px;
+    // margin: 0 auto;
+  }
+}

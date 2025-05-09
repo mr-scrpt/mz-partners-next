@@ -159,6 +159,7 @@
   border-radius: 2px;
 
   font-size: 13px;
+  line-height: 18px;
 }
 
 .Button[data-size="m"] {
@@ -169,10 +170,10 @@
   border-radius: 2px;
 
   font-size: 14px;
+  line-height: 20px;
 }
 
 .Button[data-size="l"] {
-  /* height: 28px; */
   padding-right: 15px;
   padding-left: 15px;
 
@@ -182,6 +183,7 @@
 
   font-size: 16px;
   font-weight: 600;
+  line-height: 24px;
 }
 
 .Button[data-size="xl"] {
@@ -194,6 +196,7 @@
 
   font-size: 20px;
   font-weight: 600;
+  line-height: 28px;
 }
 
 .Button[data-size="icon"] {

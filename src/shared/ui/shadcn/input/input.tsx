@@ -1,19 +1,30 @@
 import * as React from "react";
 import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
-
 import styles from "./index.module.scss";
 import { Button } from "../../button";
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+import { InputSize, InputVariant } from "./type";
+
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
   onPasswordVisible?: (name: string) => void;
+  variant?: InputVariant;
+
+  size?: InputSize;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ type, className, onPasswordVisible, ...props }, ref) => {
+  (
+    {
+      type,
+      className,
+      onPasswordVisible,
+      variant = "outline",
+      size = "l",
+      ...props
+    },
+    ref,
+  ) => {
     const [isVisible, setIsVisible] = React.useState(false);
-
-    // console.log("output_log: className%%%% =>>>", className);
 
     function handlePasswordEye() {
       setIsVisible((prevState) => !prevState);
@@ -24,37 +35,39 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     if (type === "password") {
       return (
-        <div style={{ position: "relative", width: "max-content" }}>
+        <div style={{ position: "relative", width: "100%" }}>
           <input
             ref={ref}
-            type={type}
-            className={`${styles.Input} ${className}`}
+            type={isVisible ? "text" : "password"}
+            className={`${styles.Input} ${className || ""}`}
+            data-variant={variant}
+            data-size={size}
             {...props}
           />
-          {type === "password" ? (
-            <Button
-              type="button"
-              variant="ghost"
-              onClick={handlePasswordEye}
-              className={styles.passwordButton}
-            >
-              {isVisible ? <EyeOpenIcon /> : <EyeClosedIcon />}
-            </Button>
-          ) : null}
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            onClick={handlePasswordEye}
+            className={styles.passwordButton}
+          >
+            {isVisible ? <EyeOpenIcon /> : <EyeClosedIcon />}
+          </Button>
         </div>
       );
     }
-
     return (
       <input
         ref={ref}
         type={type}
-        className={`${styles.Input} ${className}`}
+        className={`${styles.Input} ${className || ""}`}
+        data-variant={variant}
+        data-size={size}
         {...props}
       />
     );
   },
 );
-Input.displayName = "Input";
 
+Input.displayName = "Input";
 export default Input;

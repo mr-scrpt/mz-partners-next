@@ -6,7 +6,7 @@ $theme: (
   --color-gray: hsl(var(--color-light-100)),
   --color-dark: hsl(var(--color-dark-900)),
   --background-light: var(--color-light-0),
-  --input-color: var(--color-light-0),
-  --input-border: var(--color-gray),
-  --input-background: var(--background-light),
+  --background-primary: var(--color-primary-500),
+  // --background-overlay: var(--color-dark-0),
+  --background-overlay: hsl(var(--color-primary-500) / 0.8),
 );

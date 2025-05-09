@@ -26,12 +26,15 @@ import sCallbackFormElement from "./callbackFromElements.module.scss";
 import { FirstNameField } from "./field/firstName.field";
 import { PhoneField } from "./field/phone.field";
 import { SubmitButtonForm } from "./field/submitForm.field";
+import { InputVariant } from "@/shared/ui/shadcn/input/type";
+import { ButtonVariant } from "@/shared/ui/button";
 
 interface CallbackFormElementsProps<T extends CallbackFormDefaultValues>
   extends HTMLAttributes<HTMLFormElement> {
   handleSubmit?: (data: T) => void;
   defaultValues?: DefaultValues<T>;
   schema?: ZodTypeAny;
+  classNameInner?: string;
 }
 
 type CallbackFormElementsComponent = <
@@ -41,8 +44,12 @@ type CallbackFormElementsComponent = <
 ) => React.ReactElement;
 
 type CallbackFormFields = {
-  FieldFirstName: FC<HTMLAttributes<HTMLDivElement>>;
-  FieldPhoneNumber: FC;
+  FieldFirstName: FC<
+    HTMLAttributes<HTMLDivElement> & { variant?: InputVariant }
+  >;
+  FieldPhoneNumber: FC<
+    HTMLAttributes<HTMLDivElement> & { variant?: InputVariant }
+  >;
   SubmitButton: ButtonFormSubmitComponentType;
 };
 
@@ -63,7 +70,13 @@ export const CallbackFormElements: CallbackFormElementsType = <
 >(
   props: CallbackFormElementsProps<T>,
 ) => {
-  const { defaultValues, handleSubmit: onSubmit, schema, children } = props;
+  const {
+    defaultValues,
+    handleSubmit: onSubmit,
+    schema,
+    children,
+    classNameInner,
+  } = props;
 
   const form = useForm<T>({
     resolver: zodResolver(schema ?? callbackFormDefaultSchema),
@@ -81,7 +94,7 @@ export const CallbackFormElements: CallbackFormElementsType = <
   return (
     <FormProvider {...form}>
       <form onSubmit={handleSubmit} className={sCallbackFormElement.form}>
-        <div className={sCallbackFormElement.inner}>
+        <div className={clsx(sCallbackFormElement.inner, classNameInner)}>
           {children}
           <FormMessage />
         </div>
@@ -91,7 +104,7 @@ export const CallbackFormElements: CallbackFormElementsType = <
 };
 
 CallbackFormElements.FieldFirstName = function FieldFirstName(props) {
-  const { className } = props;
+  const { className, variant } = props;
   const { control } = useFormContext<CallbackFormDefaultValues>();
 
   return (
@@ -100,7 +113,11 @@ CallbackFormElements.FieldFirstName = function FieldFirstName(props) {
       name={CALLBACK_FORM_FIELDS.firstName}
       render={({ field }) => (
         <FormItemCol className={className}>
-          <FirstNameField value={field.value} onChange={field.onChange} />
+          <FirstNameField
+            value={field.value}
+            onChange={field.onChange}
+            variant={variant}
+          />
           <FormMessage />
         </FormItemCol>
       )}
@@ -108,7 +125,8 @@ CallbackFormElements.FieldFirstName = function FieldFirstName(props) {
   );
 };
 
-CallbackFormElements.FieldPhoneNumber = function FieldPhoneNumber() {
+CallbackFormElements.FieldPhoneNumber = function FieldPhoneNumber(props) {
+  const { variant, className } = props;
   const { control } = useFormContext<CallbackFormDefaultValues>();
 
   return (
@@ -117,7 +135,12 @@ CallbackFormElements.FieldPhoneNumber = function FieldPhoneNumber() {
       name={CALLBACK_FORM_FIELDS.phoneNumber}
       render={({ field }) => (
         <FormItem>
-          <PhoneField value={field.value} onChange={field.onChange} />
+          <PhoneField
+            className={className}
+            value={field.value}
+            onChange={field.onChange}
+            variant={variant}
+          />
           <FormMessage />
         </FormItem>
       )}
@@ -128,26 +151,13 @@ CallbackFormElements.FieldPhoneNumber = function FieldPhoneNumber() {
 CallbackFormElements.SubmitButton = function SubmitButton({
   isPending,
   className,
+  variant,
 }) {
   return (
     <SubmitButtonForm
       isPending={isPending}
       className={clsx(sCallbackFormElement.submitButton, className)}
-    />
-  );
-};
-
-export const SubmitButtonTest = ({
-  isPending,
-  className,
-}: {
-  isPending: boolean;
-  className?: string;
-}) => {
-  return (
-    <SubmitButtonForm
-      isPending={isPending}
-      className={clsx(sCallbackFormElement.submitButton, className)}
+      variant={variant}
     />
   );
 };

@@ -1,0 +1,13 @@
+.root {
+  display: flex;
+}
+
+.inner {
+  display: flex;
+
+  text-align: center;
+}
+
+.text {
+  color: var(--color-light);
+}

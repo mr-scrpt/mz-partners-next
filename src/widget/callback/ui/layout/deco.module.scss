@@ -1,5 +1,7 @@
 .mainBG {
-  background: url("../asset/bg_callback.jpg");
-  background-repeat: no-repeat;
-  background-size: contain;
+  background: var(--color-primary);
+
+  // background: url("../asset/bg_callback.jpg");
+  // background-repeat: no-repeat;
+  // background-size: contain;
 }
