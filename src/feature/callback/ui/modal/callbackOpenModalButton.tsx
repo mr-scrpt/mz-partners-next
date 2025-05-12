@@ -7,6 +7,7 @@ import {
   CALLBACK_FEATURE_NAMESPACE,
   CALLBACK_FEATURE_DICT_FIELD,
 } from "../../domain/callback.dict";
+import { CallbackFormModule } from "../form/callbackFrom.module";
 
 interface CallbackProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -14,13 +15,14 @@ export const CallbackOpenModalButton: FC<CallbackProps> = (props) => {
   const t = useTranslations(CALLBACK_FEATURE_NAMESPACE);
   const { createModal, destroyModal } = useModalControl();
 
-  const openContactSendModal = useCallback(async () => {
+  const openCallbackSendModal = useCallback(async () => {
     await createModal({
-      element: <div>MODAL TEST</div>,
+      element: <CallbackFormModule />,
     });
   }, [createModal, destroyModal]);
+
   return (
-    <Button size="l" onClick={openContactSendModal}>
+    <Button size="l" onClick={openCallbackSendModal}>
       {t(CALLBACK_FEATURE_DICT_FIELD.button_modal_open_text)}
     </Button>
   );

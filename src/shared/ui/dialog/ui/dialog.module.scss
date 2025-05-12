@@ -57,7 +57,8 @@
   transform: translate(-50%, -50%);
 
   border-radius: 4px;
-  background-color: yellow;
+
+  background-color: var(--background-light);
   gap: 1rem;
 }
 
