@@ -1,4 +1,3 @@
-import { ProvidersRoot } from "@/shared/provider";
 import { sGlobal, sPage, sTheme } from "@/shared/style/module";
 import clsx from "clsx";
 import type { Metadata } from "next";
@@ -27,7 +26,7 @@ const LayoutHTML = async ({ children, locale }: LayoutHTMLProps) => {
       className={clsx(sGlobal.layer, sGlobal.html, sGlobal.reset)}
     >
       <body className={clsx(sPage.page, MontserratSans.variable, sTheme.theme)}>
-        <ProvidersRoot>{children}</ProvidersRoot>
+        {children}
       </body>
     </html>
   );

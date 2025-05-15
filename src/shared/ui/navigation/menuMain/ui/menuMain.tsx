@@ -1,20 +1,21 @@
 "use client";
 import clsx from "clsx";
 import { FC, HTMLAttributes } from "react";
-import sMenu from "./menuMain.module.scss";
 import sAnimation from "./menuMain.animation.module.scss";
+import sMenu from "./menuMain.module.scss";
 
 import { useMenu } from "@/shared/lib/menu";
 import { Icon } from "@/shared/ui/icon";
-import { useMenuItemList } from "../vm/useMenuItemList.model";
 import { MenuMainItem } from "./menuMainItem";
+import { useNavigationData } from "@/shared/navigation/navigation.provider";
+import { NAVIGATION_LIST } from "@/shared/navigation/type";
 interface MenuMainProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const MenuMain: FC<MenuMainProps> = (props) => {
   const { className } = props;
   const { isOpen, toggleMenu, menuRef } = useMenu();
 
-  const { menuItemList } = useMenuItemList();
+  const menuList = useNavigationData(NAVIGATION_LIST.main);
 
   return (
     <nav className={clsx(sMenu.root, className)} {...props} ref={menuRef}>
@@ -29,7 +30,7 @@ export const MenuMain: FC<MenuMainProps> = (props) => {
             [sAnimation.showing_close]: !isOpen,
           })}
         >
-          {menuItemList.map((item) => (
+          {menuList.map((item) => (
             <MenuMainItem item={item} key={item.id} />
           ))}
         </ul>

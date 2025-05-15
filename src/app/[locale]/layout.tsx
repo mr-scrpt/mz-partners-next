@@ -6,6 +6,7 @@ import { NavigationMainModule } from "@/widget/navigation/";
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { ProvidersRoot } from "../(provider)";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -31,9 +32,11 @@ const LocalLayout = async ({ children, params }: RootLayoutProps) => {
   setRequestLocale(locale);
   return (
     <LayoutHTML locale={locale}>
-      <HeaderModule />
-      <NavigationMainModule />
-      {children}
+      <ProvidersRoot>
+        <HeaderModule />
+        <NavigationMainModule />
+        <>{children}</>
+      </ProvidersRoot>
     </LayoutHTML>
   );
 };

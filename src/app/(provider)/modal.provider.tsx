@@ -1,11 +1,11 @@
 "use client";
-import { FC, HTMLAttributes, useState } from "react";
-import { Modal } from "../ui/modal";
 import {
-  ModalParamsType,
   ModalParamsUnionType,
-} from "../lib/modal/modalClient.provider";
-import { ModalProviderClient } from "../lib/modal/modalClient.provider";
+  ModalParamsType,
+  ModalProviderClient,
+} from "@/shared/lib/modal/modalClient.provider";
+import { Modal } from "@/shared/ui/modal";
+import { FC, HTMLAttributes, useState } from "react";
 
 interface ModalProviderProps extends HTMLAttributes<HTMLDivElement> {}
 

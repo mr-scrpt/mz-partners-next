@@ -1,4 +1,4 @@
-import { MenuMain } from "@/shared/ui/menu";
+import { MenuMain } from "@/shared/ui/navigation";
 import { FC, HTMLAttributes } from "react";
 
 import { NavigationMainLayout } from "./layout/navigationMain.layout";
