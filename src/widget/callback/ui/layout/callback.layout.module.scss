@@ -1,3 +1,11 @@
+.root {
+  display: flex;
+}
+
+.inner {
+  width: 100%;
+}
+
 .content {
   display: flex;
   align-items: center;

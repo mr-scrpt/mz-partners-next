@@ -14,10 +14,11 @@ interface HeroLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const HeroLayout: FC<HeroLayoutProps> = (props) => {
-  const { InfoSlot, ActionSlot } = props;
+  const { InfoSlot, ActionSlot, className } = props;
 
   return (
     <BoxSection
+      className={clsx(sHeroLayout.root, className)}
       topology={SECTION_TOPOLOGY.ROW_FULL}
       space={SECTION_SPACE.FLAT}
       withRowContainer={false}

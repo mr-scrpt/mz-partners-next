@@ -1,0 +1,42 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+
+.root {
+  width: 100%;
+}
+
+.inner {
+  @include grid;
+}
+
+.info {
+  place-self: center center;
+
+  color: white;
+  @include col(6);
+  @include col-md(4);
+  @include block-bp-md {
+    order: 0;
+    place-self: center start;
+  }
+}
+
+.navigation {
+  color: white;
+  place-self: center center;
+  @include col(12);
+  @include col-md(4);
+  @include block-bp-md {
+    order: 1;
+  }
+}
+
+.contact {
+  color: white;
+  place-self: center center;
+  @include col(6);
+  @include col-md(4);
+  @include block-bp-md {
+    order: 2;
+    place-self: center end;
+  }
+}

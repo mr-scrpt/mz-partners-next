@@ -1,0 +1,17 @@
+.mainBG {
+  background: var(--color-primary);
+}
+
+.rowBG {
+  background: linear-gradient(
+      to right,
+      var(--color-primary) 0%,
+      rgb(0 0 0 / 0%) 15%,
+      rgb(0 0 0 / 0%) 85%,
+      var(--color-primary) 100%
+    ),
+    url("../asset/bg_footer.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

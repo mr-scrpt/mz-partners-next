@@ -7,6 +7,7 @@ import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { ProvidersRoot } from "../(provider)";
+import { FooterModule } from "@/widget/footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -36,6 +37,7 @@ const LocalLayout = async ({ children, params }: RootLayoutProps) => {
         <HeaderModule />
         <NavigationMainModule />
         <>{children}</>
+        <FooterModule />
       </ProvidersRoot>
     </LayoutHTML>
   );
