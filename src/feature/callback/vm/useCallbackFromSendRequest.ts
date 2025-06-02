@@ -1,10 +1,8 @@
 "use client";
 import { useState } from "react";
 
-import { API_ENDPOINTS } from "../api/endpoint.api";
 import { createFormDataFromSchema } from "@/shared/lib/form";
 import { CallbackFormValues } from "../domain/callback.schema";
-import { getApiUrl } from "@/shared/lib/api";
 
 interface ContactFormCreateProps {
   onSuccess?: () => void;
