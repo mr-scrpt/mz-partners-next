@@ -4,6 +4,7 @@ import { LANG_SWITCHER_NAMESPACE } from "@/shared/ui/langSwitcher";
 import { BENEFIT_NAMESPACE } from "@/widget/benefit";
 import { CALLBACK_WIDGET_NAMESPACE } from "@/widget/callback";
 import { CONCEPT_NAMESPACE } from "@/widget/concept";
+import { FOOTER_NAMESPACE } from "@/widget/footer";
 import { HERO_NAMESPACE } from "@/widget/hero";
 import { PIPLINE_NAMESPACE } from "@/widget/pipline";
 import { PRINCIPLE_NAMESPACE } from "@/widget/principle";
@@ -20,6 +21,7 @@ export const NAMESPACE_LIST = [
   PROJECT_NAMESPACE,
   BENEFIT_NAMESPACE,
   PIPLINE_NAMESPACE,
+  FOOTER_NAMESPACE,
 ] as const;
 
 export type Namespace = (typeof NAMESPACE_LIST)[number];

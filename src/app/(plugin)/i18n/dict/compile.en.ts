@@ -9,6 +9,7 @@ import { PrincipleDict } from "@/widget/principle";
 import { ProjectDict } from "@/widget/project";
 import { BenefitDict } from "@/widget/benefit";
 import { PiplineDict } from "@/widget/pipline";
+import { FooterDict } from "@/widget/footer";
 
 export const messages = validateMessages({
   ...LangSwitcherDict.en,
@@ -21,4 +22,5 @@ export const messages = validateMessages({
   ...ProjectDict.en,
   ...BenefitDict.en,
   ...PiplineDict.en,
+  ...FooterDict.en,
 } as const);

@@ -5,8 +5,8 @@ export const CONTACT_INFO: Record<Locale, ContactItem> = {
   ua: {
     phoneList: [
       { type: "primary", value: "097 000 000 0" },
-      { type: "secondary", value: "097 000 000 0" },
-      { type: "primary", value: "097 000 000 0" },
+      { type: "secondary", value: "097 000 000 1" },
+      { type: "primary", value: "097 000 000 2" },
     ],
     emailList: [{ type: "office", value: "info@company.com" }],
     addressList: [{ type: "primary", value: "м. Харків, вул. Сумська 34" }],
@@ -14,8 +14,8 @@ export const CONTACT_INFO: Record<Locale, ContactItem> = {
   en: {
     phoneList: [
       { type: "primary", value: "097 000 000 0" },
-      { type: "secondary", value: "097 000 000 0" },
-      { type: "primary", value: "097 000 000 0" },
+      { type: "secondary", value: "097 000 000 1" },
+      { type: "primary", value: "097 000 000 2" },
     ],
     emailList: [{ type: "office", value: "info@company.com" }],
     addressList: [{ type: "primary", value: "Kharkiv, Sumskaya st. 34" }],

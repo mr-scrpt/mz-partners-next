@@ -9,6 +9,7 @@ import { BenefitDict } from "@/widget/benefit";
 import { PiplineDict } from "@/widget/pipline";
 import { CallBackEntityDict } from "@/entity/callback";
 import { CallBackWidgetDict } from "@/widget/callback";
+import { FooterDict } from "@/widget/footer";
 
 export const messages = validateMessages({
   ...LangSwitcherDict.ua,
@@ -21,4 +22,5 @@ export const messages = validateMessages({
   ...ProjectDict.ua,
   ...BenefitDict.ua,
   ...PiplineDict.ua,
+  ...FooterDict.ua,
 } as const);

@@ -1,8 +1,8 @@
 import { Logo } from "@/shared/ui/logo";
-import { PhoneListModule } from "@/shared/ui/phone";
 import { FC, HTMLAttributes } from "react";
 import { Action } from "./action/action";
 import { HeaderLayout } from "./layout/header.layout";
+import { PhoneListModule } from "@/entity/contact/ui/phoneList.module";
 
 interface HeaderModuleProps extends HTMLAttributes<HTMLDivElement> {}
 

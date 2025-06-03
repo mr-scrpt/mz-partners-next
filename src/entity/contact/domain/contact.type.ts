@@ -1,3 +1,5 @@
+import { HTMLAttributes } from "react";
+
 type ContactPhoneItemType = "primary" | "secondary";
 type ContactEmailItemType = "primary" | "secondary";
 type ContactAddressItemType = "office";
@@ -22,3 +24,7 @@ export type ContactItem = {
   emailList: ContactEmailItem[];
   addressList: ContactAddressItem[];
 };
+
+export interface PhoneItemProps extends HTMLAttributes<HTMLDivElement> {
+  phoneData: ContactPhoneItem;
+}

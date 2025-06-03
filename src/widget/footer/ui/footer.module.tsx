@@ -1,18 +1,17 @@
-import { MenuFooter } from "@/shared/ui/navigation";
-import { PhoneListModule } from "@/shared/ui/phone";
 import { FC, HTMLAttributes } from "react";
-import { Action } from "./action/action";
+import { ContactFooter } from "./contact/contact.footer";
+import { HeroFooter } from "./hero/hero.footer";
 import { FooterLayout } from "./layout/footer.layout";
-import { Primary } from "./primary/primary";
+import { MenuFooter } from "./menu/menu.footer";
 
-interface FooterModuleProps extends HTMLAttributes<HTMLDivElement> { }
+interface FooterModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const FooterModule: FC<FooterModuleProps> = (props) => {
   return (
     <FooterLayout
-      PrimarySlot={<Primary />}
-      SecondarySlot={<PhoneListModule />}
-      ThirdSlot={<Action />}
+      PrimarySlot={<HeroFooter />}
+      SecondarySlot={<MenuFooter />}
+      ThirdSlot={<ContactFooter />}
     />
   );
 };

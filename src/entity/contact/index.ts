@@ -1,4 +1,5 @@
-export { useContactItemList } from "./vm/useContactList.model";
+export { useContactAddressList } from "./vm/useContactAddressList.model";
+export { useContactEmailList } from "./vm/useContactEmailList.model";
+export { useContactPhoneList } from "./vm/useContactPhoneList.model";
 
-export { CONTACT_LIST } from "./model/contactList.model";
 export type { ContactItem } from "./domain/contact.type";

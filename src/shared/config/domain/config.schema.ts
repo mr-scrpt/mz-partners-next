@@ -1,15 +1,15 @@
 import { z } from "zod";
 
-export const configContactSchema = z.object({
-  phoneList: z.array(
-    z.object({
-      id: z.string(),
-      type: z.string(),
-      text: z.string(),
-    }),
-  ),
-  emailList: z.array(z.string()),
-});
+// export const configContactSchema = z.object({
+//   phoneList: z.array(
+//     z.object({
+//       id: z.string(),
+//       type: z.string(),
+//       text: z.string(),
+//     }),
+//   ),
+//   emailList: z.array(z.string()),
+// });
 
 const configEnvSchema = z.object({
   isDev: z.boolean(),
@@ -18,7 +18,7 @@ const configEnvSchema = z.object({
 });
 
 export const configPublicSchema = z.object({
-  ...configContactSchema.shape,
+  // ...configContactSchema.shape,
   ...configEnvSchema.shape,
 });
 

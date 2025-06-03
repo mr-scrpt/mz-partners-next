@@ -3,23 +3,23 @@ import { CallbackOpenModalButton } from "@/feature/callback";
 import { Logo } from "@/shared/ui/logo";
 import { SocialList } from "@/shared/ui/socialList";
 import { FC, HTMLAttributes } from "react";
-import sPrimary from "./primary.footer.module.scss";
+import sHeroFooter from "./hero.footer.module.scss";
 
-interface PrimaryProps extends HTMLAttributes<HTMLDivElement> {}
+interface HeroFooterProps extends HTMLAttributes<HTMLDivElement> {}
 
-export const Primary: FC<PrimaryProps> = (props) => {
+export const HeroFooter: FC<HeroFooterProps> = (props) => {
   return (
-    <div className={sPrimary.root}>
-      <div className={sPrimary.inner}>
-        <div className={sPrimary.logo}>
+    <div className={sHeroFooter.root}>
+      <div className={sHeroFooter.inner}>
+        <div className={sHeroFooter.logo}>
           <Logo view="LIGHT" />
         </div>
-        <div className={sPrimary.callback}>
+        <div className={sHeroFooter.callback}>
           <CallbackOpenModalButton>
             <CallbackOpenModalButton.ButtonGhosty />
           </CallbackOpenModalButton>
         </div>
-        <div className={sPrimary.social}>
+        <div className={sHeroFooter.social}>
           <SocialList />
         </div>
       </div>
