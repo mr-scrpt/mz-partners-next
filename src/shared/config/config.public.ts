@@ -1,18 +1,4 @@
-import { z } from "zod";
-
-const configPublicSchema = z.object({
-  phoneList: z.array(
-    z.object({
-      id: z.string(),
-      title: z.string(),
-      text: z.string(),
-      link: z.string(),
-    }),
-  ),
-  isDev: z.boolean(),
-  API_URL_DEV: z.string(),
-  API_URL_PROD: z.string(),
-});
+import { configPublicSchema } from "./domain/config.schema";
 
 export const configPublic = configPublicSchema.parse({
   phoneList: [
@@ -33,5 +19,3 @@ export const configPublic = configPublicSchema.parse({
   API_URL_DEV: process.env.NEXT_PUBLIC_API_URL_DEV,
   API_URL_PROD: process.env.NEXT_PUBLIC_API_URL_PROD,
 });
-
-export type ConfigPublic = z.infer<typeof configPublicSchema>;
