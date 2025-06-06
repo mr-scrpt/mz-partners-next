@@ -1,0 +1,14 @@
+Already logging to gdb.txt.
+Starting program: /usr/bin/nvim 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib/libthread_db.so.1".
+[Detaching after fork from child process 609772]
+[Inferior 1 (process 609738) exited normally]
+No stack.
+No stack.
+Undefined command: "ingo".  Try "help".
+The program has no registers now.
+Quit
+Quit
+Undefined command: "Quit".  Try "help".
+Undefined command: "Quit".  Try "help".

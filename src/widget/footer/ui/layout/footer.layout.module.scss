@@ -5,13 +5,20 @@
 }
 
 .inner {
+  padding-top: 32px;
+  padding-bottom: 32px;
   @include grid;
+  @include block-bp-lg {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
 }
 
 .info {
-  place-self: center center;
+  width: 100%;
 
   color: white;
+  place-self: center center;
   @include col(6);
   @include col-md(4);
   @include block-bp-md {
@@ -21,6 +28,8 @@
 }
 
 .navigation {
+  width: 100%;
+
   color: white;
   place-self: center center;
   @include col(12);
@@ -31,6 +40,8 @@
 }
 
 .contact {
+  width: 100%;
+
   color: white;
   place-self: center center;
   @include col(6);

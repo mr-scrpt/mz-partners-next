@@ -1,11 +1,21 @@
 /* Module: sContactFooter */
 .title {
+  text-transform: uppercase;
+
+  font-weight: 600;
 }
 
 .row {
 }
 
 .inner {
+  display: flex;
+
+  gap: 32px;
+
+  flex-direction: column;
+
+  text-align: right;
 }
 
 .content {

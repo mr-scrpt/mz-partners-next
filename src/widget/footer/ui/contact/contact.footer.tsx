@@ -1,4 +1,4 @@
-import { PhoneListModule } from "@/entity/contact/ui/phoneList.module";
+import { AddressListModule, PhoneListModule } from "@/entity/contact";
 import { useTranslations } from "next-intl";
 import { FC, HTMLAttributes } from "react";
 import { FOOTER_DICT_FIELD, FOOTER_NAMESPACE } from "../../domain/benefit.dict";
@@ -17,6 +17,15 @@ export const ContactFooter: FC<ContactFooterProps> = (props) => {
           </div>
           <div className={sContactFooter.content}>
             <PhoneListModule />
+          </div>
+        </div>
+
+        <div className={sContactFooter.row}>
+          <div className={sContactFooter.title}>
+            {t(FOOTER_DICT_FIELD.contact_address_title)}
+          </div>
+          <div className={sContactFooter.content}>
+            <AddressListModule />
           </div>
         </div>
       </div>

@@ -1,11 +1,8 @@
 import { FC } from "react";
-import { AddressItemProps } from "../domain/type";
-
-// interface AddressItemProps extends HTMLAttributes<HTMLDivElement> {
-//   address: string;
-// }
+import { AddressItemProps } from "../../domain/contact.type";
 
 export const AddressItem: FC<AddressItemProps> = (props) => {
-  const { className, address } = props;
-  return <div className={className}>{address}</div>;
+  const { className, addressData } = props;
+  const { value } = addressData;
+  return <div className={className}>{value}</div>;
 };

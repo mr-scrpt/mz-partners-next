@@ -28,3 +28,7 @@ export type ContactItem = {
 export interface PhoneItemProps extends HTMLAttributes<HTMLDivElement> {
   phoneData: ContactPhoneItem;
 }
+
+export interface AddressItemProps extends HTMLAttributes<HTMLDivElement> {
+  addressData: ContactAddressItem;
+}

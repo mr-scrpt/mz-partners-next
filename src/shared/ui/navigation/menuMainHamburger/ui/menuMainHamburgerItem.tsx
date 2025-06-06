@@ -1,14 +1,14 @@
 import { FC, HTMLAttributes } from "react";
 import { LinkI18 } from "../../../Link/ui/linkI18";
-import sMenu from "./menuFooter.module.scss";
+import sMenu from "./menuMainHamburger.module.scss";
 import clsx from "clsx";
 import { MenuItem } from "../../domain/menu.type";
 
-interface MenuFooterItemProps extends HTMLAttributes<HTMLDivElement> {
+interface MenuMainItemProps extends HTMLAttributes<HTMLDivElement> {
   item: MenuItem;
 }
 
-export const MenuFooterItem: FC<MenuFooterItemProps> = (props) => {
+export const MenuMainHamburgerItem: FC<MenuMainItemProps> = (props) => {
   const { item } = props;
 
   return (

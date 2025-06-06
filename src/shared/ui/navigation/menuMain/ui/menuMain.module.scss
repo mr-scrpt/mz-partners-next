@@ -1,100 +1,27 @@
 @use "./src/shared/style/classic/mixin.scss" as *;
+/* Module: sMenu */
 
 .root {
-  position: relative;
-
-  width: 100%;
-}
-
-.controller {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  padding: 10px 0;
-
-  text-transform: uppercase;
-
-  font-weight: 600;
-  @include block-bp-lg {
-    display: none;
-  }
-}
-
-.icon {
-  width: 30px;
-  height: 30px;
-
-  background: var(--color-light);
-}
-
-.text {
-  font-size: 18px;
-  font-weight: 600;
 }
 
 .inner {
-  position: relative;
-
-  display: flex;
 }
 
 .list {
-  position: absolute;
-  bottom: 0;
-
   display: flex;
-  flex-flow: column wrap;
+  flex-direction: column;
 
-  width: calc(100% + 40px);
-
-  margin: 0 -20px;
-
-  transform: translate(0, 100%);
-
-  background: var(--color-dark);
-  gap: 5px;
-
-  @include block-bp-lg {
-    position: static;
-    bottom: auto;
-
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-
-    margin: auto;
-    padding: 0;
-
-    transform: translateY(0);
-    gap: 15px;
-  }
+  list-style: none;
+  gap: 10px;
 }
 
 .item {
-  display: flex;
-  flex-flow: row wrap;
-  flex-grow: 1;
-  justify-content: space-between;
-  gap: 0.5rem;
-}
-
-.link {
-  flex-grow: 1;
-
-  padding: 5px 5px 5px 60px;
-
   text-transform: uppercase;
 
+  font-size: 14px;
   font-weight: 600;
 
-  &:hover {
-    background: var(--color-primary);
-  }
-  @include ts(background);
-  @include block-bp-md {
-    padding: 15px 0;
-
-    text-align: center;
+  @include block-bp-lg {
+    font-size: 18px;
   }
 }
