@@ -1,0 +1,19 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+/* Module: sText */
+.root {
+  position: relative;
+
+  display: block;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  padding-right: 15px;
+}
+
+.item {
+  display: flex;
+}

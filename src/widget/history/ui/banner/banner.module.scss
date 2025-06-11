@@ -1,0 +1,17 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+/* Module: sBanner */
+.root {
+  display: block;
+}
+
+.img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+.inner {
+  @include offset;
+}

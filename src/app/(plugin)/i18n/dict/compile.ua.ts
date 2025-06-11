@@ -11,6 +11,7 @@ import { CallBackEntityDict } from "@/entity/callback";
 import { CallBackWidgetDict } from "@/widget/callback";
 import { FooterDict } from "@/widget/footer";
 import { AboutDict } from "@/widget/about";
+import { HistoryDict } from "@/widget/history";
 
 export const messages = validateMessages({
   ...LangSwitcherDict.ua,
@@ -25,4 +26,5 @@ export const messages = validateMessages({
   ...PiplineDict.ua,
   ...FooterDict.ua,
   ...AboutDict.ua,
+  ...HistoryDict.ua,
 } as const);

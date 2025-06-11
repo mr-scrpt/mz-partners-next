@@ -1,0 +1,15 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+
+.root {
+  display: block;
+}
+
+.inner {
+  flex-direction: column;
+
+  width: 100%;
+}
+
+.content {
+  width: 100%;
+}

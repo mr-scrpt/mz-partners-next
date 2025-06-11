@@ -1,0 +1,19 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+/* Module: sContent */
+.root {
+  display: block;
+}
+
+.inner {
+  @include grid;
+}
+
+.text {
+  @include col(12);
+  @include col-lg(6);
+}
+
+.banner {
+  @include col(12);
+  @include col-lg(6);
+}

@@ -1,0 +1,33 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+
+.textBG {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  // background: var(--background-secondary);
+
+  &::before {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    content: "";
+
+    background: var(--background-secondary);
+    @include block-bp-lg {
+      top: -190px;
+      right: calc(-1 * #{$grid-gap});
+      left: calc(-1 * #{$grid-gap});
+
+      width: calc(100% + #{$grid-gap});
+
+      min-height: 500px;
+    }
+  }
+}

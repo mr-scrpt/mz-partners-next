@@ -1,0 +1,9 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+
+.mainBG {
+  background: var(--background-secondary);
+
+  @include block-bp-lg {
+    background: transparent;
+  }
+}

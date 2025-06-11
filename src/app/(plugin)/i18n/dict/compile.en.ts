@@ -11,6 +11,7 @@ import { BenefitDict } from "@/widget/benefit";
 import { PiplineDict } from "@/widget/pipline";
 import { FooterDict } from "@/widget/footer";
 import { AboutDict } from "@/widget/about";
+import { HistoryDict } from "@/widget/history";
 
 export const messages = validateMessages({
   ...LangSwitcherDict.en,
@@ -25,4 +26,5 @@ export const messages = validateMessages({
   ...PiplineDict.en,
   ...FooterDict.en,
   ...AboutDict.en,
+  ...HistoryDict.en,
 } as const);
