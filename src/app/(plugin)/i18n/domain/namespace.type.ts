@@ -1,6 +1,7 @@
 import { CALLBACK_ENTITY_NAMESPACE } from "@/entity/callback";
 import { CALLBACK_FEATURE_NAMESPACE } from "@/feature/callback";
 import { LANG_SWITCHER_NAMESPACE } from "@/shared/ui/langSwitcher";
+import { ABOUT_NAMESPACE } from "@/widget/about";
 import { BENEFIT_NAMESPACE } from "@/widget/benefit";
 import { CALLBACK_WIDGET_NAMESPACE } from "@/widget/callback";
 import { CONCEPT_NAMESPACE } from "@/widget/concept";
@@ -22,6 +23,7 @@ export const NAMESPACE_LIST = [
   BENEFIT_NAMESPACE,
   PIPLINE_NAMESPACE,
   FOOTER_NAMESPACE,
+  ABOUT_NAMESPACE,
 ] as const;
 
 export type Namespace = (typeof NAMESPACE_LIST)[number];

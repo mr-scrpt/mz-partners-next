@@ -1,0 +1,62 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+
+.inner {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+
+  padding-bottom: 20px;
+
+  background-color: var(--color-gray);
+  gap: 20px;
+  @include block-bp-lg {
+    padding-bottom: 30px;
+    gap: 30px;
+  }
+}
+
+.imgBox {
+  position: relative; /* Обязательно для работы fill */
+
+  overflow: hidden;
+
+  width: 100%; /* Полная ширина */
+  height: 300px; /* Задайте нужную высоту или используйте другие единицы измерения */
+}
+
+.img {
+  object-fit: cover;
+}
+
+.titleBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding-right: 20px;
+  padding-left: 20px;
+
+  text-align: center;
+  @include block-bp-md {
+    min-width: 300px;
+  }
+
+  @include block-bp-lg {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+}
+
+.description {
+  padding-right: 20px;
+  padding-left: 20px;
+
+  @include block-bp-md {
+    flex-grow: 1;
+  }
+  @include block-bp-lg {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+}

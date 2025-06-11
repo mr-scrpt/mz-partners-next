@@ -1,0 +1,21 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+
+.root {
+  margin: 0;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  @include grid;
+}
+
+.item {
+  overflow: hidden;
+  @include col(12);
+  @include col-sm(6);
+  @include col-lg(4);
+}
