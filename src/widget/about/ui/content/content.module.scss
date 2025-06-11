@@ -1,4 +1,4 @@
-/* Module: sText */
+/* Module: sContent */
 .root {
   display: block;
 }
@@ -6,9 +6,4 @@
 .inner {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-}
-
-.item {
-  display: flex;
 }
