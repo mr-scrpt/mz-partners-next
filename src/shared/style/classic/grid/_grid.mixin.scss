@@ -18,6 +18,11 @@ $grid-columns: 12;
 // Базовый отступ между колонками
 $grid-gap: 20px;
 
+@mixin offset() {
+  margin-right: calc(-1 * #{$grid-gap});
+  margin-left: calc(-1 * #{$grid-gap});
+}
+
 // Миксины для медиа-запросов
 // Mobile first (min-width)
 @mixin breakpoint($point) {
@@ -258,7 +263,9 @@ $grid-gap: 20px;
     $left-shift: map.get($row, "left-shift");
     $right-shift: map.get($row, "right-shift");
     $available-width: 12 - $left-shift - $right-shift;
-    $column-width: math.floor(math.div($available-width, list.length($columns)));
+    $column-width: math.floor(
+      math.div($available-width, list.length($columns))
+    );
 
     @for $i from 1 through list.length($columns) {
       $column: list.nth($columns, $i);

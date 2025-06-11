@@ -11,11 +11,13 @@ export const Text: FC<TextProps> = (props) => {
   const { aboutTextList } = useAboutTextList();
   return (
     <div className={clsx(sText.root, className)}>
-      {aboutTextList.map((item, idx) => (
-        <p key={idx} className={className}>
-          {item}
-        </p>
-      ))}
+      <div className={sText.inner}>
+        {aboutTextList.map((item, idx) => (
+          <p key={idx} className={sText.item}>
+            {item}
+          </p>
+        ))}
+      </div>
     </div>
   );
 };

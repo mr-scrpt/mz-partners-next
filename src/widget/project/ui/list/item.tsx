@@ -16,6 +16,7 @@ interface ItemProps extends HTMLAttributes<HTMLDivElement> {
 export const Item: FC<ItemProps> = (props) => {
   const { className, item } = props;
   const { title, img, description } = item;
+  console.log("output_log:  =>>>", img);
 
   const {
     rootAnimationClass,
