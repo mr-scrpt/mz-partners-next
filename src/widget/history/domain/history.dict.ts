@@ -9,12 +9,12 @@ export type HistoryDictField = keyof typeof HISTORY_DICT_FIELD;
 export const HistoryDict = {
   ua: {
     [HISTORY_NAMESPACE]: {
-      [HISTORY_DICT_FIELD.title]: "Наші проєкти",
+      [HISTORY_DICT_FIELD.title]: "Історія компанії",
     },
   },
   en: {
     [HISTORY_NAMESPACE]: {
-      [HISTORY_DICT_FIELD.title]: "Our Pojects",
+      [HISTORY_DICT_FIELD.title]: "Company history",
     },
   },
 } as const;
