@@ -1,0 +1,69 @@
+@use "./src/shared/style/classic/keyframe.scss" as *;
+@use "./src/shared/style/classic/mixin.scss" as *;
+
+@mixin animate-rotate-in {
+  @include animate-in;
+  @include slide-in(0, -25%);
+  @include rotate-in(45);
+}
+@mixin animate-rotate-out {
+  @include animate-out;
+  @include slide-out(0, -25%);
+  @include rotate-out(45);
+}
+
+@mixin animate-collapsing-in {
+  @include animate-grid-row;
+  @include state-grid-row-enter;
+  @include grid-rows-in(1fr);
+}
+
+@mixin animate-collapsing-out {
+  @include animate-grid-row;
+  @include state-grid-row-exit;
+  @include grid-rows-out(0fr);
+}
+
+.collapsing {
+  &#{&}_open {
+    @include animate-collapsing-in;
+  }
+
+  &#{&}_close {
+    @include animate-collapsing-out;
+  }
+
+  @include block-bp-md {
+    &#{&}_open,
+    &#{&}_close {
+      grid-template-rows: 1fr;
+    }
+  }
+}
+
+.rotating {
+  position: relative;
+
+  &::before {
+    transform-origin: center center;
+  }
+
+  &#{&}_open::before {
+    @include animate-rotate-in;
+  }
+
+  &#{&}_close::before {
+    @include animate-rotate-out;
+  }
+
+  @include block-bp-md {
+    &::before {
+      transform: translateY(-25%) rotate(225deg);
+    }
+
+    &#{&}_open::before,
+    &#{&}_close::before {
+      animation: none;
+    }
+  }
+}

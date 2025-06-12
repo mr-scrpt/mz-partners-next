@@ -1,0 +1,21 @@
+/* Module: sTeamList */
+
+.root {
+  margin: 0;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+.item {
+  overflow: hidden;
+}
