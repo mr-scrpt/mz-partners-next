@@ -9,12 +9,12 @@ export type AboutDictField = keyof typeof ABOUT_DICT_FIELD;
 export const AboutDict = {
   ua: {
     [ABOUT_NAMESPACE]: {
-      [ABOUT_DICT_FIELD.title]: "Наші проєкти",
+      [ABOUT_DICT_FIELD.title]: "Про нас",
     },
   },
   en: {
     [ABOUT_NAMESPACE]: {
-      [ABOUT_DICT_FIELD.title]: "Our Pojects",
+      [ABOUT_DICT_FIELD.title]: "About us",
     },
   },
 } as const;
