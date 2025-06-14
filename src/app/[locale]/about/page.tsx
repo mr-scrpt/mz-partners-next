@@ -1,1 +1,1 @@
-export { default } from "@/page/about/page";
+export { PageAbout as default } from "@/page/about/page";

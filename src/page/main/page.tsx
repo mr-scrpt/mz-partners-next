@@ -7,11 +7,7 @@ import { PrincipleModule } from "@/widget/principle";
 import { ProjectModule } from "@/widget/project";
 import { SocialLineModule } from "@/widget/socialLine";
 
-const HomePage = async ({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) => {
+export const PageMain = async () => {
   return (
     <>
       <HeroModule />
@@ -25,5 +21,3 @@ const HomePage = async ({
     </>
   );
 };
-
-export default HomePage;

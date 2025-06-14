@@ -8,7 +8,7 @@ import { FC } from "react";
 
 interface PageAboutProps {}
 
-const PageAbout: FC<PageAboutProps> = async (props) => {
+export const PageAbout: FC<PageAboutProps> = async (props) => {
   return (
     <>
       <AboutModule />
@@ -21,4 +21,4 @@ const PageAbout: FC<PageAboutProps> = async (props) => {
   );
 };
 
-export default PageAbout;
+// export default PageAbout;
