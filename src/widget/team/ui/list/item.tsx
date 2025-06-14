@@ -3,10 +3,9 @@ import clsx from "clsx";
 import { FC, HTMLAttributes } from "react";
 
 import { TeamItem } from "@/entity/team";
-import { Title } from "@/shared/ui/title";
-import { useTeamItemAnimation } from "../../vm/useTeamItemAnimation.model";
+import Image from "next/image";
 import sItem from "./item.module.scss";
-
+import { Title } from "@/shared/ui/title";
 interface ItemProps extends HTMLAttributes<HTMLDivElement> {
   idx: number;
   item: TeamItem;
@@ -14,31 +13,33 @@ interface ItemProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Item: FC<ItemProps> = (props) => {
   const { className, item, idx } = props;
-  const { title, description } = item;
 
-  const { orderAnimationClassName, contentAnimationClassName, toggleOpen } =
-    useTeamItemAnimation();
+  const isEven = idx % 2 === 0;
 
   return (
-    <div className={clsx(sItem.root, className)}>
+    <div
+      className={clsx(sItem.root, className, {
+        [sItem.even]: isEven,
+        [sItem.odd]: !isEven,
+      })}
+    >
       <div className={clsx(sItem.inner)}>
-        <div
-          className={clsx(sItem.order, [orderAnimationClassName])}
-          onClick={toggleOpen}
-        >
-          {`${idx + 1}`.padStart(2, "0")}
+        <div className={clsx(sItem.imgBox)}>
+          <Image
+            src={item.photo}
+            alt={item.firstName + " " + item.lastName}
+            className={sItem.img}
+          />
         </div>
-        <div className={clsx(sItem.box, [contentAnimationClassName])}>
-          <div className={clsx(sItem.content)}>
-            <Title
-              className={sItem.title}
-              text={title}
-              size="S"
-              view="PRIMARY"
-              as="h3"
-            />
-            <div className={sItem.description}>{description}</div>
-          </div>
+        <div className={clsx(sItem.content)}>
+          <Title
+            text={item.firstName + " " + item.lastName}
+            size="M"
+            view="SECONDARY"
+            className={sItem.title}
+          />
+          <div className={sItem.position}>{item.position}</div>
+          <div className={sItem.description}>{item.description}</div>
         </div>
       </div>
     </div>

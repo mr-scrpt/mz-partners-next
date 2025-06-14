@@ -9,7 +9,7 @@ export type TeamDictField = keyof typeof TEAM_DICT_FIELD;
 export const TeamDict = {
   ua: {
     [TEAM_NAMESPACE]: {
-      [TEAM_DICT_FIELD.title]: "Концепція",
+      [TEAM_DICT_FIELD.title]: "Команда",
       // Jurisprudence
     },
   },
