@@ -9,7 +9,7 @@ interface AnimationClassResult {
   toggleOpen: () => void;
 }
 
-export const useConceptItemAnimation = (): AnimationClassResult => {
+export const useCompetencyItemAnimation = (): AnimationClassResult => {
   const [isOpen, setIsOpen] = useState(false);
 
   const orderAnimationClassName = clsx(aItem.rotating, {

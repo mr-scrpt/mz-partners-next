@@ -2,14 +2,14 @@
 import clsx from "clsx";
 import { FC, HTMLAttributes } from "react";
 
-import { ConceptItem } from "@/entity/concept";
+import { CompetencyItem } from "@/entity/competency";
 import { Title } from "@/shared/ui/title";
-import { useConceptItemAnimation } from "../../vm/useConceptItemAnimation.model";
+import { useCompetencyItemAnimation } from "../../vm/useCompetencyItemAnimation.model";
 import sItem from "./item.module.scss";
 
 interface ItemProps extends HTMLAttributes<HTMLDivElement> {
   idx: number;
-  item: ConceptItem;
+  item: CompetencyItem;
 }
 
 export const Item: FC<ItemProps> = (props) => {
@@ -17,7 +17,7 @@ export const Item: FC<ItemProps> = (props) => {
   const { title, description } = item;
 
   const { orderAnimationClassName, contentAnimationClassName, toggleOpen } =
-    useConceptItemAnimation();
+    useCompetencyItemAnimation();
 
   return (
     <div className={clsx(sItem.root, className)}>

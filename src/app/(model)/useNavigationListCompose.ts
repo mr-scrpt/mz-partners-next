@@ -1,6 +1,6 @@
 import { pageRouteAbout } from "@/page/about";
 import { pageRouteCareer } from "@/page/career";
-import { pageRouteConception } from "@/page/conception";
+import { pageRouteCompetency } from "@/page/competency";
 import { pageRouteNews } from "@/page/news";
 import { pageRouteProjects } from "@/page/project";
 import { pageRouteTeam } from "@/page/team";
@@ -13,7 +13,7 @@ export const useNavigationListCompose = (locale: Locale) => {
     return useRouteItemList(
       [
         pageRouteAbout,
-        pageRouteConception,
+        pageRouteCompetency,
         pageRouteTeam,
         pageRouteProjects,
         pageRouteCareer,
@@ -24,7 +24,7 @@ export const useNavigationListCompose = (locale: Locale) => {
   }, [
     locale,
     pageRouteAbout,
-    pageRouteConception,
+    pageRouteCompetency,
     pageRouteTeam,
     pageRouteProjects,
     pageRouteCareer,

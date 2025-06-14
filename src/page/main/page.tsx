@@ -1,6 +1,6 @@
 import { BenefitModule } from "@/widget/benefit";
 import { CallbackModule } from "@/widget/callback";
-import { ConceptModule } from "@/widget/concept";
+import { CompetencyModule } from "@/widget/competency";
 import { HeroModule } from "@/widget/hero";
 import { PiplineModule } from "@/widget/pipline";
 import { PrincipleModule } from "@/widget/principle";
@@ -16,7 +16,7 @@ const HomePage = async ({
     <>
       <HeroModule />
       <SocialLineModule />
-      <ConceptModule />
+      <CompetencyModule />
       <PrincipleModule />
       <ProjectModule />
       <BenefitModule />
@@ -27,4 +27,3 @@ const HomePage = async ({
 };
 
 export default HomePage;
-

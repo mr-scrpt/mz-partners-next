@@ -1,4 +1,4 @@
-export const CONCEPT_LIST = {
+export const COMPETENCY_LIST = {
   ua: [
     {
       title: "Судова практика",

@@ -1,18 +1,18 @@
+import { CallBackEntityDict } from "@/entity/callback";
 import { CallBackFeatureDict } from "@/feature/callback";
 import { LangSwitcherDict } from "@/shared/ui/langSwitcher";
-import { validateMessages } from "../domain/namespace.type";
+import { AboutDict } from "@/widget/about";
+import { BenefitDict } from "@/widget/benefit";
+import { CallBackWidgetDict } from "@/widget/callback";
+import { CompetencyDict } from "@/widget/competency";
+import { FooterDict } from "@/widget/footer";
 import { HeroDict } from "@/widget/hero/domain/hero.dict";
-import { ConceptDict } from "@/widget/concept";
+import { HistoryDict } from "@/widget/history";
+import { PiplineDict } from "@/widget/pipline";
 import { PrincipleDict } from "@/widget/principle";
 import { ProjectDict } from "@/widget/project";
-import { BenefitDict } from "@/widget/benefit";
-import { PiplineDict } from "@/widget/pipline";
-import { CallBackEntityDict } from "@/entity/callback";
-import { CallBackWidgetDict } from "@/widget/callback";
-import { FooterDict } from "@/widget/footer";
-import { AboutDict } from "@/widget/about";
-import { HistoryDict } from "@/widget/history";
 import { TeamDict } from "@/widget/team";
+import { validateMessages } from "../domain/namespace.type";
 
 export const messages = validateMessages({
   ...LangSwitcherDict.ua,
@@ -20,7 +20,7 @@ export const messages = validateMessages({
   ...CallBackEntityDict.ua,
   ...CallBackFeatureDict.ua,
   ...CallBackWidgetDict.ua,
-  ...ConceptDict.ua,
+  ...CompetencyDict.ua,
   ...PrincipleDict.ua,
   ...ProjectDict.ua,
   ...BenefitDict.ua,

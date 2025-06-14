@@ -1,4 +1,4 @@
-export type ConceptItem = {
+export type CompetencyItem = {
   title: string;
   description: string;
 };
