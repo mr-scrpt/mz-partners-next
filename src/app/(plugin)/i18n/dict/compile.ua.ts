@@ -12,6 +12,7 @@ import { CallBackWidgetDict } from "@/widget/callback";
 import { FooterDict } from "@/widget/footer";
 import { AboutDict } from "@/widget/about";
 import { HistoryDict } from "@/widget/history";
+import { TeamDict } from "@/widget/team";
 
 export const messages = validateMessages({
   ...LangSwitcherDict.ua,
@@ -27,4 +28,5 @@ export const messages = validateMessages({
   ...FooterDict.ua,
   ...AboutDict.ua,
   ...HistoryDict.ua,
+  ...TeamDict.ua,
 } as const);

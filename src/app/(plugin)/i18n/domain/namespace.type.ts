@@ -11,6 +11,7 @@ import { HISTORY_NAMESPACE } from "@/widget/history";
 import { PIPLINE_NAMESPACE } from "@/widget/pipline";
 import { PRINCIPLE_NAMESPACE } from "@/widget/principle";
 import { PROJECT_NAMESPACE } from "@/widget/project";
+import { TEAM_NAMESPACE } from "@/widget/team";
 
 export const NAMESPACE_LIST = [
   CALLBACK_ENTITY_NAMESPACE,
@@ -26,6 +27,7 @@ export const NAMESPACE_LIST = [
   FOOTER_NAMESPACE,
   ABOUT_NAMESPACE,
   HISTORY_NAMESPACE,
+  TEAM_NAMESPACE,
 ] as const;
 
 export type Namespace = (typeof NAMESPACE_LIST)[number];
