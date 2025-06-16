@@ -5,6 +5,7 @@ import { ABOUT_NAMESPACE } from "@/widget/about";
 import { BENEFIT_NAMESPACE } from "@/widget/benefit";
 import { CALLBACK_WIDGET_NAMESPACE } from "@/widget/callback";
 import { COMPETENCY_NAMESPACE } from "@/widget/competency";
+import { CONTACT_NAMESPACE } from "@/widget/contact";
 import { FOOTER_NAMESPACE } from "@/widget/footer";
 import { HERO_NAMESPACE } from "@/widget/hero";
 import { HISTORY_NAMESPACE } from "@/widget/history";
@@ -28,6 +29,7 @@ export const NAMESPACE_LIST = [
   ABOUT_NAMESPACE,
   HISTORY_NAMESPACE,
   TEAM_NAMESPACE,
+  CONTACT_NAMESPACE,
 ] as const;
 
 export type Namespace = (typeof NAMESPACE_LIST)[number];

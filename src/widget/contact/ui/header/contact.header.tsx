@@ -16,7 +16,7 @@ export const ContactHeader: FC<ContactHeaderProps> = (props) => {
           position="LEFT"
           text={t("title")}
           size="L"
-          view="PRIMARY_INVERTED"
+          view="PRIMARY"
           className={sContactHeader.title}
         />
       </div>

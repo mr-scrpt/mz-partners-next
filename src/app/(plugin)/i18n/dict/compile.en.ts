@@ -13,6 +13,7 @@ import { PrincipleDict } from "@/widget/principle";
 import { ProjectDict } from "@/widget/project";
 import { TeamDict } from "@/widget/team";
 import { validateMessages } from "../domain/namespace.type";
+import { ContactDict } from "@/widget/contact";
 
 export const messages = validateMessages({
   ...LangSwitcherDict.en,
@@ -29,4 +30,5 @@ export const messages = validateMessages({
   ...AboutDict.en,
   ...HistoryDict.en,
   ...TeamDict.en,
+  ...ContactDict.en,
 } as const);

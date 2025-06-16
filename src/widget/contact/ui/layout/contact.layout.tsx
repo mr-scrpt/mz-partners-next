@@ -10,11 +10,12 @@ import sDeco from "./deco.module.scss";
 
 interface ContactLayoutProps extends HTMLAttributes<HTMLDivElement> {
   HeaderSlot: ReactNode;
-  ContentSlot: ReactNode;
+  PrimarySlot: ReactNode;
+  SecondarySlot: ReactNode;
 }
 
 export const ContactLayout: FC<ContactLayoutProps> = (props) => {
-  const { className, HeaderSlot, ContentSlot } = props;
+  const { className, HeaderSlot, PrimarySlot, SecondarySlot } = props;
 
   return (
     <RowSection
@@ -25,7 +26,7 @@ export const ContactLayout: FC<ContactLayoutProps> = (props) => {
       space={SECTION_SPACE.PRIMARY}
     >
       <div className={clsx(sContactLayout.inner)}>
-        <div className={sContactLayout.content}>{ContentSlot}</div>
+        <div className={sContactLayout.content}>{PrimarySlot}</div>
       </div>
     </RowSection>
   );
