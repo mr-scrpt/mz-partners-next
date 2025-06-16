@@ -1,0 +1,62 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+
+.deco {
+  &#{&}_separator > * {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+
+      width: 50%;
+      height: 2px;
+
+      content: "";
+      transform: translateX(-50%);
+
+      background: var(--color-light);
+    }
+
+    @include block-bp-sm {
+      &::after {
+        inset: 50% -10px auto auto;
+
+        width: 2px;
+        height: 70%;
+
+        transform: translateY(-50%);
+      }
+
+      // Управление видимостью
+      &:last-child::after,
+      &:nth-child(2)::after {
+        display: none;
+      }
+    }
+
+    @include block-bp-lg {
+      &::after {
+        // Стили для lg и выше
+        position: absolute;
+        top: 50%;
+        right: -10px;
+
+        width: 2px;
+        height: 70%;
+
+        transform: translateY(-50%);
+      }
+
+      // Управление видимостью
+      &:last-child::after,
+      &:nth-child(3)::after {
+        display: none;
+      }
+
+      &:nth-child(2)::after {
+        display: block;
+      }
+    }
+  }
+}
