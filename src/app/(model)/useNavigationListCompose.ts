@@ -1,8 +1,6 @@
 import { pageRouteAbout } from "@/page/about";
-import { pageRouteCareer } from "@/page/career";
 import { pageRouteCompetency } from "@/page/competency";
-import { pageRouteNews } from "@/page/news";
-import { pageRouteProjects } from "@/page/project";
+import { pageRouteContact } from "@/page/contact";
 import { pageRouteTeam } from "@/page/team";
 import { Locale } from "@/shared/lib/i18n/domain/type";
 import { useRouteItemList } from "@/shared/navigation/useRouteItemList";
@@ -11,14 +9,7 @@ import { useMemo } from "react";
 export const useNavigationListCompose = (locale: Locale) => {
   const composeRoute = useMemo(() => {
     return useRouteItemList(
-      [
-        pageRouteAbout,
-        pageRouteCompetency,
-        pageRouteTeam,
-        pageRouteProjects,
-        pageRouteCareer,
-        pageRouteNews,
-      ],
+      [pageRouteAbout, pageRouteCompetency, pageRouteTeam, pageRouteContact],
       locale,
     );
   }, [
@@ -26,9 +17,7 @@ export const useNavigationListCompose = (locale: Locale) => {
     pageRouteAbout,
     pageRouteCompetency,
     pageRouteTeam,
-    pageRouteProjects,
-    pageRouteCareer,
-    pageRouteNews,
+    pageRouteContact,
   ]);
 
   return {
