@@ -1,7 +1,7 @@
 @use "./src/shared/style/classic/mixin.scss" as *;
 
 .root {
-  margin: 0;
+  position: relative;
 }
 
 .inner {
@@ -10,85 +10,95 @@
 
 .list {
   @include grid;
-  @include shifted-grid(
-    "sm",
-    (
-      (
-        "columns": (
-          1,
-          1,
-        ),
-        "left-shift": 0,
-        "right-shift": 0
-      ),
-      (
-        "columns": (
-          1,
-          1,
-        ),
-        "left-shift": 0,
-        "right-shift": 0
-      ),
-      (
-        "columns": (
-          1,
-        ),
-        "left-shift": 4,
-        "right-shift": 4
-      )
-    )
-  );
-
-  @include shifted-grid(
-    "lg",
-    (
-      (
-        "columns": (
-          1,
-          1,
-          1,
-        ),
-        "left-shift": 0,
-        "right-shift": 0
-      ),
-      (
-        "columns": (
-          1,
-          1,
-        ),
-        "left-shift": 1,
-        "right-shift": 1
-      )
-    )
-  );
-  @include shifted-grid(
-    "xl",
-    (
-      (
-        "columns": (
-          1,
-          1,
-          1,
-        ),
-        "left-shift": 0,
-        "right-shift": 0
-      ),
-      (
-        "columns": (
-          1,
-          1,
-        ),
-        "left-shift": 2,
-        "right-shift": 2
-      )
-    )
-  );
 }
 
 .item {
-  position: relative;
-
   @include col(12);
   @include col-sm(6);
   @include col-md(4);
 }
+
+// .list {
+//   @include grid;
+//   @include shifted-grid(
+//     "sm",
+//     (
+//       (
+//         "columns": (
+//           1,
+//           1,
+//         ),
+//         "left-shift": 0,
+//         "right-shift": 0
+//       ),
+//       (
+//         "columns": (
+//           1,
+//           1,
+//         ),
+//         "left-shift": 0,
+//         "right-shift": 0
+//       ),
+//       (
+//         "columns": (
+//           1,
+//         ),
+//         "left-shift": 4,
+//         "right-shift": 4
+//       )
+//     )
+//   );
+//
+//   @include shifted-grid(
+//     "lg",
+//     (
+//       (
+//         "columns": (
+//           1,
+//           1,
+//           1,
+//         ),
+//         "left-shift": 0,
+//         "right-shift": 0
+//       ),
+//       (
+//         "columns": (
+//           1,
+//           1,
+//         ),
+//         "left-shift": 1,
+//         "right-shift": 1
+//       )
+//     )
+//   );
+//   @include shifted-grid(
+//     "xl",
+//     (
+//       (
+//         "columns": (
+//           1,
+//           1,
+//           1,
+//         ),
+//         "left-shift": 0,
+//         "right-shift": 0
+//       ),
+//       (
+//         "columns": (
+//           1,
+//           1,
+//         ),
+//         "left-shift": 2,
+//         "right-shift": 2
+//       )
+//     )
+//   );
+// }
+//
+// .item {
+//   position: relative;
+//
+//   @include col(12);
+//   @include col-sm(6);
+//   @include col-md(4);
+// }

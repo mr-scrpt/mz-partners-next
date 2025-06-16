@@ -26,7 +26,8 @@ export const ContactLayout: FC<ContactLayoutProps> = (props) => {
       space={SECTION_SPACE.PRIMARY}
     >
       <div className={clsx(sContactLayout.inner)}>
-        <div className={sContactLayout.content}>{PrimarySlot}</div>
+        <div className={sContactLayout.info}>{PrimarySlot}</div>
+        <div className={sContactLayout.map}>{SecondarySlot}</div>
       </div>
     </RowSection>
   );

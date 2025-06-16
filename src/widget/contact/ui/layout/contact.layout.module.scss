@@ -1,11 +1,19 @@
 .root {
-  display: flex;
+  position: relative;
 }
 
 .inner {
+  position: relative;
+
   display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.content {
+.info {
   background: var(--color-gray);
+}
+
+.map {
+  width: 100%;
 }
