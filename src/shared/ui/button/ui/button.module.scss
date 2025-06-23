@@ -174,16 +174,23 @@
 }
 
 .Button[data-size="l"] {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 5px;
+  padding-left: 5px;
 
   border-width: 2px;
 
   border-radius: 3px;
 
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
-  line-height: 32px;
+  line-height: 26px;
+  @include block-bp-md {
+    padding-right: 15px;
+    padding-left: 15px;
+
+    font-size: 16px;
+    line-height: 32px;
+  }
 }
 
 .Button[data-size="xl"] {
