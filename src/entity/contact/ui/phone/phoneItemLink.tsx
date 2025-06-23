@@ -7,7 +7,7 @@ export const PhoneItemLink: FC<PhoneItemProps> = (props) => {
   const { value, link } = phoneData;
   return (
     <Link className={className} href={link}>
-      !!! 11111 !!!
+      {value}
     </Link>
   );
 };

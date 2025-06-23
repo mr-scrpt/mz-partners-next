@@ -1,3 +1,5 @@
+export { useIcon } from "./vm/useIcon";
+
 export { ICON_LIST } from "./domain/icon.type";
 
 export { Icon } from "./ui/icon";

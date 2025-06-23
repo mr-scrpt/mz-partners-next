@@ -1,3 +1,5 @@
+export { useContactIconList } from "./vm/useContactIconList.model";
+
 export { AddressListModule } from "./ui/addressList.module";
 
 export { PhoneListModule } from "./ui/phoneList.module";

@@ -1,19 +1,18 @@
 "use client";
-import {
-  useContactEmailListLink,
-  useContactSocialListLink,
-} from "@/entity/contact";
-import { useIcon } from "@/shared/ui/icon/vm/useIcon";
-import { useMemo } from "react";
 
-export const useSocialListFooter = () => {
+import { useIcon } from "@/shared/ui/icon";
+import { useMemo } from "react";
+import { useContactEmailListLink } from "./useContactEmailListLink.model";
+import { useContactSocialListLink } from "./useContactSocialListLink.model";
+
+export const useContactIconList = () => {
   const { socialList } = useContactSocialListLink();
   const { emailList } = useContactEmailListLink();
   const { getIcon } = useIcon();
 
   return useMemo(
     () => ({
-      socialListFooter: [
+      contactSocilaIconList: [
         ...socialList.map((p) => ({
           ...p,
           icon: getIcon(p.shortName),

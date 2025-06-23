@@ -1,7 +1,6 @@
 "use client";
 import { CallbackOpenModalButton } from "@/feature/callback";
 import { Logo } from "@/shared/ui/logo";
-import { SocialList } from "@/shared/ui/socialList";
 import { FC, HTMLAttributes } from "react";
 import sHeroFooter from "./hero.footer.module.scss";
 import { SocialListFooter } from "../social/socialList.footer";

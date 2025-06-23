@@ -16,7 +16,7 @@ export const ContactFooter: FC<ContactFooterProps> = (props) => {
             {t(FOOTER_DICT_FIELD.contact_phone_title)}
           </div>
           <div className={sContactFooter.content}>
-            <PhoneListModule />
+            <PhoneListModule classNameList={sContactFooter.phoneList} />
           </div>
         </div>
 

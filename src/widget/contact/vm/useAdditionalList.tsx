@@ -1,9 +1,8 @@
 import { useContactEmailMainLink } from "@/entity/contact";
+import { useSocialItem } from "@/entity/contact/vm/useSocialItem.model";
 import { LINK_CONFIGS } from "@/shared/lib/link";
-import { useSocialData } from "@/shared/ui/socialList";
 import { useTranslations } from "next-intl";
 import { CONTACT_DICT_FIELD, CONTACT_NAMESPACE } from "../domain/contact.dict";
-import { useSocialItem } from "@/entity/contact/vm/useSocialItem.model";
 
 export interface AdditionalListItem {
   value: string;
@@ -19,7 +18,6 @@ export interface AdditionsListData {
 export const useAdditionsList = (): AdditionsListData => {
   const t = useTranslations(CONTACT_NAMESPACE);
   const { emailMain } = useContactEmailMainLink();
-  // const { socialData } = useSocialData();
   const { getSocialItem } = useSocialItem();
 
   const { URL } = LINK_CONFIGS;

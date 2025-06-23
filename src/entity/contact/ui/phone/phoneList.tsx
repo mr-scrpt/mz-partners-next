@@ -7,13 +7,14 @@ import { ContactPhoneItem, PhoneItemProps } from "../../domain/contact.type";
 interface PhoneListProps extends HTMLAttributes<HTMLDivElement> {
   phoneList: ContactPhoneItem[];
   ItemComponent: ComponentType<PhoneItemProps>;
+  classNameList?: string;
 }
 
 export const PhoneList: FC<PhoneListProps> = (props) => {
-  const { className, phoneList, ItemComponent } = props;
+  const { className, classNameList, phoneList, ItemComponent } = props;
   return (
     <div className={clsx(className, sPhoneList.root)}>
-      <ul className={sPhoneList.list}>
+      <ul className={clsx(sPhoneList.list, classNameList)}>
         {phoneList.map((p) => (
           <ItemComponent
             phoneData={p}

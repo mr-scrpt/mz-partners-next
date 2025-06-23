@@ -9,6 +9,7 @@ type ContactSocialItemType = "insta" | "fb";
 export type ContactPhoneItem = {
   type: ContactPhoneItemType;
   value: string;
+  link: string;
 };
 
 export type ContactEmailItem = {
@@ -26,7 +27,6 @@ export type ContactSocialItem = {
   name: string;
   shortName: string;
   link: string;
-  // icon: IconListType;
 };
 
 export type ContactItem = {
