@@ -5,13 +5,13 @@ export const SOCIAL_LIST: ContactSocialItem[] = [
     type: "insta",
     name: "instagram",
     shortName: "insta",
-    link: "//instagram.com/mjs",
+    link: "instagram.com/mjs",
   },
 
   {
     type: "fb",
     name: "facebook",
     shortName: "fb",
-    link: "//facebook.com/mjs",
+    link: "facebook.com/mjs",
   },
 ];

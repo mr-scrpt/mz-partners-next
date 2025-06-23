@@ -23,7 +23,7 @@ export const LINK_CONFIGS: Record<LinkType, LinkConfig> = {
   },
   [LINK_TYPE.URL]: {
     key: LINK_TYPE.URL,
-    formatHref: (value: string) => value,
+    formatHref: (value: string) => `//${value}`,
     formatDisplay: (value: string) => value,
     external: true,
   },

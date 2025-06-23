@@ -3,6 +3,7 @@ import { LINK_CONFIGS } from "@/shared/lib/link";
 import { useSocialData } from "@/shared/ui/socialList";
 import { useTranslations } from "next-intl";
 import { CONTACT_DICT_FIELD, CONTACT_NAMESPACE } from "../domain/contact.dict";
+import { useSocialItem } from "@/entity/contact/vm/useSocialItem.model";
 
 export interface AdditionalListItem {
   value: string;
@@ -18,7 +19,8 @@ export interface AdditionsListData {
 export const useAdditionsList = (): AdditionsListData => {
   const t = useTranslations(CONTACT_NAMESPACE);
   const { emailMain } = useContactEmailMainLink();
-  const { socialData } = useSocialData();
+  // const { socialData } = useSocialData();
+  const { getSocialItem } = useSocialItem();
 
   const { URL } = LINK_CONFIGS;
 
@@ -30,13 +32,15 @@ export const useAdditionsList = (): AdditionsListData => {
     },
     {
       title: t(CONTACT_DICT_FIELD.additionalFacebookItemTitle),
-      value: URL.formatDisplay(socialData.fb.link),
-      link: URL.formatHref(socialData.fb.link),
+      // value: URL.formatDisplay(socialData.fb.link),
+      // link: URL.formatHref(socialData.fb.link),
+      value: URL.formatDisplay(getSocialItem("fb").link),
+      link: URL.formatHref(getSocialItem("fb").link),
     },
     {
       title: t(CONTACT_DICT_FIELD.additionalInstagramItemTitle),
-      value: URL.formatDisplay(socialData.inta.link),
-      link: URL.formatHref(socialData.inta.link),
+      value: URL.formatDisplay(getSocialItem("insta").link),
+      link: URL.formatHref(getSocialItem("insta").link),
     },
   ];
 
