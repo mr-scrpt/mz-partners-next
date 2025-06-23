@@ -2,13 +2,18 @@ export { AddressListModule } from "./ui/addressList.module";
 
 export { PhoneListModule } from "./ui/phoneList.module";
 
-export { useContactAddressList } from "./vm/useContactAddressList.model";
-export { useContactEmailList } from "./vm/useContactEmailList.model";
-export { useContactPhoneList } from "./vm/useContactPhoneList.model";
-export { useContact } from "./vm/useContact";
 export type {
+  ContactAddressItem,
+  ContactEmailItem,
   ContactItem,
   ContactPhoneItem,
-  ContactEmailItem,
-  ContactAddressItem,
 } from "./domain/contact.type";
+export { useContact } from "./vm/useContact";
+export { useContactAddressList } from "./vm/useContactAddressList.model";
+export { useContactEmailList } from "./vm/useContactEmailList.model";
+export { useContactEmailListLink } from "./vm/useContactEmailListLink.model";
+export { useContactEmailMainLink } from "./vm/useContactEmailMainLink.model";
+export { useContactPhoneList } from "./vm/useContactPhoneList.model";
+export { useContactPhoneListLink } from "./vm/useContactPhoneListLink.model";
+
+export { useContactSocialListLink } from "./vm/useContactSocialListLink.model";

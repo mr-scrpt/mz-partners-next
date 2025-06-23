@@ -6,6 +6,14 @@
 
 .inner {
   display: flex;
+
+  padding: 20px 0;
+  @include block-bp-lg {
+    padding: 50px 0;
+  }
+  @include block-bp-xl {
+    padding: 70px 0;
+  }
 }
 
 .list {

@@ -23,6 +23,7 @@ export const AddressList: FC<AddressListProps> = (props) => {
           text={t(CONTACT_DICT_FIELD.addressTitle)}
           size="M"
           view="SECONDARY"
+          className={sAddressList.title}
         />
 
         <div className={sAddressList.list}>

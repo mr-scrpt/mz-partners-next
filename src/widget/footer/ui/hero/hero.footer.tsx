@@ -4,6 +4,7 @@ import { Logo } from "@/shared/ui/logo";
 import { SocialList } from "@/shared/ui/socialList";
 import { FC, HTMLAttributes } from "react";
 import sHeroFooter from "./hero.footer.module.scss";
+import { SocialListFooter } from "../social/socialList.footer";
 
 interface HeroFooterProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -20,7 +21,7 @@ export const HeroFooter: FC<HeroFooterProps> = (props) => {
           </CallbackOpenModalButton>
         </div>
         <div className={sHeroFooter.social}>
-          <SocialList />
+          <SocialListFooter />
         </div>
       </div>
     </div>

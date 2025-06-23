@@ -1,0 +1,28 @@
+.root {
+  width: 100%;
+}
+
+.inner {
+  display: flex;
+  justify-content: flex-end;
+
+  padding: 15px 0;
+}
+
+.list {
+  display: flex;
+  gap: 25px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+
+  background-color: var(--color-light);
+}

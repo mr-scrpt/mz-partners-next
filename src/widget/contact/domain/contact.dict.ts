@@ -5,6 +5,9 @@ export const CONTACT_DICT_FIELD = {
   addressTitle: "addressTitle",
   phoneTitle: "phoneTitle",
   additionalTitle: "additionalTitle",
+  additionalEmailItemTitle: "additionalEmailItemTitle",
+  additionalInstagramItemTitle: "additionalInstagramItemTitle",
+  additionalFacebookItemTitle: "additionalFacebookItemTitle",
 } as const;
 
 export type ContactDictField = keyof typeof CONTACT_DICT_FIELD;
@@ -16,6 +19,9 @@ export const ContactDict = {
       [CONTACT_DICT_FIELD.addressTitle]: "Адреса",
       [CONTACT_DICT_FIELD.phoneTitle]: "Телефони",
       [CONTACT_DICT_FIELD.additionalTitle]: "Додаткові контакти",
+      [CONTACT_DICT_FIELD.additionalEmailItemTitle]: "E-mail",
+      [CONTACT_DICT_FIELD.additionalInstagramItemTitle]: "Instagram",
+      [CONTACT_DICT_FIELD.additionalFacebookItemTitle]: "Facebook",
     },
   },
   en: {
@@ -24,6 +30,9 @@ export const ContactDict = {
       [CONTACT_DICT_FIELD.addressTitle]: "Address",
       [CONTACT_DICT_FIELD.phoneTitle]: "Phones",
       [CONTACT_DICT_FIELD.additionalTitle]: "Additional contacts",
+      [CONTACT_DICT_FIELD.additionalEmailItemTitle]: "E-mail",
+      [CONTACT_DICT_FIELD.additionalInstagramItemTitle]: "Instagram",
+      [CONTACT_DICT_FIELD.additionalFacebookItemTitle]: "Facebook",
     },
   },
 } as const;

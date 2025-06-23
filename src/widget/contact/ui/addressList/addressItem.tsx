@@ -13,11 +13,5 @@ export const AddressItem: FC<AddresItemProps> = (props) => {
   const { className, item } = props;
   const { value } = item;
 
-  return (
-    <div className={clsx(sItem.root, className)}>
-      <div className={clsx(sItem.inner)}>
-        <div className={sItem.text}>{value}</div>
-      </div>
-    </div>
-  );
+  return <div className={clsx(sItem.root, className)}>{value}</div>;
 };

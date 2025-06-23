@@ -1,2 +1,3 @@
-export { SocialList } from "./ui/socialList";
+export { useSocialData } from "./vm/useSocialData";
 
+export { SocialList } from "./ui/socialList";
