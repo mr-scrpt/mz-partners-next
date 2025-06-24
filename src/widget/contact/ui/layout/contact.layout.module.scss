@@ -1,3 +1,5 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+
 .root {
   position: relative;
 }
@@ -14,6 +16,26 @@
   background: var(--color-gray);
 }
 
+.mediaBox {
+  @include grid;
+}
+
 .map {
-  width: 100%;
+  height: 540px;
+  @include col(12);
+  @include col-md(6);
+  @include col-lg(8);
+  @include block-bp-lg {
+    height: 840px;
+  }
+}
+
+.video {
+  height: 540px;
+  @include col(12);
+  @include col-md(6);
+  @include col-lg(4);
+  @include block-bp-lg {
+    height: 840px;
+  }
 }

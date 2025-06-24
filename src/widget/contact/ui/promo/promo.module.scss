@@ -1,0 +1,49 @@
+@use "./src/shared/style/classic/mixin.scss" as *;
+/* Module: sPromo */
+.root {
+  position: relative;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 30px;
+
+  text-align: center;
+
+  background: var(--color-gray);
+  gap: 15px;
+  @include block-bp-sm {
+    padding: 50px;
+  }
+  @include block-bp-lg {
+    padding: 50px;
+  }
+}
+
+.link {
+}
+
+.sloganBox {
+  font-size: 16px;
+  @include block-bp-lg {
+    font-size: 18px;
+  }
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+}
+
+.slogan {
+}
+
+.iconBox {
+}
+
+.text {
+}

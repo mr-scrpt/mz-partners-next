@@ -1,0 +1,21 @@
+/* youtubeEmbed.module.scss */
+.root {
+  position: relative;
+
+  width: 100%;
+  height: 100%; // Занимаем всю высоту родителя
+}
+
+.inner {
+  position: relative;
+
+  overflow: hidden;
+
+  width: 100%;
+  height: 100%; // Занимаем всю высоту родителя
+}
+
+.iframe {
+  width: 100%;
+  height: 100%; // Занимаем всю высоту родителя
+}

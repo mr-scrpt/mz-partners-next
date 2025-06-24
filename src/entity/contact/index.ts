@@ -1,3 +1,5 @@
+export { useAddressVideo } from "./vm/useAddressVideo.model";
+
 export { useContactAddressPrimary } from "./vm/useContactAddressPrimary.model";
 
 export { useContactIconList } from "./vm/useContactIconList.model";

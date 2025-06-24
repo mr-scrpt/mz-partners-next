@@ -4,6 +4,7 @@ export const ICON_LIST = {
   FB: "fb",
   EMAIL: "email",
   BENEFIT: "benefit",
+  LECKSIS: "lecksis",
   UNKNOWN: "unknown",
 } as const;
 

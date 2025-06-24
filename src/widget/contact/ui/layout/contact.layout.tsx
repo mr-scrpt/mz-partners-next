@@ -12,10 +12,19 @@ interface ContactLayoutProps extends HTMLAttributes<HTMLDivElement> {
   HeaderSlot: ReactNode;
   PrimarySlot: ReactNode;
   SecondarySlot: ReactNode;
+  TertiarySlot: ReactNode;
+  FourthSlot: ReactNode;
 }
 
 export const ContactLayout: FC<ContactLayoutProps> = (props) => {
-  const { className, HeaderSlot, PrimarySlot, SecondarySlot } = props;
+  const {
+    className,
+    HeaderSlot,
+    PrimarySlot,
+    SecondarySlot,
+    TertiarySlot,
+    FourthSlot,
+  } = props;
 
   return (
     <RowSection
@@ -27,7 +36,11 @@ export const ContactLayout: FC<ContactLayoutProps> = (props) => {
     >
       <div className={clsx(sContactLayout.inner)}>
         <div className={sContactLayout.info}>{PrimarySlot}</div>
-        <div className={sContactLayout.map}>{SecondarySlot}</div>
+        <div className={sContactLayout.promo}>{SecondarySlot}</div>
+        <div className={sContactLayout.mediaBox}>
+          <div className={sContactLayout.map}>{TertiarySlot}</div>
+          <div className={sContactLayout.video}>{FourthSlot}</div>
+        </div>
       </div>
     </RowSection>
   );

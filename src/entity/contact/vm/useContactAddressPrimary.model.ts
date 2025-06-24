@@ -7,6 +7,7 @@ export const useContactAddressPrimary = () => {
       type: "",
       value: "",
       map: "",
+      videoId: "",
     },
   };
 };

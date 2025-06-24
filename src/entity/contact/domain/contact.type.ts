@@ -23,6 +23,7 @@ export type ContactAddressItem = {
   type: ContactEmailItemType;
   value: string;
   map: string;
+  videoId: string;
 };
 
 export type ContactSocialItem = {
