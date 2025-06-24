@@ -1,3 +1,5 @@
+export { useContactAddressPrimary } from "./vm/useContactAddressPrimary.model";
+
 export { useContactIconList } from "./vm/useContactIconList.model";
 
 export { AddressListModule } from "./ui/addressList.module";
