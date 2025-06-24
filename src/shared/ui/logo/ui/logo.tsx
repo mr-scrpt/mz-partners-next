@@ -4,6 +4,7 @@ import { LogoSVG } from "./logoSVG";
 
 interface LogoProps extends SVGProps<SVGSVGElement> {
   view: LogoView;
+  asLink?: boolean;
 }
 
 export const Logo: FC<LogoProps> = (props) => {

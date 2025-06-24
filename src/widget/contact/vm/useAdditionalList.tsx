@@ -8,6 +8,7 @@ export interface AdditionalListItem {
   value: string;
   title: string;
   link: string;
+  linkTitle: string;
 }
 
 export interface AdditionsListData {
@@ -27,17 +28,20 @@ export const useAdditionsList = (): AdditionsListData => {
       title: t(CONTACT_DICT_FIELD.additionalEmailItemTitle),
       value: emailMain.value,
       link: emailMain.link,
+      linkTitle: emailMain.value,
     },
     {
       title: t(CONTACT_DICT_FIELD.additionalFacebookItemTitle),
       // value: URL.formatDisplay(socialData.fb.link),
       // link: URL.formatHref(socialData.fb.link),
       value: URL.formatDisplay(getSocialItem("fb").link),
+      linkTitle: getSocialItem("fb").linkTitle,
       link: URL.formatHref(getSocialItem("fb").link),
     },
     {
       title: t(CONTACT_DICT_FIELD.additionalInstagramItemTitle),
       value: URL.formatDisplay(getSocialItem("insta").link),
+      linkTitle: getSocialItem("insta").linkTitle,
       link: URL.formatHref(getSocialItem("insta").link),
     },
   ];

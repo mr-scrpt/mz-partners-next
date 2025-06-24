@@ -9,6 +9,7 @@ export const useSocialItem = () => {
         name: "",
         shortName: "",
         link: "",
+        linkTitle: "",
       },
   };
 };

@@ -30,6 +30,7 @@ export type ContactSocialItem = {
   type: ContactSocialItemType;
   name: string;
   shortName: string;
+  linkTitle: string;
   link: string;
 };
 

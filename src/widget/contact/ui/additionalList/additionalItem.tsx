@@ -12,14 +12,16 @@ interface AdditionalItemProps extends HTMLAttributes<HTMLDivElement> {
 
 export const AdditionalItem: FC<AdditionalItemProps> = (props) => {
   const { className, item } = props;
-  const { value, link, title } = item;
+  const { value, link, title, linkTitle } = item;
 
   return (
     <div className={clsx(sItem.root, className)}>
       <div className={sItem.inner}>
         <span className={sItem.title}>{title}: </span>{" "}
         <span className={sItem.value}>
-          <Link href={link}>{value}</Link>
+          <Link href={link} target="_blank">
+            {linkTitle}
+          </Link>
         </span>
       </div>
     </div>
