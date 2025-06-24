@@ -9,6 +9,7 @@ export type {
   ContactEmailItem,
   ContactItem,
   ContactPhoneItem,
+  ContactPhoneEnhancedItem,
 } from "./domain/contact.type";
 export { useContact } from "./vm/useContact";
 export { useContactAddressList } from "./vm/useContactAddressList.model";

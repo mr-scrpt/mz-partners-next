@@ -9,6 +9,8 @@ type ContactSocialItemType = "insta" | "fb";
 export type ContactPhoneItem = {
   type: ContactPhoneItemType;
   value: string;
+};
+export type ContactPhoneEnhancedItem = ContactPhoneItem & {
   link: string;
 };
 
@@ -20,6 +22,7 @@ export type ContactEmailItem = {
 export type ContactAddressItem = {
   type: ContactEmailItemType;
   value: string;
+  map: string;
 };
 
 export type ContactSocialItem = {
@@ -37,7 +40,7 @@ export type ContactItem = {
 };
 
 export interface PhoneItemProps extends HTMLAttributes<HTMLDivElement> {
-  phoneData: ContactPhoneItem;
+  phoneData: ContactPhoneEnhancedItem;
 }
 
 export interface AddressItemProps extends HTMLAttributes<HTMLDivElement> {

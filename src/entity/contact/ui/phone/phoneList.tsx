@@ -1,11 +1,14 @@
 import clsx from "clsx";
 import { ComponentType, FC, HTMLAttributes } from "react";
 
+import {
+  ContactPhoneEnhancedItem,
+  PhoneItemProps,
+} from "../../domain/contact.type";
 import sPhoneList from "./phoneList.module.scss";
-import { ContactPhoneItem, PhoneItemProps } from "../../domain/contact.type";
 
 interface PhoneListProps extends HTMLAttributes<HTMLDivElement> {
-  phoneList: ContactPhoneItem[];
+  phoneList: ContactPhoneEnhancedItem[];
   ItemComponent: ComponentType<PhoneItemProps>;
   classNameList?: string;
 }
