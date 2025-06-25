@@ -1,0 +1,19 @@
+@use "../../../../style/classic/mixin.scss" as *;
+
+.base {
+  width: 100%;
+}
+
+.width {
+  &_container {
+    @include container; // max-width, centered, box(padding-side)
+  }
+
+  &_container_indented {
+    @include container-flat; // max-width, centered
+  }
+
+  &_offset {
+    @include container-full; // box (padding-side)
+  }
+}

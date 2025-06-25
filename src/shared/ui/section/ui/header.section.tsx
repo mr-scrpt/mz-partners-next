@@ -1,19 +1,19 @@
 import clsx from "clsx";
 import { FC, HTMLAttributes } from "react";
 
-import { SectionTopology } from "../domain/topology.type";
+import { SectionWidth } from "../domain/topology.type";
 import { useSectionStyle } from "./style/useSectionStyle";
 
 interface HeaderSectionProps extends HTMLAttributes<HTMLDivElement> {
-  topology: SectionTopology;
+  topology: SectionWidth;
 }
 
 export const HeaderSection: FC<HeaderSectionProps> = (props) => {
   const { children, className, topology } = props;
-  const { cTopology, cSection } = useSectionStyle();
+  const { cWidth, cSection } = useSectionStyle();
 
   const clsHeader = clsx(cSection.base, className);
-  const clsInner = clsx(cTopology.base, [cTopology.options[topology]]);
+  const clsInner = clsx(cWidth.base, [cWidth.options[topology]]);
 
   return (
     <header className={clsHeader}>

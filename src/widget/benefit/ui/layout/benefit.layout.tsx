@@ -1,8 +1,4 @@
-import {
-  RowSection,
-  SECTION_SPACE,
-  SECTION_TOPOLOGY,
-} from "@/shared/ui/section";
+import { RowSection, SECTION_SPACE, SECTION_WIDTH } from "@/shared/ui/section";
 import { FC, HTMLAttributes, ReactNode } from "react";
 import sBenefitLayout from "./benefit.layout.module.scss";
 import clsx from "clsx";
@@ -14,14 +10,14 @@ interface BenefitLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const BenefitLayout: FC<BenefitLayoutProps> = (props) => {
-  const { className, HeaderSlot, ContentSlot } = props;
+  const { HeaderSlot, ContentSlot } = props;
 
   return (
     <RowSection
-      className={clsx(sBenefitLayout.root, className)}
-      classNameRow={sDeco.mainBG}
+      classSection={clsx(sBenefitLayout.root)}
+      classInner={sDeco.mainBG}
       headerSlot={HeaderSlot}
-      topology={SECTION_TOPOLOGY.ROW_CONTAINER}
+      width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.PRIMARY}
     >
       <div className={clsx(sBenefitLayout.inner)}>

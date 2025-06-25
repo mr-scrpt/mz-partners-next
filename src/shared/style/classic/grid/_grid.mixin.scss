@@ -29,10 +29,25 @@ $container-offset-lg: 50px;
     padding-left: $container-offset-lg;
   }
 }
+@mixin container-offset-negative() {
+  margin-right: -1 * $container-offset;
+  margin-left: -1 * $container-offset;
+
+  @include block-bp-lg {
+    margin-right: -1 * $container-offset-lg;
+    margin-left: -1 * $container-offset-lg;
+  }
+}
 
 @mixin like-container-offset() {
   @include container;
 }
+
+@mixin like-container-offset-reset() {
+  padding-right: 0;
+  padding-left: 0;
+}
+
 @mixin like-container-offset-left() {
   padding-left: $container-offset;
 
@@ -48,6 +63,7 @@ $container-offset-lg: 50px;
     padding-right: $container-offset-lg;
   }
 }
+
 @mixin offset() {
   margin-right: calc(-1 * #{$grid-gap});
   margin-left: calc(-1 * #{$grid-gap});

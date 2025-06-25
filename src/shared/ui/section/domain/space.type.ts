@@ -1,6 +1,6 @@
 import { createNamespace } from "@/shared/lib/style/styleProcessor";
 
-export const SECTION_SPACE_VARIANTS = ["PRIMARY", "FLAT"] as const;
+export const SECTION_SPACE_VARIANTS = ["PRIMARY", "INDENTED"] as const;
 
 export type SectionSpace = (typeof SECTION_SPACE_VARIANTS)[number];
 

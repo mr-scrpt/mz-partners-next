@@ -9,7 +9,6 @@ interface SocialListFooterProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const SocialListFooter: FC<SocialListFooterProps> = (props) => {
   const { className } = props;
-  const clsRoot = clsx(sSocialList.root, className);
 
   const { contactSocilaIconList } = useContactIconList();
   return (

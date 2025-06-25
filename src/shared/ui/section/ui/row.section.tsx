@@ -1,34 +1,38 @@
 import clsx from "clsx";
 import { FC, HTMLAttributes, ReactNode } from "react";
 
-import { SectionTopology } from "../domain/topology.type";
+import { SectionWidth } from "../domain/topology.type";
 import sSection from "./style/section.module.scss";
 import { useSectionStyle } from "./style/useSectionStyle";
 import { SectionSpace } from "../domain/space.type";
 
-interface RowSectionProps extends HTMLAttributes<HTMLDivElement> {
-  topology: SectionTopology;
+interface RowSectionProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "className"> {
+  width: SectionWidth;
   space: SectionSpace;
   headerSlot?: ReactNode;
   footerSlot?: ReactNode;
-  classNameRow?: string;
+  classSection?: string;
+  classInner?: string;
+  classContent?: string;
 }
 
 export const RowSection: FC<RowSectionProps> = (props) => {
   const {
     children,
-    className,
-    topology,
+    classSection,
+    width,
     space,
     headerSlot,
     footerSlot,
-    classNameRow,
+    classInner,
   } = props;
-  const { cTopology, cSection, cSpace } = useSectionStyle();
+  const { cWidth, cSection, cSpace } = useSectionStyle();
 
-  const clsSection = clsx(cSection.base, className);
-  const clsInner = clsx(cTopology.base, classNameRow, [
-    cTopology.options[topology],
+  const clsSection = clsx(cSection.base, classSection);
+
+  const clsInner = clsx(cWidth.base, classInner, [
+    cWidth.options[width],
     cSpace.options[space],
   ]);
 
@@ -38,7 +42,7 @@ export const RowSection: FC<RowSectionProps> = (props) => {
         {headerSlot && (
           <div className={sSection.section__header}>{headerSlot}</div>
         )}
-        {children}
+        <div className={sSection.section__content}>{children}</div>
         {footerSlot && (
           <div className={sSection.section__footer}>{footerSlot}</div>
         )}

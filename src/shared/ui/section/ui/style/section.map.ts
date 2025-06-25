@@ -3,25 +3,21 @@ import cls from "./section.module.scss";
 export const SECTION_TO_CLASS = {
   section: {
     base: cls.section,
-    options: {
-      HEADER: cls.section_header,
-      ROW: cls.section_row,
-      FOOTER: cls.section_footer,
-    },
+    options: {},
   },
-  topology: {
-    base: cls.topology,
+  width: {
+    base: cls.width,
     options: {
-      ROW_CONTAINER: cls.topology_rowContainer,
-      ROW_FLAT: cls.topology_rowFlat,
-      ROW_FULL: cls.topology_rowFull,
+      CONTAINER: cls.width_container,
+      CONTAINER_INDENTED: cls.width_container_indented,
+      OFFSET: cls.width_offset,
     },
   },
   space: {
     base: cls.space,
     options: {
       PRIMARY: cls.space_primary,
-      FLAT: cls.space_flat,
+      INDENTED: cls.space_indented,
     },
   },
 };

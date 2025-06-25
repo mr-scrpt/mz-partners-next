@@ -1,8 +1,4 @@
-import {
-  RowSection,
-  SECTION_SPACE,
-  SECTION_TOPOLOGY,
-} from "@/shared/ui/section";
+import { RowSection, SECTION_SPACE, SECTION_WIDTH } from "@/shared/ui/section";
 import { FC, HTMLAttributes, ReactNode } from "react";
 import sCallbackLayout from "./callback.layout.module.scss";
 import clsx from "clsx";
@@ -15,14 +11,14 @@ interface CallbackLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const CallbackLayout: FC<CallbackLayoutProps> = (props) => {
-  const { className, HeaderSlot, ContentSlot, AttentionSlot } = props;
+  const { HeaderSlot, ContentSlot, AttentionSlot } = props;
 
   return (
     <RowSection
-      className={clsx(sCallbackLayout.root, className)}
-      classNameRow={sDeco.mainBG}
+      classSection={clsx(sCallbackLayout.root)}
+      classInner={sDeco.mainBG}
       headerSlot={HeaderSlot}
-      topology={SECTION_TOPOLOGY.ROW_CONTAINER}
+      width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.PRIMARY}
     >
       <div className={clsx(sCallbackLayout.inner)}>

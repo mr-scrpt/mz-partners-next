@@ -2,11 +2,11 @@ import clsx from "clsx";
 import { FC, HTMLAttributes, ReactNode } from "react";
 
 import { SectionSpace } from "../domain/space.type";
-import { SectionTopology } from "../domain/topology.type";
+import { SectionWidth } from "../domain/topology.type";
 import { useSectionStyle } from "./style/useSectionStyle";
 
 interface BoxSectionProps extends HTMLAttributes<HTMLDivElement> {
-  topology: SectionTopology;
+  topology: SectionWidth;
   space: SectionSpace;
   headerSlot?: ReactNode;
   footerSlot?: ReactNode;
@@ -26,15 +26,15 @@ export const BoxSection: FC<BoxSectionProps> = (props) => {
     withRowContainer = true,
   } = props;
 
-  const { cTopology, cSection, cSpace } = useSectionStyle();
+  const { cWidth, cSection, cSpace } = useSectionStyle();
   const clsSection = clsx(cSection.base, className);
 
-  const clsInner = clsx(cTopology.base, cSpace.base, [
-    cTopology.options[topology],
+  const clsInner = clsx(cWidth.base, cSpace.base, [
+    cWidth.options[topology],
     cSpace.options[space],
   ]);
 
-  const clsBox = clsx(cTopology.options.ROW_FLAT, boxClassName);
+  const clsBox = clsx(cWidth.options.ROW_CONTAINER, boxClassName);
 
   const content = (
     <>

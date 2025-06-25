@@ -1,8 +1,4 @@
-import {
-  RowSection,
-  SECTION_SPACE,
-  SECTION_TOPOLOGY,
-} from "@/shared/ui/section";
+import { RowSection, SECTION_SPACE, SECTION_WIDTH } from "@/shared/ui/section";
 import { FC, HTMLAttributes, ReactNode } from "react";
 
 import sHistoryLayout from "./history.layout.module.scss";
@@ -15,17 +11,18 @@ interface HistoryLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const HistoryLayout: FC<HistoryLayoutProps> = (props) => {
-  const { className, HeaderSlot, ContentSlot } = props;
+  const { HeaderSlot, ContentSlot } = props;
 
   return (
     <RowSection
-      className={clsx(sHistoryLayout.root, className)}
-      classNameRow={sDeco.mainBG}
+      classSection={clsx(sHistoryLayout.root)}
+      classInner={sDeco.mainBG}
       headerSlot={HeaderSlot}
-      topology={SECTION_TOPOLOGY.ROW_CONTAINER}
+      width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.PRIMARY}
     >
       <div className={clsx(sHistoryLayout.inner)}>
+        {/* <div>inner yellow</div> */}
         <div className={sHistoryLayout.content}>{ContentSlot}</div>
       </div>
     </RowSection>

@@ -1,8 +1,4 @@
-import {
-  RowSection,
-  SECTION_SPACE,
-  SECTION_TOPOLOGY,
-} from "@/shared/ui/section";
+import { RowSection, SECTION_SPACE, SECTION_WIDTH } from "@/shared/ui/section";
 import { FC, HTMLAttributes, ReactNode } from "react";
 import sCompetencyLayout from "./competency.layout.module.scss";
 import clsx from "clsx";
@@ -13,13 +9,13 @@ interface CompetencyLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const CompetencyLayout: FC<CompetencyLayoutProps> = (props) => {
-  const { className, HeaderSlot, ContentSlot } = props;
+  const { HeaderSlot, ContentSlot } = props;
 
   return (
     <RowSection
-      topology={SECTION_TOPOLOGY.ROW_CONTAINER}
+      width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.PRIMARY}
-      className={clsx(sCompetencyLayout.root, className)}
+      classSection={clsx(sCompetencyLayout.root)}
       headerSlot={HeaderSlot}
     >
       <div className={sCompetencyLayout.inner}>

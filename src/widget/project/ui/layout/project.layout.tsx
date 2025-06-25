@@ -1,12 +1,7 @@
-import {
-  RowSection,
-  SECTION_SPACE,
-  SECTION_TOPOLOGY,
-} from "@/shared/ui/section";
+import { RowSection, SECTION_SPACE, SECTION_WIDTH } from "@/shared/ui/section";
 import { FC, HTMLAttributes, ReactNode } from "react";
 import sProjectLayout from "./project.layout.module.scss";
 import clsx from "clsx";
-import sDeco from "./deco.module.scss";
 
 interface ProjectLayoutProps extends HTMLAttributes<HTMLDivElement> {
   HeaderSlot: ReactNode;
@@ -14,14 +9,13 @@ interface ProjectLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const ProjectLayout: FC<ProjectLayoutProps> = (props) => {
-  const { className, HeaderSlot, ContentSlot } = props;
+  const { HeaderSlot, ContentSlot } = props;
 
   return (
     <RowSection
-      className={clsx(sProjectLayout.root, className)}
-      classNameRow={sDeco.mainBG}
+      classSection={clsx(sProjectLayout.root)}
       headerSlot={HeaderSlot}
-      topology={SECTION_TOPOLOGY.ROW_CONTAINER}
+      width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.PRIMARY}
     >
       <div className={clsx(sProjectLayout.inner)}>

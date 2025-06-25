@@ -1,8 +1,4 @@
-import {
-  RowSection,
-  SECTION_SPACE,
-  SECTION_TOPOLOGY,
-} from "@/shared/ui/section";
+import { RowSection, SECTION_SPACE, SECTION_WIDTH } from "@/shared/ui/section";
 import { FC, HTMLAttributes, ReactNode } from "react";
 
 import sAboutLayout from "./about.layout.module.scss";
@@ -15,13 +11,13 @@ interface AboutLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const AboutLayout: FC<AboutLayoutProps> = (props) => {
-  const { className, HeaderSlot, ContentSlot } = props;
+  const { HeaderSlot, ContentSlot } = props;
 
   return (
     <RowSection
-      className={clsx(sAboutLayout.root, className)}
+      classSection={clsx(sAboutLayout.root)}
       headerSlot={HeaderSlot}
-      topology={SECTION_TOPOLOGY.ROW_CONTAINER}
+      width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.PRIMARY}
     >
       <div className={clsx(sAboutLayout.inner)}>

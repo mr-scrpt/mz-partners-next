@@ -1,7 +1,7 @@
-import { RowSection } from "@/shared/ui/section/ui/row.section";
 import { FC, HTMLAttributes, ReactNode } from "react";
 import sNavigationMainLayout from "./navigationMain.layout.module.scss";
 import clsx from "clsx";
+import { SECTION_WIDTH, RowSection, SECTION_SPACE } from "@/shared/ui/section";
 
 interface NavigationMainLayoutProps extends HTMLAttributes<HTMLDivElement> {
   MenuSlost: ReactNode;
@@ -12,9 +12,9 @@ export const NavigationMainLayout: FC<NavigationMainLayoutProps> = (props) => {
 
   return (
     <RowSection
-      topology="ROW_CONTAINER"
-      space="FLAT"
-      className={clsx(sNavigationMainLayout.root, className)}
+      width={SECTION_WIDTH.CONTAINER_INDENTED}
+      space={SECTION_SPACE.INDENTED}
+      classSection={clsx(sNavigationMainLayout.root)}
     >
       <div className={sNavigationMainLayout.inner}>
         <div className={sNavigationMainLayout.menu}>{MenuSlost}</div>

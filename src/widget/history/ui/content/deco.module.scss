@@ -22,8 +22,9 @@
     background: var(--background-secondary);
     @include block-bp-lg {
       top: -190px;
-      right: calc(-1 * #{$grid-gap});
-      left: calc(-1 * #{$grid-gap});
+
+      // right: calc(-1 * #{$grid-gap});
+      // left: calc(-1 * #{$grid-gap});
 
       width: calc(100% + #{$grid-gap});
 

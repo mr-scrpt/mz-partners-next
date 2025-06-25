@@ -1,8 +1,4 @@
-import {
-  RowSection,
-  SECTION_SPACE,
-  SECTION_TOPOLOGY,
-} from "@/shared/ui/section";
+import { RowSection, SECTION_SPACE, SECTION_WIDTH } from "@/shared/ui/section";
 import { FC, HTMLAttributes, ReactNode } from "react";
 import sContactLayout from "./contact.layout.module.scss";
 import clsx from "clsx";
@@ -17,21 +13,15 @@ interface ContactLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const ContactLayout: FC<ContactLayoutProps> = (props) => {
-  const {
-    className,
-    HeaderSlot,
-    PrimarySlot,
-    SecondarySlot,
-    TertiarySlot,
-    FourthSlot,
-  } = props;
+  const { HeaderSlot, PrimarySlot, SecondarySlot, TertiarySlot, FourthSlot } =
+    props;
 
   return (
     <RowSection
-      className={clsx(sContactLayout.root, className)}
-      classNameRow={sDeco.mainBG}
+      classSection={clsx(sContactLayout.root)}
+      classInner={sDeco.mainBG}
       headerSlot={HeaderSlot}
-      topology={SECTION_TOPOLOGY.ROW_CONTAINER}
+      width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.PRIMARY}
     >
       <div className={clsx(sContactLayout.inner)}>

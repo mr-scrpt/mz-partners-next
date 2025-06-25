@@ -1,8 +1,4 @@
-import {
-  RowSection,
-  SECTION_SPACE,
-  SECTION_TOPOLOGY,
-} from "@/shared/ui/section";
+import { RowSection, SECTION_SPACE, SECTION_WIDTH } from "@/shared/ui/section";
 import { FC, HTMLAttributes, ReactNode } from "react";
 import sPrincipleLayout from "./principle.layout.module.scss";
 import clsx from "clsx";
@@ -14,15 +10,15 @@ interface PrincipleLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const PrincipleLayout: FC<PrincipleLayoutProps> = (props) => {
-  const { className, HeaderSlot, ContentSlot } = props;
+  const { HeaderSlot, ContentSlot } = props;
 
   return (
     <RowSection
-      className={clsx(sPrincipleLayout.root, className)}
-      classNameRow={sDeco.mainBG}
-      headerSlot={HeaderSlot}
-      topology={SECTION_TOPOLOGY.ROW_CONTAINER}
+      classInner={sDeco.mainBG}
+      classSection={clsx(sPrincipleLayout.root)}
+      width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.PRIMARY}
+      headerSlot={HeaderSlot}
     >
       <div className={clsx(sPrincipleLayout.inner)}>
         <div className={sPrincipleLayout.content}>{ContentSlot}</div>
