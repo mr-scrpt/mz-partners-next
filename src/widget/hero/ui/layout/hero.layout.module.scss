@@ -22,9 +22,12 @@
   padding-bottom: 50px;
 
   gap: 30px;
-  @include col-flat(10);
-  @include col-md-flat(8);
-  @include col-lg-flat(6);
+
+  @include like-container-offset;
+  @include col(10);
+  @include col-md(8);
+  @include col-lg(6);
+
   @include block-bp-md {
     padding-top: 100px;
     padding-bottom: 100px;
