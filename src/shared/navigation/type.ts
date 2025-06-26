@@ -10,11 +10,6 @@ export type PageRouteType = {
 } & {
   [key in Locale]: PageRouteItem;
 };
-// export interface PageRouteType {
-//   id: string;
-//   ua: PageRouteItem;
-//   en: PageRouteItem;
-// }
 
 export interface PageRouteComposedType extends PageRouteItem {
   id: string;
@@ -23,6 +18,7 @@ export interface PageRouteComposedType extends PageRouteItem {
 export const NAVIGATION_LIST = {
   main: "main",
   footer: "footer",
+  pageList: "pageList",
 } as const;
 
 export type NavigationListType = keyof typeof NAVIGATION_LIST;
@@ -30,4 +26,5 @@ export type NavigationListType = keyof typeof NAVIGATION_LIST;
 export interface PageNavigation {
   [NAVIGATION_LIST.main]: Array<PageRouteComposedType>;
   [NAVIGATION_LIST.footer]: Array<PageRouteComposedType>;
+  [NAVIGATION_LIST.pageList]: Array<PageRouteComposedType>;
 }
