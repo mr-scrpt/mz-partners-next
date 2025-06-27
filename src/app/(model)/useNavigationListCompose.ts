@@ -1,6 +1,7 @@
 import { pageRouteAbout } from "@/page/about";
 import { pageRouteCompetency } from "@/page/competency";
 import { pageRouteContact } from "@/page/contact";
+import { pageRouteMain } from "@/page/main";
 import { pageRouteTeam } from "@/page/team";
 import { Locale } from "@/shared/lib/i18n/domain/type";
 import { useRouteItemList } from "@/shared/navigation/useRouteItemList";
@@ -20,8 +21,17 @@ export const useNavigationListCompose = (locale: Locale) => {
     pageRouteContact,
   ]);
 
+  const mainRoute = useMemo(() => {
+    return useRouteItemList([pageRouteMain], locale);
+  }, [locale, pageRouteMain]);
+
+  const composePageList = useMemo(() => {
+    return [...mainRoute, ...composeRoute];
+  }, [mainRoute, composeRoute]);
+
   return {
     main: composeRoute,
     footer: composeRoute,
+    pageList: composePageList,
   };
 };
