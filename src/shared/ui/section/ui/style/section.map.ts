@@ -17,6 +17,7 @@ export const SECTION_TO_CLASS = {
     base: cls.space,
     options: {
       PRIMARY: cls.space_primary,
+      SECONDARY: cls.space_secondary,
       INDENTED: cls.space_indented,
     },
   },

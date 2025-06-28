@@ -3,7 +3,6 @@ import { Slot } from "@radix-ui/react-slot";
 import styles from "./button.module.scss";
 import { ButtonSize, ButtonVariant } from "./type";
 
-
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean;
   variant?: ButtonVariant;

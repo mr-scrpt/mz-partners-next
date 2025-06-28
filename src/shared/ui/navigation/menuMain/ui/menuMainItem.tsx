@@ -8,7 +8,7 @@ interface MenuMainItemProps extends HTMLAttributes<HTMLDivElement> {
   item: MenuItem;
 }
 
-export const MenuMainItem: FC<MenuFooterItemProps> = (props) => {
+export const MenuMainItem: FC<MenuMainItemProps> = (props) => {
   const { item } = props;
 
   return (

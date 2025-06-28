@@ -1,8 +1,10 @@
-import { pageRouteAbout } from "@/page/about";
-import { pageRouteCompetency } from "@/page/competency";
-import { pageRouteContact } from "@/page/contact";
-import { pageRouteMain } from "@/page/main";
-import { pageRouteTeam } from "@/page/team";
+import {
+  pageRouteAbout,
+  pageRouteCompetency,
+  pageRouteTeam,
+  pageRouteContact,
+  pageRouteMain,
+} from "@/page";
 import { Locale } from "@/shared/lib/i18n/domain/type";
 import { useRouteItemList } from "@/shared/navigation/useRouteItemList";
 import { useMemo } from "react";

@@ -7,17 +7,19 @@ import { PrincipleModule } from "@/widget/principle";
 import { ProjectModule } from "@/widget/project";
 import { SocialLineModule } from "@/widget/socialLine";
 
+import sPage from "../page.module.scss";
+
 export const PageMain = async () => {
   return (
-    <>
+    <div className={sPage.root}>
       <HeroModule />
       <SocialLineModule />
       <CompetencyModule />
       <PrincipleModule />
       <ProjectModule />
-      <BenefitModule />
+      <BenefitModule className={sPage.root__offset} />
       <PiplineModule />
-      <CallbackModule />
-    </>
+      <CallbackModule className={sPage.root__offset} />
+    </div>
   );
 };

@@ -6,7 +6,12 @@ import { List } from "./list/list";
 interface CompetencyModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const CompetencyModule: FC<CompetencyModuleProps> = (props) => {
+  const { className } = props;
   return (
-    <CompetencyLayout HeaderSlot={<CompetencyHeader />} ContentSlot={<List />} />
+    <CompetencyLayout
+      HeaderSlot={<CompetencyHeader />}
+      ContentSlot={<List />}
+      className={className}
+    />
   );
 };

@@ -13,12 +13,18 @@ interface ContactLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const ContactLayout: FC<ContactLayoutProps> = (props) => {
-  const { HeaderSlot, PrimarySlot, SecondarySlot, TertiarySlot, FourthSlot } =
-    props;
+  const {
+    HeaderSlot,
+    PrimarySlot,
+    SecondarySlot,
+    TertiarySlot,
+    FourthSlot,
+    className,
+  } = props;
 
   return (
     <RowSection
-      classSection={clsx(sContactLayout.root)}
+      classSection={clsx(sContactLayout.root, className)}
       classInner={sDeco.mainBG}
       headerSlot={HeaderSlot}
       width={SECTION_WIDTH.CONTAINER}

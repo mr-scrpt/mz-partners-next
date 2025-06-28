@@ -6,7 +6,12 @@ import { List } from "./list/list";
 interface PrincipleModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const PrincipleModule: FC<PrincipleModuleProps> = (props) => {
+  const { className } = props;
   return (
-    <PrincipleLayout HeaderSlot={<PrincipleHeader />} ContentSlot={<List />} />
+    <PrincipleLayout
+      HeaderSlot={<PrincipleHeader />}
+      ContentSlot={<List />}
+      className={className}
+    />
   );
 };

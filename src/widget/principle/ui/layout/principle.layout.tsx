@@ -10,12 +10,12 @@ interface PrincipleLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const PrincipleLayout: FC<PrincipleLayoutProps> = (props) => {
-  const { HeaderSlot, ContentSlot } = props;
+  const { HeaderSlot, ContentSlot, className } = props;
 
   return (
     <RowSection
+      classSection={clsx(sPrincipleLayout.root, className)}
       classInner={sDeco.mainBG}
-      classSection={clsx(sPrincipleLayout.root)}
       width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.PRIMARY}
       headerSlot={HeaderSlot}

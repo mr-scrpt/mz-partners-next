@@ -10,11 +10,11 @@ interface PiplineLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const PiplineLayout: FC<PiplineLayoutProps> = (props) => {
-  const { HeaderSlot, ContentSlot } = props;
+  const { HeaderSlot, ContentSlot, className } = props;
 
   return (
     <RowSection
-      classSection={clsx(sPiplineLayout.root)}
+      classSection={clsx(sPiplineLayout.root, className)}
       classInner={sDeco.mainBG}
       headerSlot={HeaderSlot}
       width={SECTION_WIDTH.CONTAINER}

@@ -9,13 +9,13 @@ interface CompetencyLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const CompetencyLayout: FC<CompetencyLayoutProps> = (props) => {
-  const { HeaderSlot, ContentSlot } = props;
+  const { HeaderSlot, ContentSlot, className } = props;
 
   return (
     <RowSection
+      classSection={clsx(sCompetencyLayout.root, className)}
       width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.PRIMARY}
-      classSection={clsx(sCompetencyLayout.root)}
       headerSlot={HeaderSlot}
     >
       <div className={sCompetencyLayout.inner}>

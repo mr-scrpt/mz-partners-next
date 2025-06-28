@@ -7,5 +7,12 @@ import { Content } from "./content/content";
 interface HistoryModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const HistoryModule: FC<HistoryModuleProps> = (props) => {
-  return <HistoryLayout HeaderSlot={<HistoryHeader />} ContentSlot={<Content />} />;
+  const { className } = props;
+  return (
+    <HistoryLayout
+      HeaderSlot={<HistoryHeader />}
+      ContentSlot={<Content />}
+      className={className}
+    />
+  );
 };

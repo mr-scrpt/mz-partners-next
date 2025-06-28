@@ -200,8 +200,13 @@ $container-offset-lg: 50px;
 }
 
 // Миксин для колонок (базовый)
+// @mixin col($span: $grid-columns) {
+//   grid-column: span min($span, $grid-columns);
+// }
 @mixin col($span: $grid-columns) {
-  grid-column: span min($span, $grid-columns);
+  & {
+    grid-column: span min($span, $grid-columns);
+  }
 }
 
 // Миксины для разных брейкпоинтов

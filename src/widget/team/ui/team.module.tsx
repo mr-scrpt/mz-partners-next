@@ -6,7 +6,12 @@ import { List } from "./list/list";
 interface TeamModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const TeamModule: FC<TeamModuleProps> = (props) => {
+  const { className } = props;
   return (
-    <TeamLayout HeaderSlot={<TeamHeader />} ContentSlot={<List />} />
+    <TeamLayout
+      HeaderSlot={<TeamHeader />}
+      ContentSlot={<List />}
+      className={className}
+    />
   );
 };

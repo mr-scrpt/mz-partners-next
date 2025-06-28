@@ -6,5 +6,11 @@ import { NavigationMainLayout } from "./layout/navigationMain.layout";
 interface NavigationMainProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const NavigationMainModule: FC<NavigationMainProps> = (props) => {
-  return <NavigationMainLayout MenuSlost={<MenuMainHamburger />} />;
+  const { className } = props;
+  return (
+    <NavigationMainLayout
+      MenuSlost={<MenuMainHamburger />}
+      className={className}
+    />
+  );
 };

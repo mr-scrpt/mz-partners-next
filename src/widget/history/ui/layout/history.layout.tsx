@@ -11,11 +11,11 @@ interface HistoryLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const HistoryLayout: FC<HistoryLayoutProps> = (props) => {
-  const { HeaderSlot, ContentSlot } = props;
+  const { HeaderSlot, ContentSlot, className } = props;
 
   return (
     <RowSection
-      classSection={clsx(sHistoryLayout.root)}
+      classSection={clsx(sHistoryLayout.root, className)}
       classInner={sDeco.mainBG}
       headerSlot={HeaderSlot}
       width={SECTION_WIDTH.CONTAINER}

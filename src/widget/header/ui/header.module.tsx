@@ -7,11 +7,13 @@ import { HeaderLayout } from "./layout/header.layout";
 interface HeaderModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const HeaderModule: FC<HeaderModuleProps> = (props) => {
+  const { className } = props;
   return (
     <HeaderLayout
       VisualSlot={<LogoLink href="/" view="PRIMARY" />}
       InfoSlot={<ContactHeader />}
       ActionSlot={<Action />}
+      className={className}
     />
   );
 };

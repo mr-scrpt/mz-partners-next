@@ -11,11 +11,11 @@ interface AboutLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const AboutLayout: FC<AboutLayoutProps> = (props) => {
-  const { HeaderSlot, ContentSlot } = props;
+  const { HeaderSlot, ContentSlot, className } = props;
 
   return (
     <RowSection
-      classSection={clsx(sAboutLayout.root)}
+      classSection={clsx(sAboutLayout.root, className)}
       headerSlot={HeaderSlot}
       width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.PRIMARY}

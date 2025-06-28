@@ -10,6 +10,7 @@ export const ICON_TO_CLASS = {
       EMAIL: cls.email,
       BENEFIT: cls.benefit,
       LECKSIS: cls.lecksis,
+      UNKNOWN: cls.unknown,
       // TG: cls.tg,
       // ARROW_TILE: cls.arrow_tile,
       // CALENDAR: cls.calendar,

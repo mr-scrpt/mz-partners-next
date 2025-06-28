@@ -1,11 +1,16 @@
 @use "./src/shared/style/classic/mixin.scss" as *;
 
-:root {
-  --icon-height: 72px; /* Высота иконки */
-  --icon-padding: 20px; /* Отступы в .iconWrap */
-  --margin-compensation: calc(var(--icon-height) / 2 + var(--icon-padding));
-  --margin-offset: calc(-1 * var(--icon-height) / 2 - var(--icon-padding));
-}
+// :root {
+//   --icon-height: 72px; /* Высота иконки */
+//   --icon-padding: 20px; /* Отступы в .iconWrap */
+//   --margin-compensation: calc(var(--icon-height) / 2 + var(--icon-padding));
+//   --margin-offset: calc(-1 * var(--icon-height) / 2 - var(--icon-padding));
+// }
+
+$icon-height: 72px;
+$icon-padding: 20px;
+$margin-compensation: calc(#{$icon-height} / 2 + #{$icon-padding});
+$margin-offset: calc(-1 * #{$icon-height} / 2 - #{$icon-padding});
 
 .inner {
   display: flex;
@@ -13,7 +18,7 @@
 
   height: 100%;
 
-  margin-top: var(--margin-compensation);
+  margin-top: $margin-compensation;
 
   background: var(--color-primary);
 }
@@ -23,7 +28,7 @@
   align-items: center;
   justify-content: center;
 
-  margin-top: var(--margin-offset);
+  margin-top: $margin-offset;
 
   text-align: center;
 }

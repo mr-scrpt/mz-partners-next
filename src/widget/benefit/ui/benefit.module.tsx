@@ -6,7 +6,12 @@ import { List } from "./list/list";
 interface BenefitModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const BenefitModule: FC<BenefitModuleProps> = (props) => {
+  const { className } = props;
   return (
-    <BenefitLayout HeaderSlot={<BenefitHeader />} ContentSlot={<List />} />
+    <BenefitLayout
+      HeaderSlot={<BenefitHeader />}
+      ContentSlot={<List />}
+      className={className}
+    />
   );
 };

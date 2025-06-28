@@ -11,11 +11,11 @@ interface FooterLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const FooterLayout: FC<FooterLayoutProps> = (props) => {
-  const { PrimarySlot, SecondarySlot, ThirdSlot } = props;
+  const { PrimarySlot, SecondarySlot, ThirdSlot, className } = props;
 
   return (
     <RowSection
-      classSection={clsx(sFooterLayout.root, sDeco.mainBG)}
+      classSection={clsx(sFooterLayout.root, sDeco.mainBG, className)}
       classInner={sDeco.mainBG}
       width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.INDENTED}

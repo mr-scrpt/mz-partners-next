@@ -1,1 +1,1 @@
-export { PageContact as default } from "@/page/contact/page";
+export { PageContact as default } from "@/page";

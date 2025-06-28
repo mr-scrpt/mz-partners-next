@@ -9,13 +9,13 @@ interface TeamLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const TeamLayout: FC<TeamLayoutProps> = (props) => {
-  const { HeaderSlot, ContentSlot } = props;
+  const { HeaderSlot, ContentSlot, className } = props;
 
   return (
     <RowSection
+      classSection={clsx(sTeamLayout.root, className)}
       width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.PRIMARY}
-      classSection={clsx(sTeamLayout.root)}
       headerSlot={HeaderSlot}
     >
       <div className={sTeamLayout.inner}>

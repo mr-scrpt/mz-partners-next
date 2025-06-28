@@ -9,11 +9,11 @@ interface ProjectLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const ProjectLayout: FC<ProjectLayoutProps> = (props) => {
-  const { HeaderSlot, ContentSlot } = props;
+  const { HeaderSlot, ContentSlot, className } = props;
 
   return (
     <RowSection
-      classSection={clsx(sProjectLayout.root)}
+      classSection={clsx(sProjectLayout.root, className)}
       headerSlot={HeaderSlot}
       width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.PRIMARY}

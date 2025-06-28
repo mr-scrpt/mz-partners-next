@@ -1,15 +1,18 @@
 import { useMemo } from "react";
+
 type BaseType = string | string[];
 
-// Базовый интерфейс для секции стилей
+// Базовый интерфейс для секции стилей с поддержкой массивов в опциях
 interface StyleSection {
   base: BaseType;
-  options: Record<string, string>;
+  options: Record<string, string | string[]>;
 }
 
 type ProcessedSectionData<T extends StyleSection> = {
   base: string[];
-  options: T["options"];
+  options: {
+    [K in keyof T["options"]]: string[];
+  };
 };
 
 // Создаем тип для обработанных классов с добавлением префикса 'c'
@@ -19,34 +22,41 @@ type ProcessedClasses<T extends Record<string, StyleSection>> = {
   cBase: string[];
 };
 
+// Утилитарная функция для нормализации классов в массив
+const normalizeToArray = (value: string | string[]): string[] => {
+  return Array.isArray(value) ? value : [value];
+};
+
 export const useStyleProcessor = <T extends Record<string, StyleSection>>(
   classesConfig: T,
 ): ProcessedClasses<T> => {
   return useMemo(() => {
     // Создаём промежуточный объект для хранения данных
     const intermediate: Record<string, any> = {};
-
     // Массив для сбора всех базовых классов
     const baseClasses: string[] = [];
 
     // Обрабатываем каждую секцию конфига
     Object.entries(classesConfig).forEach(([sectionName, sectionData]) => {
       // Добавляем базовые классы в общий массив
-      if (Array.isArray(sectionData.base)) {
-        baseClasses.push(...sectionData.base);
-      } else {
-        baseClasses.push(sectionData.base);
-      }
+      const normalizedBase = normalizeToArray(sectionData.base);
+      baseClasses.push(...normalizedBase);
 
       // Создаём ключ для переименованной секции (добавляем префикс 'c')
       const processedKey = `c${sectionName.charAt(0).toUpperCase()}${sectionName.slice(1)}`;
 
+      // Обрабатываем опции, нормализуя каждую в массив
+      const processedOptions: Record<string, string[]> = {};
+      Object.entries(sectionData.options).forEach(
+        ([optionKey, optionValue]) => {
+          processedOptions[optionKey] = normalizeToArray(optionValue);
+        },
+      );
+
       // Копируем данные секции
       intermediate[processedKey] = {
-        options: { ...sectionData.options },
-        base: Array.isArray(sectionData.base)
-          ? [...sectionData.base]
-          : [sectionData.base],
+        options: processedOptions,
+        base: normalizedBase,
       };
     });
 
@@ -59,7 +69,6 @@ export const useStyleProcessor = <T extends Record<string, StyleSection>>(
 
 export function createNamespace<T extends readonly string[]>(variants: T) {
   type ValueType = T[number];
-
   return variants.reduce(
     (acc, key) => ({ ...acc, [key]: key }),
     {} as Record<ValueType, ValueType>,

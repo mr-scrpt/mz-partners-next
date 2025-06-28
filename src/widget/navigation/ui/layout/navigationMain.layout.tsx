@@ -12,9 +12,9 @@ export const NavigationMainLayout: FC<NavigationMainLayoutProps> = (props) => {
 
   return (
     <RowSection
+      classSection={clsx(sNavigationMainLayout.root, className)}
       width={SECTION_WIDTH.CONTAINER_INDENTED}
       space={SECTION_SPACE.INDENTED}
-      classSection={clsx(sNavigationMainLayout.root)}
     >
       <div className={sNavigationMainLayout.inner}>
         <div className={sNavigationMainLayout.menu}>{MenuSlost}</div>

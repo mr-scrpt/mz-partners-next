@@ -10,11 +10,11 @@ interface BenefitLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const BenefitLayout: FC<BenefitLayoutProps> = (props) => {
-  const { HeaderSlot, ContentSlot } = props;
+  const { HeaderSlot, ContentSlot, className } = props;
 
   return (
     <RowSection
-      classSection={clsx(sBenefitLayout.root)}
+      classSection={clsx(sBenefitLayout.root, className)}
       classInner={sDeco.mainBG}
       headerSlot={HeaderSlot}
       width={SECTION_WIDTH.CONTAINER}

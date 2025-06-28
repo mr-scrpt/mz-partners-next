@@ -6,7 +6,12 @@ import { ProjectLayout } from "./layout/project.layout";
 interface ProjectModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const ProjectModule: FC<ProjectModuleProps> = (props) => {
+  const { className } = props;
   return (
-    <ProjectLayout HeaderSlot={<ProjectHeader />} ContentSlot={<List />} />
+    <ProjectLayout
+      HeaderSlot={<ProjectHeader />}
+      ContentSlot={<List />}
+      className={className}
+    />
   );
 };

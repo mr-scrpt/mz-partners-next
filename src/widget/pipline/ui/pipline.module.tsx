@@ -6,7 +6,12 @@ import { List } from "./list/list";
 interface PiplineModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const PiplineModule: FC<PiplineModuleProps> = (props) => {
+  const { className } = props;
   return (
-    <PiplineLayout HeaderSlot={<PiplineHeader />} ContentSlot={<List />} />
+    <PiplineLayout
+      HeaderSlot={<PiplineHeader />}
+      ContentSlot={<List />}
+      className={className}
+    />
   );
 };

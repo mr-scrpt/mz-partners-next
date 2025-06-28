@@ -1,1 +1,1 @@
-export { PageTeam as default } from "@/page/team/page";
+export { PageTeam as default } from "@/page";

@@ -7,8 +7,10 @@ import { CallbackForm } from "./callbackForm/callbackForm";
 interface CallbackModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const CallbackModule: FC<CallbackModuleProps> = (props) => {
+  const { className } = props;
   return (
     <CallbackLayout
+      className={className}
       HeaderSlot={<CallbackHeader />}
       ContentSlot={<CallbackForm />}
       AttentionSlot={<Attention />}

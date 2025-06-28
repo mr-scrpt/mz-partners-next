@@ -1,11 +1,7 @@
-import {
-  HeaderSection,
-  RowSection,
-  SECTION_SPACE,
-  SECTION_WIDTH,
-} from "@/shared/ui/section";
+import { RowSection, SECTION_SPACE, SECTION_WIDTH } from "@/shared/ui/section";
 import { FC, HTMLAttributes, ReactNode } from "react";
 import sHeaderLayout from "./header.layout.module.scss";
+import clsx from "clsx";
 
 interface HeaderLayoutProps extends HTMLAttributes<HTMLDivElement> {
   VisualSlot: ReactNode;
@@ -14,11 +10,11 @@ interface HeaderLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const HeaderLayout: FC<HeaderLayoutProps> = (props) => {
-  const { VisualSlot, InfoSlot, ActionSlot } = props;
+  const { VisualSlot, InfoSlot, ActionSlot, className } = props;
 
   return (
     <RowSection
-      classSection={sHeaderLayout.root}
+      classSection={clsx(sHeaderLayout.root, className)}
       width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.INDENTED}
     >

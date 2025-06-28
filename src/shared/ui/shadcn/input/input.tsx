@@ -47,7 +47,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <Button
             type="button"
             variant="ghost"
-            size="icon"
+            size="l"
             onClick={handlePasswordEye}
             className={styles.passwordButton}
           >

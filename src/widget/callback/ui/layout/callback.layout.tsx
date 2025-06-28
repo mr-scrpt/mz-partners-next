@@ -11,11 +11,11 @@ interface CallbackLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const CallbackLayout: FC<CallbackLayoutProps> = (props) => {
-  const { HeaderSlot, ContentSlot, AttentionSlot } = props;
+  const { HeaderSlot, ContentSlot, AttentionSlot, className } = props;
 
   return (
     <RowSection
-      classSection={clsx(sCallbackLayout.root)}
+      classSection={clsx(sCallbackLayout.root, className)}
       classInner={sDeco.mainBG}
       headerSlot={HeaderSlot}
       width={SECTION_WIDTH.CONTAINER}

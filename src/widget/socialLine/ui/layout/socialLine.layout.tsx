@@ -8,12 +8,12 @@ interface SocialLineLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const SocialLineLayout: FC<SocialLineLayoutProps> = (props) => {
-  const { SocialSlot } = props;
+  const { SocialSlot, className } = props;
   return (
     <RowSection
+      classSection={clsx(sSocialLineLayout.root, className)}
       width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.INDENTED}
-      classSection={clsx(sSocialLineLayout.root)}
     >
       <div className={clsx(sSocialLineLayout.inner)}>
         <div className={sSocialLineLayout.content}>{SocialSlot}</div>

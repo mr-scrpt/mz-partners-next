@@ -10,6 +10,7 @@ import { Video } from "./video/video";
 interface ContactModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const ContactModule: FC<ContactModuleProps> = (props) => {
+  const { className } = props;
   return (
     <ContactLayout
       HeaderSlot={<ContactHeader />}
@@ -17,6 +18,7 @@ export const ContactModule: FC<ContactModuleProps> = (props) => {
       SecondarySlot={<Promo />}
       TertiarySlot={<Map />}
       FourthSlot={<Video />}
+      className={className}
     />
   );
 };
