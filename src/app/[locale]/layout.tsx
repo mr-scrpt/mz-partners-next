@@ -1,13 +1,13 @@
 import { Locale } from "@/shared/lib/i18n/domain/type";
 import { routing } from "@/shared/lib/i18n/routing";
 import LayoutHTML from "@/shared/ui/layout/ui/html.layout";
+import { FooterModule } from "@/widget/footer";
 import { HeaderModule } from "@/widget/header";
 import { NavigationMainModule } from "@/widget/navigation/";
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { ProvidersRoot } from "../(provider)";
-import { FooterModule } from "@/widget/footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",

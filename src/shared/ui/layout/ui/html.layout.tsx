@@ -2,7 +2,8 @@ import { sGlobal, sPage, sTheme } from "@/shared/style/module";
 import clsx from "clsx";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, Suspense } from "react";
+import { Loader } from "../../loader/ui/loader";
 
 const MontserratSans = Montserrat({
   variable: "--font-montserrat-sans",
@@ -26,7 +27,7 @@ const LayoutHTML = async ({ children, locale }: LayoutHTMLProps) => {
       className={clsx(sGlobal.layer, sGlobal.html, sGlobal.reset)}
     >
       <body className={clsx(sPage.page, MontserratSans.variable, sTheme.theme)}>
-        {children}
+        <Suspense fallback={<Loader />}>{children}</Suspense>
       </body>
     </html>
   );
