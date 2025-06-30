@@ -1,4 +1,5 @@
 import { Locale } from "@/shared/lib/i18n/domain/type";
+import { sPage } from "@/shared/style/module";
 import { routing } from "@/shared/lib/i18n/routing";
 import LayoutHTML from "@/shared/ui/layout/ui/html.layout";
 import { FooterModule } from "@/widget/footer";
@@ -37,7 +38,7 @@ const LocalLayout = async ({ children, params }: RootLayoutProps) => {
         <HeaderModule />
         <NavigationMainModule />
         <>{children}</>
-        <FooterModule />
+        <FooterModule className={sPage.page__last} />
       </ProvidersRoot>
     </LayoutHTML>
   );
