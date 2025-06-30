@@ -75,25 +75,25 @@
   @include animate-state-action;
 }
 
+// Новый миксин для статичного состояния инициализации
 @mixin animate-init {
+  animation: none;
+  @include animate-state-action;
+}
+
+// Миксин для применения init-стилей
+@mixin apply-init-styles {
   transform: translate(var(--init-translate-x, 0), var(--init-translate-y, 0))
     scale(var(--init-scale, 1)) rotate(var(--init-rotate, 0));
-  animation: none !important;
 
   opacity: var(--init-opacity, 1);
   grid-template-rows: var(--init-grid-rows, 1fr);
-  @include animate-state-action;
 }
 
 @mixin animate-reset() {
   animation: none;
   @include animate-state-action;
 }
-
-// @mixin animation-reset() {
-//   animation: none;
-//   @include animate-state-action;
-// }
 
 // Fade mixins
 @mixin fade-in($opacity: 0) {

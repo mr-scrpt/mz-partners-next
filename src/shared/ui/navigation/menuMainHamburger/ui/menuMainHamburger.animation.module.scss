@@ -17,18 +17,13 @@
   @include animate-init;
   @include fade-init(0);
   @include slide-init(-100%, 100%);
+
+  @include apply-init-styles;
 }
 
 @mixin menu-reset {
   @include block-bp-lg {
-    transform: none !important;
-    animation: none;
-    pointer-events: auto;
-
-    // animation: none;
-    // pointer-events: auto;
-    //
-    opacity: 1 !important;
+    @include animate-reset;
   }
 }
 
