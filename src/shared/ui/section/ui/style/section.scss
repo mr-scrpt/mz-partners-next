@@ -2,4 +2,8 @@
 
 .section {
   position: relative;
+
+  &__header {
+    width: 100%;
+  }
 }

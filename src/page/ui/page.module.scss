@@ -1,6 +1,8 @@
 @use "./src/shared/style/classic/mixin.scss" as *;
 
 .root {
+  position: relative;
+
   &__offset {
     margin-bottom: 30px;
     @include block-bp-lg {
@@ -9,7 +11,7 @@
   }
 
   &__fall {
-    z-index: -1;
+    // z-index: -1;
 
     margin-top: -30px;
 
