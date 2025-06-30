@@ -13,7 +13,7 @@ interface MenuMainProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const MenuMainHamburger: FC<MenuMainProps> = (props) => {
   const { className } = props;
-  const { isOpen, toggleMenu, menuRef } = useMenu();
+  const { isInit, isOpen, toggleMenu, menuRef } = useMenu();
 
   const menuList = useNavigationData(NAVIGATION_LIST.main);
 
@@ -26,8 +26,9 @@ export const MenuMainHamburger: FC<MenuMainProps> = (props) => {
         </div>
         <ul
           className={clsx(sMenu.list, sAnimation.showing, {
-            [sAnimation.showing_open]: isOpen,
-            [sAnimation.showing_close]: !isOpen,
+            [sAnimation.showing_open]: isOpen && !isInit,
+            [sAnimation.showing_close]: !isOpen && !isInit,
+            [sAnimation.showing_init]: isInit,
           })}
         >
           {menuList.map((item) => (

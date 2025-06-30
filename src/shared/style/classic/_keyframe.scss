@@ -6,7 +6,7 @@
   --enter-rotate: initial;
   --enter-translate-x: initial;
   --enter-translate-y: initial;
-  --enter-grid-rows: initial; // Новая переменная
+  --enter-grid-rows: initial;
 
   // exit
   --exit-opacity: initial;
@@ -15,6 +15,14 @@
   --exit-translate-x: initial;
   --exit-translate-y: initial;
   --exit-grid-rows: initial;
+
+  // init (новые переменные для статичного состояния)
+  --init-opacity: initial;
+  --init-scale: initial;
+  --init-rotate: initial;
+  --init-translate-x: initial;
+  --init-translate-y: initial;
+  --init-grid-rows: initial;
 }
 
 @keyframes state-enter {
@@ -46,6 +54,7 @@
   grid-template-rows: var(--exit-grid-rows, 1fr);
 }
 
+// Основные миксины анимации
 @mixin animate-in($duration: 250ms, $timing: ease-out) {
   animation: state-enter $duration $timing forwards;
   @include animate-state-action;
@@ -58,7 +67,6 @@
 
 @mixin animate-grid-row($duration: 250ms, $timing: ease-out) {
   transition: grid-template-rows $duration $timing;
-
   @include animate-state-action;
 }
 
@@ -67,10 +75,25 @@
   @include animate-state-action;
 }
 
-@mixin animation-reset() {
+@mixin animate-init {
+  transform: translate(var(--init-translate-x, 0), var(--init-translate-y, 0))
+    scale(var(--init-scale, 1)) rotate(var(--init-rotate, 0));
+  animation: none !important;
+
+  opacity: var(--init-opacity, 1);
+  grid-template-rows: var(--init-grid-rows, 1fr);
+  @include animate-state-action;
+}
+
+@mixin animate-reset() {
   animation: none;
   @include animate-state-action;
 }
+
+// @mixin animation-reset() {
+//   animation: none;
+//   @include animate-state-action;
+// }
 
 // Fade mixins
 @mixin fade-in($opacity: 0) {
@@ -81,6 +104,10 @@
   --exit-opacity: #{$opacity};
 }
 
+@mixin fade-init($opacity: 0) {
+  --init-opacity: #{$opacity};
+}
+
 // Scale mixins
 @mixin zoom-in($scale: 0.95) {
   --enter-scale: #{$scale};
@@ -88,6 +115,10 @@
 
 @mixin zoom-out($scale: 0.95) {
   --exit-scale: #{$scale};
+}
+
+@mixin zoom-init($scale: 0.95) {
+  --init-scale: #{$scale};
 }
 
 // Slide mixins
@@ -101,6 +132,11 @@
   --exit-translate-y: #{$y};
 }
 
+@mixin slide-init($x: 0, $y: 0) {
+  --init-translate-x: #{$x};
+  --init-translate-y: #{$y};
+}
+
 // Rotate mixins
 @mixin rotate-in($degrees: 0) {
   --enter-rotate: #{$degrees}deg;
@@ -110,10 +146,19 @@
   --exit-rotate: #{$degrees}deg;
 }
 
+@mixin rotate-init($degrees: 0) {
+  --init-rotate: #{$degrees}deg;
+}
+
+// Grid rows mixins
 @mixin grid-rows-in($rows) {
   --enter-grid-rows: #{$rows};
 }
 
 @mixin grid-rows-out($rows) {
   --exit-grid-rows: #{$rows};
+}
+
+@mixin grid-rows-init($rows) {
+  --init-grid-rows: #{$rows};
 }

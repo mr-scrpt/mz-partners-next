@@ -41,6 +41,8 @@
 
 .list {
   position: absolute;
+
+  z-index: 1;
   bottom: 0;
 
   display: flex;

@@ -13,17 +13,41 @@
   @include slide-out(-100%, 100%);
 }
 
+@mixin menu-init {
+  @include animate-init;
+  @include fade-init(0);
+  @include slide-init(-100%, 100%);
+}
+
+@mixin menu-reset {
+  @include block-bp-lg {
+    transform: none !important;
+    animation: none;
+    pointer-events: auto;
+
+    // animation: none;
+    // pointer-events: auto;
+    //
+    opacity: 1 !important;
+  }
+}
+
 .showing {
+  &#{&}_init {
+    @include menu-init;
+    @include menu-reset;
+  }
+
   &#{&}_open {
     @include menu-in;
+    @include block-bp-lg {
+      animation: none;
+    }
   }
 
   &#{&}_close {
     pointer-events: none;
     @include menu-out;
-    @include block-bp-lg {
-      animation: none;
-      pointer-events: auto;
-    }
+    @include menu-reset;
   }
 }

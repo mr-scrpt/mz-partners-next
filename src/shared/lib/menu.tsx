@@ -2,6 +2,7 @@ import { RefObject, useEffect, useRef, useState } from "react";
 
 interface UseMenuReturn<T extends HTMLElement> {
   isOpen: boolean;
+  isInit: boolean;
   menuRef: RefObject<T>;
   toggleMenu: () => void;
   closeMenu: () => void;
@@ -12,6 +13,7 @@ export function useMenu<T extends HTMLElement>(
   initialState = false,
 ): UseMenuReturn<T> {
   const [isOpen, setIsOpen] = useState(initialState);
+  const [isInit, setIsInit] = useState(true);
   const menuRef = useRef<T>(null) as RefObject<T>;
 
   useEffect(() => {
@@ -30,12 +32,16 @@ export function useMenu<T extends HTMLElement>(
     };
   }, [isOpen]);
 
-  const toggleMenu = () => setIsOpen((prev) => !prev);
+  const toggleMenu = () => {
+    setIsOpen((prev) => !prev);
+    setIsInit(false);
+  };
   const closeMenu = () => setIsOpen(false);
   const openMenu = () => setIsOpen(true);
 
   return {
     isOpen,
+    isInit,
     menuRef,
     toggleMenu,
     closeMenu,
