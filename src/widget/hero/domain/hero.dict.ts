@@ -13,7 +13,7 @@ export const HeroDict = {
     [HERO_NAMESPACE]: {
       [HERO_DICT_FIELD.title]: "Про нас",
       [HERO_DICT_FIELD.description]:
-        "Ми вирішуємо складні юридичні питання і допомагаємознайти оптимальне рішення",
+        "Ми вирішуємо складні юридичні питання і допомагаємо знайти оптимальне рішення",
       [HERO_DICT_FIELD.actionButton]: "Зв'язатися з нами",
     },
   },
