@@ -1,11 +1,11 @@
-import { Locale } from "@/shared/lib/i18n/domain/type";
-import { generateMetadataFromPage, PageMetadataMap } from "@/shared/lib/next";
+"use server";
+import { generateMetadataFromPage } from "@/shared/lib/next";
 import { headers } from "next/headers";
+import { PageMetadataProps } from "../domain/page.type";
 
-export const generatePageMetadata = async (
-  params: Promise<{ locale: Locale }>,
-  metadata: PageMetadataMap,
-) => {
+export const generatePageMetadata = async (props: PageMetadataProps) => {
+  const { params, metadata } = props;
+
   const locale = (await params).locale;
 
   const headerList = await headers();

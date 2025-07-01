@@ -7,7 +7,8 @@ import { TeamModule } from "@/widget/team";
 import { FC } from "react";
 
 import { BreadcrumbsModule } from "@/widget/breadcrumbs";
-import sPage from "../page.module.scss";
+
+import sPage from "../../ui/page.module.scss";
 interface PageAboutProps {}
 
 export const PageAbout: FC<PageAboutProps> = async (props) => {

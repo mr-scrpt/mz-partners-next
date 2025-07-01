@@ -7,7 +7,7 @@ import { PrincipleModule } from "@/widget/principle";
 import { ProjectModule } from "@/widget/project";
 import { SocialLineModule } from "@/widget/socialLine";
 
-import sPage from "../page.module.scss";
+import sPage from "../../ui/page.module.scss";
 
 export const PageMain = async () => {
   return (

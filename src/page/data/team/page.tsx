@@ -1,6 +1,7 @@
 import { TeamModule } from "@/widget/team";
 
-import sPage from "../page.module.scss";
+import sPage from "../../ui/page.module.scss";
+
 import { BreadcrumbsModule } from "@/widget/breadcrumbs";
 
 export const PageTeam = () => {

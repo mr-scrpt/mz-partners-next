@@ -1,12 +1,17 @@
-export { PageAbout } from "./ui/about/page";
-export { PageCompetency } from "./ui/competency/page";
-export { PageContact } from "./ui/contact/page";
-export { PageMain } from "./ui/main/page";
-export { PageTeam } from "./ui/team/page";
+export { PageAbout } from "./data/about/page";
+export { PageCompetency } from "./data/competency/page";
+export { PageContact } from "./data/contact/page";
+export { PageMain } from "./data/main/page";
+export { PageTeam } from "./data/team/page";
 
-export { pageRouteAbout } from "./ui/about/route";
-export { pageRouteCompetency } from "./ui/competency/route";
-export { pageRouteContact } from "./ui/contact/route";
-export { pageRouteMain } from "./ui/main/route";
-export { pageRouteTeam } from "./ui/team/route";
+export { pageRouteAbout } from "./data/about/route";
+export { pageRouteCompetency } from "./data/competency/route";
+export { pageRouteContact } from "./data/contact/route";
+export { pageRouteMain } from "./data/main/route";
+export { pageRouteTeam } from "./data/team/route";
 
+export { generateMetadataAbout } from "./data/about/metadata";
+export { generateMetadataCompetency } from "./data/competency/metadata";
+export { generateMetadataContact } from "./data/contact/metadata";
+export { generateMetadataMain } from "./data/main/metadata";
+export { generateMetadataTeam } from "./data/team/metadata";

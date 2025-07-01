@@ -1,10 +1,9 @@
+import { PageParams } from "@/page/domain/page.type";
 import { generatePageMetadata } from "@/page/vm/generatePageMetadata";
-import { Locale } from "@/shared/lib/i18n/domain/type";
 import { PageMetadataMap } from "@/shared/lib/next";
 
-export const generateMetadataAbout = async (
-  params: Promise<{ locale: Locale }>,
-) => generatePageMetadata(params, aboutMetadata);
+export const generateMetadataAbout = async ({ params }: PageParams) =>
+  generatePageMetadata({ params, metadata: aboutMetadata });
 
 const aboutMetadata: PageMetadataMap = {
   ua: {
