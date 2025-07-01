@@ -4,7 +4,7 @@ import {
   pageRouteTeam,
   pageRouteContact,
   pageRouteMain,
-} from "@/page";
+} from "../";
 import { Locale } from "@/shared/lib/i18n/domain/type";
 import { useRouteItemList } from "@/shared/navigation/useRouteItemList";
 import { useMemo } from "react";
