@@ -1,9 +1,14 @@
-import { PageParams } from "@/page/domain/page.type";
+import { CreatePageParams } from "@/page/domain/page.type";
 import { generatePageMetadata } from "@/page/vm/generatePageMetadata";
 import { PageMetadataMap } from "@/shared/lib/next";
 
-export const generateMetadataAbout = async ({ params }: PageParams) =>
-  generatePageMetadata({ params, metadata: aboutMetadata });
+type AboutMetadata = CreatePageParams;
+
+export const generateMetadataAbout = async ({ params }: AboutMetadata) =>
+  generatePageMetadata({
+    params,
+    metadata: aboutMetadata,
+  });
 
 const aboutMetadata: PageMetadataMap = {
   ua: {

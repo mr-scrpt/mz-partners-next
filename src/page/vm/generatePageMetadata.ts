@@ -1,7 +1,7 @@
 "use server";
 import { generateMetadataFromPage } from "@/shared/lib/next";
 import { headers } from "next/headers";
-import { PageMetadataProps } from "../domain/page.type";
+import { PageMetadataProps, TParams } from "../domain/page.type";
 
 export const generatePageMetadata = async (props: PageMetadataProps) => {
   const { params, metadata } = props;
