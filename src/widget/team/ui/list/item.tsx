@@ -33,12 +33,15 @@ export const Item: FC<ItemProps> = (props) => {
         </div>
         <div className={clsx(sItem.content)}>
           <Title
-            text={item.firstName + " " + item.lastName}
+            text={`${item.lastName} ${item.firstName} ${item.fatherName}`}
             size="M"
             view="SECONDARY"
             className={sItem.title}
           />
           <div className={sItem.position}>{item.position}</div>
+          <div className={sItem.specialization}>{item.specialization}</div>
+          <div className={sItem.expirience}>{item.expirience}</div>
+          <div className={sItem.regalies}>{item.regalies}</div>
           <div className={sItem.description}>{item.description}</div>
         </div>
       </div>
