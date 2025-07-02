@@ -9,7 +9,6 @@ export const PageCompetency = () => {
       <BreadcrumbsModule />
 
       <CompetencyModule className={sPage.root__fall} />
-      {/* <CompetencyModule /> */}
     </div>
   );
 };

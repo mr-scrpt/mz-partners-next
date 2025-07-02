@@ -1,7 +1,8 @@
+"use client";
 import { FC, HTMLAttributes } from "react";
-import { TeamLayout } from "./layout/team.layout";
 import { TeamHeader } from "./header/team.header";
-import { List } from "./list/list";
+import { TeamLayout } from "./layout/team.layout";
+import { AnimatedItem, AnimatedList } from "./list/animationList";
 
 interface TeamModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -10,7 +11,7 @@ export const TeamModule: FC<TeamModuleProps> = (props) => {
   return (
     <TeamLayout
       HeaderSlot={<TeamHeader />}
-      ContentSlot={<List />}
+      ContentSlot={<AnimatedList ItemComponent={AnimatedItem} />}
       className={className}
     />
   );

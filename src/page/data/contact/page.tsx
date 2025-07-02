@@ -8,10 +8,10 @@ import sPage from "../../ui/page.module.scss";
 
 export const PageContact: FC<PageContactProps> = async (props) => {
   return (
-    <>
+    <div className={sPage.root}>
       <BreadcrumbsModule />
       <ContactModule />
-      <CallbackModule />
-    </>
+      <CallbackModule className={sPage.root__offset} />
+    </div>
   );
 };
