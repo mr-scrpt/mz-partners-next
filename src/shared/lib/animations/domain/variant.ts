@@ -1,7 +1,7 @@
 import { Variants } from "framer-motion";
 
 // Анимация для контейнера списка (появление дочерних элементов с задержкой)
-export const staggerContainer: Variants = {
+export const staggerContainerDelayed: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -9,6 +9,8 @@ export const staggerContainer: Variants = {
     },
   },
 };
+
+export const staggerContainerImmediately: Variants = {};
 
 // Анимация для элементов списка (появление снизу вверх с проявлением)
 export const fadeInUp: Variants = {

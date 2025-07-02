@@ -1,19 +1,10 @@
 import {
-  withAlternatingAnimation,
-  withStaggerContainer,
-} from "@/shared/lib/animations/domain/hoc";
-import {
-  slideInLeft,
-  slideInRight,
-  staggerContainer,
-} from "@/shared/lib/animations/domain/variant";
+  createAnimationContainerDelayed,
+  createAnimationItemSlideAlternating,
+} from "@/shared/lib/animations";
 import { Item } from "./item";
 import { List } from "./list";
 
-export const AnimatedItem = withAlternatingAnimation(
-  Item,
-  slideInLeft,
-  slideInRight,
-);
+export const AnimatedItem = createAnimationItemSlideAlternating(Item);
 
-export const AnimatedList = withStaggerContainer(List, staggerContainer);
+export const AnimatedList = createAnimationContainerDelayed(List);

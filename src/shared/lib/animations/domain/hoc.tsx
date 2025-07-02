@@ -1,24 +1,23 @@
 "use client";
-import { motion, useInView, Variants } from "framer-motion";
-import { ComponentType, FC, useRef, HTMLAttributes } from "react";
+import { motion, Variants } from "framer-motion";
+import { ComponentType, FC, HTMLAttributes } from "react";
 
 // HOC №1: Для отдельных элементов
-export function withEntranceAnimation<P extends object>(
+export function withAnimationItemSimple<P extends object>(
   WrappedComponent: ComponentType<P>,
   animationVariants: Variants,
 ) {
   const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
-    const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once: true, amount: 0.2 });
     const { className, ...restProps } = props;
 
+    // ✅ Теперь HOC просто оборачивает компонент.
+    //    Он будет ждать сигнала `animate` от родителя.
     return (
       <motion.div
-        ref={ref}
         className={className}
         variants={animationVariants}
         initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
+        // animate пропадет, так как он придет от родителя
       >
         <WrappedComponent {...(restProps as P)} />
       </motion.div>
@@ -26,9 +25,24 @@ export function withEntranceAnimation<P extends object>(
   };
   return AnimatedComponent;
 }
+export function withAnimationItemAlternating<P extends { idx: number }>(
+  WrappedComponent: ComponentType<P>,
+  evenVariants: Variants,
+  oddVariants: Variants,
+) {
+  const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
+    const variants = props.idx % 2 === 0 ? evenVariants : oddVariants;
 
+    return (
+      <motion.div variants={variants}>
+        <WrappedComponent {...(props as P)} />
+      </motion.div>
+    );
+  };
+  return AnimatedComponent;
+}
 // HOC №2: Для контейнеров, управляющих дочерними анимациями
-export function withStaggerContainer<P extends object>(
+export function withAnimationContainer<P extends object>(
   WrappedComponent: ComponentType<P>,
   staggerVariants: Variants,
 ) {
@@ -48,39 +62,38 @@ export function withStaggerContainer<P extends object>(
   };
   return StaggerContainer;
 }
-
-export function withAlternatingAnimation<P extends { idx: number }>(
-  WrappedComponent: ComponentType<P>,
-  evenVariants: Variants,
-  oddVariants: Variants,
-) {
-  const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
-    const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once: true, amount: 0.2 });
-
-    // Получаем idx из пропсов
-    const { className, idx } = props;
-
-    // Выбираем нужный вариант анимации в зависимости от четности индекса
-    const isEven = idx % 2 === 0;
-    const variants = isEven ? evenVariants : oddVariants;
-
-    return (
-      <motion.div
-        ref={ref}
-        className={className}
-        // Используем выбранные варианты
-        variants={variants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-      >
-        {/* Передаем все исходные пропсы дальше */}
-        <WrappedComponent {...(props as P)} />
-      </motion.div>
-    );
-  };
-  return AnimatedComponent;
-}
+// export function withAnimationItemAlternating<P extends { idx: number }>(
+//   WrappedComponent: ComponentType<P>,
+//   evenVariants: Variants,
+//   oddVariants: Variants,
+// ) {
+//   const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
+//     const ref = useRef<HTMLDivElement>(null);
+//     const isInView = useInView(ref, { once: true, amount: 0.2 });
+//
+//     // Получаем idx из пропсов
+//     const { className, idx } = props;
+//
+//     // Выбираем нужный вариант анимации в зависимости от четности индекса
+//     const isEven = idx % 2 === 0;
+//     const variants = isEven ? evenVariants : oddVariants;
+//
+//     return (
+//       <motion.div
+//         ref={ref}
+//         className={className}
+//         // Используем выбранные варианты
+//         variants={variants}
+//         initial="hidden"
+//         animate={isInView ? "visible" : "hidden"}
+//       >
+//         {/* Передаем все исходные пропсы дальше */}
+//         <WrappedComponent {...(props as P)} />
+//       </motion.div>
+//     );
+//   };
+//   return AnimatedComponent;
+// }
 
 // import { motion, useInView, Variants } from "framer-motion";
 // import { ComponentType, FC, useRef, HTMLAttributes } from "react";
