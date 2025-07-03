@@ -4,10 +4,10 @@ import { FC } from "react";
 
 import { Title } from "@/shared/ui/title";
 import Image from "next/image";
-import sItem from "./item.module.scss";
-import { ItemProps } from "./type";
+import sItem from "./item.team.module.scss";
+import { ItemTeamProps } from "../type";
 
-export const Item: FC<ItemProps> = (props) => {
+export const ItemTeam: FC<ItemTeamProps> = (props) => {
   const { className, item, idx } = props;
 
   const isEven = idx % 2 === 0;
