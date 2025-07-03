@@ -1,4 +1,3 @@
-// "use client";
 import { FC, HTMLAttributes } from "react";
 import { LayoutTeam } from "./component/layout/layout.team";
 import { HeaderTeam } from "./component/header/header.team";
