@@ -1,3 +1,4 @@
+"use client";
 import { Locale } from "@/shared/lib/i18n/domain/type";
 import { TEAM_LIST } from "../model/teamList.model";
 import { useLocale } from "next-intl";

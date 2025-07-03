@@ -1,8 +1,8 @@
 import { FC, HTMLAttributes, ComponentType } from "react";
 import clsx from "clsx";
 import sTeamList from "./list.team.module.scss";
-import { ItemTeamProps } from "./type";
 import { GetTeamDataList } from "@/entity/team";
+import { ItemTeamProps } from "./item/type";
 
 interface ListTeamProps extends HTMLAttributes<HTMLDivElement> {
   ItemComponent: ComponentType<ItemTeamProps>;

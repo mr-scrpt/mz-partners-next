@@ -5,7 +5,7 @@ import { FC } from "react";
 import { Title } from "@/shared/ui/title";
 import Image from "next/image";
 import sItem from "./item.team.module.scss";
-import { ItemTeamProps } from "../type";
+import { ItemTeamProps } from "./type";
 
 export const ItemTeam: FC<ItemTeamProps> = (props) => {
   const { className, item, idx } = props;

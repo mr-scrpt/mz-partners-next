@@ -1,3 +1,4 @@
+"use client";
 import { Locale } from "@/shared/lib/i18n/domain/type";
 import { COMPETENCY_LIST } from "../model/competencyList.model";
 import { useLocale } from "next-intl";

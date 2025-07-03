@@ -8,6 +8,7 @@ import { ProjectModule } from "@/widget/project";
 import { SocialLineModule } from "@/widget/socialLine";
 
 import sPage from "../../ui/page.module.scss";
+import { TeamModule } from "@/widget/team";
 
 export const PageMain = async () => {
   return (
@@ -15,6 +16,7 @@ export const PageMain = async () => {
       <HeroModule />
       <SocialLineModule />
       <CompetencyModule />
+      <TeamModule />
       <PrincipleModule />
       <ProjectModule />
       <BenefitModule className={sPage.root__offset} />

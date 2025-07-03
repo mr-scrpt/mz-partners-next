@@ -1,8 +1,10 @@
+"use client";
 import {
   createAnimationContainer,
   createAnimationItemAlternating,
 } from "./domain/fabric";
 import {
+  opacityVariants,
   slideInLeft,
   slideInRight,
   staggerContainerDelayed,
@@ -11,6 +13,9 @@ import {
 
 export const createAnimationItemSlideAlternating =
   createAnimationItemAlternating(slideInLeft, slideInRight);
+
+export const createAnimationItemOpacityAlternating =
+  createAnimationItemAlternating(opacityVariants, opacityVariants);
 
 export const createAnimationContainerDelayed = createAnimationContainer(
   staggerContainerDelayed,
