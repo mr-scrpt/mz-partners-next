@@ -1,14 +1,14 @@
 import { RowSection, SECTION_SPACE, SECTION_WIDTH } from "@/shared/ui/section";
 import { FC, HTMLAttributes, ReactNode } from "react";
-import sProjectLayout from "./project.layout.module.scss";
+import sProjectLayout from "./layout.project.module.scss";
 import clsx from "clsx";
 
-interface ProjectLayoutProps extends HTMLAttributes<HTMLDivElement> {
+interface LayoutProjectProps extends HTMLAttributes<HTMLDivElement> {
   HeaderSlot: ReactNode;
   ContentSlot: ReactNode;
 }
 
-export const ProjectLayout: FC<ProjectLayoutProps> = (props) => {
+export const LayoutProject: FC<LayoutProjectProps> = (props) => {
   const { HeaderSlot, ContentSlot, className } = props;
 
   return (

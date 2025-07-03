@@ -1,16 +1,16 @@
 import { FC, HTMLAttributes } from "react";
-import { List } from "./list/list";
-import { ProjectHeader } from "./header/project.header";
-import { ProjectLayout } from "./layout/project.layout";
+import { ListProjectAnimatedCompose } from "./compose/listProjectAnimated.compose";
+import { LayoutProject } from "./component/layout/layout.project";
+import { HeaderProject } from "./component/header/header.project";
 
 interface ProjectModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const ProjectModule: FC<ProjectModuleProps> = (props) => {
   const { className } = props;
   return (
-    <ProjectLayout
-      HeaderSlot={<ProjectHeader />}
-      ContentSlot={<List />}
+    <LayoutProject
+      HeaderSlot={<HeaderProject />}
+      ContentSlot={<ListProjectAnimatedCompose />}
       className={className}
     />
   );

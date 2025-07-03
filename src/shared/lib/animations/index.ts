@@ -2,9 +2,11 @@
 import {
   createAnimationContainer,
   createAnimationItemAlternating,
+  createAnimationItemSimple,
 } from "./domain/fabric";
 import {
   opacityVariants,
+  slideInBottom,
   slideInLeft,
   slideInRight,
   staggerContainerDelayed,
@@ -14,8 +16,11 @@ import {
 export const createAnimationItemSlideAlternating =
   createAnimationItemAlternating(slideInLeft, slideInRight);
 
-export const createAnimationItemOpacityAlternating =
-  createAnimationItemAlternating(opacityVariants, opacityVariants);
+export const createAnimationItemSlideBottom =
+  createAnimationItemSimple(slideInBottom);
+
+export const createAnimationItemOpacity =
+  createAnimationItemSimple(opacityVariants);
 
 export const createAnimationContainerDelayed = createAnimationContainer(
   staggerContainerDelayed,
