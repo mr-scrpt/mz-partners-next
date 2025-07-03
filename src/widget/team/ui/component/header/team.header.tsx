@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { FC, HTMLAttributes } from "react";
 import sTeamHeader from "./team.header.module.scss";
 import { useTranslations } from "next-intl";
-import { TEAM_NAMESPACE } from "../../domain/team.dict";
+import { TEAM_NAMESPACE } from "@/widget/team";
 interface TeamHeaderProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const TeamHeader: FC<TeamHeaderProps> = (props) => {

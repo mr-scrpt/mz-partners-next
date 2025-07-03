@@ -1,16 +1,17 @@
 import { FC, HTMLAttributes, ComponentType } from "react";
 import clsx from "clsx";
 import sTeamList from "./list.module.scss";
-import { useTeamItemList } from "@/entity/team";
 import { ItemProps } from "./type";
+import { GetTeamDataList } from "@/entity/team";
 
 interface TeamListProps extends HTMLAttributes<HTMLDivElement> {
   ItemComponent: ComponentType<ItemProps>;
+  getDataList: GetTeamDataList;
 }
 
 export const List: FC<TeamListProps> = (props) => {
-  const { className, ItemComponent } = props; // Используем ItemComponent или DefaultItem
-  const { teamItemList } = useTeamItemList();
+  const { className, ItemComponent, getDataList } = props; // Используем ItemComponent или DefaultItem
+  const { teamItemList } = getDataList();
 
   return (
     <div className={clsx(sTeamList.root, className)}>
