@@ -1,16 +1,16 @@
 import { FC, HTMLAttributes } from "react";
-import { Content } from "./content/content";
-import { AboutHeader } from "./header/about.header";
-import { AboutLayout } from "./layout/about.layout";
+import { HeaderAbout } from "./component/header/header.about";
+import { LayoutAbout } from "./component/layout/layout.about";
+import { ContentAboutAnimatedCompose } from "./compose/contentAboutAnimated.compose";
 
 interface AboutModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const AboutModule: FC<AboutModuleProps> = (props) => {
   const { className } = props;
   return (
-    <AboutLayout
-      HeaderSlot={<AboutHeader />}
-      ContentSlot={<Content />}
+    <LayoutAbout
+      HeaderSlot={<HeaderAbout />}
+      ContentSlot={<ContentAboutAnimatedCompose />}
       className={className}
     />
   );

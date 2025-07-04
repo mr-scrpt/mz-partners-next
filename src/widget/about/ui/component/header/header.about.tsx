@@ -1,25 +1,24 @@
 import { TitleSection } from "@/shared/ui/titleSection";
 import clsx from "clsx";
 import { FC, HTMLAttributes } from "react";
-import sAboutHeader from "./about.header.module.scss";
+import sHeaderAbout from "./header.about.module.scss";
 import { useTranslations } from "next-intl";
+import { ABOUT_NAMESPACE } from "../../../domain/about.dict";
 
-import { ABOUT_NAMESPACE } from "../../domain/about.dict";
+interface HeaderAboutProps extends HTMLAttributes<HTMLDivElement> {}
 
-interface AboutHeaderProps extends HTMLAttributes<HTMLDivElement> {}
-
-export const AboutHeader: FC<AboutHeaderProps> = (props) => {
+export const HeaderAbout: FC<HeaderAboutProps> = (props) => {
   const { className } = props;
   const t = useTranslations(ABOUT_NAMESPACE);
   return (
-    <div className={clsx(sAboutHeader.root, className)}>
-      <div className={sAboutHeader.inner}>
+    <div className={clsx(sHeaderAbout.root, className)}>
+      <div className={sHeaderAbout.inner}>
         <TitleSection
           position="LEFT"
           text={t("title")}
           size="L"
           view="PRIMARY"
-          className={sAboutHeader.title}
+          className={sHeaderAbout.title}
         />
       </div>
     </div>
