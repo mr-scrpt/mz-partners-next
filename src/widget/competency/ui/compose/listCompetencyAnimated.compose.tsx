@@ -1,7 +1,7 @@
 import { useCompetencyItemList } from "@/entity/competency";
 import { FC, HTMLAttributes } from "react";
 import {
-  ItemCompetencyAnimate,
+  ItemCompetencyAnimated,
   ListCompetencyAnimated,
 } from "../component/list";
 
@@ -13,7 +13,7 @@ export const ListCompetencyAnimatedCompose: FC<
 > = (props) => {
   return (
     <ListCompetencyAnimated
-      ItemComponent={ItemCompetencyAnimate}
+      ItemComponent={ItemCompetencyAnimated}
       getDataList={useCompetencyItemList}
       {...props}
     />

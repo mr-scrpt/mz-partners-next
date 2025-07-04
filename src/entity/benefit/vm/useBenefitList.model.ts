@@ -1,3 +1,4 @@
+"use client";
 import { useLocale } from "next-intl";
 import { Locale } from "@/shared/lib/i18n/domain/type";
 import { BENEFIT_LIST } from "../model/benefitList.model";

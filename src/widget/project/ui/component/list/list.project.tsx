@@ -1,6 +1,6 @@
 import { ComponentType, FC, HTMLAttributes } from "react";
 import clsx from "clsx";
-import sProjectList from "./list.project.module.scss";
+import sListProject from "./list.project.module.scss";
 import { ItemProjectProps } from "./item/type";
 import { GetProjectDataList } from "@/entity/project";
 
@@ -13,14 +13,14 @@ export const ListProject: FC<ListProjectProps> = (props) => {
   const { className, ItemComponent, getDataList } = props;
   const { projectItemList } = getDataList();
   return (
-    <div className={clsx(sProjectList.root, className)}>
-      <div className={sProjectList.inner}>
-        <div className={clsx(sProjectList.list)}>
+    <div className={clsx(sListProject.root, className)}>
+      <div className={sListProject.inner}>
+        <div className={clsx(sListProject.list)}>
           {projectItemList.map((item, idx) => (
             <ItemComponent
               key={idx}
               idx={idx}
-              className={sProjectList.item}
+              className={sListProject.item}
               item={item}
             />
           ))}

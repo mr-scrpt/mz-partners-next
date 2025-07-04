@@ -1,23 +1,24 @@
 import { TitleSection } from "@/shared/ui/titleSection";
 import clsx from "clsx";
 import { FC, HTMLAttributes } from "react";
-import sBenefitHeader from "./benefit.header.module.scss";
+import sHeaderBenefit from "./header.benefit.module.scss";
 import { useTranslations } from "next-intl";
-import { BENEFIT_NAMESPACE } from "../../domain/benefit.dict";
-interface BenefitHeaderProps extends HTMLAttributes<HTMLDivElement> {}
+import { BENEFIT_NAMESPACE } from "../../../domain/benefit.dict";
 
-export const BenefitHeader: FC<BenefitHeaderProps> = (props) => {
+interface HeaderBenefitProps extends HTMLAttributes<HTMLDivElement> {}
+
+export const HeaderBenefit: FC<HeaderBenefitProps> = (props) => {
   const { className } = props;
   const t = useTranslations(BENEFIT_NAMESPACE);
   return (
-    <div className={clsx(sBenefitHeader.root, className)}>
-      <div className={sBenefitHeader.inner}>
+    <div className={clsx(sHeaderBenefit.root, className)}>
+      <div className={sHeaderBenefit.inner}>
         <TitleSection
           position="LEFT"
           text={t("title")}
           size="L"
           view="PRIMARY"
-          className={sBenefitHeader.title}
+          className={sHeaderBenefit.title}
         />
       </div>
     </div>

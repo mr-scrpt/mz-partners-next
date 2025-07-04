@@ -6,7 +6,8 @@ import {
 import { ItemCompetency } from "./item/item.competency";
 import { ListCompetency } from "./list.competency";
 
-export const ItemCompetencyAnimate = createAnimationItemOpacity(ItemCompetency);
+export const ItemCompetencyAnimated =
+  createAnimationItemOpacity(ItemCompetency);
 
 export const ListCompetencyAnimated =
   createAnimationContainerDelayed(ListCompetency);
