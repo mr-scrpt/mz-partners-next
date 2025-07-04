@@ -1,16 +1,16 @@
 import { FC, HTMLAttributes } from "react";
-import { PiplineLayout } from "./layout/pipline.layout";
-import { PiplineHeader } from "./header/pipline.header";
-import { List } from "./list/list";
+import { LayoutPipline } from "./component/layout/layout.pipline";
+import { ListPiplineAnimatedCompose } from "./compose/listPiplineAnimated.compose";
+import { HeaderPipline } from "./component/header/header.pipline";
 
 interface PiplineModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const PiplineModule: FC<PiplineModuleProps> = (props) => {
   const { className } = props;
   return (
-    <PiplineLayout
-      HeaderSlot={<PiplineHeader />}
-      ContentSlot={<List />}
+    <LayoutPipline
+      HeaderSlot={<HeaderPipline />}
+      ContentSlot={<ListPiplineAnimatedCompose />}
       className={className}
     />
   );

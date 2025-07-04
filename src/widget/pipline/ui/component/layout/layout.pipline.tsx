@@ -1,27 +1,27 @@
 import { RowSection, SECTION_SPACE, SECTION_WIDTH } from "@/shared/ui/section";
 import { FC, HTMLAttributes, ReactNode } from "react";
-import sPiplineLayout from "./pipline.layout.module.scss";
+import sLayoutPipline from "./layout.pipline.module.scss";
 import clsx from "clsx";
 import sDeco from "./deco.module.scss";
 
-interface PiplineLayoutProps extends HTMLAttributes<HTMLDivElement> {
+interface LayoutPiplineProps extends HTMLAttributes<HTMLDivElement> {
   HeaderSlot: ReactNode;
   ContentSlot: ReactNode;
 }
 
-export const PiplineLayout: FC<PiplineLayoutProps> = (props) => {
+export const LayoutPipline: FC<LayoutPiplineProps> = (props) => {
   const { HeaderSlot, ContentSlot, className } = props;
 
   return (
     <RowSection
-      classSection={clsx(sPiplineLayout.root, className)}
+      classSection={clsx(sLayoutPipline.root, className)}
       classInner={sDeco.mainBG}
       headerSlot={HeaderSlot}
       width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.PRIMARY}
     >
-      <div className={clsx(sPiplineLayout.inner)}>
-        <div className={sPiplineLayout.content}>{ContentSlot}</div>
+      <div className={clsx(sLayoutPipline.inner)}>
+        <div className={sLayoutPipline.content}>{ContentSlot}</div>
       </div>
     </RowSection>
   );
