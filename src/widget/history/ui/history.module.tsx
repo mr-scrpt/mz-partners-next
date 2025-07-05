@@ -1,17 +1,17 @@
+// "use client";
 import { FC, HTMLAttributes } from "react";
-import { HistoryHeader } from "./header/history.header";
-import { HistoryLayout } from "./layout/history.layout";
-import { Text } from "./text/text";
-import { Content } from "./content/content";
+import { LayoutHistory } from "./component/layout/layout.history";
+import { HeaderHistory } from "./component/header/header.history";
+import { ContentHistoryAnimatedCompose } from "./compose/contentHistoryAnimated.compose";
 
 interface HistoryModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const HistoryModule: FC<HistoryModuleProps> = (props) => {
   const { className } = props;
   return (
-    <HistoryLayout
-      HeaderSlot={<HistoryHeader />}
-      ContentSlot={<Content />}
+    <LayoutHistory
+      HeaderSlot={<HeaderHistory />}
+      ContentSlot={<ContentHistoryAnimatedCompose />}
       className={className}
     />
   );

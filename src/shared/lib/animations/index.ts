@@ -19,6 +19,12 @@ export const createAnimationItemSlideAlternating =
 export const createAnimationItemSlideBottom =
   createAnimationItemSimple(slideInBottom);
 
+export const createAnimationItemSlideLeft =
+  createAnimationItemSimple(slideInLeft);
+
+export const createAnimationItemSlideRight =
+  createAnimationItemSimple(slideInRight);
+
 export const createAnimationItemOpacity =
   createAnimationItemSimple(opacityVariants);
 
