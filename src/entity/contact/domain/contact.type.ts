@@ -10,6 +10,7 @@ export type ContactPhoneItem = {
   type: ContactPhoneItemType;
   value: string;
 };
+
 export type ContactPhoneEnhancedItem = ContactPhoneItem & {
   link: string;
 };

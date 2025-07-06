@@ -2,18 +2,6 @@ import { Locale } from "@/shared/lib/i18n/domain/type";
 import { ContactItem } from "../domain/contact.type";
 import { SOCIAL_LIST } from "./socialList.model";
 
-// Телефони:
-//
-// 0671597373
-// 0632344493
-//
-// Адрес: Харків, 61037, проспект Героїв Харкова, 199, Д5, оф. 58
-//
-// Пошта: mz.partners.kh@gmail.com
-//
-// Соц мережі:
-//
-
 export const CONTACT_INFO: Record<Locale, ContactItem> = {
   ua: {
     phoneList: [
