@@ -26,6 +26,7 @@ export const ListPipline: FC<ListPiplineProps> = (props) => {
           {piplineItemList.map((item, idx) => (
             <ItemComponent
               key={idx}
+              idx={idx}
               className={sListPipline.item}
               item={item}
             />
