@@ -1,22 +1,17 @@
 "use client";
 import { motion, useInView, Variants } from "framer-motion";
-import { ComponentType, FC, HTMLAttributes, useRef } from "react";
+import {
+  Children,
+  ComponentType,
+  FC,
+  HTMLAttributes,
+  isValidElement,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
-// export function withAnimationItemSimple<P extends object>(
-//   WrappedComponent: ComponentType<P>,
-//   animationVariants: Variants,
-// ) {
-//   const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
-//     const { className, ...restProps } = props;
-//
-//     return (
-//       <motion.div className={className} variants={animationVariants}>
-//         <WrappedComponent {...(restProps as P)} />
-//       </motion.div>
-//     );
-//   };
-//   return AnimatedComponent;
-// }
 export function withAnimationItemSimple<P extends object>(
   WrappedComponent: ComponentType<P>,
   animationVariants: Variants,
@@ -24,48 +19,13 @@ export function withAnimationItemSimple<P extends object>(
   const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
     const { className, ...restProps } = props;
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, amount: 0.2 }); // amount: 0.2 означает, что анимация сработает, когда 20% элемента будет видно
+    const isInView = useInView(ref, { once: true, amount: 0.2 });
 
     return (
       <motion.div
         ref={ref}
         className={className}
         variants={animationVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"} // Анимация зависит от видимости этого конкретного элемента
-      >
-        <WrappedComponent {...(restProps as P)} />
-      </motion.div>
-    );
-  };
-  return AnimatedComponent;
-}
-export function withAnimationItemSelfDelayed<P extends { idx?: number }>( // idx теперь опциональный
-  WrappedComponent: ComponentType<P>,
-  animationVariants: Variants,
-) {
-  const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
-    const { className, idx, ...restProps } = props;
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, amount: 0.2 });
-
-    // Создаем кастомный вариант, чтобы добавить динамическую задержку
-    const customVariants: Variants = {
-      hidden: { ...animationVariants.hidden },
-      visible: {
-        ...animationVariants.visible,
-        transition: {
-          ...(animationVariants.visible as any).transition,
-          delay: (idx ?? 0) * 0.15, // Добавляем задержку на основе индекса
-        },
-      },
-    };
-
-    return (
-      <motion.div
-        ref={ref}
-        className={className}
-        variants={customVariants} // Используем кастомные варианты
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
@@ -75,16 +35,76 @@ export function withAnimationItemSelfDelayed<P extends { idx?: number }>( // idx
   };
   return AnimatedComponent;
 }
-export function withAnimationItemAlternating<P extends { idx: number }>(
+
+export function withAnimationItemSelfDelayed<P extends { idx?: number }>(
+  WrappedComponent: ComponentType<P>,
+  animationVariants: Variants,
+) {
+  const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
+    const { className, idx, ...restProps } = props;
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+    const customVariants: Variants = {
+      hidden: { ...animationVariants.hidden },
+      visible: {
+        ...animationVariants.visible,
+        transition: {
+          ...(animationVariants.visible as any).transition,
+          delay: (idx ?? 0) * 0.15,
+        },
+      },
+    };
+
+    return (
+      <motion.div
+        ref={ref}
+        className={className}
+        variants={customVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
+        <WrappedComponent {...(restProps as P)} idx={idx} />
+      </motion.div>
+    );
+  };
+  return AnimatedComponent;
+}
+
+export function withAnimationItemSelfDelayedAlternating<
+  P extends { idx: number },
+>(
   WrappedComponent: ComponentType<P>,
   evenVariants: Variants,
   oddVariants: Variants,
 ) {
   const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
-    const variants = props.idx % 2 === 0 ? evenVariants : oddVariants;
+    const { className, idx, ...restProps } = props;
+
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+    const baseVariant = idx % 2 === 0 ? evenVariants : oddVariants;
+
+    const customVariants: Variants = {
+      hidden: { ...baseVariant.hidden },
+      visible: {
+        ...baseVariant.visible,
+        transition: {
+          ...(baseVariant.visible as any).transition,
+          delay: idx * 0.15,
+        },
+      },
+    };
 
     return (
-      <motion.div variants={variants}>
+      <motion.div
+        ref={ref}
+        className={className}
+        variants={customVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
         <WrappedComponent {...(props as P)} />
       </motion.div>
     );
@@ -92,39 +112,11 @@ export function withAnimationItemAlternating<P extends { idx: number }>(
   return AnimatedComponent;
 }
 
-// export function withAnimationContainer<P extends object>(
-//   WrappedComponent: ComponentType<P>,
-//   staggerVariants: Variants,
-// ) {
-//   const StaggerContainer: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
-//     const ref = useRef(null);
-//
-//     const isInView = useInView(ref, { once: true, amount: 0.1 });
-//
-//     return (
-//       <motion.div
-//         ref={ref}
-//         variants={staggerVariants}
-//         initial="hidden"
-//         animate={isInView ? "visible" : "hidden"}
-//       >
-//         <WrappedComponent {...(props as P)} />
-//       </motion.div>
-//     );
-//   };
-//   return StaggerContainer;
-// }
-// file: ./hoc.ts
-
-export function withAnimationContainer<P extends object>(
+export function withAnimationContainerImmediately<P extends object>(
   WrappedComponent: ComponentType<P>,
 ) {
   const StaggerContainer: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
-    // Больше нет необходимости в useRef и useInView здесь
     return (
-      // Мы все еще используем motion.div, чтобы дочерние элементы
-      // могли наследовать варианты, но он больше не управляет их запуском.
-      // initial и animate здесь не нужны, так как дети сами управляют своим состоянием.
       <motion.div>
         <WrappedComponent {...(props as P)} />
       </motion.div>
@@ -132,3 +124,84 @@ export function withAnimationContainer<P extends object>(
   };
   return StaggerContainer;
 }
+export function withAnimationContainerToChildren<P extends object>(
+  WrappedComponent: ComponentType<P & { children: ReactNode }>,
+  variants: Variants[],
+) {
+  const AnimatedLayoutComponent: FC<P & { children: ReactNode }> = (props) => {
+    const { children, ...restProps } = props;
+
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+      setIsMounted(true);
+    }, []);
+
+    const animatedChildren = Children.map(children, (child, index) => {
+      // ^^^ ИСПРАВЛЕНИЕ ЗДЕСЬ: правильный порядок (child, index)
+
+      if (!isValidElement(child)) {
+        return child;
+      }
+
+      const selectedVariant = variants[index % variants.length];
+
+      return (
+        <motion.div
+          key={index}
+          variants={selectedVariant}
+          initial={isMounted ? "hidden" : "visible"}
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.2 }}
+        >
+          {child}
+        </motion.div>
+      );
+    });
+
+    return (
+      <WrappedComponent {...(restProps as P)}>
+        {animatedChildren}
+      </WrappedComponent>
+    );
+  };
+
+  return AnimatedLayoutComponent;
+}
+// export function withAnimationContainerToChildren<P extends object>(
+//   WrappedComponent: ComponentType<P & { children: ReactNode }>,
+//   variants: Variants[],
+// ) {
+//   const AnimatedLayoutComponent: FC<P & { children: ReactNode }> = (props) => {
+//     const { children, ...restProps } = props;
+//
+//     const animatedChildren = Children.map(children, (child, index) => {
+//       if (!isValidElement(child)) {
+//         return child;
+//       }
+//
+//       const selectedVariant = variants[index % variants.length];
+//
+//       return (
+//         <motion.div
+//           key={index}
+//           variants={selectedVariant}
+//           initial="hidden"
+//           whileInView="visible"
+//           // viewport={{ once: false, margin: "-20% 0px -20% 0px" }}
+//           viewport={{ once: false, amount: 0.2 }}
+//         >
+//           {child}
+//         </motion.div>
+//       );
+//     });
+//
+//     return (
+//       <WrappedComponent {...(restProps as P)}>
+//         {animatedChildren}
+//       </WrappedComponent>
+//     );
+//   };
+//
+//   return AnimatedLayoutComponent;
+// }

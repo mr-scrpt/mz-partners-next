@@ -1,12 +1,13 @@
 "use client";
 import {
-  createAnimationContainerDelayed,
-  createAnimationItemSlideAlternating,
+  createAnimationContainerImmediately,
+  createAnimationItemSlideAlternatingSelfDelayed,
 } from "@/shared/lib/animations";
 import { ItemPrinciple } from "./item/item.principle";
 import { ListPrinciple } from "./list.principle";
 
 export const ItemPrincipleAnimated =
-  createAnimationItemSlideAlternating(ItemPrinciple);
+  createAnimationItemSlideAlternatingSelfDelayed(ItemPrinciple);
+
 export const ListPrincipleAnimated =
-  createAnimationContainerDelayed(ListPrinciple);
+  createAnimationContainerImmediately(ListPrinciple);

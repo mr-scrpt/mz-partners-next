@@ -1,7 +1,7 @@
 export { PageAbout } from "./data/about/page";
 export { PageCompetency } from "./data/competency/page";
 export { PageContact } from "./data/contact/page";
-export { PageMain } from "./data/main/page";
+export { PageMain, PageMainAnimated } from "./data/main/page";
 export { PageTeam } from "./data/team/page";
 
 export { pageRouteAbout } from "./data/about/route";

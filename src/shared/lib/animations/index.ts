@@ -1,19 +1,21 @@
 "use client";
 import {
-  createAnimationContainer,
-  createAnimationItemAlternating,
+  createAnimationContainerToChildren,
+  createAnimationItemSelfDelayedAlternating,
   createAnimationItemSelfDelayed,
   createAnimationItemSimple,
 } from "./domain/fabric";
 import {
+  fadeIn,
+  fadeInHalf,
   opacityVariants,
   slideInBottom,
   slideInLeft,
   slideInRight,
 } from "./domain/variant";
 
-export const createAnimationItemSlideAlternating =
-  createAnimationItemAlternating(slideInLeft, slideInRight);
+export const createAnimationItemSlideAlternatingSelfDelayed =
+  createAnimationItemSelfDelayedAlternating(slideInLeft, slideInRight);
 
 export const createAnimationItemSlideBottom =
   createAnimationItemSimple(slideInBottom);
@@ -24,14 +26,22 @@ export const createAnimationItemSlideLeft =
 export const createAnimationItemSlideRight =
   createAnimationItemSimple(slideInRight);
 
+export const createAnimationItemSlideLeftSelfDelayed =
+  createAnimationItemSelfDelayed(slideInLeft);
+
+export const createAnimationItemSlideRightSelfDelayed =
+  createAnimationItemSelfDelayed(slideInRight);
+
+export const createAnimationItemSlideBottomSelfDelayed =
+  createAnimationItemSelfDelayed(slideInBottom);
+
 export const createAnimationItemOpacity =
   createAnimationItemSimple(opacityVariants);
 
 export const createAnimationItemOpacitySelfDelayed =
   createAnimationItemSelfDelayed(opacityVariants);
 
-export const createAnimationContainerDelayed = createAnimationContainer();
-// staggerContainerDelayed,
+export { createAnimationContainerImmediately } from "./domain/fabric";
 
-export const createAnimationContainerImmediately = createAnimationContainer();
-// staggerContainerImmediately,
+export const createAnimationContainerToChildrenFade =
+  createAnimationContainerToChildren([fadeInHalf]);

@@ -11,6 +11,7 @@ export const ItemTeam: FC<ItemTeamProps> = (props) => {
   const { className, item, idx } = props;
 
   const isEven = idx % 2 === 0;
+  console.log("output_log:  =>>>", idx, isEven);
 
   return (
     <div

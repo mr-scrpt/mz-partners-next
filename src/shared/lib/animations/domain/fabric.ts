@@ -1,10 +1,11 @@
 "use client";
-import { ComponentType } from "react";
+import { ComponentType, ReactNode } from "react";
 import { Variants } from "framer-motion";
 import {
-  withAnimationContainer,
-  withAnimationItemAlternating,
+  withAnimationContainerImmediately,
+  withAnimationContainerToChildren,
   withAnimationItemSelfDelayed,
+  withAnimationItemSelfDelayedAlternating,
   withAnimationItemSimple,
 } from "./hoc";
 
@@ -20,19 +21,25 @@ export function createAnimationItemSelfDelayed(variants: Variants) {
   };
 }
 
-export function createAnimationItemAlternating(even: Variants, odd: Variants) {
+export function createAnimationItemSelfDelayedAlternating(
+  even: Variants,
+  odd: Variants,
+) {
   return function <P extends { idx: number }>(Component: ComponentType<P>) {
-    return withAnimationItemAlternating(Component, even, odd);
+    return withAnimationItemSelfDelayedAlternating(Component, even, odd);
   };
 }
 
-// export function createAnimationContainer(variants: Variants) {
-//   return function <P extends object>(Component: ComponentType<P>) {
-//     return withAnimationContainer(Component, variants);
-//   };
-// }
-export function createAnimationContainer() {
-  return function <P extends object>(Component: ComponentType<P>) {
-    return withAnimationContainer(Component);
+export function createAnimationContainerImmediately<P extends object>(
+  Component: ComponentType<P>,
+) {
+  return withAnimationContainerImmediately(Component);
+}
+
+export function createAnimationContainerToChildren(variants: Variants[]) {
+  return function <P extends object>(
+    Component: ComponentType<P & { children: ReactNode }>,
+  ) {
+    return withAnimationContainerToChildren(Component, variants);
   };
 }

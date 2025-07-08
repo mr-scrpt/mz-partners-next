@@ -1,11 +1,13 @@
 "use client";
 import {
-  createAnimationContainerDelayed,
-  createAnimationItemSlideBottom,
+  createAnimationContainerImmediately,
+  createAnimationItemSlideBottomSelfDelayed,
 } from "@/shared/lib/animations";
 
 import { ListBenefit } from "./list.benefit";
 import { ItemBenefit } from "./item/item.benefit";
 
-export const ItemBenefitAnimated = createAnimationItemSlideBottom(ItemBenefit);
-export const ListBenefitAnimated = createAnimationContainerDelayed(ListBenefit);
+export const ItemBenefitAnimated =
+  createAnimationItemSlideBottomSelfDelayed(ItemBenefit);
+export const ListBenefitAnimated =
+  createAnimationContainerImmediately(ListBenefit);

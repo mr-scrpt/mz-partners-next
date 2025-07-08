@@ -7,8 +7,9 @@ import { Icon } from "@/shared/ui/icon";
 import { ItemBenefitProps } from "./type";
 
 export const ItemBenefit: FC<ItemBenefitProps> = (props) => {
-  const { className, item } = props;
+  const { className, item, idx } = props;
   const { indicator, description } = item;
+  console.log("output_log: Benefit =>>>", idx);
 
   return (
     <div className={clsx(sItemBenefit.root, className)}>
