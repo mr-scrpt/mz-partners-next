@@ -9,6 +9,7 @@ import { FC } from "react";
 import { BreadcrumbsModule } from "@/widget/breadcrumbs";
 
 import sPage from "../../ui/page.module.scss";
+import { PageLayoutAnimatedToChildren } from "@/shared/ui/layout";
 interface PageAboutProps {}
 
 export const PageAbout: FC<PageAboutProps> = async (props) => {
@@ -25,4 +26,16 @@ export const PageAbout: FC<PageAboutProps> = async (props) => {
   );
 };
 
-// export default PageAbout;
+export const PageAboutAnimated = async () => {
+  return (
+    <PageLayoutAnimatedToChildren className={sPage.root}>
+      <BreadcrumbsModule />
+      <AboutModule className={sPage.root__fall} />
+      <HistoryModule />
+      <BenefitModule />
+      <TeamModule />
+      <PiplineModule />
+      <PrincipleModule className={sPage.root__offset} />
+    </PageLayoutAnimatedToChildren>
+  );
+};

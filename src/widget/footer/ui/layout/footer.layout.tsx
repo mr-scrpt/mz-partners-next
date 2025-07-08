@@ -19,6 +19,7 @@ export const FooterLayout: FC<FooterLayoutProps> = (props) => {
       classInner={sDeco.mainBG}
       width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.INDENTED}
+      as="footer"
     >
       <div className={clsx(sFooterLayout.inner, sDeco.innerBG)}>
         <div className={sFooterLayout.navigation}>{PrimarySlot}</div>

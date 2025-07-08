@@ -1,2 +1,2 @@
 export { generateMetadataContact as generateMetadata } from "@/page";
-export { PageContact as default } from "@/page";
+export { PageContactAnimated as default } from "@/page";

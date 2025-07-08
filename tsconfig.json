@@ -14,9 +14,13 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "typeRoots": ["./node_modules/@types", "./src/types"],
     "plugins": [
       {
         "name": "next"
+      },
+      {
+        "name": "typescript-plugin-css-modules"
       }
     ],
     "paths": {
@@ -29,7 +33,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "next-env.d.ts",
-    "build/types/**/*.ts"
-, "src/shared/style/module/preset/_typography.scss"  ],
+    "build/types/**/*.ts",
+    "src/shared/style/module/preset/_typography.scss"
+  ],
   "exclude": ["node_modules"]
 }

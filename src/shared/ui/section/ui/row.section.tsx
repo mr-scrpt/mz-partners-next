@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { FC, HTMLAttributes, ReactNode } from "react";
+import { ElementType, FC, HTMLAttributes, ReactNode } from "react";
 
 import { SectionWidth } from "../domain/topology.type";
 import sSection from "./style/section.module.scss";
@@ -15,6 +15,7 @@ interface RowSectionProps
   classSection?: string;
   classInner?: string;
   classContent?: string;
+  as?: ElementType;
 }
 
 export const RowSection: FC<RowSectionProps> = (props) => {
@@ -26,6 +27,7 @@ export const RowSection: FC<RowSectionProps> = (props) => {
     headerSlot,
     footerSlot,
     classInner,
+    as: Component = "section",
   } = props;
   const { cWidth, cSection, cSpace } = useSectionStyle();
 
@@ -37,7 +39,7 @@ export const RowSection: FC<RowSectionProps> = (props) => {
   ]);
 
   return (
-    <section className={clsSection}>
+    <Component className={clsSection}>
       <div className={clsInner}>
         {headerSlot && (
           <div className={sSection.section__header}>{headerSlot}</div>
@@ -47,6 +49,6 @@ export const RowSection: FC<RowSectionProps> = (props) => {
           <div className={sSection.section__footer}>{footerSlot}</div>
         )}
       </div>
-    </section>
+    </Component>
   );
 };

@@ -1,7 +1,7 @@
 import { sGlobal, sPage, sTheme } from "@/shared/style/module";
 import clsx from "clsx";
 import { Montserrat } from "next/font/google";
-import { HTMLAttributes, Suspense } from "react";
+import { ElementType, HTMLAttributes, Suspense } from "react";
 import { Loader } from "../../loader/ui/loader";
 
 const MontserratSans = Montserrat({

@@ -1,6 +1,6 @@
 import { useHover } from "@/shared/lib/react";
 import clsx from "clsx";
-import aProjectItem from "../ui/list/item.animate.module.scss";
+import aProjectItem from "../ui/component/list/item/animate.module.scss";
 import { HTMLAttributes } from "react";
 
 interface AnimationClassResult {

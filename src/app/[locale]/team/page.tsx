@@ -1,2 +1,2 @@
 export { generateMetadataTeam as generateMetadata } from "@/page";
-export { PageTeam as default } from "@/page";
+export { PageTeamAnimated as default } from "@/page";

@@ -4,6 +4,7 @@ export type ContactPromoItem = {
   link: string;
   name: string;
 };
+
 export type ContactWidgetItem = {
   promo: ContactPromoItem;
 };

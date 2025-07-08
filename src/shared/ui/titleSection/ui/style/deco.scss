@@ -7,6 +7,9 @@
 }
 
 .deco {
+  position: relative;
+  z-index: 1;
+
   width: inherit;
 
   &_line {

@@ -1,16 +1,16 @@
 import { FC, HTMLAttributes } from "react";
-import { TeamLayout } from "./layout/team.layout";
-import { TeamHeader } from "./header/team.header";
-import { List } from "./list/list";
+import { LayoutTeam } from "./component/layout/layout.team";
+import { HeaderTeam } from "./component/header/header.team";
+import { ListTeamAnimatedCompose } from "./composer/listTeamAnimated.compose";
 
 interface TeamModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const TeamModule: FC<TeamModuleProps> = (props) => {
   const { className } = props;
   return (
-    <TeamLayout
-      HeaderSlot={<TeamHeader />}
-      ContentSlot={<List />}
+    <LayoutTeam
+      HeaderSlot={<HeaderTeam />}
+      ContentSlot={<ListTeamAnimatedCompose />}
       className={className}
     />
   );

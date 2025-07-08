@@ -2,6 +2,7 @@ import { CompetencyModule } from "@/widget/competency";
 
 import sPage from "../../ui/page.module.scss";
 import { BreadcrumbsModule } from "@/widget/breadcrumbs";
+import { PageLayoutAnimatedToChildren } from "@/shared/ui/layout";
 
 export const PageCompetency = () => {
   return (
@@ -9,7 +10,15 @@ export const PageCompetency = () => {
       <BreadcrumbsModule />
 
       <CompetencyModule className={sPage.root__fall} />
-      {/* <CompetencyModule /> */}
     </div>
+  );
+};
+
+export const PageCompetencyAnimated = async () => {
+  return (
+    <PageLayoutAnimatedToChildren className={sPage.root}>
+      <BreadcrumbsModule />
+      <CompetencyModule className={sPage.root__fall} />
+    </PageLayoutAnimatedToChildren>
   );
 };

@@ -1,23 +1,23 @@
 import { FC, HTMLAttributes } from "react";
-
-import { ContactLayout } from "./layout/contact.layout";
-import { ContactHeader } from "./header/contact.header";
-import { Info } from "./info/info";
-import { Map } from "./map/map";
-import { Promo } from "./promo/promo";
-import { Video } from "./video/video";
+import { HeaderContact } from "./component/header/header.contact";
+import { LayoutContact } from "./component/layout/layout.contact";
+import { MapContact } from "./component/map/map.contact";
+import { PromoComposeContact } from "./component/promo/compose/promoCompose.contact";
+import { VideoComposeContact } from "./component/video/compose/videoCompose.contact";
+import { InfoAnimated } from "./component/info";
+import { PromoAnimated } from "./component/promo";
 
 interface ContactModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const ContactModule: FC<ContactModuleProps> = (props) => {
   const { className } = props;
   return (
-    <ContactLayout
-      HeaderSlot={<ContactHeader />}
-      PrimarySlot={<Info />}
-      SecondarySlot={<Promo />}
-      TertiarySlot={<Map />}
-      FourthSlot={<Video />}
+    <LayoutContact
+      HeaderSlot={<HeaderContact />}
+      PrimarySlot={<InfoAnimated />}
+      SecondarySlot={<PromoAnimated />}
+      TertiarySlot={<MapContact />}
+      FourthSlot={<VideoComposeContact />}
       className={className}
     />
   );
