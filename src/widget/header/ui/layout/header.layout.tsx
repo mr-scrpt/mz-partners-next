@@ -17,6 +17,7 @@ export const HeaderLayout: FC<HeaderLayoutProps> = (props) => {
       classSection={clsx(sHeaderLayout.root, className)}
       width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.SECONDARY}
+      as="header"
     >
       <div className={sHeaderLayout.inner}>
         <div className={sHeaderLayout.visual}>{VisualSlot}</div>

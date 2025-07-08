@@ -27,7 +27,7 @@ export const PageMain = async () => {
 
 export const PageMainAnimated = async () => {
   return (
-    <PageLayoutAnimatedToChildren className={sPage.root}>
+    <PageLayoutAnimatedToChildren className={sPage.root} as="main">
       <HeroModule />
       <SocialLineModule />
       <CompetencyModule />

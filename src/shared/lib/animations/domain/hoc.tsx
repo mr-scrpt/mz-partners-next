@@ -138,8 +138,6 @@ export function withAnimationContainerToChildren<P extends object>(
     }, []);
 
     const animatedChildren = Children.map(children, (child, index) => {
-      // ^^^ ИСПРАВЛЕНИЕ ЗДЕСЬ: правильный порядок (child, index)
-
       if (!isValidElement(child)) {
         return child;
       }

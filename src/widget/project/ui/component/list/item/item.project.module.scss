@@ -1,5 +1,9 @@
 @use "./src/shared/style/classic/mixin.scss" as *;
 
+.root {
+  height: 100%;
+}
+
 .inner {
   display: flex;
   flex-direction: column;
