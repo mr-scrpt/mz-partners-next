@@ -27,7 +27,7 @@ export const RowSection: FC<RowSectionProps> = (props) => {
     headerSlot,
     footerSlot,
     classInner,
-    as: Component = "section",
+    as: Component = "div",
   } = props;
   const { cWidth, cSection, cSpace } = useSectionStyle();
 

@@ -11,9 +11,7 @@
 }
 
 .list {
-  display: flex;
-
-  @include grid(40px, 20px); // flex-direction: column;
+  @include grid; // flex-direction: column;
 }
 
 .item {

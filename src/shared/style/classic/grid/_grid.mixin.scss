@@ -184,6 +184,7 @@ $container-offset-lg: 50px;
   & {
     display: grid;
     grid-template-columns: repeat($grid-columns, 1fr);
+
     gap: $gap-top $gap-side;
 
     width: 100%;

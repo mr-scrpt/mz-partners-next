@@ -15,16 +15,18 @@ $margin-offset: calc(-1 * #{$icon-height} / 2 - #{$icon-padding});
 .root {
   height: 100%;
 
-  // padding-bottom: 50px;
+  // padding-bottom: $margin-compensation;
 }
 
 .inner {
   display: flex;
   flex-direction: column;
 
-  height: 100%;
+  height: calc(100% - #{$margin-compensation});
 
   margin-top: $margin-compensation;
+
+  margin-bottom: $margin-compensation;
 
   background: var(--color-primary);
 }
@@ -61,6 +63,8 @@ $margin-offset: calc(-1 * #{$icon-height} / 2 - #{$icon-padding});
   align-items: center;
   flex-flow: column wrap;
   justify-content: center;
+
+  padding-top: calc(#{$icon-height} / 2);
 
   color: var(--color-light);
 
