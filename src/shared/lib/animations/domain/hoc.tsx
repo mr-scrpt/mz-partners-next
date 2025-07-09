@@ -24,7 +24,7 @@ export function withAnimationItemSimple<P extends object>(
   const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
     const { className, ...restProps } = props;
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, amount: 0.2 });
+    const isInView = useInView(ref, { once: true, amount: 0.05 });
 
     return (
       <motion.div

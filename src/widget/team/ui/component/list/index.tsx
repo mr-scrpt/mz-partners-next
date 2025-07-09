@@ -1,13 +1,12 @@
 "use client";
 import {
   createAnimationContainerImmediately,
-  createAnimationItemSlideBottomSelfDelayed,
+  createAnimationItemSlideBottom,
 } from "@/shared/lib/animations";
 
-import { ListTeam } from "./list.team";
 import { ItemTeam } from "./item/item.team";
+import { ListTeam } from "./list.team";
 
-export const ItemTeamAnimated =
-  createAnimationItemSlideBottomSelfDelayed(ItemTeam);
-createAnimationItemSlideBottomSelfDelayed(ItemTeam);
+export const ItemTeamAnimated = createAnimationItemSlideBottom(ItemTeam);
+
 export const ListTeamAnimated = createAnimationContainerImmediately(ListTeam);
