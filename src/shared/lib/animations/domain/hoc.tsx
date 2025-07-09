@@ -140,7 +140,8 @@ export function withAnimationContainerToChildren<P extends object>(
     variant: Variants;
     children: ReactNode;
     itemAs?: ElementType; // <-- ДОБАВЛЕНО
-  }> = ({ variant, children, itemAs: Tag = "div" }) => {
+    className?: string;
+  }> = ({ variant, children, itemAs: Tag = "div", className }) => {
     // <-- ИЗМЕНЕНО
     const controls = useAnimationControls();
     const ref = useRef(null);
@@ -169,6 +170,7 @@ export function withAnimationContainerToChildren<P extends object>(
         variants={variant}
         initial="visible"
         animate={controls}
+        className={className}
       >
         {children}
       </MotionTag>
@@ -177,10 +179,10 @@ export function withAnimationContainerToChildren<P extends object>(
 
   // 3. Обновляем пропсы для основного компонента
   const AnimatedLayoutComponent: FC<
-    P & { children: ReactNode; itemAs?: ElementType } // <-- ДОБАВЛЕНО
+    P & { children: ReactNode; itemAs?: ElementType; itemClassName?: string } // <-- ДОБАВЛЕНО
   > = (props) => {
     // 4. Извлекаем itemAs из пропсов
-    const { children, itemAs, ...restProps } = props; // <-- ИЗМЕНЕНО
+    const { children, itemAs, itemClassName, ...restProps } = props; // <-- ИЗМЕНЕНО
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
@@ -197,6 +199,7 @@ export function withAnimationContainerToChildren<P extends object>(
         <AnimatedChild
           key={index}
           variant={selectedVariant}
+          className={itemClassName}
           itemAs={itemAs} // <-- 5. Передаем itemAs дальше
         >
           {child}

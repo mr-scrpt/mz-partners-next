@@ -31,6 +31,7 @@ export const PageMainAnimated = async () => {
       className={sPage.root}
       as="main"
       itemAs="section"
+      itemClassName={sPage.section}
     >
       <HeroModule />
       <SocialLineModule />
