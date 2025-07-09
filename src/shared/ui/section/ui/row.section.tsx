@@ -33,7 +33,9 @@ export const RowSection: FC<RowSectionProps> = (props) => {
 
   const clsSection = clsx(cSection.base, classSection);
 
-  const clsInner = clsx(cWidth.base, classInner, [
+  const clsInner = clsx(cWidth.base, [
+    sSection.section__inner,
+    classInner,
     cWidth.options[width],
     cSpace.options[space],
   ]);

@@ -3,6 +3,17 @@
 .section {
   position: relative;
 
+  &__inner {
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+    gap: 30px;
+    @include block-bp-lg {
+      gap: 70px;
+    }
+  }
+
   &__header {
     width: 100%;
   }

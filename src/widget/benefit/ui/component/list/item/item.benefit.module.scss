@@ -12,6 +12,12 @@ $icon-padding: 20px;
 $margin-compensation: calc(#{$icon-height} / 2 + #{$icon-padding});
 $margin-offset: calc(-1 * #{$icon-height} / 2 - #{$icon-padding});
 
+.root {
+  height: 100%;
+
+  // padding-bottom: 50px;
+}
+
 .inner {
   display: flex;
   flex-direction: column;

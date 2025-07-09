@@ -1,4 +1,4 @@
-.size{
+.size {
   --font-size-s: 18px;
   --font-size-m: 24px;
   --font-size-l: 38px;
@@ -9,26 +9,30 @@
   --font-line-xl: 52px;
 }
 
-.size_s{
-  & .text{
+.size_s {
+  & .text {
     font-size: var(--font-size-s);
+    line-height: calc(var(--font-line-s) * 1.1);
   }
 }
 
-.size_m{
-  & .text{
+.size_m {
+  & .text {
     font-size: var(--font-size-m);
+    line-height: calc(var(--font-line-m) * 1.1);
   }
 }
 
-.size_l{
-  & .text{
+.size_l {
+  & .text {
     font-size: var(--font-size-l);
+    line-height: calc(var(--font-line-l) * 1.1);
   }
 }
 
-.size_xl{
-  & .text{
+.size_xl {
+  & .text {
     font-size: var(--font-size-xl);
+    line-height: calc(var(--font-line-xl) * 1.1);
   }
 }

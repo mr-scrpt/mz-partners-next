@@ -8,6 +8,7 @@ import {
 import {
   Children,
   ComponentType,
+  ElementType,
   FC,
   HTMLAttributes,
   isValidElement,
@@ -24,7 +25,7 @@ export function withAnimationItemSimple<P extends object>(
   const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
     const { className, ...restProps } = props;
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, amount: 0.05 });
+    const isInView = useInView(ref, { once: true, amount: 0.1 });
 
     return (
       <motion.div
@@ -134,52 +135,57 @@ export function withAnimationContainerToChildren<P extends object>(
   WrappedComponent: ComponentType<P & { children: ReactNode }>,
   variants: Variants[],
 ) {
-  // "Умный" дочерний компонент, который инкапсулирует всю логику анимации
+  // 1. Обновляем пропсы для AnimatedChild, добавляя itemAs
   const AnimatedChild: FC<{
     variant: Variants;
     children: ReactNode;
-  }> = ({ variant, children }) => {
+    itemAs?: ElementType; // <-- ДОБАВЛЕНО
+  }> = ({ variant, children, itemAs: Tag = "div" }) => {
+    // <-- ИЗМЕНЕНО
     const controls = useAnimationControls();
     const ref = useRef(null);
     const isInView = useInView(ref, { amount: 0.2 });
     const [isMounted, setIsMounted] = useState(false);
 
-    // После первого рендера на клиенте, отмечаем, что компонент смонтирован
+    const MotionTag = (motion[Tag as keyof typeof motion] ||
+      motion.div) as ElementType;
+
     useEffect(() => {
       setIsMounted(true);
     }, []);
 
-    // Главный эффект, который управляет анимацией
     useEffect(() => {
-      // 1. Не запускаем никакую логику до тех пор, пока компонент не смонтирован
       if (!isMounted) return;
-
-      // 2. После монтирования, синхронизируем состояние с видимостью
       if (isInView) {
         controls.start("visible");
       } else {
         controls.start("hidden");
       }
-    }, [isMounted, isInView, controls]); // Зависим от монтирования и видимости
+    }, [isMounted, isInView, controls]);
 
     return (
-      <motion.div
+      <MotionTag
         ref={ref}
         variants={variant}
-        // 3. КЛЮЧЕВОЙ МОМЕНТ: Всегда начинаем в состоянии "visible"
-        // Это гарантирует отсутствие анимации при первоначальной загрузке
         initial="visible"
-        // 4. Передаем управление нашему контроллеру
         animate={controls}
       >
         {children}
-      </motion.div>
+      </MotionTag>
     );
   };
 
-  // Основной компонент-обертка, который вы используете
-  const AnimatedLayoutComponent: FC<P & { children: ReactNode }> = (props) => {
-    const { children, ...restProps } = props;
+  // 3. Обновляем пропсы для основного компонента
+  const AnimatedLayoutComponent: FC<
+    P & { children: ReactNode; itemAs?: ElementType } // <-- ДОБАВЛЕНО
+  > = (props) => {
+    // 4. Извлекаем itemAs из пропсов
+    const { children, itemAs, ...restProps } = props; // <-- ИЗМЕНЕНО
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+      setIsMounted(true);
+    }, []);
 
     const animatedChildren = Children.map(children, (child, index) => {
       if (!isValidElement(child)) {
@@ -188,7 +194,11 @@ export function withAnimationContainerToChildren<P extends object>(
       const selectedVariant = variants[index % variants.length];
 
       return (
-        <AnimatedChild key={index} variant={selectedVariant}>
+        <AnimatedChild
+          key={index}
+          variant={selectedVariant}
+          itemAs={itemAs} // <-- 5. Передаем itemAs дальше
+        >
           {child}
         </AnimatedChild>
       );
@@ -203,6 +213,81 @@ export function withAnimationContainerToChildren<P extends object>(
 
   return AnimatedLayoutComponent;
 }
+
+// export function withAnimationContainerToChildren<P extends object>(
+//   WrappedComponent: ComponentType<P & { children: ReactNode }>,
+//   variants: Variants[],
+// ) {
+//   // "Умный" дочерний компонент, который инкапсулирует всю логику анимации
+//   const AnimatedChild: FC<{
+//     variant: Variants;
+//     children: ReactNode;
+//   }> = ({ variant, children }) => {
+//     const controls = useAnimationControls();
+//     const ref = useRef(null);
+//     const isInView = useInView(ref, { amount: 0.2 });
+//     const [isMounted, setIsMounted] = useState(false);
+//
+//     // После первого рендера на клиенте, отмечаем, что компонент смонтирован
+//     useEffect(() => {
+//       setIsMounted(true);
+//     }, []);
+//
+//     // Главный эффект, который управляет анимацией
+//     useEffect(() => {
+//       // 1. Не запускаем никакую логику до тех пор, пока компонент не смонтирован
+//       if (!isMounted) return;
+//
+//       // 2. После монтирования, синхронизируем состояние с видимостью
+//       if (isInView) {
+//         controls.start("visible");
+//       } else {
+//         controls.start("hidden");
+//       }
+//     }, [isMounted, isInView, controls]); // Зависим от монтирования и видимости
+//
+//     return (
+//       <motion.div
+//         ref={ref}
+//         variants={variant}
+//         // 3. КЛЮЧЕВОЙ МОМЕНТ: Всегда начинаем в состоянии "visible"
+//         // Это гарантирует отсутствие анимации при первоначальной загрузке
+//         initial="visible"
+//         // 4. Передаем управление нашему контроллеру
+//         animate={controls}
+//
+//       >
+//         {children}
+//       </motion.div>
+//     );
+//   };
+//
+//   // Основной компонент-обертка, который вы используете
+//   const AnimatedLayoutComponent: FC<P & { children: ReactNode }> = (props) => {
+//     const { children, ...restProps } = props;
+//
+//     const animatedChildren = Children.map(children, (child, index) => {
+//       if (!isValidElement(child)) {
+//         return child;
+//       }
+//       const selectedVariant = variants[index % variants.length];
+//
+//       return (
+//         <AnimatedChild key={index} variant={selectedVariant}>
+//           {child}
+//         </AnimatedChild>
+//       );
+//     });
+//
+//     return (
+//       <WrappedComponent {...(restProps as P)}>
+//         {animatedChildren}
+//       </WrappedComponent>
+//     );
+//   };
+//
+//   return AnimatedLayoutComponent;
+// }
 
 // export function withAnimationContainerToChildren<P extends object>(
 //   WrappedComponent: ComponentType<P & { children: ReactNode }>,
