@@ -1,6 +1,16 @@
 import { Locale } from "@/shared/lib/i18n/domain/type";
 import { TeamItem } from "../domain/team.type";
-import team_unit_photo from "../model/asset/team_unit.jpg";
+import juravliov_maksim from "../model/asset/juravliov_maksim.jpg";
+import klimov_oleksandr from "../model/asset/klimov_oleksandr.jpg";
+import danilova_inna from "../model/asset/danilova_inna.jpg";
+import eremenko_sevastian from "../model/asset/eremenko_sevastian.jpg";
+import gunchenko_daria from "../model/asset/gunchenko_daria.jpg";
+import terashenko_illa from "../model/asset/terashenko_illa.jpg";
+import golovan_tetiana from "../model/asset/golovan_tetiana.jpg";
+import timoshenko_egor from "../model/asset/timoshenko_egor.jpg";
+import vaselenko_oleksandra from "../model/asset/vaselenko_oleksandra.jpg";
+import chub_vladislav from "../model/asset/chub_vladislav.png";
+// import from "../model/asset/";
 
 export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
   ua: [
@@ -8,7 +18,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Максим",
       lastName: "Журавльов",
       fatherName: "Сергійович",
-      photo: team_unit_photo,
+      photo: juravliov_maksim,
       position: "Голова адвокатського об'єднання, адвокат",
       specialization: "Кримінальне та адміністративне право",
       expirience: "12 років",
@@ -18,7 +28,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Олександр",
       lastName: "Клімов",
       fatherName: "Миколайович",
-      photo: team_unit_photo,
+      photo: klimov_oleksandr,
       position: "Адвокат",
       specialization: "Кримінальне та адміністративне право",
       expirience: "19 років",
@@ -28,7 +38,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Інна",
       lastName: "Данилова",
       fatherName: "Олександрівна",
-      photo: team_unit_photo,
+      photo: danilova_inna,
       position: "Адвокат",
       specialization: "Кримінальне право",
       expirience: "22 років",
@@ -38,7 +48,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Севастьян",
       lastName: "Єрьоменко",
       fatherName: "Валеріанович",
-      photo: team_unit_photo,
+      photo: eremenko_sevastian,
       position: "Адвокат",
       specialization: "Сімейні, трудові, майнові спори. Допомога військовим",
       expirience: "12 років",
@@ -48,7 +58,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Дар'я",
       lastName: "Гунченко",
       fatherName: "Ігорівна",
-      photo: team_unit_photo,
+      photo: gunchenko_daria,
       position: "Адвокат",
       specialization: "Цивільне та сімейне право",
       expirience: "5 років",
@@ -58,7 +68,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Ілля",
       lastName: "Терещенко",
       fatherName: "Ігорович",
-      photo: team_unit_photo,
+      photo: terashenko_illa,
       position: "Адвокат",
       specialization: "Кримінальне право, захист бізнесу, антикорупційні кейси",
       expirience: "10 років",
@@ -68,7 +78,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Тетяна",
       lastName: "Головань",
       fatherName: "Георгіївна",
-      photo: team_unit_photo,
+      photo: golovan_tetiana,
       position: "Адвокат",
       specialization:
         "Податкові, антикорупційний комплаєнс, трудові, спадкові, сімейні спори",
@@ -79,7 +89,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Єгор",
       lastName: "Тимошенко",
       fatherName: "Володимирович",
-      photo: team_unit_photo,
+      photo: timoshenko_egor,
       position: "Адвокат",
       specialization: "Адміністративні правопорушення, кримінальне право",
       expirience: "5 років",
@@ -89,7 +99,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Олександра",
       lastName: "Власенко",
       fatherName: "Олександрівна",
-      photo: team_unit_photo,
+      photo: vaselenko_oleksandra,
       position: "Юрист",
       specialization: "Кримінальне та адміністративне право",
       expirience: "2 років",
@@ -99,7 +109,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Владислав",
       lastName: "Чуб",
       fatherName: "Євгенович",
-      photo: team_unit_photo,
+      photo: chub_vladislav,
       position: "Юрист",
       specialization: "Кримінальне та адміністративне право",
       expirience: "2 років",
@@ -111,7 +121,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Maxim",
       lastName: "Zhuravlyov",
       fatherName: "Sergeyovich",
-      photo: team_unit_photo,
+      photo: juravliov_maksim,
       position: "Head of legal association, lawyer",
       specialization: "Criminal and administrative law",
       expirience: "12 years",
@@ -121,7 +131,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Oleksandr",
       lastName: "Klimov",
       fatherName: "Mykolayovych",
-      photo: team_unit_photo,
+      photo: klimov_oleksandr,
       position: "Lawyer",
       specialization: "Criminal and administrative law",
       expirience: "19 years",
@@ -131,7 +141,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Inna",
       lastName: "Danylova",
       fatherName: "Oleksandrivna",
-      photo: team_unit_photo,
+      photo: danilova_inna,
       position: "Lawyer",
       specialization: "Criminal law",
       expirience: "22 years",
@@ -141,7 +151,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Sevastian",
       lastName: "Yeryomenko",
       fatherName: "Valerianovych",
-      photo: team_unit_photo,
+      photo: eremenko_sevastian,
       position: "Lawyer",
       specialization:
         "Family, labor and property disputes. Assistance to military personnel",
@@ -152,7 +162,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Daria",
       lastName: "Gunchenko",
       fatherName: "Ihorivna",
-      photo: team_unit_photo,
+      photo: gunchenko_daria,
       position: "Lawyer",
       specialization: "Civil and family law",
       expirience: "5 years",
@@ -162,7 +172,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Illia",
       lastName: "Tereshchenko",
       fatherName: "Ihorovych",
-      photo: team_unit_photo,
+      photo: terashenko_illa,
       position: "Lawyer",
       specialization:
         "Criminal law, business protection, anti-corruption cases",
@@ -173,7 +183,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Tetiana",
       lastName: "Holovan",
       fatherName: "Heorhiyivna",
-      photo: team_unit_photo,
+      photo: golovan_tetiana,
       position: "Lawyer",
       specialization:
         "Tax disputes, anti-corruption compliance, labor, inheritance and family cases",
@@ -184,7 +194,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Yehor",
       lastName: "Tymoshenko",
       fatherName: "Volodymyrovych",
-      photo: team_unit_photo,
+      photo: timoshenko_egor,
       position: "Lawyer",
       specialization: "Administrative offenses, criminal law",
       expirience: "5 years",
@@ -194,7 +204,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Oleksandra",
       lastName: "Vlasenko",
       fatherName: "Oleksandrivna",
-      photo: team_unit_photo,
+      photo: vaselenko_oleksandra,
       position: "Legal counsel",
       specialization: "Criminal and administrative law",
       expirience: "2 years",
@@ -204,7 +214,7 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       firstName: "Vladyslav",
       lastName: "Chub",
       fatherName: "Yevhenovych",
-      photo: team_unit_photo,
+      photo: chub_vladislav,
       position: "Legal counsel",
       specialization: "Criminal and administrative law",
       expirience: "2 years",
