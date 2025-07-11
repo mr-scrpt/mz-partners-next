@@ -11,17 +11,17 @@ export type HeroDictField = keyof typeof HERO_DICT_FIELD;
 export const HeroDict = {
   ua: {
     [HERO_NAMESPACE]: {
-      [HERO_DICT_FIELD.title]: "Про нас",
+      [HERO_DICT_FIELD.title]: "Ваша юридична безпека – наша місія",
       [HERO_DICT_FIELD.description]:
-        "Ми вирішуємо складні юридичні питання і допомагаємо знайти оптимальне рішення",
+        "Наше адвокатське обєднання – це надійний юридичний партнер у вирішенні складних питань. Ми впевнені, що захистимо ваші права та інтереси професійно і ефективно.",
       [HERO_DICT_FIELD.actionButton]: "Зв'язатися з нами",
     },
   },
   en: {
     [HERO_NAMESPACE]: {
-      [HERO_DICT_FIELD.title]: "About us",
+      [HERO_DICT_FIELD.title]: "Your legal security is our mission",
       [HERO_DICT_FIELD.description]:
-        "We solve complex legal issues and help you find the best solution",
+        "Our legal association is a reliable legal partner in resolving complex issues. We are confident that we will protect your rights and interests professionally and effectively.",
       [HERO_DICT_FIELD.actionButton]: "Contact us",
     },
   },
