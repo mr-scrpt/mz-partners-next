@@ -4,6 +4,7 @@ import sPage from "../../ui/page.module.scss";
 
 import { BreadcrumbsModule } from "@/widget/breadcrumbs";
 import { PageLayoutAnimatedToChildren } from "@/shared/ui/layout";
+import { TeamSecondaryModule } from "@/widget/team/ui/teamSecondary.module";
 
 export const PageTeam = () => {
   return (
@@ -18,7 +19,7 @@ export const PageTeamAnimated = async () => {
   return (
     <PageLayoutAnimatedToChildren className={sPage.root}>
       <BreadcrumbsModule />
-      <TeamModule className={sPage.root__fall} />
+      <TeamSecondaryModule className={sPage.root__fall} />
     </PageLayoutAnimatedToChildren>
   );
 };

@@ -1,0 +1,18 @@
+/* Module: sContentTeam */
+.root {
+  position: relative;
+}
+
+.text {
+  position: relative;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.list {
+  position: relative;
+}
