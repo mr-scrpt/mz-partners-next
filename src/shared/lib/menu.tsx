@@ -38,8 +38,7 @@ export function useMenu<T extends HTMLElement>(
 
     const handleItemClick = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
-      // 👇 Вот ключевое изменение: ищем атрибут, а не тег
-      if (target.closest("[data-menu-item]")) {
+      if (target.closest("[data-menu-control]")) {
         setIsOpen(false);
       }
     };

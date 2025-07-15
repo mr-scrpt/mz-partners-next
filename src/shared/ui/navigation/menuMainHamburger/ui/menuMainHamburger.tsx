@@ -35,7 +35,7 @@ export const MenuMainHamburger: FC<MenuMainProps> = (props) => {
             <MenuMainHamburgerItem
               item={item}
               key={item.id}
-              data-menu-item="true"
+              data-menu-control="true"
             />
           ))}
         </ul>
