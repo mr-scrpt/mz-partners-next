@@ -1,3 +1,4 @@
+"use client";
 import { FC, HTMLAttributes } from "react";
 
 import { useTeamItemList } from "@/entity/team";

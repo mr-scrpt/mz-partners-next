@@ -9,6 +9,7 @@ import { SocialLineModule } from "@/widget/socialLine";
 
 import sPage from "../../ui/page.module.scss";
 import { PageLayoutAnimatedToChildren } from "@/shared/ui/layout";
+import { TeamSecondaryModule } from "@/widget/team/ui/teamSecondary.module";
 
 export const PageMain = async () => {
   return (
@@ -38,6 +39,7 @@ export const PageMainAnimated = async () => {
       <CompetencyModule />
       <PrincipleModule />
       <ProjectModule />
+      <TeamSecondaryModule />
       <BenefitModule className={sPage.root__offset} />
       <PiplineModule />
       <CallbackModule className={sPage.root__offset} />

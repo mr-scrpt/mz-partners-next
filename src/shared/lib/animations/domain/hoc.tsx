@@ -98,7 +98,8 @@ export function withAnimationItemSelfDelayedAlternating<
         ...baseVariant.visible,
         transition: {
           ...(baseVariant.visible as any).transition,
-          delay: idx * 0.15,
+          // delay: idx * 0.15,
+          delay: 0.15,
         },
       },
     };
@@ -143,7 +144,8 @@ export function withAnimationContainerToChildren<P extends object>(
   }> = ({ variant, children, itemAs: Tag = "div", className }) => {
     const controls = useAnimationControls();
     const ref = useRef(null);
-    const isInView = useInView(ref, { amount: 0.2 });
+    // const isInView = useInView(ref, { amount: 0.05 });
+    const isInView = useInView(ref, { margin: "0px 0px -50px 0px" });
     const [isMounted, setIsMounted] = useState(false);
 
     const MotionTag = (motion[Tag as keyof typeof motion] ||
