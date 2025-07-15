@@ -32,7 +32,11 @@ export const MenuMainHamburger: FC<MenuMainProps> = (props) => {
           })}
         >
           {menuList.map((item) => (
-            <MenuMainHamburgerItem item={item} key={item.id} />
+            <MenuMainHamburgerItem
+              item={item}
+              key={item.id}
+              data-menu-item="true"
+            />
           ))}
         </ul>
       </div>

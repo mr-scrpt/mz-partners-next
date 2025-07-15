@@ -32,6 +32,25 @@ export function useMenu<T extends HTMLElement>(
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    const menuElement = menuRef.current;
+    if (!menuElement) return;
+
+    const handleItemClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      // 👇 Вот ключевое изменение: ищем атрибут, а не тег
+      if (target.closest("[data-menu-item]")) {
+        setIsOpen(false);
+      }
+    };
+
+    menuElement.addEventListener("click", handleItemClick);
+
+    return () => {
+      menuElement.removeEventListener("click", handleItemClick);
+    };
+  }, [menuRef]);
+
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);
     setIsInit(false);
