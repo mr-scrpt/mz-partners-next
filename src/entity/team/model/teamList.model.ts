@@ -8,8 +8,9 @@ import gunchenko_daria from "../model/asset/gunchenko_daria.jpg";
 import terashenko_illa from "../model/asset/terashenko_illa.jpg";
 import golovan_tetiana from "../model/asset/golovan_tetiana.jpg";
 import timoshenko_egor from "../model/asset/timoshenko_egor.jpg";
-import vaselenko_oleksandra from "../model/asset/vaselenko_oleksandra.jpg";
+import vlasenko_oleksandra from "../model/asset/vlasenko_oleksandra.jpg";
 import chub_vladislav from "../model/asset/chub_vladislav.png";
+import reutova_evgeniia from "../model/asset/reutova_evgeniia.jpg";
 // import from "../model/asset/";
 
 export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
@@ -96,10 +97,20 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       regalies: "Партнер",
     },
     {
+      firstName: "Євгенія",
+      lastName: "Реутова",
+      fatherName: "Сергіївна",
+      photo: reutova_evgeniia,
+      position: "Адвокат", // По аналогии с другими партнерами
+      specialization: "Сімейне, спадкове, цивільне та господарське право",
+      expirience: "20 років",
+      regalies: "Партнер",
+    },
+    {
       firstName: "Олександра",
       lastName: "Власенко",
       fatherName: "Олександрівна",
-      photo: vaselenko_oleksandra,
+      photo: vlasenko_oleksandra,
       position: "Юрист",
       specialization: "Кримінальне та адміністративне право",
       expirience: "2 років",
@@ -201,10 +212,20 @@ export const TEAM_LIST: Record<Locale, Array<TeamItem>> = {
       regalies: "Partner",
     },
     {
+      firstName: "Yevheniia",
+      lastName: "Reutova",
+      fatherName: "Serhiivna",
+      photo: reutova_evgeniia,
+      position: "Lawyer", // By analogy with other partners
+      specialization: "Family, inheritance, civil and commercial law",
+      expirience: "20 years",
+      regalies: "Partner",
+    },
+    {
       firstName: "Oleksandra",
       lastName: "Vlasenko",
       fatherName: "Oleksandrivna",
-      photo: vaselenko_oleksandra,
+      photo: vlasenko_oleksandra,
       position: "Legal counsel",
       specialization: "Criminal and administrative law",
       expirience: "2 years",
