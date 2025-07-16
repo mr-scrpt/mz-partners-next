@@ -3,11 +3,12 @@ import { ComponentType, ReactNode } from "react";
 import { Variants } from "framer-motion";
 import {
   withAnimationContainerImmediately,
-  withAnimationContainerToChildren,
+  withAnimationContainerScrollToChildren,
   withAnimationItemSelfDelayed,
   withAnimationItemSelfDelayedAlternating,
   withAnimationItemSimple,
 } from "./hoc";
+import { AnimationConfig } from "./type";
 
 export function createAnimationItemSimple(variants: Variants) {
   return function <P extends object>(Component: ComponentType<P>) {
@@ -36,10 +37,13 @@ export function createAnimationContainerImmediately<P extends object>(
   return withAnimationContainerImmediately(Component);
 }
 
-export function createAnimationContainerToChildren(variants: Variants[]) {
+export function createAnimationContainerScrollToChildren(
+  config: AnimationConfig = {},
+) {
   return function <P extends object>(
     Component: ComponentType<P & { children: ReactNode }>,
   ) {
-    return withAnimationContainerToChildren(Component, variants);
+    // Вот ключевое исправление: передаем `config` в HOC
+    return withAnimationContainerScrollToChildren(Component, config);
   };
 }

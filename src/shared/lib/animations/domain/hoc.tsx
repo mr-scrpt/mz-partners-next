@@ -1,10 +1,14 @@
 "use client";
 import {
   motion,
-  useAnimationControls,
   useInView,
+  useMotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
   Variants,
 } from "framer-motion";
+
 import {
   Children,
   ComponentType,
@@ -17,6 +21,8 @@ import {
   useRef,
   useState,
 } from "react";
+
+import { AnimationConfig } from "./type";
 
 export function withAnimationItemSimple<P extends object>(
   WrappedComponent: ComponentType<P>,
@@ -98,7 +104,7 @@ export function withAnimationItemSelfDelayedAlternating<
         ...baseVariant.visible,
         transition: {
           ...(baseVariant.visible as any).transition,
-          // delay: idx * 0.15,
+
           delay: 0.15,
         },
       },
@@ -132,73 +138,134 @@ export function withAnimationContainerImmediately<P extends object>(
   return StaggerContainer;
 }
 
-export function withAnimationContainerToChildren<P extends object>(
+const mapRange = (
+  input: number,
+  inputMin: number,
+  inputMax: number,
+  outputMin: number,
+  outputMax: number,
+) => {
+  const clampedInput = Math.max(inputMin, Math.min(input, inputMax));
+  return (
+    ((clampedInput - inputMin) * (outputMax - outputMin)) /
+      (inputMax - inputMin) +
+    outputMin
+  );
+};
+
+export function withAnimationContainerScrollToChildren<P extends object>(
   WrappedComponent: ComponentType<P & { children: ReactNode }>,
-  variants: Variants[],
+  config: AnimationConfig = {},
 ) {
   const AnimatedChild: FC<{
-    variant: Variants;
     children: ReactNode;
     itemAs?: ElementType;
     className?: string;
-  }> = ({ variant, children, itemAs: Tag = "div", className }) => {
-    const controls = useAnimationControls();
-    const ref = useRef(null);
-    // const isInView = useInView(ref, { amount: 0.05 });
-    const isInView = useInView(ref, { margin: "0px 0px -50px 0px" });
-    const [isMounted, setIsMounted] = useState(false);
+    animationConfig?: AnimationConfig;
+  }> = ({ children, itemAs: Tag = "div", className, animationConfig = {} }) => {
+    const ref = useRef<HTMLDivElement>(null);
+
+    const finalConfig = { ...config, ...animationConfig };
+    const {
+      startPixels = 20,
+      endPixels = 200,
+      springConfig = { stiffness: 100, damping: 30, mass: 1 },
+    } = finalConfig;
+
+    const progress = useMotionValue(0);
+    const smoothProgress = useSpring(progress, springConfig);
+    const { scrollY } = useScroll();
+
+    const [direction, setDirection] = useState<"enter" | "exit">("enter");
+
+    const getUpdate = () => {
+      if (!ref.current)
+        return { newProgress: 0, currentZone: "enter" as const };
+
+      const rect = ref.current.getBoundingClientRect();
+      const vh = window.innerHeight;
+      let newProgress = 0;
+      let currentZone: "enter" | "exit" | "visible" = "visible";
+
+      const enterStart = vh - startPixels;
+      const enterEnd = vh - endPixels;
+      const exitStart = endPixels;
+      const exitEnd = 0;
+
+      if (rect.top >= enterEnd && rect.top <= enterStart) {
+        newProgress = mapRange(rect.top, enterEnd, enterStart, 1, 0);
+        currentZone = "enter";
+      } else if (rect.bottom >= exitEnd && rect.bottom <= exitStart) {
+        newProgress = mapRange(rect.bottom, exitEnd, exitStart, 0, 1);
+        currentZone = "exit";
+      } else if (rect.top < enterEnd && rect.bottom > exitStart) {
+        newProgress = 1;
+        currentZone = "visible";
+      }
+
+      return { newProgress, currentZone };
+    };
+
+    useEffect(() => {
+      const handleUpdate = () => {
+        const { newProgress, currentZone } = getUpdate();
+        progress.set(newProgress);
+
+        if (currentZone === "enter" || currentZone === "exit") {
+          setDirection(currentZone);
+        }
+      };
+
+      handleUpdate();
+      const unsubscribeScroll = scrollY.on("change", handleUpdate);
+      window.addEventListener("resize", handleUpdate);
+      return () => {
+        unsubscribeScroll();
+        window.removeEventListener("resize", handleUpdate);
+      };
+    }, []);
+
+    const opacity = useTransform(smoothProgress, [0, 1], [0, 1]);
+
+    const yEnter = useTransform(smoothProgress, [0, 1], [50, 0]);
+    const yExit = useTransform(smoothProgress, [0, 1], [-50, 0]);
+
+    const y = direction === "exit" ? yExit : yEnter;
 
     const MotionTag = (motion[Tag as keyof typeof motion] ||
       motion.div) as ElementType;
 
-    useEffect(() => {
-      setIsMounted(true);
-    }, []);
-
-    useEffect(() => {
-      if (!isMounted) return;
-      if (isInView) {
-        controls.start("visible");
-      } else {
-        controls.start("hidden");
-      }
-    }, [isMounted, isInView, controls]);
-
     return (
-      <MotionTag
-        ref={ref}
-        variants={variant}
-        initial="visible"
-        animate={controls}
-        className={className}
-      >
+      <MotionTag ref={ref} style={{ opacity, y }} className={className}>
         {children}
       </MotionTag>
     );
   };
 
   const AnimatedLayoutComponent: FC<
-    P & { children: ReactNode; itemAs?: ElementType; itemClassName?: string }
+    P & {
+      children: ReactNode;
+      itemAs?: ElementType;
+      itemClassName?: string;
+      itemAnimationConfig?: AnimationConfig;
+    }
   > = (props) => {
-    const { children, itemAs, itemClassName, ...restProps } = props;
-    const [isMounted, setIsMounted] = useState(false);
-
-    useEffect(() => {
-      setIsMounted(true);
-    }, []);
+    const {
+      children,
+      itemAs,
+      itemClassName,
+      itemAnimationConfig,
+      ...restProps
+    } = props;
 
     const animatedChildren = Children.map(children, (child, index) => {
-      if (!isValidElement(child)) {
-        return child;
-      }
-      const selectedVariant = variants[index % variants.length];
-
+      if (!isValidElement(child)) return child;
       return (
         <AnimatedChild
           key={index}
-          variant={selectedVariant}
           className={itemClassName}
           itemAs={itemAs}
+          animationConfig={itemAnimationConfig}
         >
           {child}
         </AnimatedChild>

@@ -1,12 +1,13 @@
 "use client";
 import {
-  createAnimationContainerToChildren,
   createAnimationItemSelfDelayedAlternating,
   createAnimationItemSelfDelayed,
   createAnimationItemSimple,
+  createAnimationContainerScrollToChildren,
 } from "./domain/fabric";
+import { AnimationConfig } from "./domain/type";
+
 import {
-  fadeIn,
   fadeInHalf,
   opacityVariants,
   slideInBottom,
@@ -43,5 +44,15 @@ export const createAnimationItemOpacitySelfDelayed =
 
 export { createAnimationContainerImmediately } from "./domain/fabric";
 
-export const createAnimationContainerToChildrenFade =
-  createAnimationContainerToChildren([fadeInHalf]);
+const defaultScrollConfig: AnimationConfig = {
+  startPixels: 20,
+  endPixels: 250,
+  springConfig: {
+    stiffness: 80,
+    damping: 25,
+  },
+};
+export const createAnimationContainerScrollToChildrenFade =
+  createAnimationContainerScrollToChildren(defaultScrollConfig);
+// export const createAnimationContainerScrollToChildrenFade =
+//   createAnimationContainerScrollToChildren([fadeInHalf]);

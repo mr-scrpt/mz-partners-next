@@ -38,11 +38,28 @@ export const fadeIn: Variants = {
 };
 
 export const fadeInHalf: Variants = {
-  hidden: { opacity: 0.7 },
+  hidden: { opacity: 0.3 },
   visible: {
     opacity: 1,
     transition: {
-      duration: 0.5,
+      duration: 5,
+      ease: "easeInOut",
+    },
+  },
+};
+
+export const fadeOutHalf: Variants = {
+  hidden: {
+    opacity: 0.3,
+    transition: {
+      duration: 5,
+      ease: "easeInOut",
+    },
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 5,
       ease: "easeInOut",
     },
   },

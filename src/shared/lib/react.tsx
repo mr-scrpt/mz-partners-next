@@ -85,3 +85,28 @@ export const useHover = () => {
     },
   };
 };
+
+export function useWindowWidth(): number {
+  // Инициализируем состояние шириной window.innerWidth или 0, если код выполняется на сервере
+  const [width, setWidth] = useState<number>(
+    typeof window !== "undefined" ? window.innerWidth : 0,
+  );
+
+  useEffect(() => {
+    // Обработчик изменения размера окна
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+
+    // Добавляем слушатель события
+    window.addEventListener("resize", handleResize);
+
+    // Вызываем обработчик сразу после монтирования, чтобы получить актуальную ширину
+    handleResize();
+
+    // Удаляем слушатель при размонтировании компонента
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Пустой массив зависимостей гарантирует, что эффект запустится один раз
+
+  return width;
+}
