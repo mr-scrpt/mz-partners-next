@@ -1,55 +1,65 @@
-import { useScroll } from "framer-motion";
-import { RefObject, useEffect, useRef, useState } from "react";
+"use client";
 
-interface ViewportOffsets {
-  enter: number;
-  exit: number;
-}
+import { useState, useEffect, RefObject } from "react";
+import {
+  useScroll,
+  useTransform,
+  useSpring,
+  useMotionValue,
+} from "framer-motion";
+import { calculateScrollUpdate } from "./lib";
+import { AnimationConfig, AnimationDirection, AnimationZone } from "./type";
 
-export function useAdvancedInView(
-  ref: RefObject<HTMLElement>,
-  offsets: ViewportOffsets,
+export function useScrollAnimation(
+  ref: RefObject<HTMLElement | null>,
+  config: AnimationConfig = {},
 ) {
-  const [animationState, setAnimationState] = useState("visible");
-  const [isMounted, setIsMounted] = useState(false);
+  const { springConfig = { stiffness: 100, damping: 30, mass: 1 } } = config;
+
+  const progress = useMotionValue(0);
+  const smoothProgress = useSpring(progress, springConfig);
   const { scrollY } = useScroll();
-  const lastScrollY = useRef(0);
+
+  const [direction, setDirection] = useState<AnimationDirection>(
+    AnimationDirection.Enter,
+  );
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
+    const handleUpdate = () => {
+      if (!ref.current) return;
 
-  useEffect(() => {
-    if (!isMounted) return;
-
-    return scrollY.on("change", (latest) => {
-      const direction = latest > lastScrollY.current ? "down" : "up";
-      lastScrollY.current = latest;
-
-      const rect = ref.current?.getBoundingClientRect();
-      if (!rect) return;
-
+      const rect = ref.current.getBoundingClientRect();
       const vh = window.innerHeight;
 
-      if (direction === "down") {
-        if (rect.top < vh - offsets.enter) {
-          setAnimationState("visible");
-        }
+      const { progress: newProgress, zone } = calculateScrollUpdate(
+        rect,
+        vh,
+        config,
+      );
 
-        if (rect.bottom < offsets.exit) {
-          setAnimationState("hidden");
-        }
-      } else if (direction === "up") {
-        if (rect.bottom > offsets.enter) {
-          setAnimationState("visible");
-        }
+      progress.set(newProgress);
 
-        if (rect.top > vh - offsets.exit) {
-          setAnimationState("hidden");
-        }
+      if (zone === AnimationZone.Enter || zone === AnimationZone.Exit) {
+        setDirection(zone as unknown as AnimationDirection);
       }
-    });
-  }, [isMounted, ref, offsets, scrollY]);
+    };
 
-  return animationState;
+    const timeoutId = setTimeout(handleUpdate, 16);
+    const unsubscribeScroll = scrollY.on("change", handleUpdate);
+    window.addEventListener("resize", handleUpdate);
+
+    return () => {
+      clearTimeout(timeoutId);
+      unsubscribeScroll();
+      window.removeEventListener("resize", handleUpdate);
+    };
+  }, [ref, config, scrollY, progress]);
+
+  const opacity = useTransform(smoothProgress, [0, 1], [0, 1]);
+  const yEnter = useTransform(smoothProgress, [0, 1], [50, 0]);
+  const yExit = useTransform(smoothProgress, [0, 1], [-50, 0]);
+
+  const y = direction === AnimationDirection.Exit ? yExit : yEnter;
+
+  return { opacity, y };
 }

@@ -17,6 +17,18 @@ export interface ElementConfig {
     skipAnimation?: boolean;
   };
 }
+export enum AnimationDirection {
+  Enter = "enter",
+  Exit = "exit",
+}
+
+// ✅ Зона, в которой находится элемент, для вычислений
+export enum AnimationZone {
+  Enter = "enter",
+  Exit = "exit",
+  Visible = "visible",
+  Hidden = "hidden", // Добавим состояние "полностью вне экрана"
+}
 
 // export interface AnimationConfig {
 //   duration?: number;

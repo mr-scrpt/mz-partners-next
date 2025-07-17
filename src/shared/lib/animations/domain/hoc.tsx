@@ -1,13 +1,5 @@
 "use client";
-import {
-  motion,
-  useInView,
-  useMotionValue,
-  useScroll,
-  useSpring,
-  useTransform,
-  Variants,
-} from "framer-motion";
+import { motion, useInView, Variants } from "framer-motion";
 
 import {
   ComponentType,
@@ -15,12 +7,11 @@ import {
   FC,
   HTMLAttributes,
   ReactNode,
-  useEffect,
   useRef,
-  useState,
 } from "react";
 
 import { AnimationConfig, ElementConfig } from "./type";
+import { useScrollAnimation } from "./hook";
 
 export function withAnimationItemSimple<P extends object>(
   WrappedComponent: ComponentType<P>,
@@ -136,21 +127,6 @@ export function withAnimationContainerImmediately<P extends object>(
   return StaggerContainer;
 }
 
-const mapRange = (
-  input: number,
-  inputMin: number,
-  inputMax: number,
-  outputMin: number,
-  outputMax: number,
-) => {
-  const clampedInput = Math.max(inputMin, Math.min(input, inputMax));
-  return (
-    ((clampedInput - inputMin) * (outputMax - outputMin)) /
-      (inputMax - inputMin) +
-    outputMin
-  );
-};
-
 export function withAnimationContainerScrollToChildren<
   P extends { children: ReactNode },
 >(WrappedComponent: ComponentType<P>, config: AnimationConfig = {}) {
@@ -161,72 +137,9 @@ export function withAnimationContainerScrollToChildren<
     animationConfig?: AnimationConfig;
   }> = ({ children, itemAs: Tag = "div", className, animationConfig = {} }) => {
     const ref = useRef<HTMLDivElement>(null);
-
     const finalConfig = { ...config, ...animationConfig };
-    const {
-      startPixels = 20,
-      endPixels = 200,
-      springConfig = { stiffness: 100, damping: 30, mass: 1 },
-    } = finalConfig;
 
-    const progress = useMotionValue(0);
-    const smoothProgress = useSpring(progress, springConfig);
-    const { scrollY } = useScroll();
-    const [direction, setDirection] = useState<"enter" | "exit">("enter");
-
-    const getUpdate = () => {
-      if (!ref.current)
-        return { newProgress: 0, currentZone: "enter" as const };
-
-      const rect = ref.current.getBoundingClientRect();
-      const vh = window.innerHeight;
-      let newProgress = 0;
-      let currentZone: "enter" | "exit" | "visible" = "visible";
-
-      const enterStart = vh - startPixels;
-      const enterEnd = vh - endPixels;
-      const exitStart = endPixels;
-      const exitEnd = 0;
-
-      if (rect.top >= enterEnd && rect.top <= enterStart) {
-        newProgress = mapRange(rect.top, enterEnd, enterStart, 1, 0);
-        currentZone = "enter";
-      } else if (rect.bottom >= exitEnd && rect.bottom <= exitStart) {
-        newProgress = mapRange(rect.bottom, exitEnd, exitStart, 0, 1);
-        currentZone = "exit";
-      } else if (rect.top < enterEnd && rect.bottom > exitStart) {
-        newProgress = 1;
-        currentZone = "visible";
-      }
-
-      return { newProgress, currentZone };
-    };
-
-    useEffect(() => {
-      const handleUpdate = () => {
-        const { newProgress, currentZone } = getUpdate();
-        progress.set(newProgress);
-        // "Липкое" состояние: меняем направление только при входе в явную зону анимации.
-        if (currentZone === "enter" || currentZone === "exit") {
-          setDirection(currentZone);
-        }
-      };
-
-      const timeoutId = setTimeout(handleUpdate, 16);
-      const unsubscribeScroll = scrollY.on("change", handleUpdate);
-      window.addEventListener("resize", handleUpdate);
-
-      return () => {
-        clearTimeout(timeoutId);
-        unsubscribeScroll();
-        window.removeEventListener("resize", handleUpdate);
-      };
-    }, []);
-
-    const opacity = useTransform(smoothProgress, [0, 1], [0, 1]);
-    const yEnter = useTransform(smoothProgress, [0, 1], [50, 0]);
-    const yExit = useTransform(smoothProgress, [0, 1], [-50, 0]);
-    const y = direction === "exit" ? yExit : yEnter;
+    const { opacity, y } = useScrollAnimation(ref, finalConfig);
 
     const MotionTag = (motion[Tag as keyof typeof motion] ||
       motion.div) as ElementType;
@@ -238,10 +151,6 @@ export function withAnimationContainerScrollToChildren<
     );
   };
 
-  /**
-   * Тип пропсов для финального компонента, который создает HOC.
-   * "Забирает" обязательный `children` и добавляет обязательный `elements`.
-   */
   type AnimatedLayoutProps = Omit<P, "children"> & {
     elements: ElementConfig[];
     itemAs?: ElementType;
@@ -249,9 +158,6 @@ export function withAnimationContainerScrollToChildren<
     itemAnimationConfig?: AnimationConfig;
   };
 
-  /**
-   * Компонент-обертка, который рендерит элементы из массива `elements`.
-   */
   const AnimatedLayoutComponent: FC<AnimatedLayoutProps> = (props) => {
     const {
       elements,
@@ -265,11 +171,9 @@ export function withAnimationContainerScrollToChildren<
       <WrappedComponent {...(restProps as unknown as P)}>
         {elements.map((item, index) => {
           const { component: Component, props: itemProps, options } = item;
-
           if (options?.skipAnimation) {
             return <Component key={index} {...itemProps} />;
           }
-
           return (
             <AnimatedChild
               key={index}
@@ -287,148 +191,3 @@ export function withAnimationContainerScrollToChildren<
 
   return AnimatedLayoutComponent;
 }
-
-// const mapRange = (
-//   input: number,
-//   inputMin: number,
-//   inputMax: number,
-//   outputMin: number,
-//   outputMax: number,
-// ) => {
-//   const clampedInput = Math.max(inputMin, Math.min(input, inputMax));
-//   return (
-//     ((clampedInput - inputMin) * (outputMax - outputMin)) /
-//       (inputMax - inputMin) +
-//     outputMin
-//   );
-// };
-//
-// export function withAnimationContainerScrollToChildren<P extends object>(
-//   WrappedComponent: ComponentType<P & { children: ReactNode }>,
-//   config: AnimationConfig = {},
-// ) {
-//   const AnimatedChild: FC<{
-//     children: ReactNode;
-//     itemAs?: ElementType;
-//     className?: string;
-//     animationConfig?: AnimationConfig;
-//   }> = ({ children, itemAs: Tag = "div", className, animationConfig = {} }) => {
-//     const ref = useRef<HTMLDivElement>(null);
-//
-//     const finalConfig = { ...config, ...animationConfig };
-//     const {
-//       startPixels = 20,
-//       endPixels = 200,
-//       springConfig = { stiffness: 100, damping: 30, mass: 1 },
-//     } = finalConfig;
-//
-//     const progress = useMotionValue(0);
-//     const smoothProgress = useSpring(progress, springConfig);
-//     const { scrollY } = useScroll();
-//
-//     const [direction, setDirection] = useState<"enter" | "exit">("enter");
-//
-//     const getUpdate = () => {
-//       if (!ref.current)
-//         return { newProgress: 0, currentZone: "enter" as const };
-//
-//       const rect = ref.current.getBoundingClientRect();
-//       const vh = window.innerHeight;
-//       let newProgress = 0;
-//       let currentZone: "enter" | "exit" | "visible" = "visible";
-//
-//       const enterStart = vh - startPixels;
-//       const enterEnd = vh - endPixels;
-//       const exitStart = endPixels;
-//       const exitEnd = 0;
-//
-//       if (rect.top >= enterEnd && rect.top <= enterStart) {
-//         newProgress = mapRange(rect.top, enterEnd, enterStart, 1, 0);
-//         currentZone = "enter";
-//       } else if (rect.bottom >= exitEnd && rect.bottom <= exitStart) {
-//         newProgress = mapRange(rect.bottom, exitEnd, exitStart, 0, 1);
-//         currentZone = "exit";
-//       } else if (rect.top < enterEnd && rect.bottom > exitStart) {
-//         newProgress = 1;
-//         currentZone = "visible";
-//       }
-//
-//       return { newProgress, currentZone };
-//     };
-//
-//     useEffect(() => {
-//       const handleUpdate = () => {
-//         const { newProgress, currentZone } = getUpdate();
-//         progress.set(newProgress);
-//
-//         if (currentZone === "enter" || currentZone === "exit") {
-//           setDirection(currentZone);
-//         }
-//       };
-//
-//       handleUpdate();
-//       const unsubscribeScroll = scrollY.on("change", handleUpdate);
-//       window.addEventListener("resize", handleUpdate);
-//       return () => {
-//         unsubscribeScroll();
-//         window.removeEventListener("resize", handleUpdate);
-//       };
-//     }, []);
-//
-//     const opacity = useTransform(smoothProgress, [0, 1], [0, 1]);
-//
-//     const yEnter = useTransform(smoothProgress, [0, 1], [50, 0]);
-//     const yExit = useTransform(smoothProgress, [0, 1], [-50, 0]);
-//
-//     const y = direction === "exit" ? yExit : yEnter;
-//
-//     const MotionTag = (motion[Tag as keyof typeof motion] ||
-//       motion.div) as ElementType;
-//
-//     return (
-//       <MotionTag ref={ref} style={{ opacity, y }} className={className}>
-//         {children}
-//       </MotionTag>
-//     );
-//   };
-//
-//   const AnimatedLayoutComponent: FC<
-//     P & {
-//       children: ReactNode;
-//       itemAs?: ElementType;
-//       itemClassName?: string;
-//       itemAnimationConfig?: AnimationConfig;
-//     }
-//   > = (props) => {
-//     const {
-//       children,
-//       itemAs,
-//       itemClassName,
-//       itemAnimationConfig,
-//       ...restProps
-//     } = props;
-//
-//     const animatedChildren = Children.map(children, (child, index) => {
-//       if (!isValidElement(child)) return child;
-//
-//       return (
-//         <AnimatedChild
-//           key={index}
-//           className={itemClassName}
-//           itemAs={itemAs}
-//           animationConfig={itemAnimationConfig}
-//         >
-//           {child}
-//         </AnimatedChild>
-//       );
-//     });
-//
-//     return (
-//       <WrappedComponent {...(restProps as P)}>
-//         {animatedChildren}
-//       </WrappedComponent>
-//     );
-//   };
-//
-//   return AnimatedLayoutComponent;
-// }
