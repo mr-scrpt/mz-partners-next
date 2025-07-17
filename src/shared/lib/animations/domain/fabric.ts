@@ -43,7 +43,6 @@ export function createAnimationContainerScrollToChildren(
   return function <P extends object>(
     Component: ComponentType<P & { children: ReactNode }>,
   ) {
-    // Вот ключевое исправление: передаем `config` в HOC
     return withAnimationContainerScrollToChildren(Component, config);
   };
 }

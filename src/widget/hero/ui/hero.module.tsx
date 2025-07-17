@@ -6,12 +6,14 @@ import { Action } from "./action/action";
 interface HeroModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const HeroModule: FC<HeroModuleProps> = (props) => {
-  const { className } = props;
+  const { className, ...rest } = props;
+
   return (
     <HeroLayout
       InfoSlot={<Description />}
       ActionSlot={<Action />}
       className={className}
+      {...rest} // Прокидываем все остальные props, включая data-animation
     />
   );
 };

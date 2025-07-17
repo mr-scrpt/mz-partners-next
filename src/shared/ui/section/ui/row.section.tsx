@@ -28,6 +28,7 @@ export const RowSection: FC<RowSectionProps> = (props) => {
     footerSlot,
     classInner,
     as: Component = "div",
+    ...rest
   } = props;
   const { cWidth, cSection, cSpace } = useSectionStyle();
 
@@ -41,7 +42,7 @@ export const RowSection: FC<RowSectionProps> = (props) => {
   ]);
 
   return (
-    <Component className={clsSection}>
+    <Component className={clsSection} {...rest}>
       <div className={clsInner}>
         {headerSlot && (
           <div className={sSection.section__header}>{headerSlot}</div>

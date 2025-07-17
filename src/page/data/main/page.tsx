@@ -8,8 +8,6 @@ import { ProjectModule } from "@/widget/project";
 import { SocialLineModule } from "@/widget/socialLine";
 
 import sPage from "../../ui/page.module.scss";
-import { PageLayoutAnimatedToChildren } from "@/shared/ui/layout";
-import { TeamSecondaryModule } from "@/widget/team/ui/teamSecondary.module";
 
 export const PageMain = async () => {
   return (
@@ -23,26 +21,5 @@ export const PageMain = async () => {
       <PiplineModule />
       <CallbackModule className={sPage.root__offset} />
     </div>
-  );
-};
-
-export const PageMainAnimated = async () => {
-  return (
-    <PageLayoutAnimatedToChildren
-      className={sPage.root}
-      as="main"
-      itemAs="section"
-      itemClassName={sPage.section}
-    >
-      <HeroModule />
-      <SocialLineModule />
-      <CompetencyModule />
-      <PrincipleModule />
-      <ProjectModule />
-      <TeamSecondaryModule />
-      <BenefitModule className={sPage.root__offset} />
-      <PiplineModule />
-      <CallbackModule className={sPage.root__offset} />
-    </PageLayoutAnimatedToChildren>
   );
 };

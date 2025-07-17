@@ -10,7 +10,7 @@ interface HeroLayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const HeroLayout: FC<HeroLayoutProps> = (props) => {
-  const { InfoSlot, ActionSlot, className } = props;
+  const { InfoSlot, ActionSlot, className, ...rest } = props;
 
   return (
     <RowSection
@@ -18,6 +18,7 @@ export const HeroLayout: FC<HeroLayoutProps> = (props) => {
       classInner={sDeco.mainBG}
       width={SECTION_WIDTH.CONTAINER_INDENTED}
       space={SECTION_SPACE.INDENTED}
+      {...rest}
     >
       <div className={clsx(sHeroLayout.inner)}>
         <div className={clsx(sHeroLayout.infoBox, sDeco.infoBG)}>

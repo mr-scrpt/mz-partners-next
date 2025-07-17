@@ -1,17 +1,6 @@
-// Поместите этот обновленный интерфейс в файл, где определяются ваши типы
-export interface AnimationConfig {
-  // Старые поля (если они еще нужны)
-  duration?: number;
-  delay?: number;
-  stagger?: number;
-  ease?: string;
-  viewport?: {
-    once?: boolean;
-    margin?: string;
-    amount?: number;
-  };
+import { ComponentType } from "react";
 
-  // Новые поля для scroll-анимации
+export interface AnimationConfig {
   startPixels?: number;
   endPixels?: number;
   springConfig?: {
@@ -20,6 +9,35 @@ export interface AnimationConfig {
     mass?: number;
   };
 }
+
+export interface ElementConfig {
+  component: ComponentType<any>;
+  props?: { [key: string]: any };
+  options?: {
+    skipAnimation?: boolean;
+  };
+}
+
+// export interface AnimationConfig {
+//   duration?: number;
+//   delay?: number;
+//   stagger?: number;
+//   ease?: string;
+//   viewport?: {
+//     once?: boolean;
+//     margin?: string;
+//     amount?: number;
+//   };
+//
+//   // Новые поля для scroll-анимации
+//   startPixels?: number;
+//   endPixels?: number;
+//   springConfig?: {
+//     stiffness?: number;
+//     damping?: number;
+//     mass?: number;
+//   };
+// }
 // export interface AnimationConfig {
 //   duration?: number;
 //   delay?: number;
@@ -31,10 +49,3 @@ export interface AnimationConfig {
 //     amount?: number;
 //   };
 // }
-
-export interface TeamItemAnimationConfig extends AnimationConfig {
-  slideDistance?: number;
-  scaleFrom?: number;
-  enableHover?: boolean;
-  hoverScale?: number;
-}

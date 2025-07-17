@@ -5,7 +5,6 @@ import { FC } from "react";
 
 interface PageContactProps {}
 import sPage from "../../ui/page.module.scss";
-import { PageLayoutAnimatedToChildren } from "@/shared/ui/layout";
 
 export const PageContact: FC<PageContactProps> = async (props) => {
   return (
@@ -14,15 +13,5 @@ export const PageContact: FC<PageContactProps> = async (props) => {
       <ContactModule />
       <CallbackModule className={sPage.root__offset} />
     </div>
-  );
-};
-
-export const PageContactAnimated = async () => {
-  return (
-    <PageLayoutAnimatedToChildren className={sPage.root}>
-      <BreadcrumbsModule />
-      <ContactModule />
-      <CallbackModule className={sPage.root__offset} />
-    </PageLayoutAnimatedToChildren>
   );
 };

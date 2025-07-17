@@ -1,14 +1,14 @@
 "use client";
+export type { ElementConfig } from "./domain/type";
 import {
-  createAnimationItemSelfDelayedAlternating,
-  createAnimationItemSelfDelayed,
-  createAnimationItemSimple,
   createAnimationContainerScrollToChildren,
+  createAnimationItemSelfDelayed,
+  createAnimationItemSelfDelayedAlternating,
+  createAnimationItemSimple,
 } from "./domain/fabric";
 import { AnimationConfig } from "./domain/type";
 
 import {
-  fadeInHalf,
   opacityVariants,
   slideInBottom,
   slideInLeft,
