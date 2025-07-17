@@ -9,7 +9,6 @@ import { PiplineModule } from "@/widget/pipline";
 import { PrincipleModule } from "@/widget/principle";
 import { ProjectModule } from "@/widget/project";
 import { SocialLineModule } from "@/widget/socialLine";
-import { TeamSecondaryModule } from "@/widget/team/ui/teamSecondary.module";
 
 import sPage from "../../ui/page.module.scss";
 import { ElementConfig } from "@/shared/lib/animations";
@@ -20,7 +19,6 @@ const mainPageElements: ElementConfig[] = [
   { component: CompetencyModule },
   { component: PrincipleModule },
   { component: ProjectModule },
-  { component: TeamSecondaryModule },
   { component: BenefitModule, props: { className: sPage.root__offset } },
   { component: PiplineModule },
   { component: CallbackModule, props: { className: sPage.root__offset } },
