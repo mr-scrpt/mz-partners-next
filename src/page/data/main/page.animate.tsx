@@ -1,6 +1,6 @@
 "use client";
 
-import { PageLayoutAnimatedToChildren } from "@/shared/ui/layout";
+// import { PageLayoutAnimatedToChildren } from "@/shared/ui/layout";
 import { BenefitModule } from "@/widget/benefit";
 import { CallbackModule } from "@/widget/callback";
 import { CompetencyModule } from "@/widget/competency";
@@ -12,6 +12,10 @@ import { SocialLineModule } from "@/widget/socialLine";
 
 import sPage from "../../ui/page.module.scss";
 import { ElementConfig } from "@/shared/lib/animations";
+import {
+  PageLayoutAnimatedToChildren,
+  PageLayoutScaleAnimated,
+} from "@/shared/lib/animations/domain/test_fabric";
 
 const mainPageElements: ElementConfig[] = [
   { component: HeroModule, options: { skipAnimation: true } },
@@ -26,7 +30,7 @@ const mainPageElements: ElementConfig[] = [
 
 export const PageMainAnimated = () => {
   return (
-    <PageLayoutAnimatedToChildren
+    <PageLayoutScaleAnimated
       elements={mainPageElements}
       className={sPage.root}
       as="main"
@@ -34,4 +38,13 @@ export const PageMainAnimated = () => {
       itemClassName={sPage.section}
     />
   );
+  // return (
+  //   <PageLayoutAnimatedToChildren
+  //     elements={mainPageElements}
+  //     className={sPage.root}
+  //     as="main"
+  //     itemAs="section"
+  //     itemClassName={sPage.section}
+  //   />
+  // );
 };

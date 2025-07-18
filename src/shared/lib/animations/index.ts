@@ -27,12 +27,6 @@ export const createAnimationItemSlideLeft =
 export const createAnimationItemSlideRight =
   createAnimationItemSimple(slideInRight);
 
-export const createAnimationItemSlideLeftSelfDelayed =
-  createAnimationItemSelfDelayed(slideInLeft);
-
-export const createAnimationItemSlideRightSelfDelayed =
-  createAnimationItemSelfDelayed(slideInRight);
-
 export const createAnimationItemSlideBottomSelfDelayed =
   createAnimationItemSelfDelayed(slideInBottom);
 
