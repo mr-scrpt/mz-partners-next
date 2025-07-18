@@ -1,5 +1,9 @@
 "use client";
 export type { ElementConfig } from "./domain/type";
+export {
+  createScrollAnimatedShiftOpacityContainer,
+  createScrollAnimatedScaleOpacityContainer,
+} from "./domain/element.fabric";
 import {
   createAnimationContainerScrollToChildren,
   createAnimationItemSelfDelayed,

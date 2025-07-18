@@ -1,41 +1,51 @@
 "use client";
 
-import { ComponentType, ElementType, FC, ReactNode } from "react";
+import { motion } from "framer-motion";
+import { ReactNode, ComponentType, FC, ElementType, useRef } from "react";
+import { useScrollProgress } from "./hook";
+import { AnimationStrategy } from "./strategies";
 import { AnimationConfig, ElementConfig } from "./type";
 
-// Пропсы, которые должен принимать любой наш "AnimatedChild"
-export interface AnimatedChildProps {
-  children: ReactNode;
-  itemAs?: ElementType;
-  className?: string;
-  animationConfig?: AnimationConfig;
+interface WithAnimationOptions {
+  strategy: AnimationStrategy;
+  config?: AnimationConfig;
 }
 
-/**
- * Универсальный HOC, который рендерит список элементов,
- * применяя к ним переданный компонент-аниматор `AnimatedChildComponent`.
- */
-export function withAnimatedItemsRenderer<P extends { children: ReactNode }>(
+export function withAnimationToChildrenWrapper<
+  P extends { children: ReactNode },
+>(
   WrappedComponent: ComponentType<P>,
-  AnimatedChildComponent: ComponentType<AnimatedChildProps>, // ✅ Принимает компонент-аниматор
-  config: AnimationConfig = {},
+  { strategy: useAnimationStrategy, config = {} }: WithAnimationOptions,
 ) {
+  const AnimatedChild: FC<{
+    children: ReactNode;
+    itemAs?: ElementType;
+    className?: string;
+  }> = ({ children, itemAs: Tag = "div", className }) => {
+    const ref = useRef<HTMLDivElement>(null);
+
+    const { progress, direction } = useScrollProgress(ref, config);
+
+    const style = useAnimationStrategy({ progress, direction, config });
+
+    const MotionTag = (motion[Tag as keyof typeof motion] ||
+      motion.div) as ElementType;
+
+    return (
+      <MotionTag ref={ref} style={style} className={className}>
+        {children}
+      </MotionTag>
+    );
+  };
+
   type AnimatedLayoutProps = Omit<P, "children"> & {
     elements: ElementConfig[];
     itemAs?: ElementType;
     itemClassName?: string;
-    itemAnimationConfig?: AnimationConfig;
   };
 
   const AnimatedLayoutComponent: FC<AnimatedLayoutProps> = (props) => {
-    const {
-      elements,
-      itemAs,
-      itemClassName,
-      itemAnimationConfig,
-      ...restProps
-    } = props;
-
+    const { elements, itemAs, itemClassName, ...restProps } = props;
     return (
       <WrappedComponent {...(restProps as unknown as P)}>
         {elements.map((item, index) => {
@@ -44,19 +54,17 @@ export function withAnimatedItemsRenderer<P extends { children: ReactNode }>(
             return <Component key={index} {...itemProps} />;
           }
           return (
-            <AnimatedChildComponent // ✅ Используем переданный аниматор
+            <AnimatedChild
               key={index}
               itemAs={itemAs}
               className={itemClassName}
-              animationConfig={{ ...config, ...itemAnimationConfig }}
             >
               <Component {...itemProps} />
-            </AnimatedChildComponent>
+            </AnimatedChild>
           );
         })}
       </WrappedComponent>
     );
   };
-
   return AnimatedLayoutComponent;
 }

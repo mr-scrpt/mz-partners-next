@@ -9,7 +9,7 @@ import { TeamModule } from "@/widget/team";
 import { BreadcrumbsModule } from "@/widget/breadcrumbs";
 
 import { ElementConfig } from "@/shared/lib/animations";
-import { PageLayoutAnimatedToChildren } from "@/shared/ui/layout";
+import { PageLayoutAnimatedPrimaryToChildren } from "@/shared/ui/layout";
 import sPage from "../../ui/page.module.scss";
 
 const aboutPageElements: ElementConfig[] = [
@@ -24,7 +24,7 @@ const aboutPageElements: ElementConfig[] = [
 
 export const PageAboutAnimated = () => {
   return (
-    <PageLayoutAnimatedToChildren
+    <PageLayoutAnimatedPrimaryToChildren
       elements={aboutPageElements}
       className={sPage.root}
       as="main"

@@ -1,8 +1,14 @@
 "use client";
-import { createAnimationContainerScrollToChildrenFade } from "@/shared/lib/animations";
 import { PageLayout } from "./ui/page.layout";
+import {
+  createScrollAnimatedScaleOpacityContainer,
+  createScrollAnimatedShiftOpacityContainer,
+} from "@/shared/lib/animations";
 
 export { default } from "./ui/html.layout";
 
-export const PageLayoutAnimatedToChildren =
-  createAnimationContainerScrollToChildrenFade(PageLayout);
+export const PageLayoutAnimatedPrimaryToChildren =
+  createScrollAnimatedShiftOpacityContainer(PageLayout);
+
+export const PageLayoutAnimatedSecondaryToChildren =
+  createScrollAnimatedScaleOpacityContainer(PageLayout);

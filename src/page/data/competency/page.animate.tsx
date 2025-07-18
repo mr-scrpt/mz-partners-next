@@ -3,8 +3,8 @@ import { CompetencyModule } from "@/widget/competency";
 
 import sPage from "../../ui/page.module.scss";
 import { BreadcrumbsModule } from "@/widget/breadcrumbs";
-import { PageLayoutAnimatedToChildren } from "@/shared/ui/layout";
 import { ElementConfig } from "@/shared/lib/animations";
+import { PageLayoutAnimatedPrimaryToChildren } from "@/shared/ui/layout";
 
 const competencyPageElements: ElementConfig[] = [
   { component: BreadcrumbsModule, options: { skipAnimation: true } },
@@ -12,7 +12,7 @@ const competencyPageElements: ElementConfig[] = [
 ];
 export const PageCompetencyAnimated = () => {
   return (
-    <PageLayoutAnimatedToChildren
+    <PageLayoutAnimatedPrimaryToChildren
       className={sPage.root}
       elements={competencyPageElements}
       as="main"

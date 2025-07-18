@@ -3,9 +3,9 @@
 import sPage from "../../ui/page.module.scss";
 
 import { BreadcrumbsModule } from "@/widget/breadcrumbs";
-import { PageLayoutAnimatedToChildren } from "@/shared/ui/layout";
 import { TeamSecondaryModule } from "@/widget/team/ui/teamSecondary.module";
 import { ElementConfig } from "@/shared/lib/animations";
+import { PageLayoutAnimatedPrimaryToChildren } from "@/shared/ui/layout";
 
 const teamPageElements: ElementConfig[] = [
   { component: BreadcrumbsModule, options: { skipAnimation: true } },
@@ -13,7 +13,7 @@ const teamPageElements: ElementConfig[] = [
 ];
 export const PageTeamAnimated = () => {
   return (
-    <PageLayoutAnimatedToChildren
+    <PageLayoutAnimatedPrimaryToChildren
       elements={teamPageElements}
       className={sPage.root}
       as="main"

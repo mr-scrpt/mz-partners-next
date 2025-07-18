@@ -6,6 +6,7 @@ import {
   useTransform,
   useSpring,
   useMotionValue,
+  MotionValue,
 } from "framer-motion";
 import { calculateScrollUpdate } from "./lib";
 import { AnimationConfig, AnimationDirection, AnimationZone } from "./type";
@@ -115,4 +116,52 @@ export function useScaleAnimation(
 
   // Возвращаем opacity и новый `scale`
   return { opacity, scale };
+}
+
+/**
+ * Вычисляет прогресс анимации (от 0 до 1) на основе положения элемента на экране.
+ * @param ref - Ref на анимируемый DOM-элемент.
+ * @param config - Конфигурация анимации.
+ * @returns Готовый к использованию MotionValue с плавным прогрессом.
+ */
+export function useScrollProgress(
+  ref: RefObject<HTMLElement | null>,
+  config: AnimationConfig = {},
+): { progress: MotionValue<number>; direction: AnimationDirection } {
+  const { springConfig = { stiffness: 100, damping: 30, mass: 1 } } = config;
+  const progress = useMotionValue(0);
+  const smoothProgress = useSpring(progress, springConfig);
+  const { scrollY } = useScroll();
+  const [direction, setDirection] = useState<AnimationDirection>(
+    AnimationDirection.Enter,
+  );
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const { progress: newProgress, zone } = calculateScrollUpdate(
+        rect,
+        vh,
+        config,
+      );
+      progress.set(newProgress);
+      if (zone === AnimationZone.Enter || zone === AnimationZone.Exit) {
+        setDirection(zone as unknown as AnimationDirection);
+      }
+    };
+
+    const timeoutId = setTimeout(handleUpdate, 16);
+    const unsubscribeScroll = scrollY.on("change", handleUpdate);
+    window.addEventListener("resize", handleUpdate);
+
+    return () => {
+      clearTimeout(timeoutId);
+      unsubscribeScroll();
+      window.removeEventListener("resize", handleUpdate);
+    };
+  }, [ref, config, scrollY, progress]);
+
+  return { progress: smoothProgress, direction };
 }

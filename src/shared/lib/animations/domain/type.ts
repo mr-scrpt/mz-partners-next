@@ -8,7 +8,24 @@ export interface AnimationConfig {
     damping?: number;
     mass?: number;
   };
+  // ✅ Добавляем объект для настроек конкретных эффектов
+  effects?: {
+    opacity?: [number, number];
+    yEnter?: [number, number];
+    yExit?: [number, number];
+    scale?: [number, number];
+  };
 }
+
+// export interface AnimationConfig {
+//   startPixels?: number;
+//   endPixels?: number;
+//   springConfig?: {
+//     stiffness?: number;
+//     damping?: number;
+//     mass?: number;
+//   };
+// }
 
 export interface ElementConfig {
   component: ComponentType<any>;

@@ -4,8 +4,8 @@ import { CallbackModule } from "@/widget/callback";
 import { ContactModule } from "@/widget/contact";
 
 import sPage from "../../ui/page.module.scss";
-import { PageLayoutAnimatedToChildren } from "@/shared/ui/layout";
 import { ElementConfig } from "@/shared/lib/animations";
+import { PageLayoutAnimatedPrimaryToChildren } from "@/shared/ui/layout";
 
 const contactPageElements: ElementConfig[] = [
   { component: BreadcrumbsModule, options: { skipAnimation: true } },
@@ -14,7 +14,7 @@ const contactPageElements: ElementConfig[] = [
 ];
 export const PageContactAnimated = () => {
   return (
-    <PageLayoutAnimatedToChildren
+    <PageLayoutAnimatedPrimaryToChildren
       elements={contactPageElements}
       className={sPage.root}
       as="main"
