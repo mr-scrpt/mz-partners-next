@@ -8,7 +8,7 @@ export interface AnimationConfig {
     damping?: number;
     mass?: number;
   };
-  // ✅ Добавляем объект для настроек конкретных эффектов
+
   effects?: {
     opacity?: [number, number];
     yEnter?: [number, number];
@@ -16,16 +16,6 @@ export interface AnimationConfig {
     scale?: [number, number];
   };
 }
-
-// export interface AnimationConfig {
-//   startPixels?: number;
-//   endPixels?: number;
-//   springConfig?: {
-//     stiffness?: number;
-//     damping?: number;
-//     mass?: number;
-//   };
-// }
 
 export interface ElementConfig {
   component: ComponentType<any>;
@@ -39,42 +29,9 @@ export enum AnimationDirection {
   Exit = "exit",
 }
 
-// ✅ Зона, в которой находится элемент, для вычислений
 export enum AnimationZone {
   Enter = "enter",
   Exit = "exit",
   Visible = "visible",
-  Hidden = "hidden", // Добавим состояние "полностью вне экрана"
+  Hidden = "hidden",
 }
-
-// export interface AnimationConfig {
-//   duration?: number;
-//   delay?: number;
-//   stagger?: number;
-//   ease?: string;
-//   viewport?: {
-//     once?: boolean;
-//     margin?: string;
-//     amount?: number;
-//   };
-//
-//   // Новые поля для scroll-анимации
-//   startPixels?: number;
-//   endPixels?: number;
-//   springConfig?: {
-//     stiffness?: number;
-//     damping?: number;
-//     mass?: number;
-//   };
-// }
-// export interface AnimationConfig {
-//   duration?: number;
-//   delay?: number;
-//   stagger?: number;
-//   ease?: string;
-//   viewport?: {
-//     once?: boolean;
-//     margin?: string;
-//     amount?: number;
-//   };
-// }

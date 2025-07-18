@@ -1,8 +1,5 @@
-// src/shared/lib/animations/domain/config.ts
-
 import { AnimationConfig } from "./type";
 
-// Конфиг для основной анимации (сдвиг)
 export const scrollShiftOpacityPrimaryConfig: AnimationConfig = {
   startPixels: 20,
   endPixels: 250,
@@ -14,7 +11,6 @@ export const scrollShiftOpacityPrimaryConfig: AnimationConfig = {
   },
 };
 
-// Конфиг для вторичной анимации (масштаб)
 export const scrollScaleOpacityPrimaryConfig: AnimationConfig = {
   startPixels: 50,
   endPixels: 350,
