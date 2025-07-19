@@ -9,20 +9,5 @@ export {
   createAnimationItemSlideRight,
   createAnimationItemOpacity,
   createAnimationItemOpacitySelfDelayed,
-} from "./domain/element.fabric";
+} from "./factory/preset.factory";
 export type { ElementConfig } from "./domain/type";
-import {
-  createAnimationItemSelfDelayed,
-  createAnimationItemSimple,
-} from "./domain/fabric";
-
-import { opacityVariants, slideInLeft, slideInRight } from "./domain/variant";
-
-// export const createAnimationItemSlideRight =
-//   createAnimationItemSimple(slideInRight);
-// createAnimationItemSimple(opacityVariants);
-
-// export const createAnimationItemOpacitySelfDelayed =
-//   createAnimationItemSelfDelayed(opacityVariants);
-
-// export { createAnimationContainerImmediately } from "./domain/fabric";

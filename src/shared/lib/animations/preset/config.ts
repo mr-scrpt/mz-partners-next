@@ -1,4 +1,4 @@
-import { AnimationConfig } from "./type";
+import { AnimationConfig } from "../domain/type";
 
 export const scrollShiftOpacityPrimaryConfig: AnimationConfig = {
   startPixels: 20,

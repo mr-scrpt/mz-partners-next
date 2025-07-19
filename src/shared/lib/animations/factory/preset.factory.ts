@@ -1,24 +1,23 @@
 import {
-  createAnimationItem,
-  createAnimationToChildrenWrapper,
-} from "./animation.fabric";
-import {
-  scrollScaleOpacityPrimaryConfig,
-  scrollShiftOpacityPrimaryConfig,
-} from "./config";
-import {
   animationScrollShiftOpacityStrategy,
   animationScrollScaleOpacityStrategy,
-  alternatingVariantStrategy,
   delayedVariantStrategy,
   simpleVariantStrategy,
-} from "./strategies";
+} from "../lib/strategies";
 import {
-  opacityVariants,
+  scrollShiftOpacityPrimaryConfig,
+  scrollScaleOpacityPrimaryConfig,
+} from "../preset/config";
+import {
   slideInBottom,
   slideInLeft,
   slideInRight,
-} from "./variant";
+  opacityVariants,
+} from "../preset/variant";
+import {
+  createAnimationToChildrenWrapper,
+  createAnimationItem,
+} from "./builder.factory";
 
 /**
  * Animation children wrapper

@@ -10,8 +10,12 @@ import {
   useInView,
   UseInViewOptions,
 } from "framer-motion";
-import { calculateScrollUpdate } from "./lib";
-import { AnimationConfig, AnimationDirection, AnimationZone } from "./type";
+import {
+  AnimationConfig,
+  AnimationDirection,
+  AnimationZone,
+} from "../domain/type";
+import { calculateScrollUpdate } from "../lib/helpers";
 
 export function useScrollAnimation(
   ref: RefObject<HTMLElement | null>,
@@ -67,15 +71,10 @@ export function useScrollAnimation(
   return { opacity, y };
 }
 
-/**
- * Новый хук для анимации с эффектом scale.
- */
 export function useScaleAnimation(
   ref: RefObject<HTMLElement | null>,
   config: AnimationConfig = {},
 ) {
-  // Вся логика вычисления прогресса остается АБСОЛЮТНО ТАКОЙ ЖЕ.
-  // Мы просто переиспользуем все наши предыдущие наработки.
   const { springConfig = { stiffness: 100, damping: 30, mass: 1 } } = config;
   const progress = useMotionValue(0);
   const smoothProgress = useSpring(progress, springConfig);
@@ -111,21 +110,12 @@ export function useScaleAnimation(
     };
   }, [ref, config, scrollY, progress]);
 
-  // ✅ ЕДИНСТВЕННОЕ ИЗМЕНЕНИЕ ЗДЕСЬ:
-  // Мы трансформируем прогресс не в `y`, а в `scale`.
-  const opacity = useTransform(smoothProgress, [0, 1], [0.5, 1]); // Сделаем появление от 50%
-  const scale = useTransform(smoothProgress, [0, 1], [0.9, 1]); // Увеличение от 90% до 100%
+  const opacity = useTransform(smoothProgress, [0, 1], [0.5, 1]);
+  const scale = useTransform(smoothProgress, [0, 1], [0.9, 1]);
 
-  // Возвращаем opacity и новый `scale`
   return { opacity, scale };
 }
 
-/**
- * Вычисляет прогресс анимации (от 0 до 1) на основе положения элемента на экране.
- * @param ref - Ref на анимируемый DOM-элемент.
- * @param config - Конфигурация анимации.
- * @returns Готовый к использованию MotionValue с плавным прогрессом.
- */
 export function useScrollProgress(
   ref: RefObject<HTMLElement | null>,
   config: AnimationConfig = {},

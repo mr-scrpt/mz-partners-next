@@ -1,8 +1,10 @@
 import { ReactNode, ComponentType } from "react";
-import { AnimationStrategy, VariantStrategy } from "./strategies";
-import { withAnimationToChildrenWrapper } from "./test_hoc";
-import { AnimationConfig } from "./type";
-import { withAnimationItem } from "./test_hoc_2";
+import {
+  AnimationStrategy,
+  AnimationConfig,
+  VariantStrategy,
+} from "../domain/type";
+import { withAnimationToChildrenWrapper, withAnimationItem } from "../vm/hoc";
 
 interface CreateAnimationWrapperPayload {
   strategy: AnimationStrategy;

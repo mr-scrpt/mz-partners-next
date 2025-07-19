@@ -1,5 +1,4 @@
 import { useTransform, MotionValue, MotionStyle } from "framer-motion";
-import { AnimationConfig, AnimationDirection } from "./type";
 
 interface AnimationStrategyPayload {
   progress: MotionValue<number>;
@@ -43,6 +42,7 @@ export const animationScrollScaleOpacityStrategy: AnimationStrategy = ({
 };
 
 import { Variants } from "framer-motion";
+import { AnimationDirection, AnimationConfig } from "../domain/type";
 
 export interface ItemAnimationProps {
   idx?: number;

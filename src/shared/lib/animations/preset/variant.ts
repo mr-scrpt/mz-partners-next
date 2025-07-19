@@ -1,16 +1,5 @@
 import { Variants } from "framer-motion";
 
-export const staggerContainerDelayed: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-export const staggerContainerImmediately: Variants = {};
-
 export const fadeInUp: Variants = {
   hidden: {
     opacity: 0,

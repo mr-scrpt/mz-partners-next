@@ -1,10 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ReactNode, ComponentType, FC, ElementType, useRef } from "react";
-import { useScrollProgress } from "./hook";
-import { AnimationStrategy } from "./strategies";
-import { AnimationConfig, ElementConfig } from "./type";
+import {
+  ReactNode,
+  ComponentType,
+  FC,
+  ElementType,
+  useRef,
+  HTMLAttributes,
+} from "react";
+import { useInViewAnimation, useScrollProgress } from "./hook";
+import {
+  AnimationStrategy,
+  AnimationConfig,
+  ElementConfig,
+  ItemAnimationProps,
+  VariantStrategy,
+} from "../domain/type";
 
 interface WithAnimationOptions {
   strategy: AnimationStrategy;
@@ -67,4 +79,31 @@ export function withAnimationToChildrenWrapper<
     );
   };
   return AnimatedLayoutComponent;
+}
+
+export function withAnimationItem<P extends ItemAnimationProps>(
+  WrappedComponent: ComponentType<P>,
+  variantStrategy: VariantStrategy,
+) {
+  const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
+    const { className, ...restProps } = props;
+    const ref = useRef(null);
+
+    const animate = useInViewAnimation(ref);
+
+    const variants = variantStrategy(props);
+
+    return (
+      <motion.div
+        ref={ref}
+        className={className}
+        variants={variants}
+        initial="hidden"
+        animate={animate}
+      >
+        <WrappedComponent {...(restProps as P)} />
+      </motion.div>
+    );
+  };
+  return AnimatedComponent;
 }
