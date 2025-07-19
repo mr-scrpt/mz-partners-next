@@ -1,14 +1,12 @@
 "use client";
-import { ComponentType, ReactNode } from "react";
+import { ComponentType } from "react";
 import { Variants } from "framer-motion";
 import {
   withAnimationContainerImmediately,
-  withAnimationContainerScrollToChildren,
   withAnimationItemSelfDelayed,
   withAnimationItemSelfDelayedAlternating,
   withAnimationItemSimple,
 } from "./hoc";
-import { AnimationConfig } from "./type";
 
 export function createAnimationItemSimple(variants: Variants) {
   return function <P extends object>(Component: ComponentType<P>) {
@@ -37,12 +35,12 @@ export function createAnimationContainerImmediately<P extends object>(
   return withAnimationContainerImmediately(Component);
 }
 
-export function createAnimationContainerScrollToChildren(
-  config: AnimationConfig = {},
-) {
-  return function <P extends object>(
-    Component: ComponentType<P & { children: ReactNode }>,
-  ) {
-    return withAnimationContainerScrollToChildren(Component, config);
-  };
-}
+// export function createAnimationContainerScrollToChildren(
+//   config: AnimationConfig = {},
+// ) {
+//   return function <P extends object>(
+//     Component: ComponentType<P & { children: ReactNode }>,
+//   ) {
+//     return withAnimationContainerScrollToChildren(Component, config);
+//   };
+// }

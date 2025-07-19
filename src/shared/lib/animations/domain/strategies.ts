@@ -1,23 +1,16 @@
-// src/shared/lib/animations/domain/strategies.ts
-
 import { useTransform, MotionValue, MotionStyle } from "framer-motion";
 import { AnimationConfig, AnimationDirection } from "./type";
 
-// ✅ Создаем интерфейс для объекта с аргументами
 interface AnimationStrategyPayload {
   progress: MotionValue<number>;
   direction: AnimationDirection;
   config: AnimationConfig;
 }
 
-// ✅ Обновляем тип, чтобы он принимал один объект
 export type AnimationStrategy = (
   payload: AnimationStrategyPayload,
 ) => MotionStyle;
 
-/**
- * Стратегия анимации: появление со сдвигом по оси Y.
- */
 export const animationScrollShiftOpacityStrategy: AnimationStrategy = ({
   progress,
   direction,
@@ -37,9 +30,6 @@ export const animationScrollShiftOpacityStrategy: AnimationStrategy = ({
   return { opacity: opacityValue, y };
 };
 
-/**
- * Стратегия анимации: появление с увеличением размера.
- */
 export const animationScrollScaleOpacityStrategy: AnimationStrategy = ({
   progress,
   config,
@@ -51,3 +41,45 @@ export const animationScrollScaleOpacityStrategy: AnimationStrategy = ({
 
   return { opacity: opacityValue, scale: scaleValue };
 };
+
+import { Variants } from "framer-motion";
+
+export interface ItemAnimationProps {
+  idx?: number;
+}
+
+export type VariantStrategy = (props: ItemAnimationProps) => Variants;
+
+export const simpleVariantStrategy =
+  (variants: Variants): VariantStrategy =>
+  () =>
+    variants;
+
+export const delayedVariantStrategy =
+  (variants: Variants, delayMultiplier = 0.15): VariantStrategy =>
+  ({ idx = 0 }) => ({
+    hidden: { ...variants.hidden },
+    visible: {
+      ...variants.visible,
+      transition: {
+        ...(variants.visible as any)?.transition,
+        delay: idx * delayMultiplier,
+      },
+    },
+  });
+
+export const alternatingVariantStrategy =
+  (even: Variants, odd: Variants, delay = 0.15): VariantStrategy =>
+  ({ idx = 0 }) => {
+    const baseVariant = idx % 2 === 0 ? even : odd;
+    return {
+      hidden: { ...baseVariant.hidden },
+      visible: {
+        ...baseVariant.visible,
+        transition: {
+          ...(baseVariant.visible as any)?.transition,
+          delay,
+        },
+      },
+    };
+  };

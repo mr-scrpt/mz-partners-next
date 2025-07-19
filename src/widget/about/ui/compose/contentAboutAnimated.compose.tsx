@@ -1,7 +1,7 @@
 import { FC, HTMLAttributes } from "react";
-import { ContentAboutAnimated } from "../component/content";
 import { BannerAboutAnimated } from "../component/banner";
 import { TextAboutAnimated } from "../component/text";
+import { ContentAbout } from "../component/content/content.about";
 
 interface ContentAboutAnimatedComposeProps
   extends HTMLAttributes<HTMLDivElement> {}
@@ -10,7 +10,7 @@ export const ContentAboutAnimatedCompose: FC<
   ContentAboutAnimatedComposeProps
 > = (props) => {
   return (
-    <ContentAboutAnimated
+    <ContentAbout
       TextComponent={TextAboutAnimated}
       BannerComponent={BannerAboutAnimated}
       {...props}

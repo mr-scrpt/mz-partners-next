@@ -7,6 +7,8 @@ import {
   useSpring,
   useMotionValue,
   MotionValue,
+  useInView,
+  UseInViewOptions,
 } from "framer-motion";
 import { calculateScrollUpdate } from "./lib";
 import { AnimationConfig, AnimationDirection, AnimationZone } from "./type";
@@ -164,4 +166,12 @@ export function useScrollProgress(
   }, [ref, config, scrollY, progress]);
 
   return { progress: smoothProgress, direction };
+}
+
+export function useInViewAnimation(
+  ref: RefObject<HTMLElement | null>,
+  options: UseInViewOptions = { once: true, amount: 0.2 },
+) {
+  const isInView = useInView(ref, options);
+  return isInView ? "visible" : "hidden";
 }
