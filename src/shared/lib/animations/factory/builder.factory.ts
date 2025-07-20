@@ -1,10 +1,18 @@
-import { ReactNode, ComponentType } from "react";
+import { ComponentType, ReactNode } from "react";
 import {
-  AnimationStrategy,
   AnimationConfig,
-  VariantStrategy,
+  AnimationStrategy,
+  ItemAnimationProps,
+  VariantStrategyConfig,
 } from "../domain/type";
-import { withAnimationToChildrenWrapper, withAnimationItem } from "../vm/hoc";
+import { VariantStrategyCreator } from "../strategy/strategy.view";
+import {
+  withAnimationItem,
+  withAnimationToChildrenWrapper,
+  withStaggerContainer,
+  withStaggerItem,
+} from "../vm/hoc";
+import { Variants } from "framer-motion";
 
 interface CreateAnimationWrapperPayload {
   strategy: AnimationStrategy;
@@ -26,17 +34,42 @@ export function createAnimationToChildrenWrapper({
 }
 
 interface CreateItemAnimationPayload {
-  strategy: (...args: any[]) => VariantStrategy;
-  config: any;
+  strategy: VariantStrategyCreator;
+  config: VariantStrategyConfig;
 }
 
 export function createAnimationItem({
   strategy,
   config,
 }: CreateItemAnimationPayload) {
-  const variantGenerator = strategy(...config);
+  const variantGenerator = strategy(config);
 
-  return function <P extends object>(Component: ComponentType<P>) {
+  return function <P extends ItemAnimationProps>(Component: ComponentType<P>) {
     return withAnimationItem(Component, variantGenerator);
+  };
+}
+
+// ---------
+// ---------
+
+interface StaggerContainerConfig {
+  resetTimeout?: number;
+}
+
+export function createStaggerContainer(config: StaggerContainerConfig = {}) {
+  // ✅ Ослабляем ограничение
+  return function <P extends object>(WrappedComponent: ComponentType<P>) {
+    return withStaggerContainer(WrappedComponent, config);
+  };
+}
+
+interface StaggerItemConfig {
+  variants: Variants;
+}
+
+export function createStaggerItem(config: StaggerItemConfig) {
+  // ✅ Ослабляем ограничение
+  return function <P extends object>(WrappedComponent: ComponentType<P>) {
+    return withStaggerItem(WrappedComponent, config.variants);
   };
 }

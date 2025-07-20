@@ -13,6 +13,13 @@ export interface AnimationConfig {
   };
 }
 
+export interface VariantStrategyConfig {
+  variants: Variants;
+  oddVariants?: Variants;
+  delayMultiplier?: number;
+  delay?: number;
+}
+
 export interface ElementConfig {
   component: ComponentType<any>;
   props?: { [key: string]: any };

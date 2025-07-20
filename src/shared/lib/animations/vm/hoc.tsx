@@ -1,6 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
+import {
+  motion,
+  useAnimationControls,
+  useInView,
+  Variants,
+} from "framer-motion";
 import {
   ReactNode,
   ComponentType,
@@ -8,6 +13,9 @@ import {
   ElementType,
   useRef,
   HTMLAttributes,
+  useEffect,
+  Children,
+  isValidElement,
 } from "react";
 import { useInViewAnimation, useScrollProgress } from "./hook";
 import {
@@ -17,6 +25,7 @@ import {
   ItemAnimationProps,
   VariantStrategy,
 } from "../domain/type";
+import { StaggerProvider, useStagger } from "./animation.provider";
 
 interface WithAnimationOptions {
   strategy: AnimationStrategy;
@@ -100,6 +109,53 @@ export function withAnimationItem<P extends ItemAnimationProps>(
         variants={variants}
         initial="hidden"
         animate={animate}
+      >
+        <WrappedComponent {...(restProps as P)} />
+      </motion.div>
+    );
+  };
+  return AnimatedComponent;
+}
+
+export function withStaggerContainer<P extends object>(
+  WrappedComponent: ComponentType<P>,
+  config: { resetTimeout?: number } = {}, // ✅ Принимаем конфиг
+) {
+  const StaggerContainerWrapper: FC<P> = (props) => {
+    return (
+      <StaggerProvider resetTimeout={config.resetTimeout}>
+        <WrappedComponent {...(props as P)} />
+      </StaggerProvider>
+    );
+  };
+  return StaggerContainerWrapper;
+}
+
+export function withStaggerItem<P extends object>(
+  WrappedComponent: ComponentType<P>,
+  animationVariants: Variants,
+) {
+  const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
+    const { className, ...restProps } = props;
+    const ref = useRef(null);
+    const getNextIndex = useStagger();
+    const controls = useAnimationControls();
+    const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+    useEffect(() => {
+      if (isInView) {
+        const delay = getNextIndex() * 0.1;
+        controls.start("visible", { delay });
+      }
+    }, [isInView, controls, getNextIndex]);
+
+    return (
+      <motion.div
+        ref={ref}
+        className={className}
+        variants={animationVariants}
+        initial="hidden"
+        animate={controls}
       >
         <WrappedComponent {...(restProps as P)} />
       </motion.div>
