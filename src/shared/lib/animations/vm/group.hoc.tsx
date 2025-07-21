@@ -70,10 +70,6 @@ export function withStaggerGroupItem<P extends object>(
         variants={variants}
         initial="hidden"
         animate={controls}
-        // ✅ Шаг 4: Ключевое исправление!
-        // На сервере и при гидратации `isReady=false`, поэтому стиль будет { opacity: 0 }.
-        // После монтирования `isReady=true`, стиль убирается, и управление
-        // полностью переходит к `variants` и `controls`.
         style={{ opacity: isReady ? undefined : 0 }}
       >
         <WrappedComponent {...(rest as P)} />
