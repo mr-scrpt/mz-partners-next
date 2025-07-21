@@ -1,3 +1,4 @@
+"use client";
 import { ComponentType, ReactNode } from "react";
 import {
   AnimationConfig,
@@ -6,13 +7,11 @@ import {
   VariantStrategyConfig,
 } from "../domain/type";
 import { VariantStrategyCreator } from "../strategy/strategy.view";
-import {
-  withAnimationItem,
-  withAnimationToChildrenWrapper,
-  withStaggerContainer,
-  withStaggerItem,
-} from "../vm/hoc";
+import { withAnimationItem, withAnimationToChildrenWrapper } from "../vm/hoc";
 import { Variants } from "framer-motion";
+import { AnimationSelectionStrategy } from "./strategy.factory";
+import { withStaggerContainer } from "../vm/withStaggerContainer.hoc";
+import { withStaggerItem } from "../vm/withStaggerItem.hoc";
 
 interface CreateAnimationWrapperPayload {
   strategy: AnimationStrategy;
@@ -52,24 +51,43 @@ export function createAnimationItem({
 // ---------
 // ---------
 
-interface StaggerContainerConfig {
-  resetTimeout?: number;
-}
+// interface StaggerContainerConfig {
+//   resetTimeout?: number;
+// }
+//
+// export function createAnimationStaggerContainer(
+//   config: StaggerContainerConfig = {},
+// ) {
+//   // ✅ Ослабляем ограничение
+//   return function <P extends object>(WrappedComponent: ComponentType<P>) {
+//     return withStaggerContainer(WrappedComponent, config);
+//   };
+// }
+//
+// interface StaggerItemConfig {
+//   variants: Variants;
+// }
+//
+// export function createStaggerItem(config: StaggerItemConfig) {
+//   // ✅ Ослабляем ограничение
+//   return function <P extends object>(WrappedComponent: ComponentType<P>) {
+//     return withStaggerItem(WrappedComponent, config.variants);
+//   };
+// }
 
-export function createStaggerContainer(config: StaggerContainerConfig = {}) {
-  // ✅ Ослабляем ограничение
-  return function <P extends object>(WrappedComponent: ComponentType<P>) {
-    return withStaggerContainer(WrappedComponent, config);
+// ---------
+// ---------
+export function createStaggerContainer(strategy: AnimationSelectionStrategy) {
+  return function <P extends object>(Component: ComponentType<P>) {
+    return withStaggerContainer(Component, strategy);
   };
 }
 
-interface StaggerItemConfig {
-  variants: Variants;
-}
-
-export function createStaggerItem(config: StaggerItemConfig) {
-  // ✅ Ослабляем ограничение
-  return function <P extends object>(WrappedComponent: ComponentType<P>) {
-    return withStaggerItem(WrappedComponent, config.variants);
-  };
+/**
+ * Фабрика для создания универсального Stagger-элемента.
+ */
+export function createStaggerItem<P extends object>(
+  Component: ComponentType<P>,
+) {
+  return withStaggerItem(Component);
 }

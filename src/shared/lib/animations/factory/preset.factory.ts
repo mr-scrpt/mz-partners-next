@@ -8,6 +8,7 @@ import {
   slideInRight,
   opacityVariants,
   fadeIn,
+  slideInTop,
 } from "../preset/variant";
 import {
   animationScrollShiftOpacityStrategy,
@@ -20,9 +21,16 @@ import {
 import {
   createAnimationToChildrenWrapper,
   createAnimationItem,
-  createStaggerContainer,
+  createAnimationStaggerContainer,
   createStaggerItem,
+  createStaggerContainer,
 } from "./builder.factory";
+import {
+  createSimpleStrategy,
+  createAlternatingStrategy,
+  createSequenceStrategy,
+  createTwoByTwoStrategy,
+} from "./strategy.factory";
 
 /**
  * Animation children wrapper
@@ -80,12 +88,45 @@ export const createAnimationItemOpacitySelfDelayed = createAnimationItem({
   config: { variants: opacityVariants },
 });
 
-export const createDefaultStaggerContainer = createStaggerContainer();
+/**
+ * Stagger container
+ */
 
-export const createStaggerItemSlideBottom = createStaggerItem({
-  variants: slideInBottom,
-});
+// export const createStaggerContainer = createAnimationStaggerContainer();
+//
+// export const createStaggerItemSlideBottom = createStaggerItem({
+//   variants: slideInBottom,
+// });
+//
+// export const createStaggerItemFadeIn = createStaggerItem({
+//   variants: fadeIn,
+// });
 
-export const createStaggerItemFadeIn = createStaggerItem({
-  variants: fadeIn,
-});
+/**
+ * Stagger v2
+ */
+
+export const createAlternatingSlideContainer = createStaggerContainer(
+  createAlternatingStrategy(slideInLeft, slideInRight),
+);
+// export const createStaggerContainerSlideBottom = createStaggerContainer(
+//   createSimpleStrategy(slideInBottom),
+// );
+//
+// export const createAlternatingSlideContainer = createStaggerContainer(
+//   createAlternatingStrategy(slideInLeft, slideInRight),
+// );
+//
+// // Последовательная анимация: справа, сверху, слева, снизу
+// export const createStaggerContainerSeq4Sides = createStaggerContainer(
+//   createSequenceStrategy([
+//     slideInRight,
+//     slideInTop,
+//     slideInLeft,
+//     slideInBottom,
+//   ]),
+// );
+//
+// export const createStaggerContainerTwoByTwo = createStaggerContainer(
+//   createTwoByTwoStrategy(slideInRight, slideInLeft),
+// );

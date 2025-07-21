@@ -1,37 +1,31 @@
-"use client";
-
-import { FC, ReactNode, useRef } from "react";
+import { FC, ReactNode, useRef, useCallback } from "react";
 import { createStrictContext, useStrictContext } from "../../react";
+import { AnimationSelectionStrategy } from "../factory/strategy.factory";
 
-const StaggerContext = createStrictContext<() => number>();
+interface StaggerContextPayload {
+  getNextIndex: () => number;
+  strategy: AnimationSelectionStrategy;
+}
+
+const StaggerContext = createStrictContext<StaggerContextPayload>();
 
 export const useStagger = () => useStrictContext(StaggerContext);
 
-interface StaggerProviderProps {
+export const StaggerProvider: FC<{
   children: ReactNode;
-  resetTimeout?: number;
-}
-
-export const StaggerProvider: FC<StaggerProviderProps> = ({
-  children,
-  resetTimeout = 200,
-}) => {
+  strategy: AnimationSelectionStrategy;
+}> = ({ children, strategy }) => {
   const index = useRef(0);
-  const lastTime = useRef(0);
 
-  const getNextIndex = () => {
-    const now = performance.now();
-    if (now - lastTime.current > resetTimeout) {
-      index.current = 0;
-    }
-    lastTime.current = now;
-    return index.current++;
-  };
+  // ✅ Простая функция-счетчик
+  const getNextIndex = useCallback(() => {
+    const currentIndex = index.current;
+    index.current++;
+    return currentIndex;
+  }, []);
 
-  // ✅ Шаг 3: Логика провайдера остается без изменений.
-  // Он, как и раньше, передает реальное значение.
   return (
-    <StaggerContext.Provider value={getNextIndex}>
+    <StaggerContext.Provider value={{ getNextIndex, strategy }}>
       {children}
     </StaggerContext.Provider>
   );

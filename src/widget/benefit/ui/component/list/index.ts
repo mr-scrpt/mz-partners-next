@@ -1,13 +1,6 @@
 "use client";
 
-import { ItemBenefit } from "./item/item.benefit";
+import { createAlternatingSlideContainer } from "@/shared/lib/animations/factory/preset.factory";
 import { ListBenefit } from "./list.benefit";
-import {
-  createDefaultStaggerContainer,
-  createStaggerItemFadeIn,
-  createStaggerItemSlideBottom,
-} from "@/shared/lib/animations/factory/preset.factory";
 
-export const ListBenefitAnimated = createDefaultStaggerContainer(ListBenefit);
-
-export const ItemBenefitAnimated = createStaggerItemSlideBottom(ItemBenefit);
+export const ListBenefitAnimated = createAlternatingSlideContainer(ListBenefit);
