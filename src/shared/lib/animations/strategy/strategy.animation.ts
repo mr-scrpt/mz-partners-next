@@ -25,3 +25,17 @@ export const sequentialStrategyCreator: AnimationStrategyCreator =
     // Если индекс в пределах массива, берем по индексу, иначе - последний элемент
     return variantsList[index] || variantsList[variantsList.length - 1];
   };
+
+export const steppedStrategyCreator: AnimationStrategyCreator = ({
+  variantsList,
+  step = 1, // Задаем значение по умолчанию прямо здесь
+}) => {
+  if (variantsList.length === 0 || step < 1) {
+    return () => ({});
+  }
+
+  return (index: number): Variants => {
+    const animationIndex = Math.floor(index / step) % variantsList.length;
+    return variantsList[animationIndex];
+  };
+};

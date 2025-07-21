@@ -111,6 +111,7 @@ export type AnimationApplicationStrategy = (index: number) => Variants;
 // ✅ Конфигурация для создания такой стратегии.
 export interface AnimationStrategyConfig {
   variantsList: Variants[];
+  step?: number;
   // Здесь могут быть и другие параметры для более сложных стратегий
 }
 
@@ -128,4 +129,8 @@ export interface StaggerContextValue {
 // ... ItemAnimationProps с обязательным idx остается без изменений
 export interface ItemAnimationProps {
   idx: number;
+}
+export interface SteppedAnimationStrategyConfig {
+  variantsList: Variants[];
+  step?: number; // Количество раз, которое применяется каждая анимация. По умолчанию 1.
 }

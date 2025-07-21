@@ -1,5 +1,6 @@
 import { ComponentType, ReactNode } from "react";
 import {
+  AnimationApplicationStrategy,
   AnimationConfig,
   AnimationStrategy,
   ItemAnimationProps,
@@ -50,26 +51,27 @@ export function createAnimationItem({
     return withAnimationItem(Component, variantGenerator);
   };
 }
-
-// --- Stagger Factories ---
-
-/**
- * ✅ Базовая фабрика для создания stagger-контейнера.
- * Принимает конфигурацию с вариантами анимаций.
- */
-export function createStaggerContainer(config: StaggerContainerConfig) {
+// --- STAGGER CONTAINER BUILDER ---
+// ✅ Новый строитель для stagger-контейнера.
+// По структуре он теперь идентичен createAnimationToChildrenWrapper.
+export function createStaggerContainer(config: {
+  animationStrategy: AnimationApplicationStrategy;
+  resetTimeout?: number;
+  delayMultiplier?: number;
+}) {
   return function <P extends object>(WrappedComponent: ComponentType<P>) {
     return withStaggerContainer(WrappedComponent, config);
   };
 }
 
-/**
- * ✅ Универсальная фабрика для создания stagger-элемента.
- * Оборачивает компонент в HOC, который требует проп `idx`.
- */
-export function createStaggerItem<P extends ItemAnimationProps>(
-  WrappedComponent: ComponentType<P>,
-) {
-  // Тип P уже ограничен ItemAnimationProps, что гарантирует наличие idx
-  return withStaggerItem(WrappedComponent);
+// --- STAGGER ITEM BUILDER ---
+// ✅ Новый строитель для stagger-элемента.
+// Так как наш item "глупый" и не требует конфигурации,
+// его строитель очень прост.
+export function createStaggerItem() {
+  return function <P extends ItemAnimationProps>(
+    WrappedComponent: ComponentType<P>,
+  ) {
+    return withStaggerItem(WrappedComponent);
+  };
 }

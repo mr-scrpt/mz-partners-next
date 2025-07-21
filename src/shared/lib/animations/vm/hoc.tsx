@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  motion,
-  useAnimationControls,
-  useInView,
-  Variants,
-} from "framer-motion";
+import { motion, useAnimationControls, useInView } from "framer-motion";
 import {
   ReactNode,
   ComponentType,
@@ -14,8 +9,6 @@ import {
   useRef,
   HTMLAttributes,
   useEffect,
-  Children,
-  isValidElement,
 } from "react";
 import { useInViewAnimation, useScrollProgress } from "./hook";
 import {
@@ -24,7 +17,6 @@ import {
   ElementConfig,
   ItemAnimationProps,
   VariantStrategy,
-  StaggerContainerConfig,
   AnimationApplicationStrategy,
 } from "../domain/type";
 import { StaggerProvider, useStagger } from "./animation.provider";
