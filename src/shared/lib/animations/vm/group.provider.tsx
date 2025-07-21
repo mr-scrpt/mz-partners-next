@@ -27,23 +27,31 @@ export const StaggerGroupProvider: FC<StaggerGroupProviderProps> = ({
   delayMultiplier = 0.1,
   animationStrategy,
 }) => {
-  // ✅ Один счетчик, который отвечает за всё
-  const dynamicIndex = useRef(0);
+  const indexCounter = useRef(0);
+  const registry = useRef(new Map<string, number>()).current;
 
-  const getAnimationProps = useCallback(() => {
-    const index = dynamicIndex.current;
-    dynamicIndex.current++;
-    const delay = (index + 1) * delayMultiplier;
-    const variants = animationStrategy(index);
-    return { variants, delay };
-  }, [animationStrategy, delayMultiplier]); // Зависимости
+  const register = useCallback(
+    (id: string) => {
+      if (!registry.has(id)) {
+        registry.set(id, indexCounter.current);
+        indexCounter.current++;
+      }
+    },
+    [registry],
+  );
 
-  const contextValue: StaggerGroupContextValue = {
-    getAnimationProps,
-  };
+  const getAnimationProps = useCallback(
+    (id: string) => {
+      const index = registry.get(id) ?? 0;
+      const delay = (index + 1) * delayMultiplier;
+      const variants = animationStrategy(index);
+      return { variants, delay };
+    },
+    [animationStrategy, delayMultiplier, registry],
+  );
 
   return (
-    <StaggerGroupContext.Provider value={contextValue}>
+    <StaggerGroupContext.Provider value={{ register, getAnimationProps }}>
       {children}
     </StaggerGroupContext.Provider>
   );

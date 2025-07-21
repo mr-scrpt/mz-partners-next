@@ -4,7 +4,7 @@ import {
   FC,
   HTMLAttributes,
   useEffect,
-  useMemo,
+  useId,
   useRef,
   useState,
 } from "react";
@@ -41,37 +41,27 @@ export function withStaggerGroupItem<P extends object>(
     const { className, ...rest } = props;
     const ref = useRef(null);
     const controls = useAnimationControls();
+
     const isInView = useInView(ref, { amount: 0.1 });
-    const { getAnimationProps } = useStaggerGroup();
-
-    // ✅ Шаг 1: Используем состояние, чтобы определить, что мы на клиенте
-    const [isReady, setIsReady] = useState(false);
-    useEffect(() => {
-      setIsReady(true);
-    }, []);
-
-    // ✅ Шаг 2: Безопасно получаем пропсы анимации один раз
-    const { variants, delay } = useMemo(
-      () => getAnimationProps(),
-      [getAnimationProps],
-    );
+    const { register, getAnimationProps } = useStaggerGroup();
+    const id = useId();
 
     useEffect(() => {
-      // ✅ Шаг 3: Запускаем анимацию, когда все условия выполнены
-      if (isInView && isReady) {
-        controls.start("visible", { delay });
+      register(id);
+    }, [id, register]);
+
+    useEffect(() => {
+      if (isInView) {
+        const { variants, delay } = getAnimationProps(id);
+
+        controls.set(variants.hidden);
+
+        controls.start(variants.visible, { delay });
       }
-    }, [isInView, isReady, controls, delay]);
+    }, [isInView, id, getAnimationProps, controls]);
 
     return (
-      <motion.div
-        ref={ref}
-        className={className}
-        variants={variants}
-        initial="hidden"
-        animate={controls}
-        style={{ opacity: isReady ? undefined : 0 }}
-      >
+      <motion.div ref={ref} className={className} animate={controls}>
         <WrappedComponent {...(rest as P)} />
       </motion.div>
     );
