@@ -125,7 +125,12 @@ export interface StaggerContextValue {
   getVariants: AnimationApplicationStrategy;
   requestDelay: () => number; // Функция запроса задержки
 }
-
+export interface StaggerGroupContextValue {
+  getAnimationProps: () => {
+    variants: Variants;
+    delay: number;
+  };
+}
 // ... ItemAnimationProps с обязательным idx остается без изменений
 export interface ItemAnimationProps {
   idx: number;

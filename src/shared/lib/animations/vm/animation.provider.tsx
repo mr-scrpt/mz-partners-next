@@ -15,7 +15,6 @@ interface StaggerProviderProps {
   children: ReactNode;
   resetTimeout?: number;
   delayMultiplier?: number;
-  // Провайдер принимает готовую стратегию
   animationStrategy: AnimationApplicationStrategy;
 }
 

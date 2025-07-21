@@ -14,6 +14,10 @@ import {
   withStaggerContainer,
   withStaggerItem,
 } from "../vm/hoc";
+import {
+  withStaggerGroupContainer,
+  withStaggerGroupItem,
+} from "../vm/group.hoc";
 
 // --- Scroll & Simple Item Factories ---
 
@@ -51,9 +55,11 @@ export function createAnimationItem({
     return withAnimationItem(Component, variantGenerator);
   };
 }
-// --- STAGGER CONTAINER BUILDER ---
-// ✅ Новый строитель для stagger-контейнера.
-// По структуре он теперь идентичен createAnimationToChildrenWrapper.
+
+/* ==================================================================
+    LIST BUILDERS (Требуют `idx`)
+   ================================================================== */
+
 export function createStaggerContainer(config: {
   animationStrategy: AnimationApplicationStrategy;
   resetTimeout?: number;
@@ -64,14 +70,30 @@ export function createStaggerContainer(config: {
   };
 }
 
-// --- STAGGER ITEM BUILDER ---
-// ✅ Новый строитель для stagger-элемента.
-// Так как наш item "глупый" и не требует конфигурации,
-// его строитель очень прост.
 export function createStaggerItem() {
   return function <P extends ItemAnimationProps>(
     WrappedComponent: ComponentType<P>,
   ) {
     return withStaggerItem(WrappedComponent);
+  };
+}
+
+/* ==================================================================
+    GROUP BUILDERS (Автоматические индексы)
+   ================================================================== */
+
+// ✅ Новый строитель для контейнера группы
+export function createStaggerGroupContainer(config: {
+  animationStrategy: AnimationApplicationStrategy;
+  delayMultiplier?: number;
+}) {
+  return function <P extends object>(WrappedComponent: ComponentType<P>) {
+    return withStaggerGroupContainer(WrappedComponent, config);
+  };
+}
+
+export function createStaggerGroupItem() {
+  return function <P extends object>(WrappedComponent: ComponentType<P>) {
+    return withStaggerGroupItem(WrappedComponent);
   };
 }

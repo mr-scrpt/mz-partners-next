@@ -1,6 +1,6 @@
 "use client";
-// import { createAnimationItemSlideBottom } from "@/shared/lib/animations";
+
+import { createGroupItem } from "@/shared/lib/animations/factory/group.factory";
 import { BannerAbout } from "./banner.about";
 
-// export const BannerAboutAnimated = createAnimationItemSlideBottom(BannerAbout);
-export const BannerAboutAnimated = BannerAbout;
+export const BannerAboutAnimated = createGroupItem(BannerAbout);

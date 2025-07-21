@@ -1,6 +1,6 @@
 "use client";
-// import { createAnimationItemOpacity } from "@/shared/lib/animations";
+
+import { createGroupItem } from "@/shared/lib/animations/factory/group.factory";
 import { TextAbout } from "./text.about";
 
-// export const TextAboutAnimated = createAnimationItemOpacity(TextAbout);
-export const TextAboutAnimated = TextAbout;
+export const TextAboutAnimated = createGroupItem(TextAbout);
