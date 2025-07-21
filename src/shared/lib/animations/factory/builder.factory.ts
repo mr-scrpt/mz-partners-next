@@ -3,6 +3,7 @@ import {
   AnimationConfig,
   AnimationStrategy,
   ItemAnimationProps,
+  StaggerContainerConfig,
   VariantStrategyConfig,
 } from "../domain/type";
 import { VariantStrategyCreator } from "../strategy/strategy.view";
@@ -12,7 +13,8 @@ import {
   withStaggerContainer,
   withStaggerItem,
 } from "../vm/hoc";
-import { Variants } from "framer-motion";
+
+// --- Scroll & Simple Item Factories ---
 
 interface CreateAnimationWrapperPayload {
   strategy: AnimationStrategy;
@@ -49,27 +51,25 @@ export function createAnimationItem({
   };
 }
 
-// ---------
-// ---------
+// --- Stagger Factories ---
 
-interface StaggerContainerConfig {
-  resetTimeout?: number;
-}
-
-export function createStaggerContainer(config: StaggerContainerConfig = {}) {
-  // ✅ Ослабляем ограничение
+/**
+ * ✅ Базовая фабрика для создания stagger-контейнера.
+ * Принимает конфигурацию с вариантами анимаций.
+ */
+export function createStaggerContainer(config: StaggerContainerConfig) {
   return function <P extends object>(WrappedComponent: ComponentType<P>) {
     return withStaggerContainer(WrappedComponent, config);
   };
 }
 
-interface StaggerItemConfig {
-  variants: Variants;
-}
-
-export function createStaggerItem(config: StaggerItemConfig) {
-  // ✅ Ослабляем ограничение
-  return function <P extends object>(WrappedComponent: ComponentType<P>) {
-    return withStaggerItem(WrappedComponent, config.variants);
-  };
+/**
+ * ✅ Универсальная фабрика для создания stagger-элемента.
+ * Оборачивает компонент в HOC, который требует проп `idx`.
+ */
+export function createStaggerItem<P extends ItemAnimationProps>(
+  WrappedComponent: ComponentType<P>,
+) {
+  // Тип P уже ограничен ItemAnimationProps, что гарантирует наличие idx
+  return withStaggerItem(WrappedComponent);
 }

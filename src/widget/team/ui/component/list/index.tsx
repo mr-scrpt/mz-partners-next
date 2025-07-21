@@ -1,15 +1,12 @@
 "use client";
-import { createAnimationItemSlideAlternatingSelfDelayed } from "@/shared/lib/animations";
 
+import { createAlternatingSlideContainer } from "@/shared/lib/animations/factory/preset.factory";
 import { ItemTeam } from "./item/item.team";
-import {
-  createDefaultStaggerContainer,
-  createStaggerItemSlideBottom,
-} from "@/shared/lib/animations/factory/preset.factory";
 import { ListTeam } from "./list.team";
+import { withStaggerItem } from "@/shared/lib/animations/vm/hoc";
 
-// export const ItemTeamAnimated =
-//   createAnimationItemSlideAlternatingSelfDelayed(ItemTeam);
-export const ListTeamAnimated = createDefaultStaggerContainer(ListTeam);
+export const ListTeamAnimated = createAlternatingSlideContainer(ListTeam);
 
-export const ItemTeamAnimated = createStaggerItemSlideBottom(ItemTeam);
+// export const ListTeamAnimated = createSlideBottomStaggerContainer(ListTeam);
+
+export const ItemTeamAnimated = withStaggerItem(ItemTeam);

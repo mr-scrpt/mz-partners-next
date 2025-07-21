@@ -9,6 +9,7 @@ interface ListTeamAnimatedComposeProps extends HTMLAttributes<HTMLDivElement> {}
 export const ListTeamAnimatedCompose: FC<ListTeamAnimatedComposeProps> = (
   props,
 ) => {
+  console.log("[Compose] Рендер ListTeamAnimatedCompose");
   return (
     <ListTeamAnimated
       ItemComponent={ItemTeamAnimated}

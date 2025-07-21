@@ -2,36 +2,51 @@
 
 import { FC, ReactNode, useRef } from "react";
 import { createStrictContext, useStrictContext } from "../../react";
+import {
+  StaggerContextValue,
+  AnimationApplicationStrategy,
+} from "../domain/type";
 
-const StaggerContext = createStrictContext<() => number>();
+const StaggerContext = createStrictContext<StaggerContextValue>();
 
 export const useStagger = () => useStrictContext(StaggerContext);
 
 interface StaggerProviderProps {
   children: ReactNode;
   resetTimeout?: number;
+  delayMultiplier?: number;
+  // Провайдер принимает готовую стратегию
+  animationStrategy: AnimationApplicationStrategy;
 }
 
 export const StaggerProvider: FC<StaggerProviderProps> = ({
   children,
   resetTimeout = 200,
+  delayMultiplier = 0.1,
+  animationStrategy,
 }) => {
-  const index = useRef(0);
+  const temporalIndex = useRef(0);
   const lastTime = useRef(0);
 
-  const getNextIndex = () => {
+  const requestDelay = (): number => {
+    // Эта логика уже отлажена и устойчива к Strict Mode
     const now = performance.now();
     if (now - lastTime.current > resetTimeout) {
-      index.current = 0;
+      temporalIndex.current = 0;
     }
     lastTime.current = now;
-    return index.current++;
+    const delay = temporalIndex.current * delayMultiplier;
+    temporalIndex.current++;
+    return delay;
   };
 
-  // ✅ Шаг 3: Логика провайдера остается без изменений.
-  // Он, как и раньше, передает реальное значение.
+  const contextValue: StaggerContextValue = {
+    getVariants: animationStrategy,
+    requestDelay,
+  };
+
   return (
-    <StaggerContext.Provider value={getNextIndex}>
+    <StaggerContext.Provider value={contextValue}>
       {children}
     </StaggerContext.Provider>
   );

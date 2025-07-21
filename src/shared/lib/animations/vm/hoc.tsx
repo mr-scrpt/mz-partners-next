@@ -24,6 +24,8 @@ import {
   ElementConfig,
   ItemAnimationProps,
   VariantStrategy,
+  StaggerContainerConfig,
+  AnimationApplicationStrategy,
 } from "../domain/type";
 import { StaggerProvider, useStagger } from "./animation.provider";
 
@@ -119,11 +121,19 @@ export function withAnimationItem<P extends ItemAnimationProps>(
 
 export function withStaggerContainer<P extends object>(
   WrappedComponent: ComponentType<P>,
-  config: { resetTimeout?: number } = {}, // ✅ Принимаем конфиг
+  config: {
+    animationStrategy: AnimationApplicationStrategy;
+    resetTimeout?: number;
+    delayMultiplier?: number;
+  },
 ) {
   const StaggerContainerWrapper: FC<P> = (props) => {
     return (
-      <StaggerProvider resetTimeout={config.resetTimeout}>
+      <StaggerProvider
+        animationStrategy={config.animationStrategy}
+        resetTimeout={config.resetTimeout}
+        delayMultiplier={config.delayMultiplier}
+      >
         <WrappedComponent {...(props as P)} />
       </StaggerProvider>
     );
@@ -131,33 +141,44 @@ export function withStaggerContainer<P extends object>(
   return StaggerContainerWrapper;
 }
 
-export function withStaggerItem<P extends object>(
+// ✅ HOC элемента снова становится универсальным и "глупым"
+export function withStaggerItem<P extends ItemAnimationProps>(
   WrappedComponent: ComponentType<P>,
-  animationVariants: Variants,
 ) {
   const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
-    const { className, ...restProps } = props;
+    const { className, idx, ...restProps } = props;
     const ref = useRef(null);
-    const getNextIndex = useStagger();
     const controls = useAnimationControls();
-    const isInView = useInView(ref, { once: true, amount: 0.2 });
+    const isInView = useInView(ref, { once: true, amount: 0.1 });
+    const { getVariants, requestDelay } = useStagger(); // Получаем оба метода
+
+    if (typeof idx !== "number") {
+      throw new Error(
+        "Component wrapped with withStaggerItem must receive a unique 'idx' prop.",
+      );
+    }
+
+    // 1. Получаем свой вариант анимации, используя свой стабильный idx
+    const variants = getVariants(idx);
 
     useEffect(() => {
       if (isInView) {
-        const delay = getNextIndex() * 0.1;
+        // 2. Запрашиваем свою задержку, когда готовы
+        const delay = requestDelay();
+        // 3. Запускаемся
         controls.start("visible", { delay });
       }
-    }, [isInView, controls, getNextIndex]);
+    }, [isInView, controls, requestDelay]);
 
     return (
       <motion.div
         ref={ref}
         className={className}
-        variants={animationVariants}
+        variants={variants}
         initial="hidden"
         animate={controls}
       >
-        <WrappedComponent {...(restProps as P)} />
+        <WrappedComponent {...(restProps as P)} idx={idx} />
       </motion.div>
     );
   };

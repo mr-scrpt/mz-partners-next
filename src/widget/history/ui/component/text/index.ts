@@ -1,5 +1,6 @@
 "use client";
-import { createAnimationItemSlideLeft } from "@/shared/lib/animations";
+// import { createAnimationItemSlideLeft } from "@/shared/lib/animations";
 import { TextHistory } from "./text.history";
 
-export const TextHistoryAnimated = createAnimationItemSlideLeft(TextHistory);
+// export const TextHistoryAnimated = createAnimationItemSlideLeft(TextHistory);
+export const TextHistoryAnimated = TextHistory;

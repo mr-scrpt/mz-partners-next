@@ -12,6 +12,9 @@ interface ListTeamProps extends HTMLAttributes<HTMLDivElement> {
 export const ListTeam: FC<ListTeamProps> = (props) => {
   const { className, ItemComponent, getDataList } = props; // Используем ItemComponent или DefaultItem
   const { teamItemList } = getDataList();
+  console.log(
+    `[ListTeam] Рендер ListTeam. Количество элементов: ${teamItemList.length}`,
+  );
 
   return (
     <div className={clsx(sTeamList.root, className)}>
