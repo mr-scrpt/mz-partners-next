@@ -1,5 +1,4 @@
 "use client";
-
 import {
   ComponentType,
   FC,
@@ -42,32 +41,27 @@ export function withStaggerGroupItem<P extends object>(
     const { className, ...rest } = props;
     const ref = useRef(null);
     const controls = useAnimationControls();
-    const isInView = useInView(ref, { once: true, amount: 0.1 });
+    const isInView = useInView(ref, { amount: 0.1 });
     const { getAnimationProps } = useStaggerGroup();
 
-    const [isMounted, setIsMounted] = useState(false);
+    // ✅ Шаг 1: Используем состояние, чтобы определить, что мы на клиенте
+    const [isReady, setIsReady] = useState(false);
     useEffect(() => {
-      setIsMounted(true);
+      setIsReady(true);
     }, []);
 
+    // ✅ Шаг 2: Безопасно получаем пропсы анимации один раз
     const { variants, delay } = useMemo(
       () => getAnimationProps(),
       [getAnimationProps],
     );
 
     useEffect(() => {
-      // Эта логика теперь будет работать, потому что isInView станет true
-      if (isInView && isMounted) {
+      // ✅ Шаг 3: Запускаем анимацию, когда все условия выполнены
+      if (isInView && isReady) {
         controls.start("visible", { delay });
       }
-    }, [isInView, isMounted, controls, delay]);
-
-    // ✅ Ключевое изменение: рендерим div-пустышку вместо null
-    if (!isMounted) {
-      // Этот div нужен, чтобы занять место в макете и дать "якорь" для ref.
-      // useInView начнет отслеживать его сразу же.
-      return <div ref={ref} className={className} />;
-    }
+    }, [isInView, isReady, controls, delay]);
 
     return (
       <motion.div
@@ -76,6 +70,11 @@ export function withStaggerGroupItem<P extends object>(
         variants={variants}
         initial="hidden"
         animate={controls}
+        // ✅ Шаг 4: Ключевое исправление!
+        // На сервере и при гидратации `isReady=false`, поэтому стиль будет { opacity: 0 }.
+        // После монтирования `isReady=true`, стиль убирается, и управление
+        // полностью переходит к `variants` и `controls`.
+        style={{ opacity: isReady ? undefined : 0 }}
       >
         <WrappedComponent {...(rest as P)} />
       </motion.div>

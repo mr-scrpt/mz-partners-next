@@ -33,7 +33,7 @@ export const StaggerGroupProvider: FC<StaggerGroupProviderProps> = ({
   const getAnimationProps = useCallback(() => {
     const index = dynamicIndex.current;
     dynamicIndex.current++;
-    const delay = index * delayMultiplier;
+    const delay = (index + 1) * delayMultiplier;
     const variants = animationStrategy(index);
     return { variants, delay };
   }, [animationStrategy, delayMultiplier]); // Зависимости

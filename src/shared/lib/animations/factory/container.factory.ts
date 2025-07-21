@@ -30,7 +30,7 @@ export const createContainerSlideSequenceSecondary = createStaggerContainer({
     variantsList: [slideInLeft, slideInTop, slideInBottom, slideInRight],
   }),
 
-  delayMultiplier: 0.2,
+  delayMultiplier: 0.15,
 });
 
 export const createContainerSlideSequenceTertiary = createStaggerContainer({

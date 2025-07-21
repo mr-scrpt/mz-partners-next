@@ -28,13 +28,12 @@ export const StaggerProvider: FC<StaggerProviderProps> = ({
   const lastTime = useRef(0);
 
   const requestDelay = (): number => {
-    // Эта логика уже отлажена и устойчива к Strict Mode
     const now = performance.now();
     if (now - lastTime.current > resetTimeout) {
       temporalIndex.current = 0;
     }
     lastTime.current = now;
-    const delay = temporalIndex.current * delayMultiplier;
+    const delay = (temporalIndex.current + 1) * delayMultiplier;
     temporalIndex.current++;
     return delay;
   };

@@ -10,6 +10,7 @@ export const createGroupSlideAlternating = createStaggerGroupContainer({
   animationStrategy: cyclicalStrategyCreator({
     variantsList: [slideInLeft, slideInRight],
   }),
-  delayMultiplier: 0.1,
+  delayMultiplier: 1,
 });
+
 export const createGroupItem = createStaggerGroupItem();
