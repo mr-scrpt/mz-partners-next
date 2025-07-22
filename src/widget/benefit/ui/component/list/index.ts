@@ -1,14 +1,12 @@
 "use client";
 
-import {
-  createContainerItem,
-  createContainerSlideSequencePrimary,
-} from "@/shared/lib/animations/factory/container.factory";
 import { ItemBenefit } from "./item/item.benefit";
 import { ListBenefit } from "./list.benefit";
+import {
+  createContainerGroupItem,
+  createContainerGroupSlideAround,
+} from "@/shared/lib/animations/factory/group.factory";
 
-export const ListBenefitAnimated =
-  createContainerSlideSequencePrimary(ListBenefit);
-// export const ListBenefitAnimated = createFourStapSlideContainer(ListBenefit);
+export const ListBenefitAnimated = createContainerGroupSlideAround(ListBenefit);
 
-export const ItemBenefitAnimated = createContainerItem(ItemBenefit);
+export const ItemBenefitAnimated = createContainerGroupItem(ItemBenefit);

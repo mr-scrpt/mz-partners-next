@@ -1,7 +1,6 @@
 "use client";
-// import { createAnimationItemSlideRight } from "@/shared/lib/animations";
+
+import { createContainerGroupItem } from "@/shared/lib/animations/factory/group.factory";
 import { BannerHistory } from "./banner.history";
 
-export const BannerHistoryAnimated = BannerHistory;
-// export const BannerHistoryAnimated =
-//   createAnimationItemSlideRight(BannerHistory);
+export const BannerHistoryAnimated = createContainerGroupItem(BannerHistory);

@@ -1,6 +1,6 @@
-// "use client";
-// import { createAnimationContainerImmediately } from "@/shared/lib/animations";
-// import { ContentHistory } from "./content.history";
-//
-// export const ContentHistoryAnimated =
-//   createAnimationContainerImmediately(ContentHistory);
+"use client";
+import { createContainerGroupSlideImmediate } from "@/shared/lib/animations/factory/group.factory";
+import { ContentHistory } from "./content.history";
+
+export const ContentHistoryAnimated =
+  createContainerGroupSlideImmediate(ContentHistory);

@@ -9,7 +9,22 @@ export const fadeInUp: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  },
+};
+
+export const fadeInBottom: Variants = {
+  hidden: {
+    opacity: 0,
+    y: -50,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.4,
       ease: "easeOut",
     },
   },
@@ -20,7 +35,7 @@ export const fadeIn: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.4,
       ease: "easeInOut",
     },
   },
@@ -31,7 +46,7 @@ export const fadeInHalf: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      duration: 5,
+      duration: 0.4,
       ease: "easeInOut",
     },
   },
@@ -41,14 +56,14 @@ export const fadeOutHalf: Variants = {
   hidden: {
     opacity: 0.3,
     transition: {
-      duration: 5,
+      duration: 0.4,
       ease: "easeInOut",
     },
   },
   visible: {
     opacity: 1,
     transition: {
-      duration: 5,
+      duration: 0.4,
       ease: "easeInOut",
     },
   },
@@ -59,7 +74,7 @@ export const slideInLeft: Variants = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.7, ease: "easeOut" },
+    transition: { duration: 0.4, ease: "easeOut" },
   },
 };
 
@@ -68,7 +83,7 @@ export const slideInRight: Variants = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.7, ease: "easeOut" },
+    transition: { duration: 0.4, ease: "easeOut" },
   },
 };
 
@@ -77,7 +92,7 @@ export const slideInBottom: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: "easeOut" },
+    transition: { duration: 0.4, ease: "easeOut" },
   },
 };
 
@@ -86,7 +101,7 @@ export const slideInTop: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: "easeOut" },
+    transition: { duration: 0.4, ease: "easeOut" },
   },
 };
 export const opacityVariants: Variants = {
