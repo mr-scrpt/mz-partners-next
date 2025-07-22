@@ -3,19 +3,22 @@ import {
   ComponentType,
   FC,
   HTMLAttributes,
+  useCallback,
   useEffect,
   useId,
+  useMemo,
   useRef,
-  useState,
 } from "react";
-import { AnimationApplicationStrategy } from "../domain/type";
-import { StaggerGroupProvider, useStaggerGroup } from "./group.provider";
 import {
-  useAnimationControls,
-  useInView,
-  motion,
-  Variants,
-} from "framer-motion";
+  AnimationApplicationStrategy,
+  StaggerGroupContextValue,
+} from "../domain/type";
+import { useAnimationControls, useInView, motion } from "framer-motion";
+import { createStrictContext, useStrictContext } from "../../react";
+
+const StaggerGroupContext = createStrictContext<StaggerGroupContextValue>();
+const useStaggerGroup = () => useStrictContext(StaggerGroupContext);
+
 export function withStaggerGroupContainer<P extends object>(
   WrappedComponent: ComponentType<P>,
   config: {
@@ -24,15 +27,60 @@ export function withStaggerGroupContainer<P extends object>(
     resetTimeout?: number;
   },
 ) {
-  const StaggerContainerWrapper: FC<P> = (props) => (
-    <StaggerGroupProvider
-      animationStrategy={config.animationStrategy}
-      resetTimeout={config.resetTimeout}
-      delayMultiplier={config.delayMultiplier}
-    >
-      <WrappedComponent {...(props as P)} />
-    </StaggerGroupProvider>
-  );
+  const StaggerContainerWrapper: FC<P> = (props) => {
+    const registry = useRef(new Map<string, number>()).current;
+    const indexCounter = useRef(0);
+    const temporalIndex = useRef(0);
+    const lastTime = useRef(0);
+
+    const register = useCallback(
+      (id: string): number => {
+        if (!registry.has(id)) {
+          registry.set(id, indexCounter.current);
+          indexCounter.current++;
+        }
+        return registry.get(id)!;
+      },
+      [registry],
+    );
+
+    const getVariants = useCallback(
+      (index: number) => {
+        return config.animationStrategy(index);
+      },
+      [config.animationStrategy],
+    );
+
+    const requestDelay = useCallback(() => {
+      const now = performance.now();
+      const delayMultiplier = config.delayMultiplier || 0.1;
+      const resetTimeout = config.resetTimeout || 200;
+
+      if (now - lastTime.current > resetTimeout) {
+        temporalIndex.current = 0;
+      }
+      lastTime.current = now;
+      const delay = (temporalIndex.current + 1) * delayMultiplier;
+      temporalIndex.current++;
+      return delay;
+    }, [config.delayMultiplier, config.resetTimeout]);
+
+    const contextValue = useMemo(
+      () => ({
+        register,
+        getVariants,
+        requestDelay,
+      }),
+      [register, getVariants, requestDelay],
+    );
+
+    return (
+      <StaggerGroupContext.Provider value={contextValue}>
+        <WrappedComponent {...(props as P)} />
+      </StaggerGroupContext.Provider>
+    );
+  };
+
   return StaggerContainerWrapper;
 }
 
@@ -48,20 +96,12 @@ export function withStaggerGroupItem<P extends object>(
     const id = useId();
 
     useEffect(() => {
-      // ✅ Этот один useEffect делает всё, когда элемент становится видимым
       if (isInView) {
-        // 1. Регистрируемся и получаем стабильный индекс.
-        // Это безопасно, так как происходит только на клиенте.
         const index = register(id);
-
-        // 2. Получаем свои варианты и задержку.
         const variants = getVariants(index);
         const delay = requestDelay();
 
-        // 3. Явно управляем анимацией:
-        //    - Мгновенно ставим в ПОЛНОЕ начальное положение (с transform).
         controls.set(variants.hidden);
-        //    - Запускаем анимацию до конечного положения.
         controls.start(variants.visible, { delay });
       }
     }, [isInView, id, register, getVariants, requestDelay, controls]);
@@ -70,9 +110,6 @@ export function withStaggerGroupItem<P extends object>(
       <motion.div
         ref={ref}
         className={className}
-        // ✅ Ключевое изменение:
-        // Мы задаем простое и безопасное начальное состояние.
-        // Это гарантирует отсутствие мигания и ошибок гидратации.
         initial={{ opacity: 0 }}
         animate={controls}
       >
