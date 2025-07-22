@@ -6,11 +6,13 @@ import {
   createStaggerGroupItem,
 } from "./builder.factory";
 
-export const createGroupSlideAlternating = createStaggerGroupContainer({
-  animationStrategy: cyclicalStrategyCreator({
-    variantsList: [slideInLeft, slideInRight],
-  }),
-  delayMultiplier: 1,
-});
+export const createContainerGroupSlideAlternating = createStaggerGroupContainer(
+  {
+    animationStrategy: cyclicalStrategyCreator({
+      variantsList: [slideInLeft, slideInRight],
+    }),
+    delayMultiplier: 0.2,
+  },
+);
 
-export const createGroupItem = createStaggerGroupItem();
+export const createContainerGroupItem = createStaggerGroupItem();

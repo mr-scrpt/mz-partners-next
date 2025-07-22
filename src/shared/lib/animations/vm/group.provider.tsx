@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, FC, useRef, useCallback } from "react";
+import { ReactNode, FC, useRef, useCallback, useMemo } from "react";
 import { createStrictContext, useStrictContext } from "../../react";
 import {
   StaggerGroupContextValue,
@@ -14,44 +14,55 @@ export const useStaggerGroup = () => useStrictContext(StaggerGroupContext);
 interface StaggerGroupProviderProps {
   children: ReactNode;
   delayMultiplier?: number;
-  animationStrategy: AnimationApplicationStrategy;
-}
-interface StaggerGroupProviderProps {
-  children: ReactNode;
-  delayMultiplier?: number;
+  resetTimeout?: number; // Сохраняем для полной симметрии
   animationStrategy: AnimationApplicationStrategy;
 }
 
 export const StaggerGroupProvider: FC<StaggerGroupProviderProps> = ({
   children,
   delayMultiplier = 0.1,
+  resetTimeout = 200, // Сохраняем для симметрии
   animationStrategy,
 }) => {
-  const indexCounter = useRef(0);
   const registry = useRef(new Map<string, number>()).current;
+  const indexCounter = useRef(0);
+  const temporalIndex = useRef(0);
+  const lastTime = useRef(0);
 
   const register = useCallback(
-    (id: string) => {
+    (id: string): number => {
       if (!registry.has(id)) {
         registry.set(id, indexCounter.current);
         indexCounter.current++;
       }
+      return registry.get(id)!;
     },
     [registry],
   );
 
-  const getAnimationProps = useCallback(
-    (id: string) => {
-      const index = registry.get(id) ?? 0;
-      const delay = (index + 1) * delayMultiplier;
-      const variants = animationStrategy(index);
-      return { variants, delay };
-    },
-    [animationStrategy, delayMultiplier, registry],
+  const getVariants = useCallback(
+    (index: number) => animationStrategy(index),
+    [animationStrategy],
+  );
+
+  const requestDelay = useCallback(() => {
+    const now = performance.now();
+    if (now - lastTime.current > resetTimeout) {
+      temporalIndex.current = 0;
+    }
+    lastTime.current = now;
+    const delay = (temporalIndex.current + 1) * delayMultiplier;
+    temporalIndex.current++;
+    return delay;
+  }, [resetTimeout, delayMultiplier]);
+
+  const contextValue = useMemo(
+    () => ({ register, getVariants, requestDelay }),
+    [register, getVariants, requestDelay],
   );
 
   return (
-    <StaggerGroupContext.Provider value={{ register, getAnimationProps }}>
+    <StaggerGroupContext.Provider value={contextValue}>
       {children}
     </StaggerGroupContext.Provider>
   );

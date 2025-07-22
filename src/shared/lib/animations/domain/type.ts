@@ -90,10 +90,7 @@ export interface SteppedAnimationStrategyConfig {
 }
 
 export interface StaggerGroupContextValue {
-  register: (id: string) => void;
-
-  getAnimationProps: (id: string) => {
-    variants: Variants;
-    delay: number;
-  };
+  register: (id: string) => number; // Регистрирует ID и возвращает стабильный индекс
+  getVariants: (index: number) => Variants;
+  requestDelay: () => number;
 }

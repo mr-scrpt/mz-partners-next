@@ -85,6 +85,7 @@ export function createStaggerItem() {
 // ✅ Новый строитель для контейнера группы
 export function createStaggerGroupContainer(config: {
   animationStrategy: AnimationApplicationStrategy;
+  resetTimeout?: number;
   delayMultiplier?: number;
 }) {
   return function <P extends object>(WrappedComponent: ComponentType<P>) {
@@ -97,3 +98,18 @@ export function createStaggerGroupItem() {
     return withStaggerGroupItem(WrappedComponent);
   };
 }
+
+// export function createStaggerGroupContainer(config: {
+//   animationStrategy: AnimationApplicationStrategy;
+//   delayMultiplier?: number;
+// }) {
+//   return function <P extends object>(WrappedComponent: ComponentType<P>) {
+//     return withStaggerGroupContainer(WrappedComponent, config);
+//   };
+// }
+//
+// export function createStaggerGroupItem() {
+//   return function <P extends object>(WrappedComponent: ComponentType<P>) {
+//     return withStaggerGroupItem(WrappedComponent);
+//   };
+// }

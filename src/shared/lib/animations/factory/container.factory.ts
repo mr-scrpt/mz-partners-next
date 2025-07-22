@@ -22,11 +22,11 @@ export const createContainerSlideSequencePrimary = createStaggerContainer({
   animationStrategy: sequentialStrategyCreator({
     variantsList: [slideInLeft, slideInTop, slideInRight, slideInBottom],
   }),
-  delayMultiplier: 0.1,
+  delayMultiplier: 0.15,
 });
 
 export const createContainerSlideSequenceSecondary = createStaggerContainer({
-  animationStrategy: sequentialStrategyCreator({
+  animationStrategy: cyclicalStrategyCreator({
     variantsList: [slideInLeft, slideInTop, slideInBottom, slideInRight],
   }),
 
@@ -39,7 +39,7 @@ export const createContainerSlideSequenceTertiary = createStaggerContainer({
     step: 2,
   }),
 
-  delayMultiplier: 0.5,
+  delayMultiplier: 0.15,
 });
 
 export const createContainerItem = createStaggerItem();
