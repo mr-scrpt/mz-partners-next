@@ -28,12 +28,33 @@ export function withStaggerGroupItem<P extends object>(
 ) {
   const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
     const { className, ...rest } = props;
-    const motionProps = useStaggerGroupItem();
+    const { ref, initial, animate, variants } = useStaggerGroupItem();
+
     return (
-      <motion.div className={className} {...motionProps}>
+      <motion.div
+        ref={ref}
+        className={className}
+        variants={variants} // ✅ Передаем variants
+        initial={initial}
+        animate={animate}
+      >
         <WrappedComponent {...(rest as P)} />
       </motion.div>
     );
   };
   return AnimatedComponent;
 }
+// export function withStaggerGroupItem<P extends object>(
+//   WrappedComponent: ComponentType<P>,
+// ) {
+//   const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
+//     const { className, ...rest } = props;
+//     const motionProps = useStaggerGroupItem();
+//     return (
+//       <motion.div className={className} {...motionProps}>
+//         <WrappedComponent {...(rest as P)} />
+//       </motion.div>
+//     );
+//   };
+//   return AnimatedComponent;
+// }

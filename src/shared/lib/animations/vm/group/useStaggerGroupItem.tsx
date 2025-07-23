@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useId, useMemo, useRef } from "react";
 import { useAnimationControls, useInView } from "framer-motion";
 import { useStaggerGroup } from "./provider";
 
@@ -16,23 +16,21 @@ export function useStaggerGroupItem() {
       const variants = getVariants(index);
       const delay = requestDelay();
 
-      const variantTransition =
-        (variants.visible as Record<string, unknown>)?.transition || {};
-
-      const finalTransition = {
-        ...variantTransition,
-        delay,
-      };
-
       controls.set(variants.hidden);
 
-      controls.start(variants.visible, finalTransition);
+      controls.start("visible", { delay });
     }
   }, [isInView, id, register, getVariants, requestDelay, controls]);
 
+  const variants = useMemo(() => {
+    const index = register(id);
+    return getVariants(index);
+  }, [id, register, getVariants]);
+
   return {
     ref,
-    initial: { opacity: 0 },
+    initial: "hidden",
     animate: controls,
+    variants,
   };
 }
