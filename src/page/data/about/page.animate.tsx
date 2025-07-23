@@ -4,7 +4,6 @@ import { BenefitModule } from "@/widget/benefit";
 import { HistoryModule } from "@/widget/history";
 import { PiplineModule } from "@/widget/pipline";
 import { PrincipleModule } from "@/widget/principle";
-import { TeamModule } from "@/widget/team";
 
 import { BreadcrumbsModule } from "@/widget/breadcrumbs";
 
@@ -17,7 +16,6 @@ const aboutPageElements: ElementConfig[] = [
   { component: AboutModule },
   { component: HistoryModule },
   { component: BenefitModule },
-  { component: TeamModule },
   { component: PiplineModule },
   { component: PrincipleModule, props: { className: sPage.root__offset } },
 ];

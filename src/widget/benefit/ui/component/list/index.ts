@@ -5,7 +5,7 @@ import { ListBenefit } from "./list.benefit";
 import {
   createContainerGroupItem,
   createContainerGroupSlideAround,
-} from "@/shared/lib/animations/factory/group.factory";
+} from "@/shared/lib/animations";
 
 export const ListBenefitAnimated = createContainerGroupSlideAround(ListBenefit);
 

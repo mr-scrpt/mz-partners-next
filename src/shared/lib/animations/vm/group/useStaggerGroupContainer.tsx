@@ -1,21 +1,14 @@
 import { useRef, useCallback, useMemo } from "react";
-import { AnimationApplicationStrategy } from "../domain/type";
-
-interface StaggerGroupStateConfig {
-  animationStrategy: AnimationApplicationStrategy;
-  delayMultiplier?: number;
-  resetTimeout?: number;
-}
+import { AnimationPresetConfig } from "../../domain/type";
+import { useRequestDelay } from "../../lib/useRequestDelay";
 
 export function useStaggerGroupState({
   animationStrategy,
   delayMultiplier = 0.1,
   resetTimeout = 200,
-}: StaggerGroupStateConfig) {
+}: AnimationPresetConfig) {
   const registry = useRef(new Map<string, number>()).current;
   const indexCounter = useRef(0);
-  const temporalIndex = useRef(0);
-  const lastTime = useRef(0);
 
   const register = useCallback(
     (id: string): number => {
@@ -35,16 +28,10 @@ export function useStaggerGroupState({
     [animationStrategy],
   );
 
-  const requestDelay = useCallback(() => {
-    const now = performance.now();
-    if (now - lastTime.current > resetTimeout) {
-      temporalIndex.current = 0;
-    }
-    lastTime.current = now;
-    const delay = (temporalIndex.current + 1) * delayMultiplier;
-    temporalIndex.current++;
-    return delay;
-  }, [delayMultiplier, resetTimeout]);
+  const { requestDelay } = useRequestDelay({
+    delayMultiplier,
+    resetTimeout,
+  });
 
   const contextValue = useMemo(
     () => ({

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useId, useRef } from "react";
 import { useAnimationControls, useInView } from "framer-motion";
-import { useStaggerGroup } from "./group.provider";
+import { useStaggerGroup } from "./provider";
 
 export function useStaggerGroupItem() {
   const ref = useRef(null);
@@ -16,7 +16,8 @@ export function useStaggerGroupItem() {
       const variants = getVariants(index);
       const delay = requestDelay();
 
-      const variantTransition = (variants.visible as any)?.transition || {};
+      const variantTransition =
+        (variants.visible as Record<string, unknown>)?.transition || {};
 
       const finalTransition = {
         ...variantTransition,

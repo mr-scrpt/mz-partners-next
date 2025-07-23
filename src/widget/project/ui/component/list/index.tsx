@@ -1,7 +1,13 @@
 "use client";
-import { createAnimationItemSlideBottomSelfDelayed } from "@/shared/lib/animations";
 
+import {
+  createContainerGroupFadeMovement,
+  createContainerGroupItem,
+} from "@/shared/lib/animations";
 import { ItemProject } from "./item/item.project";
+import { ListProject } from "./list.project";
 
-export const ItemProjectAnimated =
-  createAnimationItemSlideBottomSelfDelayed(ItemProject);
+export const ItemProjectAnimated = createContainerGroupItem(ItemProject);
+
+export const ListProjectAnimated =
+  createContainerGroupFadeMovement(ListProject);

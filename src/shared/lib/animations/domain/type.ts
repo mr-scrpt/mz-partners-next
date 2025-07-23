@@ -12,6 +12,11 @@ export interface AnimationConfig {
     scale?: [number, number];
   };
 }
+export interface AnimationPresetConfig {
+  animationStrategy: AnimationApplicationStrategy;
+  delayMultiplier?: number;
+  resetTimeout?: number;
+}
 
 export interface VariantStrategyConfig {
   variants: Variants;
@@ -54,17 +59,6 @@ export interface ItemAnimationProps {
 
 export type VariantStrategy = (props: ItemAnimationProps) => Variants;
 
-export interface StaggerContainerConfig {
-  variantsList: Variants[];
-  delayMultiplier?: number;
-  resetTimeout?: number;
-}
-
-export interface StaggerAnimationProps {
-  variants: Variants;
-  delay: number;
-}
-
 export type AnimationApplicationStrategy = (index: number) => Variants;
 
 export interface AnimationStrategyConfig {
@@ -76,21 +70,13 @@ export type AnimationStrategyCreator = (
   config: AnimationStrategyConfig,
 ) => AnimationApplicationStrategy;
 
-export interface StaggerContextValue {
+interface AnimationContextValue {
   getVariants: AnimationApplicationStrategy;
   requestDelay: () => number;
 }
 
-export interface ItemAnimationProps {
-  idx: number;
-}
-export interface SteppedAnimationStrategyConfig {
-  variantsList: Variants[];
-  step?: number;
-}
+export interface StaggerListContextValue extends AnimationContextValue {}
 
-export interface StaggerGroupContextValue {
-  register: (id: string) => number; // Регистрирует ID и возвращает стабильный индекс
-  getVariants: (index: number) => Variants;
-  requestDelay: () => number;
+export interface StaggerGroupContextValue extends AnimationContextValue {
+  register: (id: string) => number;
 }

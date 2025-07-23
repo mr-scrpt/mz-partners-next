@@ -1,14 +1,16 @@
 import { FC, HTMLAttributes } from "react";
-import { InfoContact } from "../info.contact";
 import { AddressListAnimated } from "../../addressList";
 import { PhoneListAnimated } from "../../phoneList";
+import { InfoContactAnimated } from "..";
 
 interface InfoComposeContactProps extends HTMLAttributes<HTMLDivElement> {}
 
-export const InfoComposeContact: FC<InfoComposeContactProps> = (props) => {
+export const InfoContactComposeAnimated: FC<InfoComposeContactProps> = (
+  props,
+) => {
   const { className } = props;
   return (
-    <InfoContact
+    <InfoContactAnimated
       AddressComponent={AddressListAnimated}
       PhoneComponent={PhoneListAnimated}
       AdditionalComponent={AddressListAnimated}

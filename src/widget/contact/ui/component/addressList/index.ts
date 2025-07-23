@@ -1,5 +1,6 @@
 "use client";
 
+import { createContainerGroupItem } from "@/shared/lib/animations";
 // import { createAnimationItemSlideBottom } from "@/shared/lib/animations";
 import { AddressListComposeContact } from "./compose/addressListCompose.contact";
 
@@ -7,4 +8,6 @@ import { AddressListComposeContact } from "./compose/addressListCompose.contact"
 //   AddressListComposeContact,
 // );
 //
-export const AddressListAnimated = AddressListComposeContact;
+export const AddressListAnimated = createContainerGroupItem(
+  AddressListComposeContact,
+);

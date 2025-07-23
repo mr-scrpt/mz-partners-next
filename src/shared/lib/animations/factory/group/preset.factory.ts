@@ -1,17 +1,19 @@
 "use client";
+
 import {
-  fadeIn,
-  fadeInBottom,
-  fadeInUp,
-  slideInBottom,
   slideInLeft,
   slideInRight,
   slideInTop,
-} from "../preset/variant";
+  slideInBottom,
+  fadeInUp,
+  fadeInBottom,
+  fadeIn,
+} from "../../preset/variant";
 import {
   cyclicalStrategyCreator,
   steppedStrategyCreator,
-} from "../strategy/strategy.animation";
+} from "../../strategy/strategy.animation";
+
 import {
   createStaggerGroupContainer,
   createStaggerGroupItem,
@@ -51,17 +53,18 @@ export const createContainerGroupSlideSteped = createStaggerGroupContainer({
 export const createContainerGroupFadeMovementAlternating =
   createStaggerGroupContainer({
     animationStrategy: cyclicalStrategyCreator({
-      variantsList: [fadeInUp],
+      variantsList: [fadeInUp, fadeInBottom],
     }),
     delayMultiplier: 0.25,
   });
 
-export const createContainerGroupFadeImmediate = createStaggerGroupContainer({
+export const createContainerGroupFadeMovement = createStaggerGroupContainer({
   animationStrategy: cyclicalStrategyCreator({
-    variantsList: [fadeIn],
+    variantsList: [fadeInUp],
   }),
   delayMultiplier: 0.25,
 });
+
 export const createContainerGroupFadeMovementImmediate =
   createStaggerGroupContainer({
     animationStrategy: cyclicalStrategyCreator({
@@ -69,5 +72,12 @@ export const createContainerGroupFadeMovementImmediate =
     }),
     delayMultiplier: 0,
   });
+
+export const createContainerGroupFade = createStaggerGroupContainer({
+  animationStrategy: cyclicalStrategyCreator({
+    variantsList: [fadeIn],
+  }),
+  delayMultiplier: 0.25,
+});
 
 export const createContainerGroupItem = createStaggerGroupItem();

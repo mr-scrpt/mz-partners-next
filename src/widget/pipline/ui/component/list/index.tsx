@@ -1,6 +1,11 @@
 "use client";
-import { createAnimationItemOpacitySelfDelayed } from "@/shared/lib/animations";
+import {
+  createContainerGroupFade,
+  createContainerGroupItem,
+} from "@/shared/lib/animations";
+import { ListPipline } from "./list.pipline";
 import { ItemPipline } from "./item/item.pipline";
 
-export const ItemPiplineAnimated =
-  createAnimationItemOpacitySelfDelayed(ItemPipline);
+export const ListPiplineAnimated = createContainerGroupFade(ListPipline);
+
+export const ItemPiplineAnimated = createContainerGroupItem(ItemPipline);

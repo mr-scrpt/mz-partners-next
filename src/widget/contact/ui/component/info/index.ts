@@ -1,6 +1,10 @@
-// "use client";
-// import { createAnimationContainerImmediately } from "@/shared/lib/animations";
-// import { InfoComposeContact } from "./compose/infoCompose.contact";
+"use client";
+
+import {
+  createContainerGroupFade,
+  createContainerGroupFadeMovement,
+} from "@/shared/lib/animations";
+import { InfoContact } from "./info.contact";
+
 //
-// export const InfoAnimated =
-//   createAnimationContainerImmediately(InfoComposeContact);
+export const InfoContactAnimated = createContainerGroupFade(InfoContact);

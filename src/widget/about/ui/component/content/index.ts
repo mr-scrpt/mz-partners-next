@@ -1,10 +1,5 @@
 "use client";
-import {
-  createContainerGroupFadeImmediate,
-  createContainerGroupFadeMovementImmediate,
-  createContainerGroupSlideAlternating,
-} from "@/shared/lib/animations/factory/group.factory";
+import { createContainerGroupFade } from "@/shared/lib/animations";
 import { ContentAbout } from "./content.about";
 
-export const ContentAboutAnimated =
-  createContainerGroupFadeImmediate(ContentAbout);
+export const ContentAboutAnimated = createContainerGroupFade(ContentAbout);

@@ -1,17 +1,11 @@
 "use client";
 
 import {
-  createContainerItem,
-  createContainerSlideAlternating,
-  createContainerSlideSequenceSecondary,
-  createContainerSlideSequenceTertiary,
-} from "@/shared/lib/animations/factory/container.factory";
-import { ItemTeam } from "./item/item.team";
-import { ListTeam } from "./list.team";
-import {
   createContainerGroupItem,
   createContainerGroupSlideAlternating,
-} from "@/shared/lib/animations/factory/group.factory";
+} from "@/shared/lib/animations";
+import { ItemTeam } from "./item/item.team";
+import { ListTeam } from "./list.team";
 
 export const ListTeamAnimated = createContainerGroupSlideAlternating(ListTeam);
 

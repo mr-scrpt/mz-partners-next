@@ -1,33 +1,22 @@
 "use client";
-import {
-  ComponentType,
-  FC,
-  HTMLAttributes,
-  useEffect,
-  useId,
-  useRef,
-} from "react";
-import { AnimationApplicationStrategy } from "../domain/type";
-import { useAnimationControls, useInView, motion } from "framer-motion";
-import { StaggerGroupContext, useStaggerGroup } from "./group.provider";
+import { ComponentType, FC, HTMLAttributes } from "react";
+import { motion } from "framer-motion";
 import { useStaggerGroupState } from "./useStaggerGroupContainer";
 import { useStaggerGroupItem } from "./useStaggerGroupItem";
+import { AnimationPresetConfig } from "../../domain/type";
+import { StaggerGroupProvider } from "./provider";
 
 export function withStaggerGroupContainer<P extends object>(
   WrappedComponent: ComponentType<P>,
-  config: {
-    animationStrategy: AnimationApplicationStrategy;
-    delayMultiplier?: number;
-    resetTimeout?: number;
-  },
+  config: AnimationPresetConfig,
 ) {
   const StaggerContainerWrapper: FC<P> = (props) => {
     const contextValue = useStaggerGroupState(config);
 
     return (
-      <StaggerGroupContext.Provider value={contextValue}>
+      <StaggerGroupProvider value={contextValue}>
         <WrappedComponent {...(props as P)} />
-      </StaggerGroupContext.Provider>
+      </StaggerGroupProvider>
     );
   };
 
