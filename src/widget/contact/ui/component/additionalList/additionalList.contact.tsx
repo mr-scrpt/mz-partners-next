@@ -7,10 +7,10 @@ import { AdditionalListContactProps } from "./type";
 export const AdditionalListContact: FC<AdditionalListContactProps> = (
   props,
 ) => {
-  const { className, ItemComponent, getDataList } = props;
+  const { className, ItemComponent, getDataList, ...rest } = props;
   const { title, listData } = getDataList();
   return (
-    <div className={clsx(sAdditionalListContact.root, className)}>
+    <div className={clsx(sAdditionalListContact.root, className)} {...rest}>
       <div className={sAdditionalListContact.inner}>
         <Title
           text={title}

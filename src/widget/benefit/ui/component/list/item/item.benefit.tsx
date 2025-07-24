@@ -7,11 +7,11 @@ import { Icon } from "@/shared/ui/icon";
 import { ItemBenefitProps } from "./type";
 
 export const ItemBenefit: FC<ItemBenefitProps> = (props) => {
-  const { className, item } = props;
+  const { className, item, ...rest } = props;
   const { indicator, description } = item;
 
   return (
-    <div className={clsx(sItemBenefit.root, className)}>
+    <div className={clsx(sItemBenefit.root, className)} {...rest}>
       <div className={clsx(sItemBenefit.inner)}>
         <div className={clsx(sItemBenefit.iconBox)}>
           <div className={sItemBenefit.iconWrap}>

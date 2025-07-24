@@ -9,7 +9,7 @@ import { ItemProjectProps } from "./type";
 import { useProjectItemAnimation } from "../../../../vm/useProjectItemAnimation.model";
 
 export const ItemProject: FC<ItemProjectProps> = (props) => {
-  const { className, item } = props;
+  const { className, item, ...rest } = props;
   const { title, img, description } = item;
 
   const {
@@ -24,6 +24,7 @@ export const ItemProject: FC<ItemProjectProps> = (props) => {
     <div
       className={clsx(sItemProject.root, [className, rootAnimationClass])}
       {...trigger}
+      {...rest}
     >
       <div className={clsx(sItemProject.inner, innerAnimationClass)}>
         <div className={sItemProject.imgBox}>

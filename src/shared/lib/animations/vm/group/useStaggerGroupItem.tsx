@@ -15,9 +15,7 @@ export function useStaggerGroupItem() {
       const index = register(id);
       const variants = getVariants(index);
       const delay = requestDelay();
-
       controls.set(variants.hidden);
-
       controls.start("visible", { delay });
     }
   }, [isInView, id, register, getVariants, requestDelay, controls]);
@@ -29,8 +27,11 @@ export function useStaggerGroupItem() {
 
   return {
     ref,
-    initial: "hidden",
+    initial: "hidden" as const,
     animate: controls,
     variants,
+    // Добавляем helper для инжектирования пропсов
+    injectRef: <P extends object>(props: P) =>
+      ({ ...props, ref }) as P & { ref: React.RefObject<HTMLDivElement> },
   };
 }

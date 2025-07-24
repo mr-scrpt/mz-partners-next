@@ -12,6 +12,7 @@ export const AdditionalListComposeContact: FC<
   const { className } = props;
   return (
     <AdditionalListContact
+      {...props}
       ItemComponent={AdditionalItemContact}
       getDataList={useAdditionalListContact}
       className={className}

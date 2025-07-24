@@ -1,14 +1,13 @@
 "use client";
 import clsx from "clsx";
-import { FC } from "react";
 
 import { Title } from "@/shared/ui/title";
 import Image from "next/image";
 import sItem from "./item.team.module.scss";
 import { ItemTeamProps } from "./type";
 
-export const ItemTeam: FC<ItemTeamProps> = (props) => {
-  const { className, item, idx } = props;
+export const ItemTeam = (props: ItemTeamProps) => {
+  const { className, item, idx, ...rest } = props;
 
   const isEven = idx % 2 === 0;
 
@@ -18,6 +17,7 @@ export const ItemTeam: FC<ItemTeamProps> = (props) => {
         [sItem.even]: isEven,
         [sItem.odd]: !isEven,
       })}
+      {...rest}
     >
       <div className={clsx(sItem.inner)}>
         <div className={clsx(sItem.imgBox)}>

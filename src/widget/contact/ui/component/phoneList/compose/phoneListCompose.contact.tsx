@@ -11,6 +11,7 @@ export const PhoneListComposeContact: FC<PhoneListComposeContactProps> = (
   const { className } = props;
   return (
     <PhoneListContact
+      {...props}
       getDataList={useContactPhoneList}
       ItemComponent={PhoneItemContact}
       className={className}

@@ -21,6 +21,7 @@
 }
 
 .item {
+  padding: 15px;
   @include col(12);
   @include col-sm(6);
   @include col-md(4);

@@ -8,14 +8,14 @@ import sItemCopmetency from "./item.competency.module.scss";
 import { ItemCompetencyProps } from "./type";
 
 export const ItemCompetency: FC<ItemCompetencyProps> = (props) => {
-  const { className, item, idx } = props;
+  const { className, item, idx, ...rest } = props;
   const { title, description } = item;
 
   const { orderAnimationClassName, contentAnimationClassName, toggleOpen } =
     useCompetencyItemAnimation();
 
   return (
-    <div className={clsx(sItemCopmetency.root, className)}>
+    <div className={clsx(sItemCopmetency.root, className)} {...rest}>
       <div className={clsx(sItemCopmetency.inner)}>
         <div
           className={clsx(sItemCopmetency.order, [orderAnimationClassName])}

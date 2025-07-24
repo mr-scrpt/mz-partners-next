@@ -2,6 +2,7 @@ import { FC, HTMLAttributes } from "react";
 import { AddressListAnimated } from "../../addressList";
 import { PhoneListAnimated } from "../../phoneList";
 import { InfoContactAnimated } from "..";
+import { AdditionalListAnimated } from "../../additionalList";
 
 interface InfoComposeContactProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -13,7 +14,7 @@ export const InfoContactComposeAnimated: FC<InfoComposeContactProps> = (
     <InfoContactAnimated
       AddressComponent={AddressListAnimated}
       PhoneComponent={PhoneListAnimated}
-      AdditionalComponent={AddressListAnimated}
+      AdditionalComponent={AdditionalListAnimated}
       className={className}
     />
   );

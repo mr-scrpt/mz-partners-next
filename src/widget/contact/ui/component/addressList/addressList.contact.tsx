@@ -10,11 +10,12 @@ import {
 import { AddressListContactProps } from "./type";
 
 export const AddressListContact: FC<AddressListContactProps> = (props) => {
-  const { className, ItemComponent, getDataList } = props;
+  const { className, ItemComponent, getDataList, ...rest } = props;
+  console.log("output_log:  =>>>", rest);
   const t = useTranslations(CONTACT_NAMESPACE);
   const { addressList } = getDataList();
   return (
-    <div className={clsx(sAddressList.root, className)}>
+    <div className={clsx(sAddressList.root, className)} {...rest}>
       <div className={sAddressList.inner}>
         <Title
           text={t(CONTACT_DICT_FIELD.addressTitle)}

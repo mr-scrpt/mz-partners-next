@@ -10,10 +10,10 @@ interface ListPrincipleProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const ListPrinciple: FC<ListPrincipleProps> = (props) => {
-  const { className, ItemComponent, getDataList } = props;
+  const { className, ItemComponent, getDataList, ...rest } = props;
   const { principleItemList } = getDataList();
   return (
-    <div className={clsx(sListPrinciple.root, className)}>
+    <div className={clsx(sListPrinciple.root, className)} {...rest}>
       <div className={sListPrinciple.inner}>
         <div className={clsx(sListPrinciple.list)}>
           {principleItemList.map((item, idx) => (

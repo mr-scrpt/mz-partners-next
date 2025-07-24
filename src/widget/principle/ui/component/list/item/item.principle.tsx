@@ -8,7 +8,7 @@ import sItemPrinciple from "./item.principle.module.scss";
 import { ItemPrincipleProps } from "./type";
 
 export const ItemPrinciple: FC<ItemPrincipleProps> = (props) => {
-  const { className, item, idx } = props;
+  const { className, item, idx, ...rest } = props;
   const { title, description } = item;
 
   const cDecoBG = clsx(sDeco.deco, {
@@ -17,7 +17,7 @@ export const ItemPrinciple: FC<ItemPrincipleProps> = (props) => {
   });
 
   return (
-    <div className={clsx(sItemPrinciple.root, className)}>
+    <div className={clsx(sItemPrinciple.root, className)} {...rest}>
       <div className={clsx(sItemPrinciple.inner)}>
         <div className={clsx(sItemPrinciple.titleBox, cDecoBG)}>
           <Title text={title} size="S" view="PRIMARY_INVERTED" as="h3" />

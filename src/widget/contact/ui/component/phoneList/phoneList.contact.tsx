@@ -10,11 +10,12 @@ import {
 import { PhoneListContactProps } from "./type";
 
 export const PhoneListContact: FC<PhoneListContactProps> = (props) => {
-  const { className, ItemComponent, getDataList } = props;
+  const { className, ItemComponent, getDataList, ...rest } = props;
+  console.log("output_log:  =>>>", rest);
   const t = useTranslations(CONTACT_NAMESPACE);
   const { phoneList } = getDataList();
   return (
-    <div className={clsx(sPhoneListContact.root, className)}>
+    <div className={clsx(sPhoneListContact.root, className)} {...rest}>
       <div className={sPhoneListContact.inner}>
         <Title
           text={t(CONTACT_DICT_FIELD.phoneTitle)}

@@ -1,6 +1,12 @@
 "use client";
-import { ComponentType, FC, HTMLAttributes } from "react";
-import { motion } from "framer-motion";
+import {
+  ComponentPropsWithoutRef,
+  ComponentType,
+  createElement,
+  FC,
+  HTMLAttributes,
+} from "react";
+import { HTMLMotionProps, motion } from "framer-motion";
 import { useStaggerGroupState } from "./useStaggerGroupContainer";
 import { useStaggerGroupItem } from "./useStaggerGroupItem";
 import { AnimationPresetConfig } from "../../domain/type";
@@ -23,38 +29,61 @@ export function withStaggerGroupContainer<P extends object>(
   return StaggerContainerWrapper;
 }
 
-export function withStaggerGroupItem<P extends object>(
+export function withStaggerGroupItem<P extends ComponentPropsWithoutRef<"div">>(
   WrappedComponent: ComponentType<P>,
 ) {
-  const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
-    const { className, ...rest } = props;
-    const { ref, initial, animate, variants } = useStaggerGroupItem();
+  const AnimatedComponent: FC<P> = (props) => {
+    const { injectRef, initial, animate, variants } = useStaggerGroupItem();
+    const MotionWrappedComponent = motion.create(WrappedComponent);
 
     return (
-      <motion.div
-        ref={ref}
-        className={className}
-        variants={variants} // ✅ Передаем variants
+      <MotionWrappedComponent
+        {...injectRef(props as any)}
+        variants={variants}
         initial={initial}
         animate={animate}
-      >
-        <WrappedComponent {...(rest as P)} />
-      </motion.div>
+      />
     );
   };
   return AnimatedComponent;
 }
+// export function withStaggerGroupItem<P extends HTMLAttributes<HTMLDivElement>>(
+//   WrappedComponent: ComponentType<P>,
+// ) {
+//   const AnimatedComponent: FC<P> = (props) => {
+//     const { injectRef, initial, animate, variants } = useStaggerGroupItem();
+//
+//     const MotionWrappedComponent = motion.create(WrappedComponent);
+//
+//     return (
+//       <MotionWrappedComponent
+//         {...injectRef(props)}
+//         variants={variants}
+//         initial={initial}
+//         animate={animate}
+//       />
+//     );
+//   };
+//
+//   return AnimatedComponent;
+// }
 // export function withStaggerGroupItem<P extends object>(
 //   WrappedComponent: ComponentType<P>,
 // ) {
 //   const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
-//     const { className, ...rest } = props;
-//     const motionProps = useStaggerGroupItem();
+//     const { injectRef, initial, animate, variants } = useStaggerGroupItem();
+//     // const MotionWrappedComponent = motion(WrappedComponent as any);
+//     const MotionWrappedComponent = motion.create(WrappedComponent);
+//
 //     return (
-//       <motion.div className={className} {...motionProps}>
-//         <WrappedComponent {...(rest as P)} />
-//       </motion.div>
+//       <MotionWrappedComponent
+//         {...injectRef(props)}
+//         variants={variants}
+//         initial={initial}
+//         animate={animate}
+//       />
 //     );
 //   };
+//
 //   return AnimatedComponent;
 // }

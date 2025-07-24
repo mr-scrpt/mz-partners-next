@@ -1,7 +1,17 @@
 import { TeamItem } from "@/entity/team";
-import { HTMLAttributes } from "react";
+import { ComponentProps, ComponentType, HTMLAttributes } from "react";
 
-export interface ItemTeamProps extends HTMLAttributes<HTMLDivElement> {
-  idx: number;
+// export interface ItemTeamProps extends HTMLAttributes<HTMLDivElement> {
+//   idx: number;
+//   item: TeamItem;
+// }
+
+// export type ItemTeamProps = ComponentType<"div"> & {
+//   idx: number;
+//   item: TeamItem;
+// };
+
+export type ItemTeamProps = ComponentProps<"div"> & {
   item: TeamItem;
-}
+  idx: number;
+};
