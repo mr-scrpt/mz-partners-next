@@ -4,16 +4,21 @@ import { useAnimationControls, useInView } from "framer-motion";
 import { useStaggerGroup } from "./provider";
 
 export function useStaggerGroupItem() {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const controls = useAnimationControls();
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const { register, getVariants, requestDelay } = useStaggerGroup();
   const id = useId();
 
+  // Запоминаем индекс чтобы не вызывать register несколько раз
+  const indexRef = useRef<number | null>(null);
+
   useEffect(() => {
     if (isInView) {
-      const index = register(id);
-      const variants = getVariants(index);
+      if (indexRef.current === null) {
+        indexRef.current = register(id);
+      }
+      const variants = getVariants(indexRef.current);
       const delay = requestDelay();
       controls.set(variants.hidden);
       controls.start("visible", { delay });
@@ -21,8 +26,10 @@ export function useStaggerGroupItem() {
   }, [isInView, id, register, getVariants, requestDelay, controls]);
 
   const variants = useMemo(() => {
-    const index = register(id);
-    return getVariants(index);
+    if (indexRef.current === null) {
+      indexRef.current = register(id);
+    }
+    return getVariants(indexRef.current);
   }, [id, register, getVariants]);
 
   return {
@@ -30,7 +37,7 @@ export function useStaggerGroupItem() {
     initial: "hidden" as const,
     animate: controls,
     variants,
-    // Добавляем helper для инжектирования пропсов
+    // Правильная типизация helper функции
     injectRef: <P extends object>(props: P) =>
       ({ ...props, ref }) as P & { ref: React.RefObject<HTMLDivElement> },
   };

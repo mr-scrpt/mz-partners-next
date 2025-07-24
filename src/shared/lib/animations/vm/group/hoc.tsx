@@ -29,9 +29,9 @@ export function withStaggerGroupContainer<P extends object>(
   return StaggerContainerWrapper;
 }
 
-export function withStaggerGroupItem<P extends ComponentPropsWithoutRef<"div">>(
-  WrappedComponent: ComponentType<P>,
-) {
+export function withStaggerGroupItemRef<
+  P extends ComponentPropsWithoutRef<"div">,
+>(WrappedComponent: ComponentType<P>) {
   const AnimatedComponent: FC<P> = (props) => {
     const { injectRef, initial, animate, variants } = useStaggerGroupItem();
     const MotionWrappedComponent = motion.create(WrappedComponent);
@@ -47,6 +47,27 @@ export function withStaggerGroupItem<P extends ComponentPropsWithoutRef<"div">>(
   };
   return AnimatedComponent;
 }
+
+export function withStaggerGroupItemWrapper<
+  P extends ComponentPropsWithoutRef<"div">,
+>(WrappedComponent: ComponentType<P>) {
+  const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
+    const { ref, initial, variants, animate } = useStaggerGroupItem();
+
+    return (
+      <motion.div
+        ref={ref}
+        variants={variants}
+        initial={initial}
+        animate={animate}
+      >
+        <WrappedComponent {...(props as P)} />
+      </motion.div>
+    );
+  };
+  return AnimatedComponent;
+}
+
 // export function withStaggerGroupItem<P extends HTMLAttributes<HTMLDivElement>>(
 //   WrappedComponent: ComponentType<P>,
 // ) {

@@ -1,11 +1,8 @@
 "use client";
-import { createContainerGroupItem } from "@/shared/lib/animations";
-// import { createAnimationItemSlideBottom } from "@/shared/lib/animations";
+import { createContainerGroupItemRef } from "@/shared/lib/animations";
+
 import { PhoneListComposeContact } from "./compose/phoneListCompose.contact";
 
-export const PhoneListAnimated = createContainerGroupItem(
+export const PhoneListAnimated = createContainerGroupItemRef(
   PhoneListComposeContact,
 );
-// export const PhoneListAnimated = createAnimationItemSlideBottom(
-//   PhoneListComposeContact,
-// );

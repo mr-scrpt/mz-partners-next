@@ -1,6 +1,6 @@
 "use client";
 
-import { createContainerGroupItem } from "@/shared/lib/animations";
+import { createContainerGroupItemRef } from "@/shared/lib/animations";
 import { BannerAbout } from "./banner.about";
 
-export const BannerAboutAnimated = createContainerGroupItem(BannerAbout);
+export const BannerAboutAnimated = createContainerGroupItemRef(BannerAbout);

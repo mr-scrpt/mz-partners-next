@@ -16,7 +16,8 @@ import {
 
 import {
   createStaggerGroupContainer,
-  createStaggerGroupItem,
+  createStaggerGroupItemRef,
+  createStaggerGroupItemWrapper,
 } from "./builder.factory";
 
 export const createContainerGroupSlideAlternating = createStaggerGroupContainer(
@@ -80,4 +81,6 @@ export const createContainerGroupFade = createStaggerGroupContainer({
   delayMultiplier: 0.25,
 });
 
-export const createContainerGroupItem = createStaggerGroupItem();
+export const createContainerGroupItemRef = createStaggerGroupItemRef();
+
+export const createContainerGroupItemWrapper = createStaggerGroupItemWrapper();

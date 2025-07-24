@@ -1,12 +1,9 @@
 "use client";
 
-import { createContainerGroupItem } from "@/shared/lib/animations";
-// import { createAnimationItemSlideBottom } from "@/shared/lib/animations";
+import { createContainerGroupItemRef } from "@/shared/lib/animations";
+
 import { AdditionalListComposeContact } from "./compose/additionalListCompose.contact";
 
-// export const AdditionalListAnimated = createAnimationItemSlideBottom(
-//   AdditionalListComposeContact,
-// );
-export const AdditionalListAnimated = createContainerGroupItem(
+export const AdditionalListAnimated = createContainerGroupItemRef(
   AdditionalListComposeContact,
 );

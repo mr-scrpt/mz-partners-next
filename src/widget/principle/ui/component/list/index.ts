@@ -1,7 +1,7 @@
 "use client";
 import { ItemPrinciple } from "./item/item.principle";
 import {
-  createContainerGroupItem,
+  createContainerGroupItemRef,
   createContainerGroupSlideAlternating,
 } from "@/shared/lib/animations";
 import { ListPrinciple } from "./list.principle";
@@ -9,4 +9,4 @@ import { ListPrinciple } from "./list.principle";
 export const ListPrincipleAnimated =
   createContainerGroupSlideAlternating(ListPrinciple);
 
-export const ItemPrincipleAnimated = createContainerGroupItem(ItemPrinciple);
+export const ItemPrincipleAnimated = createContainerGroupItemRef(ItemPrinciple);

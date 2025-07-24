@@ -3,10 +3,10 @@
 import { ItemBenefit } from "./item/item.benefit";
 import { ListBenefit } from "./list.benefit";
 import {
-  createContainerGroupItem,
+  createContainerGroupItemRef,
   createContainerGroupSlideAround,
 } from "@/shared/lib/animations";
 
 export const ListBenefitAnimated = createContainerGroupSlideAround(ListBenefit);
 
-export const ItemBenefitAnimated = createContainerGroupItem(ItemBenefit);
+export const ItemBenefitAnimated = createContainerGroupItemRef(ItemBenefit);

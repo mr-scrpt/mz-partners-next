@@ -2,7 +2,8 @@ import { ComponentType } from "react";
 import { AnimationPresetConfig } from "../../domain/type";
 import {
   withStaggerGroupContainer,
-  withStaggerGroupItem,
+  withStaggerGroupItemRef,
+  withStaggerGroupItemWrapper,
 } from "../../vm/group/hoc";
 
 export function createStaggerGroupContainer(config: AnimationPresetConfig) {
@@ -11,8 +12,14 @@ export function createStaggerGroupContainer(config: AnimationPresetConfig) {
   };
 }
 
-export function createStaggerGroupItem() {
+export function createStaggerGroupItemRef() {
   return function <P extends object>(WrappedComponent: ComponentType<P>) {
-    return withStaggerGroupItem(WrappedComponent);
+    return withStaggerGroupItemRef(WrappedComponent);
+  };
+}
+
+export function createStaggerGroupItemWrapper() {
+  return function <P extends object>(WrappedComponent: ComponentType<P>) {
+    return withStaggerGroupItemWrapper(WrappedComponent);
   };
 }
