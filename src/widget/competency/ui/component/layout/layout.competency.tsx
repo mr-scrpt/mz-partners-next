@@ -9,7 +9,7 @@ interface LayoutCompetencyProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const LayoutCompetency: FC<LayoutCompetencyProps> = (props) => {
-  const { HeaderSlot, ContentSlot, className } = props;
+  const { HeaderSlot, ContentSlot, className, ...rest } = props;
 
   return (
     <RowSection
@@ -17,6 +17,7 @@ export const LayoutCompetency: FC<LayoutCompetencyProps> = (props) => {
       width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.PRIMARY}
       headerSlot={HeaderSlot}
+      {...rest}
     >
       <div className={sLayoutCompetency.inner}>
         <div className={sLayoutCompetency.content}>{ContentSlot}</div>

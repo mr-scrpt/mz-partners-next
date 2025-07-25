@@ -10,7 +10,7 @@ import { PageLayoutWithHOC, SectionCompetency } from "./hocInit";
 export const PageTest = async () => {
   return (
     <PageLayoutWithHOC className={sPage.root}>
-      <SectionCompetency options={{ skipAnimation: true }} />
+      <SectionCompetency />
       <PrincipleModule />
       <ProjectModule />
       <BenefitModule className={sPage.root__offset} />

@@ -6,9 +6,10 @@ import { ListCompetencyAnimatedCompose } from "./compose/listCompetencyAnimated.
 interface CompetencyModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const CompetencyModule: FC<CompetencyModuleProps> = (props) => {
-  const { className } = props;
+  const { className, ...rest } = props;
   return (
     <LayoutCompetency
+      {...rest}
       HeaderSlot={<HeaderCompetency />}
       ContentSlot={<ListCompetencyAnimatedCompose />}
       className={className}
