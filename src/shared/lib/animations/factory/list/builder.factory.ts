@@ -5,7 +5,8 @@ import {
 } from "../../domain/type";
 import {
   withStaggerListContainer,
-  withStaggerListItem,
+  withStaggerListItemRef,
+  withStaggerListItemWrapper,
 } from "../../vm/list/hoc";
 
 export function createStaggerListContainer(config: {
@@ -18,10 +19,17 @@ export function createStaggerListContainer(config: {
   };
 }
 
-export function createStaggerListItem() {
+export function createStaggerListItemRef() {
   return function <P extends ItemAnimationProps>(
     WrappedComponent: ComponentType<P>,
   ) {
-    return withStaggerListItem(WrappedComponent);
+    return withStaggerListItemRef(WrappedComponent);
+  };
+}
+export function createStaggerListItemWrapper() {
+  return function <P extends ItemAnimationProps>(
+    WrappedComponent: ComponentType<P>,
+  ) {
+    return withStaggerListItemWrapper(WrappedComponent);
   };
 }

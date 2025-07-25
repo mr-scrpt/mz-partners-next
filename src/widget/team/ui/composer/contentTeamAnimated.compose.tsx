@@ -1,7 +1,7 @@
 import { FC, HTMLAttributes } from "react";
 import { ContentTeam } from "../component/content/content.team";
-import { TextTeamAnimated } from "../component/text";
 import { ListTeamAnimatedCompose } from "./listTeamAnimated.compose";
+import { TextTeamAnimatedCompose } from "./textTeamAnimated.compose";
 
 interface ContentTeamAnimatedComposeProps
   extends HTMLAttributes<HTMLDivElement> {}
@@ -11,7 +11,7 @@ export const ContentTeamAnimatedCompose: FC<ContentTeamAnimatedComposeProps> = (
 ) => {
   return (
     <ContentTeam
-      TextComponent={TextTeamAnimated}
+      TextComponent={TextTeamAnimatedCompose}
       ListComponent={ListTeamAnimatedCompose}
       {...props}
     />

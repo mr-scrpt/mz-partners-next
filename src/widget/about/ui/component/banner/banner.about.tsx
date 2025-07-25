@@ -7,7 +7,7 @@ import { BannerAboutProps } from "./type";
 
 export const BannerAbout: FC<BannerAboutProps> = (props) => {
   return (
-    <div className={sBannerAbout.root}>
+    <div className={sBannerAbout.root} {...props}>
       <div className={sBannerAbout.inner}>
         <Image
           src={img}

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useId, useMemo, useRef } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef } from "react";
 import { useAnimationControls, useInView } from "framer-motion";
 import { useStaggerGroup } from "./provider";
 
@@ -10,35 +10,39 @@ export function useStaggerGroupItem() {
   const { register, getVariants, requestDelay } = useStaggerGroup();
   const id = useId();
 
-  // Запоминаем индекс чтобы не вызывать register несколько раз
-  const indexRef = useRef<number | null>(null);
+  const stableIndex = useMemo(() => register(id), [id, register]);
 
   useEffect(() => {
     if (isInView) {
-      if (indexRef.current === null) {
-        indexRef.current = register(id);
-      }
-      const variants = getVariants(indexRef.current);
+      const variants = getVariants(stableIndex);
       const delay = requestDelay();
-      controls.set(variants.hidden);
-      controls.start("visible", { delay });
-    }
-  }, [isInView, id, register, getVariants, requestDelay, controls]);
 
-  const variants = useMemo(() => {
-    if (indexRef.current === null) {
-      indexRef.current = register(id);
+      const variantTransition = (variants.visible as any)?.transition || {};
+      const finalTransition = { ...variantTransition, delay };
+
+      controls.set(variants.hidden);
+      controls.start(variants.visible, finalTransition);
     }
-    return getVariants(indexRef.current);
-  }, [id, register, getVariants]);
+  }, [isInView, stableIndex, getVariants, requestDelay, controls]);
+
+  const variants = useMemo(
+    () => getVariants(stableIndex),
+    [stableIndex, getVariants],
+  );
+
+  const injectRef = useCallback(
+    <P extends object>(props: P) =>
+      ({ ...props, ref }) as P & { ref: React.RefObject<HTMLDivElement> },
+    [ref],
+  );
 
   return {
     ref,
+
     initial: "hidden" as const,
     animate: controls,
     variants,
-    // Правильная типизация helper функции
-    injectRef: <P extends object>(props: P) =>
-      ({ ...props, ref }) as P & { ref: React.RefObject<HTMLDivElement> },
+
+    injectRef,
   };
 }

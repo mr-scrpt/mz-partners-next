@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ComponentType, FC, HTMLAttributes } from "react";
+import { ComponentProps, ComponentType, FC, HTMLAttributes } from "react";
 import { AnimationPresetConfig, ItemAnimationProps } from "../../domain/type";
 import { StaggerListProvider } from "./provider";
 import { useStaggerListState } from "./useStaggerListContainer";
@@ -21,17 +21,30 @@ export function withStaggerListContainer<P extends object>(
   };
   return StaggerContainerWrapper;
 }
+export function withStaggerListItemRef<P extends ItemAnimationProps>(
+  WrappedComponent: ComponentType<P>,
+) {
+  const MotionWrappedComponent = motion.create<P>(WrappedComponent);
 
-export function withStaggerListItem<P extends ItemAnimationProps>(
+  const AnimatedComponent: FC<P> = (props) => {
+    const motionProps = useStaggerListItem(props.idx);
+
+    return <MotionWrappedComponent {...props} {...motionProps} />;
+  };
+  return AnimatedComponent;
+}
+
+export function withStaggerListItemWrapper<P extends ItemAnimationProps>(
   WrappedComponent: ComponentType<P>,
 ) {
   const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
-    const { className, idx, ...restProps } = props;
+    const { idx, ...rest } = props;
+
     const motionProps = useStaggerListItem(idx);
 
     return (
-      <motion.div className={className} {...motionProps}>
-        <WrappedComponent {...(restProps as P)} idx={idx} />
+      <motion.div {...motionProps}>
+        <WrappedComponent {...(rest as P)} idx={idx} />
       </motion.div>
     );
   };

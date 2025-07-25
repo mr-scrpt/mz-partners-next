@@ -6,10 +6,10 @@ import sTextAbout from "./text.about.module.scss";
 import { TextAboutProps } from "./type";
 
 export const TextAbout: FC<TextAboutProps> = (props) => {
-  const { className } = props;
+  const { className, ...rest } = props;
   const { aboutTextList } = useAboutTextList();
   return (
-    <div className={clsx(sTextAbout.root, className)}>
+    <div className={clsx(sTextAbout.root, className)} {...rest}>
       <div className={sTextAbout.inner}>
         {aboutTextList.map((item, idx) => (
           <p key={idx} className={sTextAbout.item}>

@@ -1,16 +1,10 @@
 "use client";
-import {
-  ComponentPropsWithoutRef,
-  ComponentType,
-  createElement,
-  FC,
-  HTMLAttributes,
-} from "react";
-import { HTMLMotionProps, motion } from "framer-motion";
-import { useStaggerGroupState } from "./useStaggerGroupContainer";
-import { useStaggerGroupItem } from "./useStaggerGroupItem";
+import { motion } from "framer-motion";
+import { ComponentType, FC, HTMLAttributes } from "react";
 import { AnimationPresetConfig } from "../../domain/type";
 import { StaggerGroupProvider } from "./provider";
+import { useStaggerGroupState } from "./useStaggerGroupContainer";
+import { useStaggerGroupItem } from "./useStaggerGroupItem";
 
 export function withStaggerGroupContainer<P extends object>(
   WrappedComponent: ComponentType<P>,
@@ -29,16 +23,22 @@ export function withStaggerGroupContainer<P extends object>(
   return StaggerContainerWrapper;
 }
 
-export function withStaggerGroupItemRef<
-  P extends ComponentPropsWithoutRef<"div">,
->(WrappedComponent: ComponentType<P>) {
+// **
+// * Use only with send ref to wrapped component
+// * React 19 no need to use forwardRef
+// * React 18 and above need to use forwardRef
+// **
+
+export function withStaggerGroupItemRef<P extends object>(
+  WrappedComponent: ComponentType<P>,
+) {
   const AnimatedComponent: FC<P> = (props) => {
     const { injectRef, initial, animate, variants } = useStaggerGroupItem();
-    const MotionWrappedComponent = motion.create(WrappedComponent);
+    const MotionWrappedComponent = motion.create<P>(WrappedComponent);
 
     return (
       <MotionWrappedComponent
-        {...injectRef(props as any)}
+        {...injectRef(props)}
         variants={variants}
         initial={initial}
         animate={animate}
@@ -48,9 +48,14 @@ export function withStaggerGroupItemRef<
   return AnimatedComponent;
 }
 
-export function withStaggerGroupItemWrapper<
-  P extends ComponentPropsWithoutRef<"div">,
->(WrappedComponent: ComponentType<P>) {
+// **
+// * Be created wrapper under native component
+// * No need to use forwardRef
+// **
+
+export function withStaggerGroupItemWrapper<P extends object>(
+  WrappedComponent: ComponentType<P>,
+) {
   const AnimatedComponent: FC<P & HTMLAttributes<HTMLDivElement>> = (props) => {
     const { ref, initial, variants, animate } = useStaggerGroupItem();
 

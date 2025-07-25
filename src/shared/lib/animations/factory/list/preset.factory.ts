@@ -13,7 +13,8 @@ import {
 } from "../../strategy/strategy.animation";
 import {
   createStaggerListContainer,
-  createStaggerListItem,
+  createStaggerListItemRef,
+  createStaggerListItemWrapper,
 } from "./builder.factory";
 
 export const createContainerListSlideAlternating = createStaggerListContainer({
@@ -75,4 +76,5 @@ export const createContainerListFade = createStaggerListContainer({
   delayMultiplier: 0.25,
 });
 
-export const createContainerListItem = createStaggerListItem();
+export const createContainerListItemRef = createStaggerListItemRef();
+export const createContainerListItemWrapper = createStaggerListItemWrapper();
