@@ -12,17 +12,11 @@ export interface AnimationConfig {
     scale?: [number, number];
   };
 }
+
 export interface AnimationPresetConfig {
   animationStrategy: AnimationApplicationStrategy;
   delayMultiplier?: number;
   resetTimeout?: number;
-}
-
-export interface VariantStrategyConfig {
-  variants: Variants;
-  oddVariants?: Variants;
-  delayMultiplier?: number;
-  delay?: number;
 }
 
 export interface ElementConfig {

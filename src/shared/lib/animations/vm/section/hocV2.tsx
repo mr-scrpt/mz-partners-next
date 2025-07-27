@@ -1,5 +1,5 @@
 "use client";
-import { motion, useAnimationControls } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Children,
   cloneElement,
@@ -9,19 +9,9 @@ import {
   useRef,
 } from "react";
 import { AnimationStrategy, AnimationConfig } from "../../domain/type";
+import { useScrollProgress } from "./hook";
 
 type ComponentCustomProps<P extends object> = PropsWithChildren<P> & {};
-
-function propsHaveOptions<P extends object>(
-  props: unknown,
-): props is ComponentCustomProps<P> {
-  return (
-    typeof props === "object" &&
-    props !== null &&
-    "animatable" in props &&
-    typeof (props as any).isAnimatable === "boolean"
-  );
-}
 
 interface WithAnimationOptions {
   strategy: AnimationStrategy;
@@ -30,24 +20,29 @@ interface WithAnimationOptions {
 
 export const WithChildernLayout = <P extends object>(
   WrappedComponent: ComponentType<P>,
+  { strategy, config = {} }: WithAnimationOptions,
 ) => {
   const WrapperComponent = (props: PropsWithChildren<P>) => {
     const { children } = props;
 
     const modifiedChildren = Children.map(children, (child) => {
+      if (!isValidElement(child)) {
+        return child;
+      }
       if (!isValidElement(child) || !(child.type as any).isAnimatable) {
         return child;
       }
-      const props = child.props as ComponentCustomProps<P>;
+      const props = child.props as ComponentCustomProps<P> &
+        WithAnimationOptions;
+
       const animationProps = {
         ...props,
-        initial: { opacity: 0, y: 20 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.5 },
+        config,
+        strategy,
       };
+      console.log("output_log:  =>>>", animationProps);
 
       return cloneElement(child, { ...animationProps });
-      // Здесь мы должны вернсть child но как компонент, передав в него пропсы-конфиги для анимации
     });
 
     return (
@@ -65,11 +60,14 @@ export const WithChilderenItem = <P extends object>(
     props: PropsWithChildren<ComponentCustomProps<P>>,
     // { strategy: useAnimationStrategy, config = {} }: WithAnimationOptions, // конфиги для анимций которые должны будут применится к компоненту
   ) => {
-    const controls = useAnimationControls();
-    const ref = useRef<HTMLDivElement>(null);
-
-    const MotionWrappedComponent = motion.create<P>(WrappedComponent);
-    return <MotionWrappedComponent {...(props as P)} ref={ref} />;
+    // const ref = useRef<HTMLDivElement>(null);
+    // const { progress, direction } = useScrollProgress(ref, config);
+    //
+    // const style = useAnimationStrategy({ progress, direction, config });
+    //
+    // const MotionWrappedComponent = motion.create<P>(WrappedComponent);
+    // return <MotionWrappedComponent {...(props as P)} ref={ref} style={style} />;
+    return <WrappedComponent {...(props as P)} />;
   };
   (WrapperComponent as any).isAnimatable = true;
   WrapperComponent.displayName = `WithChilderenItem(${WrappedComponent.displayName || WrappedComponent.name})`;

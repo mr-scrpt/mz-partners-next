@@ -21,6 +21,7 @@ export function withStaggerListContainer<P extends object>(
   };
   return StaggerContainerWrapper;
 }
+
 export function withStaggerListItemRef<P extends ItemAnimationProps>(
   WrappedComponent: ComponentType<P>,
 ) {
