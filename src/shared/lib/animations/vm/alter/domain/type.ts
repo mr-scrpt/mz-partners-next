@@ -4,7 +4,7 @@ import {
   useAnimationControls,
   Variants,
 } from "framer-motion";
-import { Ref, RefObject } from "react";
+import { Ref } from "react";
 
 export type AnimationControls = ReturnType<typeof useAnimationControls>;
 
@@ -20,7 +20,8 @@ export interface TriggerState {
   ref: Ref<HTMLDivElement>;
   isActive: boolean;
   progress: MotionValue<number> | null;
-  direction?: MotionValue<number>;
+  // direction?: MotionValue<number>;
+  direction?: MotionValue<AnimationZone>;
 }
 
 export type TriggerStrategyHook = (options?: any) => TriggerState;
@@ -66,4 +67,16 @@ export interface AnimationContainerConfig {
 
 export interface AnimationContextValue extends AnimationContainerConfig {
   register: (id: string) => number; // Для получения уникального индекса
+}
+
+export enum AnimationDirection {
+  Enter = "enter",
+  Exit = "exit",
+}
+
+export enum AnimationZone {
+  Enter = "enter",
+  Exit = "exit",
+  Visible = "visible",
+  Hidden = "hidden",
 }

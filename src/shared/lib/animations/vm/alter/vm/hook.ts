@@ -1,6 +1,6 @@
 import { useRef, useCallback, useMemo, useId } from "react";
-import { AnimationContainerConfig } from "./type";
 import { useAnimationContext } from "./provider";
+import { AnimationContainerConfig } from "../domain/type";
 
 export const useCreateContextData = (config: AnimationContainerConfig) => {
   const registry = useRef(new Map<string, number>()).current;
@@ -54,7 +54,6 @@ export function useAnimationItem() {
         return { style: animationProps.style };
 
       case "imperative":
-        // Логика стала еще более явной
         return {
           variants: animationProps.variants,
           initial: animationProps.skipInitial ? false : animationProps.initial,
@@ -62,14 +61,6 @@ export function useAnimationItem() {
         };
     }
   };
-
-  // const injectRef = useCallback(
-  //   <P extends object>(props: P) =>
-  //     ({ ...props, ref: triggerState.ref }) as P & {
-  //       ref: React.RefObject<HTMLDivElement>;
-  //     },
-  //   [triggerState.ref],
-  // );
 
   return {
     ref: triggerState.ref,

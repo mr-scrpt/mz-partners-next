@@ -1,8 +1,8 @@
 import { ComponentType, FC } from "react";
-import { AnimationContainerConfig } from "./type";
-import { useAnimationItem, useCreateContextData } from "./hook";
-import { AnimationProvider } from "./provider";
 import { motion } from "framer-motion";
+import { AnimationContainerConfig } from "../domain/type";
+import { useCreateContextData, useAnimationItem } from "../vm/hook";
+import { AnimationProvider } from "../vm/provider";
 
 export function createAnimatedContainer(config: AnimationContainerConfig) {
   return function <P extends object>(WrappedComponent: ComponentType<P>) {
