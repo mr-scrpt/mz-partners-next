@@ -10,7 +10,7 @@ interface LayoutBenefitProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const LayoutBenefit: FC<LayoutBenefitProps> = (props) => {
-  const { HeaderSlot, ContentSlot, className } = props;
+  const { HeaderSlot, ContentSlot, className, ...rest } = props;
 
   return (
     <RowSection
@@ -19,6 +19,7 @@ export const LayoutBenefit: FC<LayoutBenefitProps> = (props) => {
       headerSlot={HeaderSlot}
       width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.PRIMARY}
+      {...rest}
     >
       <div className={clsx(sLayoutBenefit.inner)}>
         <div className={sLayoutBenefit.content}>{ContentSlot}</div>

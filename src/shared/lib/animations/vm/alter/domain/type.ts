@@ -4,7 +4,7 @@ import {
   useAnimationControls,
   Variants,
 } from "framer-motion";
-import { Ref } from "react";
+import { Ref, RefObject } from "react";
 
 export type AnimationControls = ReturnType<typeof useAnimationControls>;
 
@@ -17,7 +17,8 @@ export type AnimationControls = ReturnType<typeof useAnimationControls>;
  */
 
 export interface TriggerState {
-  ref: Ref<HTMLDivElement>;
+  // ref: Ref<HTMLDivElement>;
+  ref: RefObject<HTMLElement>;
   isActive: boolean;
   progress: MotionValue<number> | null;
   // direction?: MotionValue<number>;
@@ -38,25 +39,36 @@ export interface AnimationStrategyProps {
   animationConfig?: any;
 }
 
-export interface StyleAnimationOutput {
-  type: "style";
-  style: MotionStyle;
-}
-
-export interface ImperativeVariantAnimationOutput {
-  type: "imperative";
-  variants: Variants;
-  initial: string;
+// export interface StyleAnimationOutput {
+//   type: "style";
+//   style: MotionStyle;
+// }
+//
+// export interface ImperativeVariantAnimationOutput {
+//   type: "imperative";
+//   variants: Variants;
+//   initial: string;
+//   skipInitial?: boolean;
+//   animate: AnimationControls;
+// }
+// export type AnimationOutputProps =
+//   | StyleAnimationOutput
+//   | ImperativeVariantAnimationOutput;
+export type AnimationOutputCommonProps = {
+  style?: MotionStyle;
+  variants?: Variants;
+  initial?: string;
   skipInitial?: boolean;
-  animate: AnimationControls;
-}
-export type AnimationOutputProps =
-  | StyleAnimationOutput
-  | ImperativeVariantAnimationOutput;
+  animate?: AnimationControls;
+};
 
 export type AnimationStrategy = (
   props: AnimationStrategyProps,
-) => AnimationOutputProps;
+) => AnimationOutputCommonProps;
+
+// export type AnimationStrategy = (
+//   props: AnimationStrategyProps,
+// ) => AnimationOutputProps;
 
 export interface AnimationContainerConfig {
   triggerStrategy: TriggerStrategyHook;

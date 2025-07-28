@@ -10,7 +10,7 @@ interface LayoutPrincipleProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const LayoutPrinciple: FC<LayoutPrincipleProps> = (props) => {
-  const { HeaderSlot, ContentSlot, className } = props;
+  const { HeaderSlot, ContentSlot, className, ...rest } = props;
 
   return (
     <RowSection
@@ -19,6 +19,7 @@ export const LayoutPrinciple: FC<LayoutPrincipleProps> = (props) => {
       width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.PRIMARY}
       headerSlot={HeaderSlot}
+      {...rest}
     >
       <div className={clsx(sLayoutPrinciple.inner)}>
         <div className={sLayoutPrinciple.content}>{ContentSlot}</div>

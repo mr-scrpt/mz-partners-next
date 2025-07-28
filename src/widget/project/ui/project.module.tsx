@@ -6,12 +6,13 @@ import { HeaderProject } from "./component/header/header.project";
 interface ProjectModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const ProjectModule: FC<ProjectModuleProps> = (props) => {
-  const { className } = props;
+  const { className, ...rest } = props;
   return (
     <LayoutProject
       HeaderSlot={<HeaderProject />}
       ContentSlot={<ListProjectAnimatedCompose />}
       className={className}
+      {...rest}
     />
   );
 };

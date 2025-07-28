@@ -48,22 +48,11 @@ export function useAnimationItem() {
     animationConfig,
   });
 
-  const getMotionProps = () => {
-    switch (animationProps.type) {
-      case "style":
-        return { style: animationProps.style };
-
-      case "imperative":
-        return {
-          variants: animationProps.variants,
-          initial: animationProps.skipInitial ? false : animationProps.initial,
-          animate: animationProps.animate,
-        };
-    }
-  };
-
   return {
     ref: triggerState.ref,
-    ...getMotionProps(),
+    variants: animationProps.variants,
+    initial: animationProps.skipInitial ? false : animationProps.initial,
+    animate: animationProps.animate,
+    style: animationProps.style,
   };
 }

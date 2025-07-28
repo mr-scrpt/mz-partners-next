@@ -6,12 +6,13 @@ import { ListBenefitAnimatedCompose } from "./compose/listBenefitAnimated.compos
 interface BenefitModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const BenefitModule: FC<BenefitModuleProps> = (props) => {
-  const { className } = props;
+  const { className, ...rest } = props;
   return (
     <LayoutBenefit
       HeaderSlot={<HeaderBenefit />}
       ContentSlot={<ListBenefitAnimatedCompose />}
       className={className}
+      {...rest}
     />
   );
 };

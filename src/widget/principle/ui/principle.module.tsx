@@ -6,9 +6,10 @@ import { LayoutPrinciple } from "./component/layout/layout.principle";
 interface PrincipleModuleProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const PrincipleModule: FC<PrincipleModuleProps> = (props) => {
-  const { className } = props;
+  const { className, ...rest } = props;
   return (
     <LayoutPrinciple
+      {...rest}
       HeaderSlot={<HeaderPrinciple />}
       ContentSlot={<ListPrincipleAnimatedCompose />}
       className={className}

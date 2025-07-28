@@ -5,6 +5,7 @@ import { PiplineModule } from "@/widget/pipline";
 import sPage from "../../ui/page.module.scss";
 import {
   PageLayoutWithHOC,
+  SectionBenefit,
   SectionCompetency,
   SectionPrinciple,
   SectionProject,
@@ -17,7 +18,7 @@ export const PageTest = async () => {
       <SectionPrinciple />
       <SectionProject />
 
-      <BenefitModule className={sPage.root__offset} />
+      <SectionBenefit className={sPage.root__offset} />
       <PiplineModule />
       <CallbackModule className={sPage.root__offset} />
     </PageLayoutWithHOC>

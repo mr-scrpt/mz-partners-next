@@ -9,7 +9,7 @@ interface LayoutProjectProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const LayoutProject: FC<LayoutProjectProps> = (props) => {
-  const { HeaderSlot, ContentSlot, className } = props;
+  const { HeaderSlot, ContentSlot, className, ...rest } = props;
 
   return (
     <RowSection
@@ -17,6 +17,7 @@ export const LayoutProject: FC<LayoutProjectProps> = (props) => {
       headerSlot={HeaderSlot}
       width={SECTION_WIDTH.CONTAINER}
       space={SECTION_SPACE.PRIMARY}
+      {...rest}
     >
       <div className={clsx(sLayoutProject.inner)}>
         <div className={sLayoutProject.content}>{ContentSlot}</div>

@@ -24,12 +24,17 @@ export function withAnimatedItem<P extends object>(
 ) {
   const AnimatedItem: FC<P> = (props) => {
     const { ref, ...animationProps } = useAnimationItem();
+    const MotionWrappedComponent = motion.create<P>(WrappedComponent);
 
     return (
-      <motion.div ref={ref} {...animationProps}>
-        <WrappedComponent {...(props as P)} />
-      </motion.div>
+      <MotionWrappedComponent {...(props as P)} ref={ref} {...animationProps} />
     );
+
+    // return (
+    //   <motion.div ref={ref} {...animationProps}>
+    //     <WrappedComponent {...(props as P)} />
+    //   </motion.div>
+    // );
   };
 
   return AnimatedItem;
