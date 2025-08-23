@@ -18,7 +18,7 @@ export type AnimationControls = ReturnType<typeof useAnimationControls>;
 
 export interface TriggerState {
   // ref: Ref<HTMLDivElement>;
-  ref: RefObject<HTMLElement>;
+  ref: RefObject<HTMLElement | null>;
   isActive: boolean;
   progress: MotionValue<number> | null;
   // direction?: MotionValue<number>;

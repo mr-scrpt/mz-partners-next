@@ -21,9 +21,9 @@ export const COMPETENCY_LIST = {
         "Консультуємо з питань банківського регулювання та фінансових операцій. Забезпечуємо юридичний супровід кредитних відносин та структурування фінансових інструментів.",
     },
     {
-      title: "Приватні клієнти",
+      title: "Орієнтованість на клієнта",
       description:
-        "Надаємо персональні консультації та забезпечуємо конфіденційний супровід приватних справ. Допомагаємо у вирішенні складних юридичних питань з урахуванням індивідуальних потреб клієнта.",
+        "Допомагаємо у вирішенні  юридичних питань будь-якої складності з урахуванням індивідуальних потреб клієнта.",
     },
   ],
   en: [
@@ -48,9 +48,9 @@ export const COMPETENCY_LIST = {
         "We consult on banking regulations and financial operations. We provide legal support for credit relations and structuring of financial instruments.",
     },
     {
-      title: "Privacy",
+      title: "Client Orientation",
       description:
-        "We provide personal consultations and ensure confidential support for private matters. We help resolve complex legal issues taking into account individual client needs.",
+        "We help resolve legal matters of any complexity with consideration of individual client needs.",
     },
   ],
 };

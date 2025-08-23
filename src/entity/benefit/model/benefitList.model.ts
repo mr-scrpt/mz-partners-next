@@ -9,7 +9,7 @@ export const BENEFIT_LIST = {
       description: "Спеціалістів",
     },
     {
-      indicator: "50+",
+      indicator: "1000+",
       description: "Успішних справ",
     },
     {

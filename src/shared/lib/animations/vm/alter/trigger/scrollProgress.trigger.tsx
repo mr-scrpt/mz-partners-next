@@ -96,7 +96,7 @@ export function useZoneAnimation(
 }
 
 export const useSimpleScrollTrigger: TriggerStrategyHook = () => {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLElement>(null);
 
   // Все, что он делает, — это возвращает объект с ref.
   // Никаких вычислений здесь нет.

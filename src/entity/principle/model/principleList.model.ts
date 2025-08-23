@@ -1,14 +1,14 @@
 export const PRINCIPLE_LIST = {
   ua: [
     {
-      title: "Конфіденціальність",
+      title: "Конфіденційність",
       description:
-        "Ми гарантуємо повну конфіденціальність інформації наших клієнтів. Захист даних є нашим пріоритетом у всіх аспектах співпраці.",
+        "Ми гарантуємо повну конфіденціальність інформації про наших клієнтів та їх справи. Захист даних є нашим пріоритетом у всіх аспектах співпраці.",
     },
     {
-      title: "Приватність клієнтів",
+      title: "Приватність",
       description:
-        "Ми поважаємо приватність наших клієнтів та забезпечуємо надійний захист їхніх особистих даних. Кожен клієнт може бути впевнений у безпеці своєї інформації.",
+        "Ми поважаємо приватність у взаємовідносинах та забезпечуємо надійний захист  особистих даних клієнтів. Кожен, хто звернувся до нас,  може бути впевнений у безпечному зберіганні наданої інформації.",
     },
     {
       title: "Компетентність",
@@ -28,9 +28,9 @@ export const PRINCIPLE_LIST = {
         "We guarantee complete confidentiality of our clients' information. Data protection is our priority in all aspects of cooperation.",
     },
     {
-      title: "Client Privacy",
+      title: "Privacy",
       description:
-        "We respect the privacy of our clients and ensure reliable protection of their personal data. Each client can be confident in the security of their information.",
+        "We value privacy in interrelationships and provide a secure protection of clients' personal data. Each person who has contacted us can be sure of a safe storage of the provided information.",
     },
     {
       title: "Competence",

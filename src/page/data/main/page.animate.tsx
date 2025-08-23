@@ -18,7 +18,7 @@ const mainPageElements: ElementConfig[] = [
   { component: SocialLineModule, options: { skipAnimation: true } },
   { component: CompetencyModule },
   { component: PrincipleModule },
-  { component: ProjectModule },
+  // { component: ProjectModule },
   { component: BenefitModule, props: { className: sPage.root__offset } },
   { component: PiplineModule },
   { component: CallbackModule, props: { className: sPage.root__offset } },

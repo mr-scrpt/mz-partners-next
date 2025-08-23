@@ -1,56 +1,56 @@
 export const PIPLINE_LIST = {
   ua: [
     {
-      title: "Принцип 1",
+      title: "1. Первинна консультація",
       description:
-        "Розробимо стратегію, запропонуємо шляхи вирішення і план дій.",
+        "Ми уважно вислуховуємо клієнта, вивчаємо документи та аналізуємо правову ситуацію. Даємо первинну оцінку справи та окреслюємо можливі шляхи вирішення.",
     },
     {
-      title: "Принцип 2",
+      title: "2. Укладення договору",
       description:
-        "Розробимо стратегію, запропонуємо шляхи вирішення і план дій.",
+        "Після погодження обсягу правової допомоги та умов співпраці ми укладаємо договір, у якому чітко прописані всі зобов’язання та гонорари.",
     },
     {
-      title: "Принцип 3",
+      title: "3. Підготовка правової позиції",
       description:
-        "Розробимо стратегію, запропонуємо шляхи вирішення і план дій.",
+        "Ми збираємо докази, готуємо процесуальні документи та формуємо надійну юридичну стратегію для захисту інтересів клієнта.",
     },
     {
-      title: "Принцип 4",
+      title: "4. Представництво та захист",
       description:
-        "Розробимо стратегію, запропонуємо шляхи вирішення і план дій.",
+        "Адвокати компанії представляють інтереси клієнта у суді, державних органах або перед іншими сторонами. Ми діємо рішуче, професійно та в межах закону.",
     },
     {
-      title: "Принцип 5",
+      title: "5. Супровід до результату",
       description:
-        "Розробимо стратегію, запропонуємо шляхи вирішення і план дій.",
+        "Ми постійно інформуємо клієнта про хід справи, контролюємо всі етапи процесу та працюємо до досягнення бажаного результату.",
     },
   ],
   en: [
     {
-      title: "Principle 1",
+      title: "1. Initial Consultation",
       description:
-        "Let's develop a strategy, propose ways to solve the problem, and outline an action plan.",
+        "We carefully listen to the client, study documents and analyze the legal situation. We provide an initial assessment of the case and outline possible ways of resolution.",
     },
     {
-      title: "Principle 2",
+      title: "2. Contract Negotiation",
       description:
-        "Let's develop a strategy, propose ways to solve the problem, and outline an action plan.",
+        "After agreeing on the extent of legal assistance and terms of cooperation, we negotiate a contract, in which all obligations and fees are clearly stipulated.",
     },
     {
-      title: "Principle 3",
+      title: "3. Preparation of Legal Position",
       description:
-        "Let's develop a strategy, propose ways to solve the problem, and outline an action plan.",
+        "We gather evidence, prepare procedural documents and form a reasoned legal strategy to protect the client's interests.",
     },
     {
-      title: "Principle 4",
+      title: "4. Representation and Protection",
       description:
-        "Let's develop a strategy, propose ways to solve the problem, and outline an action plan.",
+        "Our attorneys represent and protect the client's interests in court, government agencies, or other parties. We take a decisive, professional and within the law.",
     },
     {
-      title: "Principle 5",
+      title: "5. Supervision to the Result",
       description:
-        "Let's develop a strategy, propose ways to solve the problem, and outline an action plan.",
+        "We constantly inform the client about the progress of the case, control all stages of the process and work to achieve the desired result.",
     },
   ],
 };
