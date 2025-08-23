@@ -27,7 +27,11 @@ export function withAnimatedItem<P extends object>(
     const MotionWrappedComponent = motion.create<P>(WrappedComponent);
 
     return (
-      <MotionWrappedComponent {...(props as P)} ref={ref} {...animationProps} />
+      <MotionWrappedComponent
+        {...(props as P)}
+        ref={ref as any}
+        {...animationProps}
+      />
     );
 
     // return (
